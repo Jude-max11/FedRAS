@@ -1,0 +1,10 @@
+pair,metric,mean_diff,p
+DP vs Adaptive_rank,accuracy,7.000000000012552e-05,0.75
+DP vs Adaptive_rank,timely_ratio,0.13899999999999996,0.001953125
+DP vs Adaptive_rank,bytes_norm,-0.25200000000000156,0.001953125
+DP vs FedLoRA_r16,accuracy,0.00017999999999984695,0.88671875
+DP vs FedLoRA_r16,timely_ratio,0.14,0.001953125
+DP vs FedLoRA_r16,bytes_norm,-0.3200000000000012,0.001953125
+DP vs FedAvg_full,accuracy,0.0013699999999999823,0.125
+DP vs FedAvg_full,timely_ratio,0.30200000000000005,0.001953125
+DP vs FedAvg_full,bytes_norm,-9.920000000000005,0.001953125

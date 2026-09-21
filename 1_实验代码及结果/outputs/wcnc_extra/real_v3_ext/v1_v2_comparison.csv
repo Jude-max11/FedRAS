@@ -1,0 +1,5 @@
+dataset,method,v1_final_accuracy,v2_final_accuracy,gain
+cifar10,Adaptive_rank,0.3845,0.9159,0.5314
+cifar10,FedLoRA_r16,0.385,0.9157,0.5307
+cifar10,FedLoRA_r4,0.3847,0.9162,0.5315
+cifar10,Random_rank,0.3845,0.916,0.5315

@@ -1,0 +1,11 @@
+dataset,method,final_accuracy_mean,final_accuracy_std,final_timely_ratio_mean,final_timely_ratio_std,final_bytes_norm_mean,final_bytes_norm_std,final_mean_rank_mean,final_mean_rank_std,final_update_norm_mean,final_update_norm_std,best_accuracy_mean,best_accuracy_std
+cifar10,Adaptive_rank,0.9159,0.0015,0.44,0.1517,8.168,0.0716,16.0,0.0,0.0031,0.0009,0.917,0.0013
+cifar10,FedAvg_full,0.9138,0.0028,0.24,0.1517,17.8,0.0,64.0,0.0,0.0011,0.0004,0.9167,0.0017
+cifar10,FedLoRA_r16,0.9157,0.0016,0.44,0.1517,8.2,0.0,16.0,0.0,0.0031,0.0009,0.917,0.0013
+cifar10,FedLoRA_r4,0.9162,0.0013,0.6,0.1581,5.8,0.0,4.0,0.0,0.0014,0.0005,0.9165,0.0012
+cifar10,Random_rank,0.916,0.0013,0.48,0.1304,6.56,0.4243,7.3933,2.5865,0.0017,0.0011,0.9165,0.0014
+cifar10_dl0.25,Adaptive_rank,0.9155,0.0015,0.16,0.0548,7.088,0.1706,12.4,4.98,0.0017,0.0004,0.9165,0.0013
+cifar10_dl0.25,FedAvg_full,0.9153,0.0016,0.04,0.0894,17.8,0.0,12.8,28.6217,0.0002,0.0004,0.9166,0.0013
+cifar10_dl0.25,FedLoRA_r16,0.9156,0.0012,0.1,0.1,8.2,0.0,9.6,8.7636,0.0018,0.0018,0.9167,0.0013
+cifar10_dl0.25,FedLoRA_r4,0.9161,0.0014,0.22,0.1304,5.8,0.0,4.0,0.0,0.0014,0.0005,0.9167,0.0012
+cifar10_dl0.25,Random_rank,0.9158,0.0009,0.16,0.114,6.56,0.4243,6.2667,6.1932,0.0012,0.0011,0.9164,0.0013

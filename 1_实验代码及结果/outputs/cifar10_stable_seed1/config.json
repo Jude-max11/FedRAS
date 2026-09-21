@@ -1,0 +1,26 @@
+{
+  "data": "data",
+  "dataset": "cifar10",
+  "out": "outputs/cifar10_stable_seed1",
+  "rounds": 30,
+  "clients": 20,
+  "per_round": 5,
+  "local_epochs": 1,
+  "pretrain_epochs": 3,
+  "batch_size": 128,
+  "lr": 0.005,
+  "clip_grad": 1.0,
+  "server_momentum": 0.2,
+  "seed": 1,
+  "alpha": 0.5,
+  "resume": false,
+  "device": "cuda",
+  "rmax": 16,
+  "ranks": [
+    2,
+    4,
+    8,
+    16
+  ],
+  "backbone_pretrained": true
+}

@@ -1,0 +1,47 @@
+seed: 2026
+output_dir: outputs/full_cifar10
+experiment:
+  rounds: 150
+  clients: 500
+  admission_cap: 25
+  min_secagg: 5
+  methods: [gcdp, greedy_repair, two_stage, reactive, fixed_aead, fixed_secagg, compression_only, fedavg]
+  seeds: [2026, 2027, 2028, 2029, 2030]
+fl:
+  backend: torch
+  model_megabits: 9.50
+  dataset: cifar10
+  data_root: data
+  dirichlet_alpha: 0.5
+  local_epochs: 3
+  batch_size: 32
+  learning_rate: 0.01
+  momentum: 0.9
+  num_workers: 4
+  device: auto
+  require_cuda: true
+link:
+  deadline_ms: 1500
+  correlation: 0.90
+  monte_carlo_samples: 128
+  handover_penalty_ms: 100
+  handover_loss_penalty: 0.10
+  domains:
+    ground: {share: 0.50, rate_mbps: 10.0, delay_ms: 35, loss: 0.02, handover: 0.03, outage: 0.00, cpu: 1.0, memory: 1.0, energy: 1.0}
+    uav: {share: 0.25, rate_mbps: 6.0, delay_ms: 85, loss: 0.06, handover: 0.20, outage: 0.02, cpu: 0.8, memory: 0.8, energy: 0.75}
+    satellite: {share: 0.25, rate_mbps: 2.5, delay_ms: 220, loss: 0.09, handover: 0.08, outage: 0.15, cpu: 0.7, memory: 0.7, energy: 0.8}
+utility:
+  alpha_bytes: 0.10
+  beta_energy: 0.08
+  gamma_distortion: 0.12
+  delta_exposure: 0.10
+  reliability_threshold: 0.55
+  initial_budget: 20.0
+  exposure_cost: {aead: 1.0, secagg: 0.28, noise: 0.12}
+policies:
+  - {name: q0, pruning: 0.0, bits: 32, aead: false, secagg: false, noise: 0.0}
+  - {name: q1, pruning: 0.0, bits: 32, aead: true, secagg: false, noise: 0.0}
+  - {name: q2, pruning: 0.3, bits: 16, aead: true, secagg: false, noise: 0.0}
+  - {name: q3, pruning: 0.5, bits: 8, aead: true, secagg: false, noise: 0.0}
+  - {name: q4, pruning: 0.5, bits: 8, aead: true, secagg: true, noise: 0.0}
+  - {name: q5, pruning: 0.7, bits: 8, aead: true, secagg: true, noise: 0.08}

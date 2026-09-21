@@ -1,0 +1,102 @@
+{
+  "pdf": "/home/jovyan/FedLoRA_remote_package/3_ComputerNetworks期刊latex版本/CN_package_v4/recolored_figures/fig_cross_dataset.pdf",
+  "auditable": true,
+  "verdict": "REVIEW REQUIRED",
+  "page_count": 1,
+  "visible_text_box_count": 14,
+  "text_trace_count": 18,
+  "stroke_path_count": 10,
+  "filled_region_count": 30,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 0,
+    "warn": 3,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 3 filled region(s)",
+      "text": "CIFAR-10",
+      "text_bbox": [
+        54.28316116333008,
+        148.87423706054688,
+        83.21090698242188,
+        155.37423706054688
+      ],
+      "other_text": null,
+      "other_bbox": [
+        52.32717514038086,
+        58.85124969482422,
+        85.16101837158203,
+        301.9923095703125
+      ],
+      "object_count": 3,
+      "object_indexes": [
+        5000,
+        8000,
+        11000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 3 filled region(s)",
+      "text": "CIFAR-100",
+      "text_bbox": [
+        125.17694091796875,
+        148.87423706054688,
+        158.2386932373047,
+        155.37423706054688
+      ],
+      "other_text": null,
+      "other_bbox": [
+        125.29126739501953,
+        117.97041320800781,
+        158.12510681152344,
+        301.9923095703125
+      ],
+      "object_count": 3,
+      "object_indexes": [
+        6000,
+        9000,
+        12000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 3 filled region(s)",
+      "text": "MNIST",
+      "text_bbox": [
+        204.4300994873047,
+        148.87423706054688,
+        224.91705322265625,
+        155.37423706054688
+      ],
+      "other_text": null,
+      "other_bbox": [
+        198.25535583496094,
+        37.67863464355469,
+        231.08920288085938,
+        301.9923095703125
+      ],
+      "object_count": 3,
+      "object_indexes": [
+        7000,
+        10000,
+        13000
+      ]
+    }
+  ]
+}

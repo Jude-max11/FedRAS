@@ -1,0 +1,2 @@
+[console_scripts]
+mprbps = mprbps.cli:main
