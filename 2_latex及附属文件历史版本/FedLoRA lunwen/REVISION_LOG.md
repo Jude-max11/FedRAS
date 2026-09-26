@@ -599,3 +599,26 @@ hatch='///' 的未裁剪路径 bbox 罩住全盒文本（碰撞审计 5 fail 根
   0 未解析引用。新增文字（威胁模型、overview）不含任何实验数字，延续
   修订记录 19 的"数字只在实验节"原则。章节起始页：§3 p.6 / §4 p.9 / §5 p.11 /
   §6 p.13–26 / §7 p.27 / §8 p.29。
+
+## 修订记录 21（2026-09-26，实验章段落版式统一：加粗首句 + 一段一事 + 段间零重复）
+
+① 6.1 Experimental setup 按维度重排为 14 个主题段（每段 \textbf{X.} 开头）：
+  Environment / Datasets and partitions / Backbone and adapters / Federated
+  training hyperparameters / Link models / Deadline calibration / Model and
+  payload audit / Simulator / Scoring proxy / Baselines / Scheduling variants /
+  Solver study / Metrics / Statistical protocol。原 "Real trainer" 段拆为
+  Environment+Backbone；原 "Federated protocol and links" 段拆为
+  Datasets/Hyperparameters/Link models；新增 Baselines（内/外部基线定义自
+  6.2.4 前移）、Metrics（自表题与收尾段聚合）、Statistical protocol（种子/
+  CRN/Wilcoxon/bootstrap/预注册 TOST 边界，自协议段与 6.2.2 前移）。
+② 后续小节每段加粗首句：6.2.2 Delivered-rank adaptation + Mechanism and
+  replication；6.2.4 Baseline behavior（定义段前移后与行为段合并，删除重复旧段）；
+  6.2.5 Arms under evaluation + Where exactness pays；6.2.6 Component
+  contributions + Stability at elevated learning rate；6.3.1 Regime comparison +
+  Trajectories；6.3.2 Heuristic gaps and runtime + Grid sweep；6.4 Width, cohort,
+  and heterogeneity + SAGIN link profile + Cross-tier summary。单段小节
+  （6.2.1/6.2.3/6.3.3）由小节标题承担首句职责，不加粗以免与标题重复。
+③ 段间去重：种子/CRN 口径只在 Statistical protocol；±0.5pp 边界只在协议段
+  定义、结果段引"pre-registered margin"；外部基线定义只在 Baselines；
+  "descriptive unless tested" 只在协议段；6.2.2 段首不再复述种子数。
+④ 编译：干净版 36 页、红标版 44 页，均 0 错误 0 未解析引用。
