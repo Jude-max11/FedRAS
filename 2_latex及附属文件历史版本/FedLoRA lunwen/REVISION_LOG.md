@@ -649,3 +649,21 @@ hatch='///' 的未裁剪路径 bbox 罩住全盒文本（碰撞审计 5 fail 根
   fit-check 50 项全过。
 ⑥ 编译：干净版 37 页、红标版（latexdiff 自基线）45 页，均 0 错误
   0 未解析引用。
+
+## 修订记录 23（2026-09-26，实验章"一实验一主表+并联图"重组）
+
+① E1（6.2 真实 trainer）：原 6 张小表（T3 阶梯/T4 压力/T5 扩展/T6 外部基线/
+  T7 调度臂/T8 消融）合并为一张大主表 Table 3（五个块 a–e，堆叠 tabular），
+  配 2×2 四联图 Fig.2（名义精度/压力精度/rank 动态/跨数据集）；fig_cross_dataset
+  保留为面板 (d)（其数据与主表 (b) 块部分重叠，题注注明"numbers in Table 3(b)"）。
+② E2（6.3 规模实验）：模拟器表+求解器表合并为 Table 4（a/b 两块）。
+③ 6.4 解散：SAGIN 段并入 6.2.3，敏感性宽图保留为 6.2.3 全宽图（宽幅三联图
+  缩半不可读，visual-judge 判定），跨层总结移至 6.3 末。全文表格 10→4 张，
+  图 10→7 幅。
+④ 引用全面改写：tab:trainer/stress/extended/ext/dpvfair/ablation/sim/dp →
+  tab:trainermain(a)–(e) / tab:scalemain(a)(b)；fig 引用改面板号。
+⑤ 视觉验收四轮（visual-judge）：修复主表溢出页底（页码叠印）、(b) 块被
+  resizebox 放大 1.4×、E1 网格敏感性面板不可读（改回全宽）、E2 四联宽图
+  缩半不可读（恢复 4 张全宽图，每张内部 2 联并列）等问题；主表 scriptsize
+  + tabcolsep 3pt + arraystretch 0.9 + (e) 块左右并排后 PASS。
+⑥ 编译：干净版 35 页 0 错误 0 未解析引用；红标版 45+ 页同口径。

@@ -1,7 +1,7 @@
 % !TeX program = pdflatex
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL /tmp/old_baseline.tex   Sat Sep 26 08:41:20 2026
-%DIF ADD CN_reviewed.tex         Sat Sep 26 16:08:01 2026
+%DIF ADD CN_reviewed.tex         Sat Sep 26 17:08:17 2026
 \documentclass[preprint,12pt]{elsarticle}
 \journal{Computer Networks}
 \usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,algorithm,algorithmic,multirow}
@@ -381,9 +381,9 @@ where $u_i(r)=G_i^t(r)\hat P_{\rm on,i}^t(r)$. Backpointers recover the assignme
 \subsection{\DIFadd{Masked Aggregation (MA)}}
 \label{sec:aggregation}
 \DIFadd{Clients scheduled at different ranks share an $r_{\max}$ coordinate system. For one adapted layer, client $i$ has sample weight $n_i$ and delivered rank $r_i$. The factor $A\in\mathbb R^{r_{\max}\times k}$ is frozen and shared, while $B_i\in\mathbb R^{d\times r_{\max}}$ is trainable. A rank $r_i$ update activates columns $1$ through $r_i$ of $B_i$ and the matching rows of $A$, giving $\Delta W_i=\sum_{j\le r_i}[B_i]_{:,j}[A]_{j,:}$.
-}\DIFaddend 
+}
 
-\DIFaddbegin \DIFadd{Jointly trained factor pairs $(A_i,B_i)$ are identifiable only up to invertible transforms, so separately averaged factors need not average the updates at all. The elevated-learning-rate ablation of Section~\ref{sec:eval} examines this aggregation rule empirically.
+\DIFadd{Jointly trained factor pairs $(A_i,B_i)$ are identifiable only up to invertible transforms, so separately averaged factors need not average the updates at all. The elevated-learning-rate ablation of Section~\ref{sec:eval} examines this aggregation rule empirically.
 }
 
 \textbf{\DIFadd{Rank-masked averaging.}} \DIFadd{The server zero-pads inactive columns of each delivered $B_i$ and averages each active coordinate over the clients that activate it,
@@ -412,8 +412,9 @@ W_j=\sum_{i:\,r_i\ge j} n_i ,
 
 \section{\DIFadd{Theoretical analysis}}
 \label{sec:theory}
+\DIFaddend 
 
-\subsection{\DIFadd{Exactness of the DP assignment}}
+\DIFaddbegin \subsection{\DIFadd{Exactness of the DP assignment}}
 \DIFaddend \begin{proposition}[Per-round optimality]
 \label{prop:dp}
 For every reachable state $(k,b)$, recurrence \eqref{eq:dp} considers the skip action and every feasible rank for client $i$. Induction on $i$ therefore proves exactness for the discretized single round estimated assignment problem.
@@ -516,7 +517,7 @@ The evaluation tests accuracy and network behavior in a real trainer \DIFaddbegi
 \textbf{\DIFdelbegin \DIFdel{Real trainer}\DIFdelend \DIFaddbegin \DIFadd{Environment}\DIFaddend .} The trainer is implemented in PyTorch\DIFdelbegin \DIFdel{and runs on one }\DIFdelend \DIFaddbegin \DIFadd{, and all real-training runs use one NVIDIA }\DIFaddend A800 GPU.
 \DIFaddbegin 
 
-\textbf{\DIFadd{Datasets and partitions.}} \DIFadd{Experiments use CIFAR-10, CIFAR-100, and MNIST. The real trainer partitions 20 clients non-IID with Dirichlet $\alpha=0.5$ and samples 10 participants per round; variations of $\alpha$ and of the mobility distribution are reported in Table~\ref{tab:extended} and Section~\ref{sec:sens}.
+\textbf{\DIFadd{Datasets and partitions.}} \DIFadd{Experiments use CIFAR-10, CIFAR-100, and MNIST. The real trainer partitions 20 clients non-IID with Dirichlet $\alpha=0.5$ and samples 10 participants per round; variations of $\alpha$ and of the mobility distribution are reported in Table~\ref{tab:trainermain}(b) and Fig.~\ref{fig:sens}.
 }
 
 \textbf{\DIFadd{Backbone and adapters.}} \DIFaddend The backbone is a six-convolution BatchNorm CNN with channel progression 64/128/256, followed by two 256-wide linear layers. It is centrally pretrained with crop, flip, and erase augmentation, Nesterov momentum, weight decay, and cosine learning-rate decay, for 30 epochs on CIFAR-10, 45 on CIFAR-100, and 3 on MNIST, and then frozen\DIFaddbegin \DIFadd{, reaching a test accuracy of 0.914, 0.693, and 0.995, respectively}\DIFaddend . LoRA adapters with candidate rank set $\mathcal R=\{2,4,8,16\}$ and provisioned width $r_{\max}=16$ are placed on all six convolutions through 1$\times$1 factors and on both head layers\DIFdelbegin \DIFdel{. A }\DIFdelend \DIFaddbegin \DIFadd{; a }\DIFaddend client assigned rank $r$ trains with its factors sliced to the first $r$ coordinates, so the rank genuinely bounds local adaptation capacity.
@@ -576,134 +577,280 @@ Full model & \multicolumn{4}{c}{5.29\,MB FP32 ($58.7\times$ the rank-16 $B$-only
 \textbf{\DIFadd{Scheduling variants.}} \DIFadd{Two deployment variants of the formulation are evaluated. In full grid scheduling, the aggregator solves \eqref{eq:objective} and \eqref{eq:constraints} over all clients; the solver study evaluates this variant at 500-client scale, and a same-cohort variant restricts the dynamic program to a uniformly sampled cohort, isolating the value of candidate-pool widening from in-cohort rank allocation. In the real trainer, fair-cohort scheduling samples the fixed cohort of ten clients and applies the per-client rank rule $r_i^\star=\arg\max_r G_i^t(r)P_{\rm on,i}^t(r)$. Section~\ref{sec:dpvfair} compares the variants in the trainer.
 }
 
-\textbf{\DIFadd{Metrics.}} \DIFadd{Four outcomes are reported throughout: test accuracy at round 40; timely delivery ratio, the timely deliveries of a method divided by its selected clients; bytes per round, counting attempted uplink payloads }\DIFaddend including late and failed uploads \DIFaddbegin \DIFadd{at real serialized sizes; and mean delivered rank over delivered updates. The simulator reports its bounded utility state, the mean delivery probability of admitted clients, and attempted payload totals (Table~\ref{tab:sim})}\DIFaddend . No quantization, sparsification, energy, or fairness metric is claimed in this study.
+\textbf{\DIFadd{Metrics.}} \DIFadd{Four outcomes are reported throughout: test accuracy at round 40; timely delivery ratio, the timely deliveries of a method divided by its selected clients; bytes per round, counting attempted uplink payloads }\DIFaddend including late and failed uploads \DIFaddbegin \DIFadd{at real serialized sizes; and mean delivered rank over delivered updates. The simulator reports its bounded utility state, the mean delivery probability of admitted clients, and attempted payload totals (Table~\ref{tab:scalemain}(a))}\DIFaddend . No quantization, sparsification, energy, or fairness metric is claimed in this study.
 
-\DIFaddbegin \textbf{\DIFadd{Statistical protocol.}} \DIFadd{Results use five seeds (0 through 4) with common random numbers within each seed; the CIFAR-10 nominal and 0.1\,s regimes, their external baselines, and the scheduling-arm comparison at the nominal deadline use ten seeds. Headline trainer comparisons use two-sided Wilcoxon tests on seed pairs, seed-mean bootstrap confidence intervals, and a pre-registered TOST equivalence test at a $\pm0.5$ percentage-point margin. Simulator comparisons without an accompanying test are descriptive.
+\DIFdelbegin %DIFDELCMD < \begin{figure}[t]
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \textbf{\DIFaddFL{Statistical protocol.}} \DIFaddFL{Results use five seeds (0 through 4) with common random numbers within each seed; the CIFAR-10 nominal and 0.1\,s regimes, their external baselines, and the scheduling-arm comparison at the nominal deadline use ten seeds. Headline trainer comparisons use two-sided Wilcoxon tests on seed pairs, seed-mean bootstrap confidence intervals, and a pre-registered TOST equivalence test at a $\pm0.5$ percentage-point margin. Simulator comparisons without an accompanying test are descriptive.
 }
 
-\DIFaddend \begin{figure}[t]
-\centering
-\includegraphics[width=0.8\columnwidth]{recolored_figures/fig_cross_dataset}
-\caption{Final accuracy across datasets. CIFAR-10 uses ten seeds; CIFAR-100 and MNIST use five seeds. The parity and equivalence findings of Table~\ref{tab:trainer} are not CIFAR-10-specific.}
-\label{fig:crossds}
-\end{figure}
 
-\begin{table}[t]
+\begin{figure}[!t]
+\DIFaddendFL \centering
+\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.8\columnwidth]{recolored_figures/fig_cross_dataset}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \begin{minipage}[t]{0.49\columnwidth}
 \centering
-\caption{Real trainer on non-IID CIFAR-10 at the nominal 2.0\,s deadline with ten seeds. Accuracy is measured at round 40. Timely delivery ratio is timely deliveries divided by selected clients. Bytes per round is the sum of attempted uplink payloads for selected clients over rounds 30 to 39, at real serialized sizes. Mean rank is computed over delivered updates.}
-\label{tab:trainer}
-\resizebox{0.92\columnwidth}{!}{%
-\begin{tabular}{lcccc}
+\includegraphics[width=\linewidth]{recolored_figures/fig_trainer_nominal}\\[1pt]
+{\small \DIFaddFL{(a) nominal deadline: accuracy}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\columnwidth}
+\centering
+\includegraphics[width=\linewidth]{recolored_figures/fig_trainer_stress}\\[1pt]
+{\small \DIFaddFL{(b) 0.1\,s deadline: accuracy}}
+\end{minipage}\\[4pt]
+\begin{minipage}[t]{0.49\columnwidth}
+\centering
+\includegraphics[width=\linewidth]{recolored_figures/fig_rank_dynamics}\\[1pt]
+{\small \DIFaddFL{(c) delivered rank per round}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\columnwidth}
+\centering
+\includegraphics[width=\linewidth]{recolored_figures/fig_cross_dataset}\\[1pt]
+{\small \DIFaddFL{(d) accuracy across datasets}}
+\end{minipage}
+\DIFaddendFL \caption{\DIFdelbeginFL \DIFdelFL{Final accuracy across datasets. }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Real-trainer experiments (}\DIFaddendFL CIFAR-10\DIFdelbeginFL \DIFdelFL{uses ten }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{, means over }\DIFaddendFL seeds\DIFdelbeginFL \DIFdelFL{; CIFAR-100 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{). (a)~At the nominal deadline all rank policies hold the pretrained-backbone accuracy. (b)~Under the 0.1\,s deadline all methods remain stable while full-model updates deliver nothing }\DIFaddendFL and \DIFdelbeginFL \DIFdelFL{MNIST use five seeds}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{stay at the backbone}\DIFaddendFL . \DIFdelbeginFL \DIFdelFL{The parity }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{(c)~FedRAS is link-aware: delivered rank holds 16, tracks 13, }\DIFaddendFL and \DIFdelbeginFL \DIFdelFL{equivalence findings }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{tracks 8 under the 2.0, 0.1, and 0.05\,s deadlines, against the fixed annealing schedule }\DIFaddendFL of \DIFdelbeginFL \DIFdelFL{Table}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{the SA-FedLoRA-style baseline. (d)}\DIFaddendFL ~\DIFdelbeginFL \DIFdelFL{\ref{tab:trainer} are }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Final accuracy across datasets; the parity is }\DIFaddendFL not CIFAR-10-specific \DIFaddbeginFL \DIFaddFL{(numbers in Table~\ref{tab:trainermain}(b))}\DIFaddendFL .}
+\DIFdelbeginFL %DIFDELCMD < \label{fig:crossds}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \label{fig:trainermain}
+\DIFaddendFL \end{figure}
+
+\DIFdelbegin %DIFDELCMD < \begin{table}[t]
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \begin{table}[p]
+\DIFaddendFL \centering\DIFaddbeginFL \scriptsize\setlength{\tabcolsep}{3pt}\renewcommand{\arraystretch}{0.9}
+\DIFaddendFL \caption{\DIFdelbeginFL \DIFdelFL{Real trainer on }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Real-trainer experiments (}\DIFaddendFL non-IID CIFAR-10 \DIFdelbeginFL \DIFdelFL{at the nominal 2.0\,s deadline with ten seeds}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{unless stated)}\DIFaddendFL . Accuracy is \DIFdelbeginFL \DIFdelFL{measured at round 40. Timely }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{round-40 test accuracy; timely }\DIFaddendFL delivery ratio\DIFdelbeginFL \DIFdelFL{is timely deliveries divided by selected clients. Bytes }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{, bytes }\DIFaddendFL per round \DIFdelbeginFL \DIFdelFL{is the sum of }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{(rounds 30--39, }\DIFaddendFL attempted uplink\DIFdelbeginFL \DIFdelFL{payloads for selected clients over rounds 30 to 39}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{)}\DIFaddendFL , \DIFdelbeginFL \DIFdelFL{at real serialized sizes. Mean rank is computed over }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{and mean }\DIFaddendFL delivered \DIFdelbeginFL \DIFdelFL{updates}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{rank follow the definitions of Section~\ref{sec:eval}. (a) Deadline ladder. (b) Extended stress matrix, five seeds. (c) External baselines, ten seeds. (d) Scheduling arms, 1.0\,MB budget. (e) Component ablations, five seeds}\DIFaddendFL .}
+\DIFdelbeginFL %DIFDELCMD < \label{tab:trainer}
+%DIFDELCMD < \resizebox{0.92\columnwidth}{!}{%
+%DIFDELCMD < \begin{tabular}{lcccc}
+%DIFDELCMD < \toprule
+%DIFDELCMD < Method & Accuracy & Timely delivery ratio & MB/round & Mean rank\\
+%DIFDELCMD < \midrule
+%DIFDELCMD < FedAvg (full model) & $0.9135\pm0.0027$ & 0.17 & 52.86 & ---\\
+%DIFDELCMD < FedLoRA $r{=}4$ & $0.9154\pm0.0016$ & 0.75 & 0.23 & 4.0\\
+%DIFDELCMD < FedLoRA $r{=}16$ & $0.9153\pm0.0015$ & 0.73 & 0.90 & 16.0\\
+%DIFDELCMD < Random rank & $0.9151\pm0.0016$ & 0.76 & 0.42 & 7.3\\
+%DIFDELCMD < FedRAS (ours) & $0.9153\pm0.0016$ & 0.73 & 0.90 & 16.0\\
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \end{tabular}%
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \label{tab:trainermain}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{l cccc cccc cccc}
 \toprule
-Method & Accuracy & Timely delivery ratio & MB/round & Mean rank\\
+\multicolumn{13}{l}{\emph{(a) Deadline ladder}}\\[1pt]
+& \multicolumn{4}{c}{nominal 2.0\,s} & \multicolumn{4}{c}{deadline 0.1\,s} & \multicolumn{4}{c}{deadline 0.05\,s}\\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}\cmidrule(lr){10-13}
+Method & Acc. & Timely & MB & Rank & Acc. & Timely & MB & Rank & Acc. & Timely & MB & Rank\\
 \midrule
-FedAvg (full model) & $0.9135\pm0.0027$ & 0.17 & 52.86 & ---\\
-FedLoRA $r{=}4$ & $0.9154\pm0.0016$ & 0.75 & 0.23 & 4.0\\
-FedLoRA $r{=}16$ & $0.9153\pm0.0015$ & 0.73 & 0.90 & 16.0\\
-Random rank & $0.9151\pm0.0016$ & 0.76 & 0.42 & 7.3\\
-FedRAS (ours) & $0.9153\pm0.0016$ & 0.73 & 0.90 & 16.0\\
+FedAvg (full model) & $.9135\pm.0027$ & 0.17 & 52.86 & --- & $.9153\pm.0015$ & 0.00 & 52.86 & --- & $.9147\pm.0016$ & 0.00 & 52.86 & ---\\
+FedLoRA $r{=}4$ & $.9154\pm.0016$ & 0.75 & 0.23 & 4.0 & $.9154\pm.0016$ & 0.62 & 0.23 & 4 & $.9144\pm.0015$ & 0.57 & 0.23 & 4\\
+FedLoRA $r{=}16$ & $.9153\pm.0015$ & 0.73 & 0.90 & 16.0 & $.9149\pm.0019$ & 0.41 & 0.90 & 16 & $.9143\pm.0020$ & 0.27 & 0.90 & 16\\
+Random rank & $.9151\pm.0016$ & 0.76 & 0.42 & 7.3 & $.9153\pm.0017$ & 0.56 & 0.42 & 6.2 & $.9143\pm.0015$ & 0.46 & 0.42 & 5.7\\
+FedRAS (ours) & $.9153\pm.0016$ & 0.73 & 0.90 & 16.0 & $.9154\pm.0018$ & 0.49 & 0.69 & 12.7 & $.9143\pm.0014$ & 0.49 & 0.44 & 8.1\\
 \bottomrule
 \end{tabular}%
-}
-\end{table}
-
-\subsection{\DIFdelbegin \DIFdel{Accuracy parity and rank invariance in }\DIFdelend \DIFaddbegin \DIFadd{Evaluation with }\DIFaddend the \DIFaddbegin \DIFadd{federated LoRA }\DIFaddend trainer}
-\DIFaddbegin 
-
-\subsubsection{\DIFadd{Accuracy parity and rank invariance}}
-\DIFaddend Table~\ref{tab:trainer} reports ten-seed means and standard deviations after 40 federated rounds on CIFAR-10. All LoRA methods hold the backbone accuracy within one standard deviation of 0.914, whether the rank is fixed at 4, fixed at 16, drawn at random, or selected by the rank rule. Full-parameter updates spend \DIFdelbegin \DIFdel{$58.7\times$ the bytes of a rank-16 update, and they }\DIFdelend \DIFaddbegin \DIFadd{orders of magnitude more bytes per round (Table~\ref{tab:audit}) and }\DIFaddend lose roughly three quarters of their timely deliveries \DIFdelbegin \DIFdel{, 0.17 against 0.73, because their 5.29\,MB }\DIFdelend \DIFaddbegin \DIFadd{because their }\DIFaddend payloads rarely fit the round deadline. The cross-dataset results in Fig.~\ref{fig:crossds} agree at 0.693 on CIFAR-100 and 0.995 on MNIST. At the nominal deadline the rank rule selects rank 16 for every client of every round, so FedRAS coincides with fixed rank 16 in bytes and timeliness, and in accuracy up to floating-point nondeterminism; this identity, rather than a tuned advantage, is what the nominal regime is meant to show. Fig.~\ref{fig:trainer_acc} shows the corresponding trajectories, stable over the 40 rounds for every rank policy.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.8\columnwidth]{recolored_figures/fig_trainer_nominal}
-\caption{Real-trainer CIFAR-10 test accuracy over 40 federated rounds at the nominal deadline (mean over ten seeds). All rank policies hold the pretrained-backbone accuracy; differences appear in bytes and timeliness, not accuracy.}
-\label{fig:trainer_acc}
-\end{figure}
-
-\DIFdelbegin \subsection{\DIFdel{Deadline stress in the trainer}}
-%DIFAUXCMD
-\addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Deadline stress}}
-\textbf{\DIFadd{Delivered-rank adaptation.}} \DIFaddend Table~\ref{tab:stress} tightens the deadline to 0.1\,s and 0.05\,s\DIFdelbegin \DIFdel{, with ten seeds at 0.1\,s and five seeds at 0.05\,s}\DIFdelend . Three effects emerge. First, FedRAS downshifts under pressure. Its delivered mean rank falls from 16.0 at the nominal deadline to 12.7 at 0.1\,s and 8.1 at 0.05\,s, where the delivery hazard \eqref{eq:hazard} makes rank-16 payloads marginal. Second, downshifting pays. At 0.1\,s, FedRAS delivers 0.49 timely updates against 0.41 for fixed rank 16 while transmitting 0.69\,MB against 0.90\,MB, i.e., 23\% fewer bytes; at 0.05\,s the gap widens to 0.49 against 0.27 timely deliveries at 51\% fewer bytes. Third, full-parameter updates collapse completely. Their timely delivery ratio is 0.00 at both stress deadlines, so not a single \DIFdelbegin \DIFdel{one of their 5.29\,MB updates }\DIFdelend \DIFaddbegin \DIFadd{full-size update }\DIFaddend arrives on time\DIFdelbegin \DIFdel{, and their bytes are attempted in vain at $58.7\times$ the cost}\DIFdelend .
-
-\begin{table}[t]
-\centering
-\caption{Real trainer under deadline stress. Accuracy is the round-40 mean and standard deviation. Timely delivery ratio, bytes per round, and mean delivered rank are averaged over rounds 30 to 39 at real serialized sizes. The 0.1\,s columns use ten seeds; the 0.05\,s columns use five seeds.}
-\label{tab:stress}
-\resizebox{0.92\columnwidth}{!}{%
+}\\[5pt]
+\begin{tabular}{l ccccc}
+\toprule
+\multicolumn{6}{l}{\emph{(b) Extended stress matrix (round-40 accuracy)}}\\[1pt]
+\DIFaddFL{Scenario }& \DIFaddFL{FedAvg }& \DIFaddFL{$r{=}4$ }& \DIFaddFL{$r{=}16$ }& \DIFaddFL{Random }& \DIFaddFL{FedRAS}\\
+\midrule
+\DIFaddFL{deadline 10\,s }& \DIFaddFL{0.9134 }& \DIFaddFL{0.9144 }& \DIFaddFL{0.9145 }& \DIFaddFL{0.9141 }& \DIFaddFL{0.9143}\\
+\DIFaddFL{mobility 0.7 }& \DIFaddFL{0.9115 }& \DIFaddFL{0.9143 }& \DIFaddFL{0.9141 }& \DIFaddFL{0.9145 }& \DIFaddFL{0.9141}\\
+\DIFaddFL{$\alpha{=}0.1$ }& \DIFaddFL{0.9022 }& \DIFaddFL{0.9139 }& \DIFaddFL{0.9107 }& \DIFaddFL{0.9130 }& \DIFaddFL{0.9109}\\
+\DIFaddFL{$\alpha{=}1.0$ }& \DIFaddFL{0.9142 }& \DIFaddFL{0.9143 }& \DIFaddFL{0.9144 }& \DIFaddFL{0.9141 }& \DIFaddFL{0.9144}\\
+\DIFaddFL{CIFAR-100, 2.0\,s }& \DIFaddFL{0.6925 }& \DIFaddFL{0.6928 }& \DIFaddFL{0.6926 }& \DIFaddFL{0.6926 }& \DIFaddFL{0.6929}\\
+\DIFaddFL{CIFAR-100, 0.1\,s }& \DIFaddFL{0.6927 }& \DIFaddFL{0.6927 }& \DIFaddFL{0.6929 }& \DIFaddFL{0.6927 }& \DIFaddFL{0.6928}\\
+\DIFaddFL{MNIST, 2.0\,s }& \DIFaddFL{0.9947 }& \DIFaddFL{0.9949 }& \DIFaddFL{0.9951 }& \DIFaddFL{0.9950 }& \DIFaddFL{0.9951}\\
+\DIFaddFL{MNIST, 0.1\,s }& \DIFaddFL{0.9947 }& \DIFaddFL{0.9949 }& \DIFaddFL{0.9950 }& \DIFaddFL{0.9949 }& \DIFaddFL{0.9950}\\
+\bottomrule
+\end{tabular}\\[3pt]
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{l cccc cccc}
 \toprule
-& \multicolumn{4}{c}{deadline 0.1\,s} & \multicolumn{4}{c}{deadline 0.05\,s}\\
+\multicolumn{9}{l}{\emph{(c) External baselines}}\\[1pt]
+& \multicolumn{4}{c}{nominal 2.0\,s} & \multicolumn{4}{c}{deadline 0.1\,s}\\
 \cmidrule(lr){2-5}\cmidrule(lr){6-9}
 Method & Acc. & Timely & MB & Rank & Acc. & Timely & MB & Rank\\
 \midrule
-FedAvg (full model) & $0.9153\pm.0015$ & 0.00 & 52.86 & --- & $0.9147\pm.0016$ & 0.00 & 52.86 & ---\\
-FedLoRA $r{=}4$ & $0.9154\pm.0016$ & 0.62 & 0.23 & 4 & $0.9144\pm.0015$ & 0.57 & 0.23 & 4\\
-FedLoRA $r{=}16$ & $0.9149\pm.0019$ & 0.41 & 0.90 & 16 & $0.9143\pm.0020$ & 0.27 & 0.90 & 16\\
-Random rank & $0.9153\pm.0017$ & 0.56 & 0.42 & 6.2 & $0.9143\pm.0015$ & 0.46 & 0.42 & 5.7\\
-FedRAS (ours) & $0.9154\pm.0018$ & 0.49 & 0.69 & 12.7 & $0.9143\pm.0014$ & 0.49 & 0.44 & 8.1\\
+SA-FedLoRA-style annealing & $.9154\pm.0016$ & 0.75 & 0.29 & 5.1 & $.9153\pm.0016$ & 0.62 & 0.29 & 5.0\\
+Oort-style utility, fixed rank & $.9150\pm.0020$ & 0.76 & 0.45 & 8.0 & $.9149\pm.0019$ & 0.54 & 0.45 & 8.0\\
+Joint A/B, plain averaging & $.9152\pm.0016$ & 0.73 & 0.90 & 16 & $.9148\pm.0019$ & 0.41 & 0.90 & 16\\
 \bottomrule
 \end{tabular}%
-}
-\end{table}
+}\\[5pt]
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{l cccc cccc}
+\toprule
+\multicolumn{9}{l}{\emph{(d) Scheduling arms (FedLoRA $r{=}16$ reference in (a))}}\\[1pt]
+& \multicolumn{4}{c}{nominal 2.0\,s, ten seeds} & \multicolumn{4}{c}{stress 0.1\,s, five seeds}\\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+Arm & Acc. & Timely & MB & Rank & Acc. & Timely & MB & Rank\\
+\midrule
+Full DP (grid assignment) & $.9151\pm.0016$ & 0.82 & 0.90 & 16.0 & $.9138\pm.0011$ & 0.55 & 0.87 & 15.4\\
+Same-cohort DP & $.9152\pm.0019$ & 0.73 & 0.90 & 16.0 & $.9139\pm.0014$ & 0.51 & 0.70 & 12.7\\
+Fair cohort (FedRAS rule) & $.9153\pm.0016$ & 0.73 & 0.90 & 16.0 & $.9144\pm.0018$ & 0.51 & 0.70 & 13.0\\
+\bottomrule
+\end{tabular}%
+}\\[5pt]
+\begin{tabular}{l cc}
+\toprule
+\multicolumn{3}{l}{\emph{(e) Component ablations (nominal deadline)}}\\[1pt]
+\DIFaddFL{Configuration }& \DIFaddFL{Accuracy }& \DIFaddFL{Min.}\\
+\midrule
+\DIFaddFL{Full system (ours) }& \DIFaddFL{$.9144\pm.0013$ }& \DIFaddFL{---}\\
+\DIFaddFL{w/o capacity term }& \DIFaddFL{$.9145\pm.0014$ }& \DIFaddFL{---}\\
+\DIFaddFL{w/o frozen $A$ (joint A/B) }& \DIFaddFL{$.9144\pm.0015$ }& \DIFaddFL{---}\\
+\DIFaddFL{w/o rank mask (random ranks, 0.1\,s) }& \DIFaddFL{$.9145\pm.0016$ }& \DIFaddFL{---}\\
+\end{tabular}
+\hfill
+\begin{tabular}{l cc}
+\toprule
+\DIFaddFL{Configuration }& \DIFaddFL{Accuracy }& \DIFaddFL{Min.}\\
+\midrule
+\DIFaddFL{w/o server momentum }& \DIFaddFL{$.9143\pm.0013$ }& \DIFaddFL{---}\\
+\DIFaddFL{frozen $A$, lr 0.02 }& \DIFaddFL{$.9130\pm.0012$ }& \DIFaddFL{0.913}\\
+\DIFaddFL{joint A/B, lr 0.02 }& \DIFaddFL{$.9132\pm.0012$ }& \DIFaddFL{0.912}\\
+\bottomrule
+\end{tabular}
+\DIFaddendFL \end{table}
 
-\DIFaddbegin \textbf{\DIFadd{Mechanism and replication.}} \DIFaddend Accuracy spreads remain within about two standard deviations, which is consistent with the parity claim. The scheduling metrics are where the methods separate. Fig.~\ref{fig:trainer_dl} shows the ten-seed stress trajectories, and Fig.~\ref{fig:rankdyn} visualizes the mechanism directly: the delivered rank of FedRAS holds 16 under the nominal deadline, tracks 13 under the 0.1\,s deadline, and tracks 8 under the 0.05\,s deadline, whereas the annealed baseline follows its fixed heat--cool path regardless of link state. \DIFdelbegin \DIFdel{A }\DIFdelend \DIFaddbegin \DIFadd{Under the statistical protocol of Section~\ref{sec:eval}, the }\DIFaddend ten-seed replication confirms these differences at conventional significance levels\DIFdelbegin \DIFdel{, with full statistics in Section~\ref{sec:summary}. Under }\DIFdelend \DIFaddbegin \DIFadd{: at }\DIFaddend the 0.1\,s deadline, FedRAS transmits 23\% fewer bytes than fixed $r{=}16$, with a seed-mean bootstrap 95\% confidence interval \DIFdelbegin \DIFdel{from $-26.6\%$ to $-20.6\%$ }\DIFdelend \DIFaddbegin \DIFadd{of roughly $[-27\%, -21\%]$ }\DIFaddend and a two-sided Wilcoxon $p$ of 0.002; it delivers a higher timely delivery ratio in ten of ten seed pairs, by 22\% on average\DIFdelbegin \DIFdel{($p{=}0.002$)}\DIFdelend ; and its accuracy is statistically equivalent within the pre-registered \DIFdelbegin \DIFdel{$\pm0.5$ percentage-point margin(TOST $p{<}10^{-6}$)}\DIFdelend \DIFaddbegin \DIFadd{margin}\DIFaddend .
+\subsection{\DIFdelbegin \DIFdel{Accuracy parity and rank invariance in }\DIFdelend \DIFaddbegin \DIFadd{Evaluation with }\DIFaddend the \DIFaddbegin \DIFadd{federated LoRA }\DIFaddend trainer\DIFdelbegin %DIFDELCMD < \MBLOCKRIGHTBRACE
+%DIFDELCMD < %%%
+\DIFdel{Table~\ref{tab:trainer} }\DIFdelend \DIFaddbegin }
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.8\columnwidth]{recolored_figures/fig_rank_dynamics}
-\caption{Delivered mean rank per round for FedRAS under three deadlines (ten seeds for 2.0 s and 0.1 s, five seeds for 0.05 s), against the fixed annealing schedule of the SA-FedLoRA-style baseline at 0.1\,s. FedRAS is link-aware, holding high rank when possible and downshifting under pressure.}
-\label{fig:rankdyn}
-\end{figure}
+\subsubsection{\DIFadd{Accuracy parity and rank invariance}}
+\DIFadd{Table~\ref{tab:trainermain}(a) }\DIFaddend reports ten-seed means and standard deviations after 40 federated rounds on CIFAR-10. All LoRA methods hold the backbone accuracy within one standard deviation of 0.914, whether the rank is fixed at 4, fixed at 16, drawn at random, or selected by the rank rule. Full-parameter updates spend \DIFdelbegin \DIFdel{$58.7\times$ the bytes of a rank-16 update, and they }\DIFdelend \DIFaddbegin \DIFadd{orders of magnitude more bytes per round (Table~\ref{tab:audit}) and }\DIFaddend lose roughly three quarters of their timely deliveries \DIFdelbegin \DIFdel{, 0.17 against 0.73, because their 5.29\,MB }\DIFdelend \DIFaddbegin \DIFadd{because their }\DIFaddend payloads rarely fit the round deadline. The cross-dataset results in Fig.~\DIFdelbegin \DIFdel{\ref{fig:crossds} agree }\DIFdelend \DIFaddbegin \DIFadd{\ref{fig:trainermain}(d) and Table~\ref{tab:trainermain}(b) repeat the parity }\DIFaddend at 0.693 on CIFAR-100 and 0.995 on MNIST. At the nominal deadline the rank rule selects rank 16 for every client of every round, so FedRAS coincides with fixed rank 16 in bytes and timeliness, and in accuracy up to floating-point nondeterminism; this identity, rather than a tuned advantage, is what the nominal regime is meant to show. Fig.~\DIFdelbegin \DIFdel{\ref{fig:trainer_acc} }\DIFdelend \DIFaddbegin \DIFadd{\ref{fig:trainermain}(a) }\DIFaddend shows the corresponding trajectories, stable over the 40 rounds for every rank policy.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.8\columnwidth]{recolored_figures/fig_trainer_stress}
-\caption{Real-trainer accuracy trajectories under the 0.1\,s deadline (mean over ten seeds). All methods remain stable; full-model updates deliver nothing and stay at the backbone.}
-\label{fig:trainer_dl}
-\end{figure}
+\DIFdelbegin %DIFDELCMD < \begin{figure}[t]
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.8\columnwidth]{recolored_figures/fig_trainer_nominal}
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Real-trainer CIFAR-10 test accuracy over 40 federated rounds at the nominal deadline (mean over ten seeds). All rank policies hold the pretrained-backbone accuracy; differences appear in bytes and timeliness, not accuracy.}}
+%DIFAUXCMD
+%DIFDELCMD < \label{fig:trainer_acc}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
 
-\DIFdelbegin \subsection{\DIFdel{Broader stress matrix with mobility, heterogeneity, and cross-dataset checks}}
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Deadline stress in the trainer}}
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Extended stress matrix}}
-\DIFaddend Table~\ref{tab:extended} extends the study along further axes. A mobility-only scenario with Beta$(0.7,5)$ mobility at the nominal deadline leaves all LoRA policies at parity, so mobility alone does not force downshifting at this deadline. Extreme label heterogeneity with $\alpha{=}0.1$ reveals a second-order effect: rank-16 updates lose 0.32 percentage points relative to rank 4\DIFdelbegin \DIFdel{(0.9107 versus 0.9139)}\DIFdelend , consistent with capacity-amplified client drift, and full-parameter updates lose the most (\DIFdelbegin \DIFdel{0.9022}\DIFdelend \DIFaddbegin \DIFadd{Table~\ref{tab:extended}}\DIFaddend ). FedRAS follows the rank-16 trajectory here, so a heterogeneity-aware downshift is a natural extension. Loosening the deadline to 10\,s restores full-model timely delivery to 0.52 without changing any LoRA accuracy. Repeating the 0.1\,s deadline on CIFAR-100 and MNIST reproduces the CIFAR-10 stress picture. The scheduling conclusions are therefore not dataset-specific.
+\DIFdel{Table~\ref{tab:stress} }\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Deadline stress}}
+\textbf{\DIFadd{Delivered-rank adaptation.}} \DIFadd{Table~\ref{tab:trainermain}(a) }\DIFaddend tightens the deadline to 0.1\,s and 0.05\,s\DIFdelbegin \DIFdel{, with ten seeds at 0.1\,s and five seeds at 0.05\,s}\DIFdelend . Three effects emerge. First, FedRAS downshifts under pressure. Its delivered mean rank falls from 16.0 at the nominal deadline to 12.7 at 0.1\,s and 8.1 at 0.05\,s, where the delivery hazard \eqref{eq:hazard} makes rank-16 payloads marginal. Second, downshifting pays. At 0.1\,s, FedRAS delivers 0.49 timely updates against 0.41 for fixed rank 16 while transmitting 0.69\,MB against 0.90\,MB, i.e., 23\% fewer bytes; at 0.05\,s the gap widens to 0.49 against 0.27 timely deliveries at 51\% fewer bytes. Third, full-parameter updates collapse completely. Their timely delivery ratio is 0.00 at both stress deadlines, so not a single \DIFdelbegin \DIFdel{one of their 5.29\,MB updates }\DIFdelend \DIFaddbegin \DIFadd{full-size update }\DIFaddend arrives on time\DIFdelbegin \DIFdel{, and their bytes are attempted in vain at $58.7\times$ the cost}\DIFdelend .
 
-\begin{table}[t]
-\centering
-\caption{Extended stress matrix. Results use five seeds and report round-40 accuracy as mean over seeds. The mobility-only and $\alpha{=}1.0$ scenarios probe extreme conditions; the last two columns repeat the 0.1\,s deadline on CIFAR-100 and MNIST.}
-\label{tab:extended}
-\resizebox{0.92\columnwidth}{!}{%
-\begin{tabular}{l ccccc}
-\toprule
-Scenario & FedAvg & $r{=}4$ & $r{=}16$ & Random & FedRAS\\
-\midrule
-deadline 10\,s & 0.9134 & 0.9144 & 0.9145 & 0.9141 & 0.9143\\
-mobility 0.7 & 0.9115 & 0.9143 & 0.9141 & 0.9145 & 0.9141\\
-$\alpha{=}0.1$ & 0.9022 & 0.9139 & 0.9107 & 0.9130 & 0.9109\\
-$\alpha{=}1.0$ & 0.9142 & 0.9143 & 0.9144 & 0.9141 & 0.9144\\
-CIFAR-100, 2.0\,s & 0.6925 & 0.6928 & 0.6926 & 0.6926 & 0.6929\\
-CIFAR-100, 0.1\,s & 0.6927 & 0.6927 & 0.6929 & 0.6927 & 0.6928\\
-MNIST, 2.0\,s & 0.9947 & 0.9949 & 0.9951 & 0.9950 & 0.9951\\
-MNIST, 0.1\,s & 0.9947 & 0.9949 & 0.9950 & 0.9949 & 0.9950\\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
+\DIFdelbegin %DIFDELCMD < \begin{table}[t]
+%DIFDELCMD < \centering
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Real trainer under deadline stress. Accuracy is the round-40 mean and standard deviation. Timely delivery ratio, bytes per round, and mean delivered rank are averaged over rounds 30 to 39 at real serialized sizes. The 0.1\,s columns use ten seeds; the 0.05\,s columns use five seeds.}}
+%DIFAUXCMD
+%DIFDELCMD < \label{tab:stress}
+%DIFDELCMD < \resizebox{0.92\columnwidth}{!}{%
+%DIFDELCMD < \begin{tabular}{l cccc cccc}
+%DIFDELCMD < \toprule
+%DIFDELCMD < & \multicolumn{4}{c}{deadline 0.1\,s} & \multicolumn{4}{c}{deadline 0.05\,s}\\
+%DIFDELCMD < \cmidrule(lr){2-5}\cmidrule(lr){6-9}
+%DIFDELCMD < Method & Acc. & Timely & MB & Rank & Acc. & Timely & MB & Rank\\
+%DIFDELCMD < \midrule
+%DIFDELCMD < FedAvg (full model) & $0.9153\pm.0015$ & 0.00 & 52.86 & --- & $0.9147\pm.0016$ & 0.00 & 52.86 & ---\\
+%DIFDELCMD < FedLoRA $r{=}4$ & $0.9154\pm.0016$ & 0.62 & 0.23 & 4 & $0.9144\pm.0015$ & 0.57 & 0.23 & 4\\
+%DIFDELCMD < FedLoRA $r{=}16$ & $0.9149\pm.0019$ & 0.41 & 0.90 & 16 & $0.9143\pm.0020$ & 0.27 & 0.90 & 16\\
+%DIFDELCMD < Random rank & $0.9153\pm.0017$ & 0.56 & 0.42 & 6.2 & $0.9143\pm.0015$ & 0.46 & 0.42 & 5.7\\
+%DIFDELCMD < FedRAS (ours) & $0.9154\pm.0018$ & 0.49 & 0.69 & 12.7 & $0.9143\pm.0014$ & 0.49 & 0.44 & 8.1\\
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \end{tabular}%
+%DIFDELCMD < }
+%DIFDELCMD < \end{table}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \textbf{\DIFadd{Mechanism and replication.}} \DIFaddend Accuracy spreads remain within about two standard deviations, which is consistent with the parity claim. The scheduling metrics are where the methods separate. Fig.~\DIFdelbegin \DIFdel{\ref{fig:trainer_dl} }\DIFdelend \DIFaddbegin \DIFadd{\ref{fig:trainermain}(b) }\DIFaddend shows the ten-seed stress trajectories, and Fig.~\DIFdelbegin \DIFdel{\ref{fig:rankdyn} }\DIFdelend \DIFaddbegin \DIFadd{\ref{fig:trainermain}(c) }\DIFaddend visualizes the mechanism directly: the delivered rank of FedRAS holds 16 under the nominal deadline, tracks 13 under the 0.1\,s deadline, and tracks 8 under the 0.05\,s deadline, whereas the annealed baseline follows its fixed heat--cool path regardless of link state. \DIFdelbegin \DIFdel{A }\DIFdelend \DIFaddbegin \DIFadd{Under the statistical protocol of Section~\ref{sec:eval}, the }\DIFaddend ten-seed replication confirms these differences at conventional significance levels\DIFdelbegin \DIFdel{, with full statistics in Section~\ref{sec:summary}. Under }\DIFdelend \DIFaddbegin \DIFadd{: at }\DIFaddend the 0.1\,s deadline, FedRAS transmits 23\% fewer bytes than fixed $r{=}16$, with a seed-mean bootstrap 95\% confidence interval \DIFdelbegin \DIFdel{from $-26.6\%$ to $-20.6\%$ }\DIFdelend \DIFaddbegin \DIFadd{of roughly $[-27\%, -21\%]$ }\DIFaddend and a two-sided Wilcoxon $p$ of 0.002; it delivers a higher timely delivery ratio in ten of ten seed pairs, by 22\% on average\DIFdelbegin \DIFdel{($p{=}0.002$)}\DIFdelend ; and its accuracy is statistically equivalent within the pre-registered \DIFdelbegin \DIFdel{$\pm0.5$ percentage-point margin(TOST $p{<}10^{-6}$)}\DIFdelend \DIFaddbegin \DIFadd{margin}\DIFaddend .
+
+\DIFdelbegin %DIFDELCMD < \begin{figure}[t]
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.8\columnwidth]{recolored_figures/fig_rank_dynamics}
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Delivered mean rank per round for FedRAS under three deadlines (ten seeds for 2.0 s and 0.1 s, five seeds for 0.05 s), against the fixed annealing schedule of the SA-FedLoRA-style baseline at 0.1\,s. FedRAS is link-aware, holding high rank when possible and downshifting under pressure.}}
+%DIFAUXCMD
+%DIFDELCMD < \label{fig:rankdyn}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure}[t]
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.8\columnwidth]{recolored_figures/fig_trainer_stress}
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Real-trainer accuracy trajectories under the 0.1\,s deadline (mean over ten seeds). All methods remain stable; full-model updates deliver nothing and stay at the backbone.}}
+%DIFAUXCMD
+%DIFDELCMD < \label{fig:trainer_dl}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Broader stress matrix with mobility, heterogeneity, and cross-dataset checks}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+\DIFdel{Table~\ref{tab:extended} }\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Extended stress matrix}}
+\DIFadd{Table~\ref{tab:trainermain}(b) }\DIFaddend extends the study along further axes. A mobility-only scenario with Beta$(0.7,5)$ mobility at the nominal deadline leaves all LoRA policies at parity, so mobility alone does not force downshifting at this deadline. Extreme label heterogeneity with $\alpha{=}0.1$ reveals a second-order effect: rank-16 updates lose 0.32 percentage points relative to rank 4\DIFdelbegin \DIFdel{(0.9107 versus 0.9139)}\DIFdelend , consistent with capacity-amplified client drift, and full-parameter updates lose the most\DIFdelbegin \DIFdel{(0.9022)}\DIFdelend . FedRAS follows the rank-16 trajectory here, so a heterogeneity-aware downshift is a natural extension. Loosening the deadline to 10\,s restores full-model timely delivery to 0.52 without changing any LoRA accuracy. Repeating the 0.1\,s deadline on CIFAR-100 and MNIST reproduces the CIFAR-10 stress picture. The scheduling conclusions are therefore not dataset-specific\DIFdelbegin \DIFdel{.
+}\DIFdelend \DIFaddbegin \DIFadd{; Fig.~\ref{fig:sens} shows the matching sensitivity sweeps over provisioned width, cohort size, and $\alpha$. Per-decision scheduling cost is negligible in all these settings: the per-client rank rule costs sub-millisecond per decision, orders of magnitude below the full grid-scheduling DP of Section~\ref{sec:dp_study}.
+}\DIFaddend 
+
+\DIFdelbegin %DIFDELCMD < \begin{table}[t]
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \begin{figure}[t]
+\DIFaddendFL \centering
+\DIFdelbeginFL %DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Extended stress matrix. Results use five seeds and report round-40 accuracy as mean over seeds. The mobility-only and $\alpha{=}1.0$ scenarios probe extreme conditions; the last two columns repeat the 0.1\,s deadline on CIFAR-100 and MNIST.}}
+%DIFAUXCMD
+%DIFDELCMD < \label{tab:extended}
+%DIFDELCMD < \resizebox{0.92\columnwidth}{!}{%
+%DIFDELCMD < \begin{tabular}{l ccccc}
+%DIFDELCMD < \toprule
+%DIFDELCMD < Scenario & FedAvg & $r{=}4$ & $r{=}16$ & Random & FedRAS\\
+%DIFDELCMD < \midrule
+%DIFDELCMD < deadline 10\,s & 0.9134 & 0.9144 & 0.9145 & 0.9141 & 0.9143\\
+%DIFDELCMD < mobility 0.7 & 0.9115 & 0.9143 & 0.9141 & 0.9145 & 0.9141\\
+%DIFDELCMD < $\alpha{=}0.1$ & 0.9022 & 0.9139 & 0.9107 & 0.9130 & 0.9109\\
+%DIFDELCMD < $\alpha{=}1.0$ & 0.9142 & 0.9143 & 0.9144 & 0.9141 & 0.9144\\
+%DIFDELCMD < CIFAR-100, 2.0\,s & 0.6925 & 0.6928 & 0.6926 & 0.6926 & 0.6929\\
+%DIFDELCMD < CIFAR-100, 0.1\,s & 0.6927 & 0.6927 & 0.6929 & 0.6927 & 0.6928\\
+%DIFDELCMD < MNIST, 2.0\,s & 0.9947 & 0.9949 & 0.9951 & 0.9950 & 0.9951\\
+%DIFDELCMD < MNIST, 0.1\,s & 0.9947 & 0.9949 & 0.9950 & 0.9949 & 0.9950\\
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \end{tabular}%
+%DIFDELCMD < }
+%DIFDELCMD < \end{table}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \includegraphics[width=0.98\columnwidth]{recolored_figures/fig_sensitivity}
+\caption{\DIFadd{Sensitivity of the trainer to provisioned adapter width, cohort size, and label heterogeneity on CIFAR-10 with FedRAS (five seeds per variant; the nominal reference column uses ten seeds). Accuracy is flat in $r_{\max}$, cohort size, and $\alpha$ across the tested ranges; their effect is on bytes and delivered updates (red, right axis).}}
+\label{fig:sens}
+\end{figure}
+\DIFaddend 
 
 \DIFdelbegin \subsection{\DIFdel{External baselines}}
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{External baselines}}
-\textbf{\DIFadd{Baseline behavior.}} \DIFaddend Table~\ref{tab:ext} \DIFdelbegin \DIFdel{adds }\DIFdelend \DIFaddbegin \DIFadd{reports the }\DIFaddend three external baselines \DIFdelbegin \DIFdel{to the trainer. The first is an SA-FedLoRA-style schedule that heats the rank from 2 to 16 and cools it down over the 40 rounds, oblivious to link state \mbox{%DIFAUXCMD
+\DIFdel{Table~\ref{tab:ext} adds three external baselines to the trainer. The first is an SA-FedLoRA-style schedule that heats the rank from 2 to }\DIFdelend \DIFaddbegin \textbf{\DIFadd{SAGIN link profile.}} \DIFadd{Grouping the 20 clients into ground, aerial, and satellite classes with distinct rate and mobility laws reproduces the aggregate parity at the nominal deadline while exposing the expected per-class structure: timely delivery is 0.71 for ground, 0.61 for aerial, and 0.49 for satellite clients. At this deadline the scheduler holds rank }\DIFaddend 16 \DIFdelbegin \DIFdel{and cools it down over the 40 rounds, oblivious to link state \mbox{%DIFAUXCMD
 \cite{yang2024safedlora}}\hskip0pt%DIFAUXCMD
-. The second is an Oort-style selector that samples $2K$ candidates and admits the top-$K$ by a data-size-and-recency utility at fixed rank \mbox{%DIFAUXCMD
+.
+The second is an Oort-style selector that samples $2K$ candidates and admits the top-$K$ by a data-size-and-recency utility at fixed rank \mbox{%DIFAUXCMD
 \cite{oort2021oort}}\hskip0pt%DIFAUXCMD
 . The third is joint A/B training with plain averaging, the aggregation-level competitor of Section~\ref{sec:aggregation} \mbox{%DIFAUXCMD
 \cite{guo2025fedsalora}}\hskip0pt%DIFAUXCMD
-. }%DIFDELCMD < 
+}\DIFdelend \DIFaddbegin \DIFadd{across all classes, so the class gap reflects the link laws alone rather than rank allocation. This profile is a parameterized link model, not a measured trace; its role is to show that the scheduler responds sensibly to client-class heterogeneity}\DIFaddend .
 
-%DIFDELCMD < \begin{table}[t]
+\DIFdelbegin %DIFDELCMD < \begin{table}[t]
 %DIFDELCMD < \centering
 %DIFDELCMD < %%%
 %DIFDELCMD < \caption{%
@@ -731,62 +878,47 @@ MNIST, 0.1\,s & 0.9947 & 0.9949 & 0.9950 & 0.9949 & 0.9950\\
 %DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \DIFadd{of the setup in the real trainer. }\DIFaddend The link-oblivious annealing schedule settles at low rank and therefore buys timely delivery \DIFdelbegin \DIFdel{with only 0.29\,MB per round}\DIFdelend \DIFaddbegin \DIFadd{at the lowest byte cost among the baselines (Table~\ref{tab:ext})}\DIFaddend , but it cannot increase rank when links improve\DIFdelbegin \DIFdel{, and its capacity ceiling is rank 5. }\DIFdelend \DIFaddbegin \DIFadd{. }\DIFaddend The Oort-style selector improves selection at fixed rank. Joint A/B training matches frozen-factor training at the adopted learning rate, and the ablations find no stability separation at an elevated learning rate either, so the case for the frozen factor rests on exactness and upload reduction rather than on an observed stability gap.
+\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{External baselines}}
+\textbf{\DIFadd{Baseline behavior.}} \DIFadd{Table~\ref{tab:trainermain}(c) reports the three external baselines of the setup in the real trainer. }\DIFaddend The link-oblivious annealing schedule settles at low rank and therefore buys timely delivery \DIFdelbegin \DIFdel{with only 0.29\,MB per round}\DIFdelend \DIFaddbegin \DIFadd{at the lowest byte cost among the baselines}\DIFaddend , but it cannot increase rank when links improve\DIFdelbegin \DIFdel{, and its capacity ceiling is rank 5. }\DIFdelend \DIFaddbegin \DIFadd{. }\DIFaddend The Oort-style selector improves selection at fixed rank. Joint A/B training matches frozen-factor training at the adopted learning rate, and the ablations find no stability separation at an elevated learning rate either, so the case for the frozen factor rests on exactness and upload reduction rather than on an observed stability gap.
 
 \DIFdelbegin \subsection{\DIFdel{Full grid scheduling, same-cohort scheduling, and fair cohort}}
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdelend \DIFaddbegin \begin{table}[t]
-\centering
-\caption{\DIFaddFL{External baselines in the real trainer on non-IID CIFAR-10 with ten seeds. Accuracy is measured at round 40. Timely delivery ratio, bytes, and delivered mean rank are averaged over rounds 30--39.}}
-\label{tab:ext}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{l cccc cccc}
-\toprule
-& \multicolumn{4}{c}{nominal deadline} & \multicolumn{4}{c}{deadline 0.1\,s}\\
-\cmidrule(lr){2-5}\cmidrule(lr){6-9}
-Method & Acc. & Timely & MB & Rank & Acc. & Timely & MB & Rank\\
-\midrule
-SA-FedLoRA-style annealing & $0.9154\pm.0016$ & 0.75 & 0.29 & 5.1 & $0.9153\pm.0016$ & 0.62 & 0.29 & 5.0\\
-Oort-style utility, fixed rank & $0.9150\pm.0020$ & 0.76 & 0.45 & 8.0 & $0.9149\pm.0019$ & 0.54 & 0.45 & 8.0\\
-Joint A/B, plain averaging & $0.9152\pm.0016$ & 0.73 & 0.90 & 16 & $0.9148\pm.0019$ & 0.41 & 0.90 & 16\\
-\midrule
-FedLoRA $r{=}16$ & $0.9153\pm.0015$ & 0.73 & 0.90 & 16 & $0.9149\pm.0019$ & 0.41 & 0.90 & 16\\
-FedRAS (ours) & $0.9153\pm.0016$ & 0.73 & 0.90 & 16.0 & $0.9154\pm.0018$ & 0.49 & 0.69 & 12.7\\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
-
-\subsubsection{\DIFadd{Scheduling variants}}
+\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Scheduling variants}}
 \DIFaddend \label{sec:dpvfair}
 \DIFdelbegin \DIFdel{The trainer results so far use fair-cohort scheduling: the server samples the fixed cohort of ten clients and assigns each candidate its locally optimal rank. }\DIFdelend \DIFaddbegin \textbf{\DIFadd{Arms under evaluation.}} \DIFaddend To attribute the value of exact scheduling, \DIFdelbegin \DIFdel{we evaluate two additional arms }\DIFdelend \DIFaddbegin \DIFadd{the three arms defined in the setup are compared in the real trainer}\DIFaddend , over ten seeds at the nominal deadline and five seeds under stress. The full grid arm solves the \DIFdelbegin \DIFdel{dynamic program of Section~\ref{sec:solver} }\DIFdelend \DIFaddbegin \DIFadd{GridDP assignment (Section~\ref{sec:gdp}) }\DIFaddend over the entire 20-client population under the participation cap and a 1.0\,MB budget, which equals ten rank-16 grid costs, so the budget binds only through downshifting or skipping. The same-cohort arm draws the identical cohort as fair cohort and restricts the same dynamic program to those candidates\DIFdelbegin \DIFdel{, isolating in-cohort rank allocation from candidate-pool widening}\DIFdelend .
 
-\begin{table}[t]
-\centering
-\caption{Scheduling arms in the real trainer. Top: nominal 2.0\,s deadline over ten seeds. Bottom: 0.1\,s deadline over five seeds. Both arms of each comparison share the candidate protocol described in the text.}
-\label{tab:dpvfair}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{l cccc}
-\toprule
-Method & Accuracy & Timely & MB & Rank\\
-\midrule
-\multicolumn{5}{l}{\emph{nominal 2.0\,s, ten seeds}}\\
-Full DP (grid assignment, 1.0\,MB) & $0.9151\pm.0016$ & 0.82 & 0.90 & 16.0\\
-Same-cohort DP (1.0\,MB) & $0.9152\pm.0019$ & 0.73 & 0.90 & 16.0\\
-Fair cohort (FedRAS rule) & $0.9153\pm.0016$ & 0.73 & 0.90 & 16.0\\
-FedLoRA $r{=}16$ & $0.9153\pm.0015$ & 0.73 & 0.90 & 16\\
-\midrule
-\multicolumn{5}{l}{\emph{stress 0.1\,s, five seeds}}\\
-Full DP (grid assignment, 1.0\,MB) & $0.9138\pm.0011$ & 0.55 & 0.87 & 15.4\\
-Same-cohort DP (1.0\,MB) & $0.9139\pm.0014$ & 0.51 & 0.70 & 12.7\\
-Fair cohort (FedRAS rule) & $0.9144\pm.0018$ & 0.51 & 0.70 & 13.0\\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
+\DIFdelbegin %DIFDELCMD < \begin{table}[t]
+%DIFDELCMD < \centering
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Scheduling arms in the real trainer. Top: nominal 2.0\,s deadline over ten seeds. Bottom: 0.1\,s deadline over five seeds. Both arms of each comparison share the candidate protocol described in the text.}}
+%DIFAUXCMD
+%DIFDELCMD < \label{tab:dpvfair}
+%DIFDELCMD < \resizebox{\columnwidth}{!}{%
+%DIFDELCMD < \begin{tabular}{l cccc}
+%DIFDELCMD < \toprule
+%DIFDELCMD < Method & Accuracy & Timely & MB & Rank\\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \multicolumn{5}{l}{\emph{nominal 2.0\,s, ten seeds}}\\
+%DIFDELCMD < Full DP (grid assignment, 1.0\,MB) & $0.9151\pm.0016$ & 0.82 & 0.90 & 16.0\\
+%DIFDELCMD < Same-cohort DP (1.0\,MB) & $0.9152\pm.0019$ & 0.73 & 0.90 & 16.0\\
+%DIFDELCMD < Fair cohort (FedRAS rule) & $0.9153\pm.0016$ & 0.73 & 0.90 & 16.0\\
+%DIFDELCMD < FedLoRA $r{=}16$ & $0.9153\pm.0015$ & 0.73 & 0.90 & 16\\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \multicolumn{5}{l}{\emph{stress 0.1\,s, five seeds}}\\
+%DIFDELCMD < Full DP (grid assignment, 1.0\,MB) & $0.9138\pm.0011$ & 0.55 & 0.87 & 15.4\\
+%DIFDELCMD < Same-cohort DP (1.0\,MB) & $0.9139\pm.0014$ & 0.51 & 0.70 & 12.7\\
+%DIFDELCMD < Fair cohort (FedRAS rule) & $0.9144\pm.0018$ & 0.51 & 0.70 & 13.0\\
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \end{tabular}%
+%DIFDELCMD < }
+%DIFDELCMD < \end{table}
+%DIFDELCMD < 
 
-\DIFaddbegin \textbf{\DIFadd{Where exactness pays.}} \DIFaddend Table~\ref{tab:dpvfair} yields a clean decomposition. At the nominal deadline, the same-cohort DP coincides exactly with the per-client argmax rule, as Proposition~\ref{prop:cohort} predicts when the all-rank-16 profile fits the budget; the \DIFdelbegin \DIFdel{entire $+9$ percentage-point }\DIFdelend \DIFaddbegin \DIFadd{full DP's }\DIFaddend timely-delivery \DIFdelbegin \DIFdel{gain of the full DP(0.82 against 0.73) comes }\DIFdelend \DIFaddbegin \DIFadd{gain ($+9$ percentage points) comes entirely }\DIFaddend from admission over the wider candidate pool. Under the 0.1\,s deadline the pattern persists: the in-cohort DP matches the argmax rule, while the full DP \DIFdelbegin \DIFdel{reaches 0.55 against 0.51 timely deliveries at 0.87 against 0.70\,MB}\DIFdelend \DIFaddbegin \DIFadd{delivers more timely updates at proportionally more bytes (Table~\ref{tab:dpvfair})}\DIFaddend . Exactness therefore pays through admission control over a heterogeneous pool, not through rank allocation inside a cohort, where the cheap per-client rule is already optimal (Proposition~\ref{prop:cohort}). This delimits when full grid scheduling is worth its coordination cost.
+%DIFDELCMD < %%%
+\DIFdel{Table~\ref{tab:dpvfair} }\DIFdelend \DIFaddbegin \textbf{\DIFadd{Where exactness pays.}} \DIFadd{Table~\ref{tab:trainermain}(d) }\DIFaddend yields a clean decomposition. At the nominal deadline, the same-cohort DP coincides exactly with the per-client argmax rule, as Proposition~\ref{prop:cohort} predicts when the all-rank-16 profile fits the budget; the \DIFdelbegin \DIFdel{entire $+9$ percentage-point }\DIFdelend \DIFaddbegin \DIFadd{full DP's }\DIFaddend timely-delivery \DIFdelbegin \DIFdel{gain of the full DP(0.82 against 0.73) comes }\DIFdelend \DIFaddbegin \DIFadd{gain ($+9$ percentage points) comes entirely }\DIFaddend from admission over the wider candidate pool. Under the 0.1\,s deadline the pattern persists: the in-cohort DP matches the argmax rule, while the full DP \DIFdelbegin \DIFdel{reaches 0.55 against 0.51 timely deliveries at 0.87 against 0.70\,MB}\DIFdelend \DIFaddbegin \DIFadd{delivers more timely updates at proportionally more bytes}\DIFaddend . Exactness therefore pays through admission control over a heterogeneous pool, not through rank allocation inside a cohort, where the cheap per-client rule is already optimal (Proposition~\ref{prop:cohort}). This delimits when full grid scheduling is worth its coordination cost.
 
 \DIFdelbegin \subsection{\DIFdel{Scheduler behavior at 500-client scale}}
 %DIFAUXCMD
@@ -794,45 +926,54 @@ Fair cohort (FedRAS rule) & $0.9144\pm.0018$ & 0.51 & 0.70 & 13.0\\
 %DIFDELCMD < \label{sec:simsim}
 %DIFDELCMD < %%%
 \DIFdel{Table~\ref{tab:sim} summarizes the simulatoracross regimes, with five seeds at the final round. The accuracy column is }\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Component ablations}}
-\textbf{\DIFadd{Component contributions.}} \DIFadd{Table~\ref{tab:ablation} reports component ablations at the nominal deadline. In the parity regime, no removal measurably changes final accuracy, which is consistent with the claim that accuracy is carried by the backbone and not by the scheduler. The components instead shape scheduling behavior and aggregation correctness. Removing the capacity term collapses FedRAS to the minimum rank, the degenerate delivery-only policy that the capacity term exists to prevent; its capacity cost is invisible at nominal deadlines but material in the simulator, where reliability-only optimization loses 28 points of utility against rank 16 (Table~\ref{tab:sim}). Removing server momentum is accuracy-neutral here. The rank mask itself is network-metric-neutral at fixed rank policy: with }\DIFaddend the \DIFdelbegin \DIFdel{bounded utility state of Section~\ref{sec:eval}, not a dataset accuracy}\DIFdelend \DIFaddbegin \DIFadd{random-rank rule at the 0.1\,s deadline, masked and unmasked aggregation give 0.9143 and 0.9145 final accuracy with identical byte and timeliness profiles. The mask is nonetheless what keeps heterogeneous-rank aggregation per-slice exact whenever ranks mix, as Proposition~\ref{prop:agg} states, and its absence dilutes high-rank coordinates under mixed-rank rounds.
+\textbf{\DIFadd{Component contributions.}} \DIFadd{Table~\ref{tab:trainermain}(e) reports component ablations at the nominal deadline. In the parity regime, no removal measurably changes final accuracy, which is consistent with the claim that accuracy is carried by the backbone and not by the scheduler. The components instead shape scheduling behavior and aggregation correctness. Removing the capacity term collapses FedRAS to the minimum rank, the degenerate delivery-only policy that the capacity term exists to prevent; its capacity cost is invisible at nominal deadlines but material in the simulator, where reliability-only optimization loses 28 points of utility against rank 16 (Table~\ref{tab:scalemain}(a)). Removing server momentum is accuracy-neutral here. The rank mask itself is network-metric-neutral at fixed rank policy: with }\DIFaddend the \DIFdelbegin \DIFdel{bounded utility state of Section~\ref{sec:eval}, not a dataset accuracy}\DIFdelend \DIFaddbegin \DIFadd{random-rank rule at the 0.1\,s deadline, masked and unmasked aggregation give 0.9143 and 0.9145 final accuracy with identical byte and timeliness profiles. The mask is nonetheless what keeps heterogeneous-rank aggregation per-slice exact whenever ranks mix, as Proposition~\ref{prop:agg} states, and its absence dilutes high-rank coordinates under mixed-rank rounds.
 }
 
 \textbf{\DIFadd{Stability at elevated learning rate.}} \DIFadd{Under the elevated learning rate of 0.02, the frozen-factor rule and joint A/B training are statistically indistinguishable, with final accuracies of 0.9130 and 0.9132 and transient minima of 0.913 and 0.912 across rounds and seeds. The stability separation between the two aggregation rules observed in our preliminary stylized-payload experiments does not survive the corrected implementation at this horizon, so the frozen-factor rule is justified by the exactness of Proposition~\ref{prop:agg} and by its single-factor uploads, not by an empirical stability margin at this scale.
 }
 
-\begin{table}[t]
-\centering
-\caption{\DIFaddFL{Component ablations, real trainer (non-IID CIFAR-10, five seeds, nominal deadline). The Min.\ column is the minimum over rounds of the per-round seed-mean accuracy in the elevated-learning-rate stability check at learning rate 0.02.}}
-\label{tab:ablation}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{l cc}
-\toprule
-Configuration & Accuracy & Min.\\
-\midrule
-Full system (ours) & $0.9144\pm.0013$ & ---\\
-\midrule
-w/o capacity term & $0.9145\pm.0014$ & ---\\
-w/o frozen $A$ (joint A/B) & $0.9144\pm.0015$ & ---\\
-w/o rank mask (fixed random rank, 0.1\,s) & $0.9145\pm.0016$ & ---\\
-w/o server momentum & $0.9143\pm.0013$ & ---\\
-\midrule
-frozen $A$, lr 0.02 & $0.9130\pm.0012$ & 0.913\\
-joint A/B, lr 0.02 & $0.9132\pm.0012$ & 0.912\\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
-
 \subsection{\DIFadd{Large-scale scheduling simulation}}
 
 \subsubsection{\DIFadd{Scheduler behavior across operating regimes}}
 \label{sec:simsim}
-\textbf{\DIFadd{Regime comparison.}} \DIFadd{Table~\ref{tab:sim} summarizes the simulator across regimes at the final round}\DIFaddend . In the nominal regime, FedRAS matches fixed rank 16 \DIFdelbegin \DIFdel{at 0.914 }\DIFdelend and dominates every low-rank policy. Under the 0.1\,s deadline, FedRAS \DIFdelbegin \DIFdel{reaches 0.781 against 0.763 for }\DIFdelend \DIFaddbegin \DIFadd{leads }\DIFaddend fixed rank 16 at 21\% fewer bytes, and full-model updates deliver nothing. Under the binding 1.2\,MB budget, full-model updates cannot be admitted even once, while FedRAS and rank 16 tie \DIFdelbegin \DIFdel{at 0.797}\DIFdelend \DIFaddbegin \DIFadd{(Table~\ref{tab:sim})}\DIFaddend . The mobility-stress and 1000-client regimes show the same pattern. A final cell repeats the stylized protocol of the earlier literature: with the $s(r)$ payload model the ordering is preserved\DIFdelbegin \DIFdel{(FedRAS 0.413, rank 16 0.404, annealing 0.374)}\DIFdelend , confirming that the conclusions are not an artifact of the payload accounting.
+\textbf{\DIFadd{Regime comparison.}} \DIFadd{Table~\ref{tab:scalemain}(a) summarizes the simulator across regimes at the final round}\DIFaddend . In the nominal regime, FedRAS matches fixed rank 16 \DIFdelbegin \DIFdel{at 0.914 }\DIFdelend and dominates every low-rank policy. Under the 0.1\,s deadline, FedRAS \DIFdelbegin \DIFdel{reaches 0.781 against 0.763 for }\DIFdelend \DIFaddbegin \DIFadd{leads }\DIFaddend fixed rank 16 at 21\% fewer bytes, and full-model updates deliver nothing. Under the binding 1.2\,MB budget, full-model updates cannot be admitted even once, while FedRAS and rank 16 tie\DIFdelbegin \DIFdel{at 0.797}\DIFdelend . The mobility-stress and 1000-client regimes show the same pattern. A final cell repeats the stylized protocol of the earlier literature: with the $s(r)$ payload model the ordering is preserved\DIFdelbegin \DIFdel{(FedRAS 0.413, rank 16 0.404, annealing 0.374)}\DIFdelend , confirming that the conclusions are not an artifact of the payload accounting.
 
-\begin{table}[t]
-\centering
-\caption{Scheduler simulation with 500 clients, 150 rounds, and five seeds. The accuracy column is a bounded scheduling proxy, not dataset accuracy. Timely delivery ratio is the mean delivery probability for admitted clients, and MB is the attempted uplink payload total for admitted clients in the final round. FedAvg refers to full-model updates at their real 5.29\,MB size.}
-\label{tab:sim}
+\DIFdelbegin %DIFDELCMD < \begin{table}[t]
+%DIFDELCMD < \centering
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Scheduler simulation with 500 clients, 150 rounds, and five seeds. The accuracy column is a bounded scheduling proxy, not dataset accuracy. Timely delivery ratio is the mean delivery probability for admitted clients, and MB is the attempted uplink payload total for admitted clients in the final round. FedAvg refers to full-model updates at their real 5.29\,MB size.}}
+%DIFAUXCMD
+%DIFDELCMD < \label{tab:sim}
+%DIFDELCMD < \resizebox{0.98\columnwidth}{!}{%
+%DIFDELCMD < \begin{tabular}{l ccc ccc ccc}
+%DIFDELCMD < \toprule
+%DIFDELCMD < & \multicolumn{3}{c}{Nominal 2.0\,s} & \multicolumn{3}{c}{Deadline 0.1\,s} & \multicolumn{3}{c}{Budget 1.2\,MB}\\
+%DIFDELCMD < \cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+%DIFDELCMD < Method & Acc. & Timely & MB & Acc. & Timely & MB & Acc. & Timely & MB\\
+%DIFDELCMD < \midrule
+%DIFDELCMD < FedAvg (full) & .310 & .34 & 26.5 & .093 & .00 & 26.5 & .093 & .00 & 0.0\\
+%DIFDELCMD < $r{=}4$ & .744 & .75 & 0.8 & .689 & .64 & 0.8 & .744 & .75 & 0.8\\
+%DIFDELCMD < $r{=}16$ & .914 & .73 & 2.5 & .763 & .42 & 2.5 & .797 & .76 & 1.2\\
+%DIFDELCMD < Random & .816 & .75 & 1.3 & .709 & .57 & 1.3 & .803 & .75 & 1.2\\
+%DIFDELCMD < Reliability-only & .635 & .76 & 0.5 & .606 & .70 & 0.5 & .635 & .76 & 0.5\\
+%DIFDELCMD < SA-annealing & .842 & .76 & 0.5 & .730 & .70 & 0.5 & .796 & .76 & 0.5\\
+%DIFDELCMD < FedRAS (ours) & .914 & .73 & 2.5 & \textbf{.781} & .50 & 2.0 & \textbf{.797} & .76 & 1.2\\
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \end{tabular}%
+%DIFDELCMD < }
+%DIFDELCMD < \end{table}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \textbf{\DIFadd{Trajectories.}} \DIFaddend Fig.~\ref{fig:sim} shows the nominal and 0.1\,s trajectories, and Fig.~\ref{fig:simreg} the network-side view across regimes. Across the reported regimes, FedRAS is numerically best or tied for best\DIFdelbegin \DIFdel{; these simulator comparisons are descriptive unless an accompanying statistical test is reported}\DIFdelend .
+
+\DIFaddbegin \begin{table}[p]
+\centering\footnotesize
+\caption{\DIFaddFL{Experiments at 500-client scale (five seeds unless noted). (a) Scheduler simulation across regimes; the accuracy column is the bounded utility state of Section~\ref{sec:eval}, MB is the attempted uplink payload of admitted clients in the final round, and FedAvg refers to full-model updates at their real serialized size. (b) Solver study with $K{=}25$ and 30 instances per cell on the identical ceiling grid; the table reports heuristic objective loss relative to the grid-based DP and DP runtime.}}
+\label{tab:scalemain}
+\emph{\DIFaddFL{(a) Scheduler simulation across regimes}}\\[2pt]
 \resizebox{0.98\columnwidth}{!}{%
 \begin{tabular}{l ccc ccc ccc}
 \toprule
@@ -849,43 +990,8 @@ SA-annealing & .842 & .76 & 0.5 & .730 & .70 & 0.5 & .796 & .76 & 0.5\\
 FedRAS (ours) & .914 & .73 & 2.5 & \textbf{.781} & .50 & 2.0 & \textbf{.797} & .76 & 1.2\\
 \bottomrule
 \end{tabular}%
-}
-\end{table}
-
-\DIFaddbegin \textbf{\DIFadd{Trajectories.}} \DIFaddend Fig.~\ref{fig:sim} shows the nominal and 0.1\,s trajectories, and Fig.~\ref{fig:simreg} the network-side view across regimes. Across the reported regimes, FedRAS is numerically best or tied for best\DIFdelbegin \DIFdel{; these simulator comparisons are descriptive unless an accompanying statistical test is reported}\DIFdelend .
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.98\columnwidth]{recolored_figures/fig_sim_accuracy}
-\caption{Scheduler simulation utility-state trajectories (mean over five seeds). (a)~Nominal 2.0\,s deadline, where FedRAS matches fixed rank 16. (b)~0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16.}
-\label{fig:sim}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.98\columnwidth]{recolored_figures/fig_sim_regimes}
-\caption{Timely delivery ratio and attempted bytes per method across simulator regimes (five-seed means, final round). Full-model updates deliver nothing under stress and cannot be admitted at all under the binding budget.}
-\label{fig:simreg}
-\end{figure}
-
-\DIFdelbegin \subsection{\DIFdel{Solver optimality and runtime}}
-%DIFAUXCMD
-\addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Solver optimality and runtime}}
-\DIFaddend \label{sec:dp_study}
-\DIFaddbegin \textbf{\DIFadd{Heuristic gaps and runtime.}} \DIFaddend Table~\ref{tab:dp} reports the scheduling study with the identical ceiling discretization for the DP and every heuristic. When the byte budget is slack, value greedy \DIFdelbegin \DIFdel{is optimal }\DIFdelend and the fixed rank-16 rule \DIFdelbegin \DIFdel{is optimalwhenever rank 16 is feasible for all cap clients}\DIFdelend \DIFaddbegin \DIFadd{are already optimal}\DIFaddend , so the choice of scheduler matters little; the value-per-byte greedy, by contrast, collapses to a smallest-rank preference\DIFdelbegin \DIFdel{and loses up to 64\% of the objective}\DIFdelend . The interesting regimes are the binding ones\DIFdelbegin \DIFdel{. When }\DIFdelend \DIFaddbegin \DIFadd{: when }\DIFaddend the budget binds\DIFdelbegin \DIFdel{at 1.2\,MB, }\DIFdelend \DIFaddbegin \DIFadd{, every heuristic loses a substantial fraction of the objective --- up to 64\% for }\DIFaddend value-per-byte \DIFdelbegin \DIFdel{greedy loses 41 to 48\%, value greedy 28 to 36\%, and the cohort-myopic rule 48 to 55\% . The }\DIFdelend \DIFaddbegin \DIFadd{pricing --- while the }\DIFaddend DP reaches the optimum of the discretized single-round estimated problem in every cell. Its runtime is \DIFdelbegin \DIFdel{23 to 421\,ms }\DIFdelend \DIFaddbegin \DIFadd{sub-second }\DIFaddend for 500 clients \DIFdelbegin \DIFdel{depending on the budget-grid size, and it }\DIFdelend \DIFaddbegin \DIFadd{across the evaluated grid widths and }\DIFaddend scales linearly to 1000 clients\DIFdelbegin \DIFdel{at 851\,ms}\DIFdelend , as Fig.~\ref{fig:dp} shows\DIFdelbegin \DIFdel{. This }\DIFdelend \DIFaddbegin \DIFadd{, which }\DIFaddend is compatible with per-round scheduling at minute-scale FL rounds.
-
-\DIFaddbegin \textbf{\DIFadd{Grid sweep.}} \DIFaddend A dedicated grid sweep \DIFdelbegin \DIFdel{with steps from 0.02 to 0.005\,MB compares each step against a 0.0025\,MB reference. In the binding 1.2\,MB regime the default 0.01\,MB step deviates by at most 3.1\%, and a 0.005\,MB }\DIFdelend \DIFaddbegin \DIFadd{around the default }\DIFaddend step bounds the \DIFdelbegin \DIFdel{deviation to 2.4\% ; slack regimes stay }\DIFdelend \DIFaddbegin \DIFadd{quantization error at about 3\% in the binding regime and }\DIFaddend below 1\% \DIFaddbegin \DIFadd{in slack regimes; a finer step reduces it further at a known runtime cost}\DIFaddend . The grid exactness claim of Section~\DIFdelbegin \DIFdel{\ref{sec:solver} }\DIFdelend \DIFaddbegin \DIFadd{\ref{sec:theory} }\DIFaddend therefore applies to a grid whose quantization error is bounded, measured, and adjustable\DIFdelbegin \DIFdel{at a known runtime cost.
-}%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\textbf{\DIFdel{Deployment recipe.}} %DIFAUXCMD
-\DIFdel{The results translate into three planning rules for a practitioner.Calibrate the deadline ladder from the real payload of the widest provisioned rank, so that the nominal deadline leaves rank $r_{\max}$ near-constraint-free while at least one stress deadline drives its timely delivery below one half. Size the byte budget at ten times the grid cost of rank $r_{\max}$, which forces the budget to bind only through downshifting or skipping. Finally, by Proposition~\ref{prop:cohort}, use the per-client argmax rule when the budget accommodates every candidate at rank $r_{\max}$ and invoke the full dynamic program only when the pool is heterogeneous enough that admission control matters}\DIFdelend .
-
-\begin{table}[t]
-\centering
-\caption{Solver study with 500 clients, $K{=}25$, and 30 instances per cell, all methods on the identical ceiling grid. The table reports heuristic objective loss relative to the grid-based DP and DP runtime.}
-\label{tab:dp}
+}\\[6pt]
+\emph{\DIFaddFL{(b) Solver study}}\\[2pt]
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{cc cccc c}
 \toprule
@@ -905,40 +1011,93 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 }
 \end{table}
 
+\DIFaddend \begin{figure}[t]
+\centering
+\includegraphics[width=0.98\columnwidth]{recolored_figures/fig_sim_accuracy}
+\caption{Scheduler simulation utility-state trajectories (mean over five seeds). (a)~Nominal 2.0\,s deadline, where FedRAS matches fixed rank 16. (b)~0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16.}
+\label{fig:sim}
+\end{figure}
+
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.98\columnwidth]{recolored_figures/fig_dp_study}
-\DIFaddbeginFL \caption{\DIFaddFL{Solver study. (a)~Objective loss of the heuristics relative to the DP across deadline and budget cells. (b)~DP runtime scaling with the client population.}}
+\includegraphics[width=0.98\columnwidth]{recolored_figures/fig_sim_regimes}
+\caption{Timely delivery ratio and attempted bytes per method across simulator regimes (five-seed means, final round). Full-model updates deliver nothing under stress and cannot be admitted at all under the binding budget.}
+\label{fig:simreg}
+\end{figure}
+
+\DIFdelbegin \subsection{\DIFdel{Solver optimality and runtime}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Solver optimality and runtime}}
+\DIFaddend \label{sec:dp_study}
+\DIFdelbegin \DIFdel{Table~\ref{tab:dp} }\DIFdelend \DIFaddbegin \textbf{\DIFadd{Heuristic gaps and runtime.}} \DIFadd{Table~\ref{tab:scalemain}(b) }\DIFaddend reports the scheduling study with the identical ceiling discretization for the DP and every heuristic. When the byte budget is slack, value greedy \DIFdelbegin \DIFdel{is optimal }\DIFdelend and the fixed rank-16 rule \DIFdelbegin \DIFdel{is optimalwhenever rank 16 is feasible for all cap clients}\DIFdelend \DIFaddbegin \DIFadd{are already optimal}\DIFaddend , so the choice of scheduler matters little; the value-per-byte greedy, by contrast, collapses to a smallest-rank preference\DIFdelbegin \DIFdel{and loses up to 64\% of the objective}\DIFdelend . The interesting regimes are the binding ones\DIFdelbegin \DIFdel{. When }\DIFdelend \DIFaddbegin \DIFadd{: when }\DIFaddend the budget binds\DIFdelbegin \DIFdel{at 1.2\,MB, }\DIFdelend \DIFaddbegin \DIFadd{, every heuristic loses a substantial fraction of the objective --- up to 64\% for }\DIFaddend value-per-byte \DIFdelbegin \DIFdel{greedy loses 41 to 48\%, value greedy 28 to 36\%, and the cohort-myopic rule 48 to 55\% . The }\DIFdelend \DIFaddbegin \DIFadd{pricing --- while the }\DIFaddend DP reaches the optimum of the discretized single-round estimated problem in every cell. Its runtime is \DIFdelbegin \DIFdel{23 to 421\,ms }\DIFdelend \DIFaddbegin \DIFadd{sub-second }\DIFaddend for 500 clients \DIFdelbegin \DIFdel{depending on the budget-grid size, and it }\DIFdelend \DIFaddbegin \DIFadd{across the evaluated grid widths and }\DIFaddend scales linearly to 1000 clients\DIFdelbegin \DIFdel{at 851\,ms}\DIFdelend , as Fig.~\ref{fig:dp} shows\DIFdelbegin \DIFdel{. This }\DIFdelend \DIFaddbegin \DIFadd{, which }\DIFaddend is compatible with per-round scheduling at minute-scale FL rounds.
+
+\DIFaddbegin \textbf{\DIFadd{Grid sweep.}} \DIFaddend A dedicated grid sweep \DIFdelbegin \DIFdel{with steps from 0.02 to 0.005\,MB compares each step against a 0.0025\,MB reference. In the binding 1.2\,MB regime the default 0.01\,MB step deviates by at most 3.1\%, and a 0.005\,MB }\DIFdelend \DIFaddbegin \DIFadd{around the default }\DIFaddend step bounds the \DIFdelbegin \DIFdel{deviation to 2.4\% ; slack regimes stay }\DIFdelend \DIFaddbegin \DIFadd{quantization error at about 3\% in the binding regime and }\DIFaddend below 1\% \DIFaddbegin \DIFadd{in slack regimes; a finer step reduces it further at a known runtime cost}\DIFaddend . The grid exactness claim of Section~\DIFdelbegin \DIFdel{\ref{sec:solver} }\DIFdelend \DIFaddbegin \DIFadd{\ref{sec:theory} }\DIFaddend therefore applies to a grid whose quantization error is bounded, measured, and adjustable\DIFdelbegin \DIFdel{at a known runtime cost}\DIFdelend .
+
+\DIFdelbegin \textbf{\DIFdel{Deployment recipe.}} %DIFAUXCMD
+\DIFdel{The results translate into three planning rules for a practitioner. Calibrate the deadline ladder from the real payload of the widest provisioned rank, so that the nominal deadline leaves rank $r_{\max}$ near-constraint-free while at least one stress deadline drives its timely delivery below one half. Size the byte budget at ten times the grid cost of rank $r_{\max}$, which forces the budget to bind only through downshifting or skipping. Finally, by Proposition~\ref{prop:cohort}, use the per-client argmax rule when the budget accommodates every candidate at rank $r_{\max}$ and invoke the full dynamic program only when the pool is heterogeneous enough that admission control matters.
+}%DIFDELCMD < 
+
+%DIFDELCMD < \begin{table}[t]
+%DIFDELCMD < \centering
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Solver study with 500 clients, $K{=}25$, and 30 instances per cell, all methods on the identical ceiling grid. The table reports heuristic objective loss relative to the grid-based DP and DP runtime.}}
+%DIFAUXCMD
+%DIFDELCMD < \label{tab:dp}
+%DIFDELCMD < \resizebox{\columnwidth}{!}{%
+%DIFDELCMD < \begin{tabular}{cc cccc c}
+%DIFDELCMD < \toprule
+%DIFDELCMD < Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fixed $r{=}16$ & DP time (ms)\\
+%DIFDELCMD < \midrule
+%DIFDELCMD < 2.0  & 30  & 63.6\% & 0.0\% & 40.9\% & 0.0\% & 421\\
+%DIFDELCMD < 2.0  & 4   & 63.6\% & 0.0\% & 40.9\% & 0.0\% & 51\\
+%DIFDELCMD < 2.0  & 1.2 & 47.8\% & 28.4\% & 48.9\% & 28.4\% & 23\\
+%DIFDELCMD < 1.0  & 30  & 62.7\% & 0.0\% & 40.0\% & 0.0\% & 415\\
+%DIFDELCMD < 1.0  & 4   & 62.7\% & 0.0\% & 43.0\% & 0.0\% & 51\\
+%DIFDELCMD < 1.0  & 1.2 & 47.3\% & 29.3\% & 48.3\% & 29.3\% & 23\\
+%DIFDELCMD < 0.1  & 30  & 52.8\% & 0.0\% & 51.9\% & 0.0\% & 415\\
+%DIFDELCMD < 0.1  & 4   & 52.6\% & 0.0\% & 52.0\% & 0.0\% & 51\\
+%DIFDELCMD < 0.1  & 1.2 & 41.0\% & 36.0\% & 54.8\% & 36.0\% & 23\\
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \end{tabular}%
+%DIFDELCMD < }
+%DIFDELCMD < \end{table}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Delivery-predictor sensitivity}}
+\DIFaddend \begin{figure}[t]
+\centering
+\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.98\columnwidth]{recolored_figures/fig_dp_study}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.8\columnwidth]{recolored_figures/fig_dp_study}
+\DIFaddendFL \caption{Solver study. (a)~Objective loss of the heuristics relative to the DP across deadline and budget cells. (b)~DP runtime scaling with the client population.}
 \label{fig:dp}
 \end{figure}
 
-\subsubsection{\DIFadd{Delivery-predictor sensitivity}}
-\DIFadd{The calibration study of Fig.~\ref{fig:calib} measures both the fidelity of the deployed predictor and the scheduling cost of its errors (500 clients). With the oracle link state of the setup, the hazard-form predictor \eqref{eq:hazard} is calibrated by construction. Deliberately distorted variants --- power distortions of the predicted probability and multiplicative lognormal noise --- are measurably miscalibrated, yet the resulting assignment-objective loss, evaluated under the true probabilities, stays below 1\% in every cell. The loss follows the structure of the error: power distortions cost most under the stress deadline, where rank ordering matters most, while noise costs most in the nominal slack cell, where it perturbs an otherwise near-uniform rank preference. Mis-prediction therefore degrades the objective smoothly rather than catastrophically, and the observed delivery outcomes of Algorithm~\ref{alg:fedras} are exactly the signal from which a per-client predictor would be recalibrated. Calibration on measured traces remains open and is taken up in Section~\ref{sec:discussion}.
-}
+\DIFdelbegin \subsection{\DIFdel{Sensitivity, link profile, and predictor calibration}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < \label{sec:sens}\label{sec:summary}
+%DIFDELCMD < %%%
+\DIFdel{Fig.~\ref{fig:sens} varies the provisioned adapter width, the cohort size, and the label heterogeneity of the trainer on CIFAR-10. Each variant uses five seeds; the nominal reference column uses ten. Widening the adapter from $r_{\max}=8$ to 32 leaves accuracy flat while bytes rise from 0.45 to 1.80\,MB and timely delivery falls from 0.75 to 0.70; the provisioned width is a network-facing decision rather than an accuracy control. Cohort size from 5 to 20 leaves accuracy flat at linearly scaled bytes. Data heterogeneity from $\alpha=0.1$ to 1.0 moves accuracy as Table~\ref{tab:extended} shows at constant network cost. Per-decision scheduling cost is negligible in all settings: the per-client rank rule costs about 0.1\,ms per decision, roughly 1\,ms per round, against 23 to 421\,ms for the full grid-scheduling DP of Section~\ref{sec:dp_study}.
+}%DIFDELCMD < 
 
-\begin{figure}[t]
+%DIFDELCMD < %%%
+\textbf{\DIFdel{SAGIN link profile.}} %DIFAUXCMD
+\DIFdel{Grouping the 20 clients into ground, aerial, and satellite classes with distinct rate and mobility laws reproduces the aggregate parity at the nominal deadline (accuracy 0.9141) while exposing the expected per-class structure: timely delivery is 0.71 for ground, 0.61 for aerial, and 0.49 for satellite clients. At this deadline the scheduler holds rank 16 across all classes, so the class gap reflects the link laws alone rather than rank allocation. This profile is a parameterized link model, not a measured trace; its role is to show that the scheduler responds sensibly to client-class heterogeneity, and calibration on measured traces remains open.
+}\DIFdelend \DIFaddbegin \begin{figure}[t]
 \centering
 \includegraphics[width=0.8\columnwidth]{recolored_figures/fig_calibration}
-\DIFaddendFL \caption{\DIFdelbeginFL \DIFdelFL{Solver }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Delivery-predictor calibration }\DIFaddendFL study \DIFdelbeginFL \DIFdelFL{. }\DIFdelendFL (\DIFdelbeginFL \DIFdelFL{a}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{500 clients, 150 round-instances per cell}\DIFaddendFL )\DIFdelbeginFL \DIFdelFL{~Objective loss of the heuristics relative to }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{. The left panel shows reliability at }\DIFaddendFL the \DIFdelbeginFL \DIFdelFL{DP across }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{0.1\,s }\DIFaddendFL deadline\DIFdelbeginFL \DIFdelFL{and budget cells}\DIFdelendFL . \DIFaddbeginFL \DIFaddFL{With oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted }\DIFaddendFL (\DIFdelbeginFL \DIFdelFL{b}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\gamma$}\DIFaddendFL ) \DIFdelbeginFL \DIFdelFL{~DP runtime scaling with }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{and noisy variants are measurably miscalibrated. The right panel shows }\DIFaddendFL the \DIFdelbeginFL \DIFdelFL{client population}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% in every cell}\DIFaddendFL .}
-\DIFdelbeginFL %DIFDELCMD < \label{fig:dp}
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \label{fig:calib}
-\DIFaddendFL \end{figure}
-
-\subsection{Sensitivity \DIFdelbegin \DIFdel{, link profile, }\DIFdelend and \DIFdelbegin \DIFdel{predictor calibration}\DIFdelend \DIFaddbegin \DIFadd{robustness analysis}\DIFaddend }
-\label{sec:sens}\label{sec:summary}
-\DIFaddbegin \textbf{\DIFadd{Width, cohort, and heterogeneity.}} \DIFaddend Fig.~\ref{fig:sens} varies the provisioned adapter width, the cohort size, and the label heterogeneity of the trainer on CIFAR-10. Each variant uses five seeds; the nominal reference column uses ten. Widening the \DIFdelbegin \DIFdel{adapter from $r_{\max}=8$ to 32 }\DIFdelend \DIFaddbegin \DIFadd{provisioned adapter }\DIFaddend leaves accuracy flat while \DIFdelbegin \DIFdel{bytes rise from 0.45 to 1.80\,MB and timely delivery falls from 0.75 to 0.70; the provisioned }\DIFdelend \DIFaddbegin \DIFadd{network cost rises; the }\DIFaddend width is a network-facing decision rather than an accuracy control. Cohort size \DIFdelbegin \DIFdel{from 5 to 20 }\DIFdelend leaves accuracy flat at linearly scaled bytes. Data heterogeneity \DIFdelbegin \DIFdel{from $\alpha=0.1$ to 1.0 }\DIFdelend moves accuracy as Table~\ref{tab:extended} shows at constant network cost. Per-decision scheduling cost is negligible in all settings: the per-client rank rule costs \DIFdelbegin \DIFdel{about 0.1\,ms }\DIFdelend \DIFaddbegin \DIFadd{sub-millisecond }\DIFaddend per decision, \DIFdelbegin \DIFdel{roughly 1\,ms per round, against 23 to 421\,ms for }\DIFdelend \DIFaddbegin \DIFadd{orders of magnitude below }\DIFaddend the full grid-scheduling DP of Section~\ref{sec:dp_study}.
-
-\DIFaddbegin \begin{figure}[t]
-\centering
-\includegraphics[width=0.98\columnwidth]{recolored_figures/fig_sensitivity}
-\caption{\DIFaddFL{Sensitivity of the trainer to provisioned adapter width, cohort size, and label heterogeneity on CIFAR-10 with FedRAS (five seeds per variant; the nominal reference column uses ten seeds). Accuracy is flat in $r_{\max}$, cohort size, and $\alpha$ across the tested ranges; their effect is on bytes and delivered updates (red, right axis).}}
-\label{fig:sens}
+\caption{\DIFaddFL{Delivery-predictor calibration study (500 clients, 150 round-instances per cell). Left: reliability at the 0.1\,s deadline; with oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted ($\gamma$) and noisy variants are measurably miscalibrated. Right: assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% in every cell.}}
+\label{fig:calib}
 \end{figure}
+\DIFaddend 
 
-\DIFaddend \textbf{SAGIN link profile.} Grouping the 20 clients into ground, aerial, and satellite classes with distinct rate and mobility laws reproduces the aggregate parity at the nominal deadline (accuracy 0.9141) while exposing the expected per-class structure: timely delivery is 0.71 for ground, 0.61 for aerial, and 0.49 for satellite clients. At this deadline the scheduler holds rank 16 across all classes, so the class gap reflects the link laws alone rather than rank allocation. This profile is a parameterized link model, not a measured trace; its role is to show that the scheduler responds sensibly to client-class heterogeneity\DIFdelbegin \DIFdel{, and calibration on measured traces remains open}\DIFdelend .
-
-\textbf{\DIFdelbegin \DIFdel{Robustness to predictor error}\DIFdelend \DIFaddbegin \DIFadd{Cross-tier summary}\DIFaddend .} \DIFdelbegin \DIFdel{The calibration study of Fig.~\ref{fig:calib} doubles as a robustness probe. Injecting multiplicative lognormal noise with $\sigma=0.2$ into the predicted $\hat P_{\rm on}$ yields expected calibration error up to 0.078 while the assignment objective degrades by at most 0.95\%; no cell exceeds 1\%. Mis-prediction therefore costs optimality smoothly rather than catastrophically, and the observed delivery outcomes of Algorithm~\ref{alg:scheduler} are exactly the signal from which a calibrated predictor would re-fit.
+\DIFdelbegin \textbf{\DIFdel{Robustness to predictor error.}} %DIFAUXCMD
+\DIFdelend The calibration study of Fig.~\ref{fig:calib} \DIFdelbegin \DIFdel{doubles as a robustness probe. Injecting multiplicative lognormal noise with $\sigma=0.2$ into the predicted $\hat P_{\rm on}$ yields expected calibration error up to 0.078 while the assignment objective degrades by at most 0.95\%; no cell exceeds 1\%. Mis-prediction therefore costs optimality smoothly rather than catastrophically, and the observed delivery outcomes of Algorithm~\ref{alg:scheduler} are exactly the signal from which a calibrated predictor would re-fit.
 }%DIFDELCMD < 
 
 %DIFDELCMD < \begin{figure}[t]
@@ -967,18 +1126,17 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 
 %DIFDELCMD < %%%
 \textbf{\DIFdel{Calibration of the delivery predictor.}} %DIFAUXCMD
-\DIFdel{Calibration itself is measurable, and its scheduling cost is bounded, as Fig.~\ref{fig:calib} shows. On the link model of Section~\ref{sec:model}, the deployed predictor with oracle link state is calibrated by construction, with an expected calibration error of 0.003 to 0.004. Deliberately mis-calibrated variants $\hat P^{\gamma}$ with $\gamma$ of 0.5 and 2 reach an error up to 0.22. The resulting assignment-objective loss stays below 1\% in every cell. Its placement follows the structure of the predictor's error: the $\gamma$-distorted predictors cost more under the stress deadline (up to 0.45\%), where rank ordering matters most, while predictor noise costs the most in the nominal slack cell (0.95\%), where it distorts an otherwise near-uniform rank preference. Even sizeable miscalibration therefore leaves the rank ordering largely intact, and the observed outcomes expose the miscalibration and support per-client recalibration. Calibration on measured traces remains open and is taken up in Section~\ref{sec:discussion}.
-}%DIFDELCMD < 
+\DIFdel{Calibration itself is measurable, and its scheduling cost is bounded, as Fig.~\ref{fig:calib} shows. On the link model of Section~\ref{sec:model}, the }\DIFdelend \DIFaddbegin \DIFadd{measures both the fidelity of the }\DIFaddend deployed predictor \DIFdelbegin \DIFdel{with oracle link state }\DIFdelend \DIFaddbegin \DIFadd{and the scheduling cost of its errors (500 clients). With the oracle link state of the setup, the hazard-form predictor \eqref{eq:hazard} }\DIFaddend is calibrated by construction\DIFdelbegin \DIFdel{, with an expected calibration error of 0.003 to 0.004. Deliberately mis-calibrated variants $\hat P^{\gamma}$ with $\gamma$ of 0.5 and 2 reach an error up to 0.22. The }\DIFdelend \DIFaddbegin \DIFadd{. Deliberately distorted variants --- power distortions of the predicted probability and multiplicative lognormal noise --- are measurably miscalibrated, yet the }\DIFaddend resulting assignment-objective loss\DIFaddbegin \DIFadd{, evaluated under the true probabilities, }\DIFaddend stays below 1\% in every cell. \DIFdelbegin \DIFdel{Its placement }\DIFdelend \DIFaddbegin \DIFadd{The loss }\DIFaddend follows the structure of the \DIFdelbegin \DIFdel{predictor's error: the $\gamma$-distorted predictors cost more }\DIFdelend \DIFaddbegin \DIFadd{error: power distortions cost most }\DIFaddend under the stress deadline\DIFdelbegin \DIFdel{(up to 0.45\%)}\DIFdelend , where rank ordering matters most, while \DIFdelbegin \DIFdel{predictor noise costs the }\DIFdelend \DIFaddbegin \DIFadd{noise costs }\DIFaddend most in the nominal slack cell\DIFdelbegin \DIFdel{(0.95\%)}\DIFdelend , where it \DIFdelbegin \DIFdel{distorts }\DIFdelend \DIFaddbegin \DIFadd{perturbs }\DIFaddend an otherwise near-uniform rank preference. \DIFdelbegin \DIFdel{Even sizeable miscalibration therefore leaves the rank ordering largely intact}\DIFdelend \DIFaddbegin \DIFadd{Mis-prediction therefore degrades the objective smoothly rather than catastrophically}\DIFaddend , and the observed \DIFdelbegin \DIFdel{outcomes expose the miscalibration and support }\DIFdelend \DIFaddbegin \DIFadd{delivery outcomes of Algorithm~\ref{alg:fedras} are exactly the signal from which a }\DIFaddend per-client \DIFdelbegin \DIFdel{recalibration}\DIFdelend \DIFaddbegin \DIFadd{predictor would be recalibrated}\DIFaddend . Calibration on measured traces remains open and is taken up in Section~\ref{sec:discussion}.
 
-%DIFDELCMD < %%%
-\subsection{\DIFdel{Component ablations}}
+\DIFdelbegin \subsection{\DIFdel{Component ablations}}
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
 \DIFdel{Table~\ref{tab:ablation} reports component ablations at the nominal deadline. In the parity regime, no removal measurably changes final accuracy, which is consistent with the claim that accuracy is carried by the backbone and not by the scheduler. The components instead shape scheduling behavior and aggregation correctness. Removing the capacity term collapses FedRAS to the minimum rank, the degenerate delivery-only policy that the capacity term exists to prevent; its capacity cost is invisible at nominal deadlines but material in the simulator, where reliability-only optimization loses 28 points of utility against rank 16 (Table~\ref{tab:sim}). Removing server momentum is accuracy-neutral here. The rank mask itself is network-metric-neutral at fixed rank policy: with the random-rank rule at the 0.1\,s deadline, masked and unmasked aggregation give 0.9143 and 0.9145 final accuracy with identical byte and timeliness profiles. The mask is nonetheless what keeps heterogeneous-rank aggregation per-slice exact whenever ranks mix, as Proposition~\ref{prop:agg} states, and its absence dilutes high-rank coordinates under mixed-rank rounds.
 }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdel{Under the elevated learning rate of 0.02, the frozen-factor rule and joint A/B training are statistically indistinguishable, with final accuracies of 0.9130 and 0.9132 and transient minima of 0.913 and 0.912 across rounds and seeds. The stability separation between the two aggregation rules observed in our preliminary stylized-payload experiments does not survive the corrected implementation at this horizon, so the frozen-factor rule is justified by the exactness of Proposition~\ref{prop:agg} and by its single-factor uploads, not by an empirical stability margin at this scale. }%DIFDELCMD < 
+\DIFdel{Under the elevated learning rate of 0.02, the frozen-factor rule and joint A/B training are statistically indistinguishable, with final accuracies of 0.9130 and 0.9132 and transient minima of 0.913 and 0.912 across rounds and seeds. The stability separation between the two aggregation rules observed in our preliminary stylized-payload experiments does not survive the corrected implementation at this horizon, so the frozen-factor rule is justified by the exactness of Proposition~\ref{prop:agg} and by its single-factor uploads, not by an empirical stability margin at this scale.
+}%DIFDELCMD < 
 
 %DIFDELCMD < \begin{table}[t]
 %DIFDELCMD < \centering
@@ -1014,10 +1172,10 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 \addtocounter{subsection}{-1}%DIFAUXCMD
 %DIFDELCMD < \label{sec:summary}
 %DIFDELCMD < %%%
-\DIFdel{Across both tiers, rank }\DIFdelend \DIFaddbegin \DIFadd{Taken together, the two evaluation tiers give a consistent picture. Rank }\DIFaddend choice does not measurably change accuracy for the frozen backbone \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{at the }\DIFaddend 40-round horizon, and every accuracy comparison against fixed rank 16 passes the pre-registered TOST equivalence test at the $\pm0.5$ percentage-point margin\DIFdelbegin \DIFdel{. The main differences are on the network side. Full-parameter updates cost $58.7\times$ the bytes of a rank-16 upload, miss $83\%$ of nominal deadlines and all stress deadlines, and fail to improve on the backbone when only sparse updates arrive}\DIFdelend ; an offline control without delivery modeling trains close to the backbone level, separating learning capacity from delivery feasibility. \DIFdelbegin %DIFDELCMD < 
+\DIFdel{Across both tiers , rank }\DIFdelend \DIFaddbegin \textbf{\DIFadd{Cross-tier summary.}} \DIFadd{Taken together, the two evaluation tiers give a consistent picture. Rank }\DIFaddend choice does not measurably change accuracy for the frozen backbone \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{at the }\DIFaddend 40-round horizon, and every accuracy comparison against fixed rank 16 passes the pre-registered TOST equivalence test at the $\pm0.5$ percentage-point margin\DIFdelbegin \DIFdel{. The main differences are on the network side. Full-parameter updates cost $58.7\times$ the bytes of a rank-16 upload, miss $83\%$ of nominal deadlines and all stress deadlines, and fail to improve on the backbone when only sparse updates arrive}\DIFdelend ; an offline control without delivery modeling trains close to the backbone level, separating learning capacity from delivery feasibility. \DIFdelbegin %DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdel{FedRAS behaves as designed, holding }\DIFdelend \DIFaddbegin \DIFadd{The methods instead separate on the network side: FedRAS holds }\DIFaddend high ranks on healthy links and \DIFdelbegin \DIFdel{downshifting under pressure. Over ten seeds at the 0.1\,s deadline it transmits 23\% fewer bytes than fixed rank 16 (bootstrap 95\% CI $[-26.6\%, -20.6\%]$, Wilcoxon $p{=}0.002$}\DIFdelend \DIFaddbegin \DIFadd{downshifts under pressure}\DIFaddend , \DIFdelbegin \DIFdel{matched-pairs rank-biserial 1.0), delivers 22\% more timely updates ($p{=}0.002$), and is accuracy-equivalent. At the nominal deadline it reduces to fixed rank-16 behavior at zero cost. The exact dynamic program }\DIFdelend \DIFaddbegin \DIFadd{full-parameter updates collapse once deadlines bind at real payload sizes, and the exact scheduler }\DIFaddend pays through admission over the \DIFdelbegin \DIFdel{wider candidate pool , $+9$ percentage points of timely delivery at the nominal deadline and $+8\%$ under stress, while the per-client argmax rule is already optimal inside a cohort }\DIFdelend \DIFaddbegin \DIFadd{candidate pool rather than in-cohort rank allocation }\DIFaddend (Proposition~\ref{prop:cohort}). These tests rest on ten-seed replications of the headline trainer regimes\DIFdelbegin \DIFdel{with common random numbers within each seed}\DIFdelend ; they support the stated network-side comparisons and the accuracy equivalence, and they do not establish accuracy dominance. \DIFaddbegin \DIFadd{Section~\ref{sec:discussion} interprets these findings, states their scope conditions, and translates them into deployment guidance.
+\DIFdel{FedRAS behaves as designed, holding }\DIFdelend \DIFaddbegin \DIFadd{The methods instead separate on the network side: FedRAS holds }\DIFaddend high ranks on healthy links and \DIFdelbegin \DIFdel{downshifting under pressure. Over ten seeds at the 0.1\,s deadline it transmits 23\% fewer bytes than fixed rank 16 (bootstrap 95\% CI $[-26.6\%, -20.6\%]$, Wilcoxon $p{=}0.002$, matched-pairs rank-biserial 1.0), delivers 22\% more timely updates ($p{=}0.002$), and is accuracy-equivalent. At the nominal deadline it reduces to fixed rank-16 behavior at zero cost. The exact dynamic program }\DIFdelend \DIFaddbegin \DIFadd{downshifts under pressure, full-parameter updates collapse once deadlines bind at real payload sizes, and the exact scheduler }\DIFaddend pays through admission over the \DIFdelbegin \DIFdel{wider candidate pool , $+9$ percentage points of timely delivery at the nominal deadline and $+8\%$ under stress, while the per-client argmax rule is already optimal inside a cohort }\DIFdelend \DIFaddbegin \DIFadd{candidate pool rather than in-cohort rank allocation }\DIFaddend (Proposition~\ref{prop:cohort}). These tests rest on ten-seed replications of the headline trainer regimes\DIFdelbegin \DIFdel{with common random numbers within each seed}\DIFdelend ; they support the stated network-side comparisons and the accuracy equivalence, and they do not establish accuracy dominance. \DIFaddbegin \DIFadd{Section~\ref{sec:discussion} interprets these findings, states their scope conditions, and translates them into deployment guidance.
 }\DIFaddend 
 
 \section{Discussion and limitations}
