@@ -40,14 +40,13 @@ Existing Federated LoRA systems, however, treat the rank $r$ as a model hyperpar
 
 This raises three questions. How should delivery probability depend on rank and observable link state? How should client--rank assignment be solved under budget and participation constraints? Does the resulting adaptation improve network behavior in a real trainer? These questions are answered in Sections~\ref{sec:model}, \ref{sec:solver}, and \ref{sec:eval}, respectively.
 
-We answer these questions with a delivery model, a grid-based dynamic-programming solver, a rank-selection rule, and a two-tier evaluation. We call the method FedRAS. The contributions are as follows.
+We answer these questions with a delivery model, a grid-based dynamic-programming solver, a rank-selection rule, and a two-tier evaluation. We call the method FedRAS. The contributions are threefold.
 
-\begin{itemize}
-\item \textbf{Deadline-aware client--rank model.} We formulate each round as a joint assignment in which admission and rank are selected together. The model links rank to its real serialized payload, a delivery probability $P_{\mathrm{on}}(r)$, and a saturating capacity gain $G(r)$. Section~\ref{sec:model} develops the model and the scheduling formulation.
-\item \textbf{Dynamic-programming scheduler.} The estimated problem is a multiple-choice knapsack with an admission cap. We derive a pseudo-polynomial dynamic program that is exact for the discretized single-round estimated assignment problem, with complexity $O(|\mathcal D| K B_{\max}|\mathcal R|)$. The solver study measures greedy gaps and runtime.
-\item \textbf{Heterogeneous-rank aggregation.} We use rank-masked averaging with a shared frozen $A$ factor, so only the trainable $B$ factor is ever uploaded. Under this condition, the rule gives exact coordinate-wise averaging of active induced-update slices. Proposition~\ref{prop:agg} states the conditions and limits.
-\item \textbf{Two-tier evaluation at real payload sizes.} A real trainer covers non-IID CIFAR-10, CIFAR-100, and MNIST, and a 500-client scheduler simulation covers deadline, budget, mobility, and scale regimes. Under deadline stress, FedRAS delivers more timely updates with fewer bytes than fixed-rank operation at equivalent accuracy, while full-parameter updates miss every stress deadline. The evaluation further covers external baselines, a candidate-pool decomposition of the scheduler's gains, a SAGIN link profile, and pre-registered equivalence tests.
-\end{itemize}
+\begin{enumerate}
+\item \textbf{Framework.} To our knowledge, FedRAS is the first framework that treats the LoRA rank as a deadline-constrained, network-conditioned schedulable resource: each round, client admission and rank are decided jointly under byte-budget and participation constraints, and all payloads are accounted at their real serialized sizes (Section~\ref{sec:model}).
+\item \textbf{Theoretical analysis.} We prove the exactness of the grid-based dynamic-programming assignment on the stated budget grid (Proposition~\ref{prop:dp}), derive the budget-feasibility condition under which the cheap per-client rule is already optimal (Proposition~\ref{prop:cohort}), and establish exact coordinate-wise aggregation of heterogeneous ranks under a frozen shared factor (Proposition~\ref{prop:agg}), with time and memory complexity bounded (Section~\ref{sec:theory}).
+\item \textbf{Experiments.} A real federated LoRA trainer and a 500-client scheduler simulation validate the design (Section~\ref{sec:eval}): under deadline stress, FedRAS delivers 22\% more timely updates and 23\% fewer bytes than fixed rank 16 at statistically equivalent accuracy, while full-model updates miss every stress deadline; the exact assignment pays through admission over heterogeneous pools; and the conclusions are robust across datasets, link profiles, and delivery-predictor distortions.
+\end{enumerate}
 
 We report accuracy, timely delivery ratio, and bytes per round as separate outcomes.
 
@@ -106,7 +105,7 @@ FedRAS (ours) & per client/round & \checkmark & frozen-$A$ rank masking & \check
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.98\columnwidth]{recolored_figures/fig_architecture}
-\caption{FedRAS system architecture and round pipeline. The edge aggregator scores every client--rank pair with the delivery hazard \eqref{eq:hazard} and the saturating capacity \eqref{eq:cap}, and computes the client--rank assignment with the grid-based dynamic program under the byte budget and the admission cap. Updates arriving within the deadline $\tau$ pass the on-time gate and are aggregated with rank-masked averaging while the shared factor $A$ stays frozen; observed outcomes update the link-state history.}
+\caption{FedRAS round pipeline. Action Construction (AC) scores every client--rank pair with the delivery hazard \eqref{eq:hazard} and the saturating capacity \eqref{eq:cap}; the GridDP assignment (GDP) computes the client--rank assignment under the byte budget and the admission cap. Updates arriving within the deadline $\tau$ pass the on-time gate and are merged by Masked Aggregation (MA) while the shared factor $A$ stays frozen; observed outcomes update the link-state history.}
 \label{fig:architecture}
 \end{figure}
 
@@ -114,7 +113,7 @@ FedRAS (ours) & per client/round & \checkmark & frozen-$A$ rank masking & \check
 We consider a mobile edge network in which an edge aggregator serves a client set
 $\mathcal{D}=\mathcal{D}_g\cup\mathcal{D}_a\cup\mathcal{D}_s$ of ground clients $\mathcal{D}_g$, aerial and UAV clients $\mathcal{D}_a$, and satellite-connected clients $\mathcal{D}_s$. Ground links are comparatively stable, aerial links face frequent handover, and satellite links suffer long propagation delay, intermittent visibility, and outages \cite{mahboob2024ntn,razmi2022ground}. The aggregator holds the global model, schedules every round, and aggregates the timely updates.
 
-Let $w^t$ denote the frozen backbone broadcast at round $t$. Client $i$ trains LoRA factors $A_{i,\ell}$ and $B_{i,\ell}$ for the adapted layers $\ell\in\mathcal L$, with effective weight change $\Delta W_{i,\ell}=B_{i,\ell}A_{i,\ell}$. A rank $r$ update uses the first $r$ columns of $B_{i,\ell}$ and the matching rows of the shared $A$. Fig.~\ref{fig:architecture} shows the resulting round pipeline. In every round, the aggregator estimates the link states, constructs and filters the client--rank actions, and solves the assignment with the grid-based dynamic program of Section~\ref{sec:solver}; the admitted clients train locally with their factors sliced to the assigned rank, so only the first $r$ coordinates receive gradient updates, and upload before the deadline $\tau$; the aggregator then aggregates the timely updates with data-size weights and updates its link-state history from the observed outcomes. Late or lost updates are discarded, because stale updates harm convergence stability in deadline-critical federated learning. The experiments evaluate both a homogeneous link profile and a grouped ground--aerial--satellite profile with distinct rate and mobility laws (Section~\ref{sec:eval}).
+Let $w^t$ denote the frozen backbone broadcast at round $t$. Client $i$ trains LoRA factors $A_{i,\ell}$ and $B_{i,\ell}$ for the adapted layers $\ell\in\mathcal L$, with effective weight change $\Delta W_{i,\ell}=B_{i,\ell}A_{i,\ell}$. A rank $r$ update uses the first $r$ columns of $B_{i,\ell}$ and the matching rows of the shared $A$. Fig.~\ref{fig:architecture} shows the resulting round pipeline. In every round, the aggregator estimates the link states, scores the client--rank actions with Action Construction (AC, Section~\ref{sec:ac}), and solves the assignment with the GridDP assignment (GDP, Section~\ref{sec:gdp}); the admitted clients train locally with their factors sliced to the assigned rank, so only the first $r$ coordinates receive gradient updates, and upload before the deadline $\tau$; the aggregator then merges the timely updates with Masked Aggregation (MA, Section~\ref{sec:aggregation}) and updates its link-state history from the observed outcomes. Late or lost updates are discarded, because stale updates harm convergence stability in deadline-critical federated learning. The experiments evaluate both a homogeneous link profile and a grouped ground--aerial--satellite profile with distinct rate and mobility laws (Section~\ref{sec:eval}).
 
 \subsection{Link, mobility, and timely-delivery model}
 At decision time the scheduler receives an estimated uplink rate $\bar R_i^t$ in Mbps and a mobility state. The realized rate $R_i^t$, handover event $H_i^t\in\{0,1\}$, and packet loss indicator $J_i^t$ are not observed before transmission. For an update of $B_i^t(r)$ megabytes, the modeled delivery time is
@@ -168,40 +167,71 @@ The objective is a scheduling utility: expected useful delivered updates under t
 \section{FedRAS design}
 \label{sec:solver}
 
-\subsection{Design overview}
-FedRAS turns the formulation of Section~\ref{sec:problem} into a per-round scheduling procedure with three components: a discretization that turns the client--rank actions into a multiple-choice knapsack, a grid-based dynamic program that solves the assignment exactly, together with a cheap per-client rule for the unconstrained regime, and a frozen-factor rank-masked aggregation rule for heterogeneous ranks. The next three subsections develop these components in turn; Fig.~\ref{fig:architecture} places them in the round pipeline. The design contains no training-side logic: admissions and ranks are chosen from network state alone.
+\subsection{Overview}
+Algorithm~\ref{alg:fedras} summarizes one scheduling round as a fixed sequence of three named components. Action Construction (AC, Section~\ref{sec:ac}) scores every client--rank pair with a real payload, a delivery probability, and a capacity gain; the GridDP assignment (GDP, Section~\ref{sec:gdp}) solves the scored assignment exactly under the byte budget and the admission cap, with a cheap per-client rule covering the unconstrained regime; and Masked Aggregation (MA, Section~\ref{sec:aggregation}) merges heterogeneous-rank updates toward the frozen shared factor. Fig.~\ref{fig:architecture} places AC, GDP, and MA in the round pipeline. The design contains no training-side logic: admissions and ranks are chosen from network state alone.
 
-\subsection{From formulation to discrete action space}
-Each round the aggregator selects, for every client, one action from the discrete set $a_i^t\in\{0\}\cup\mathcal R$ of Section~\ref{sec:problem}. The per-rank payload follows \eqref{eq:size}, and the estimated utility of admitting client $i$ at rank $r$ is $u_i(r)=G_i^t(r)\hat P_{\rm on,i}^t(r)$. All budget arithmetic uses a conservative ceiling discretization onto a budget grid $q$, with integer cost $\widetilde B_i(r)=\lceil B_i^t(r)/q\rceil$, applied identically to the dynamic program, the greedy baselines, and the admission checks, so that every scheduling method optimizes over the identical feasible region. Under this discretization, the single-round estimated problem \eqref{eq:objective}--\eqref{eq:constraints} is a multiple-choice knapsack with an admission constraint, for which an exact pseudo-polynomial dynamic program exists; the evaluated grid width and its quantization error are quantified in Section~\ref{sec:dp_study}.
+\begin{algorithm}[t]
+\caption{FedRAS Round}
+\label{alg:fedras}
+\begin{algorithmic}[1]
+\REQUIRE clients $\mathcal D$, rank set $\mathcal R$, cap $K$, budget $B_{\max}$, deadline $\tau$, link-state history $\mathcal H^{t-1}$
+\ENSURE assignment $a^t$; new adapter state $S^t$; updated history $\mathcal H^t$
+\STATE estimate per-client link states $x_i^t$ from $\mathcal H^{t-1}$
+\STATE score all pairs $(i,r)$: utilities $u_i(r)$ and integer costs $\widetilde B_i(r)$ (AC, Algorithm~\ref{alg:ac})
+\STATE solve the assignment $a^t$ under $K$ and $B_{\max}$ (GDP, Algorithm~\ref{alg:gdp}); when the all-$r_{\max}$ profile is budget-feasible, the per-client maximizer rule is already optimal (Proposition~\ref{prop:cohort})
+\STATE broadcast the backbone $w^t$; admitted clients train locally with factors sliced to $a_i^t$ and upload before $\tau$
+\STATE pass uploads arriving within $\tau$ (on-time gate)
+\STATE aggregate timely updates with the frozen shared $A$ (MA, Algorithm~\ref{alg:ma})
+\STATE append observed outcomes (timely, late, lost) to $\mathcal H^t$
+\end{algorithmic}
+\end{algorithm}
 
-\subsection{Grid-based dynamic-programming scheduler}
-Let $V_i(k,b)$ be the maximum estimated utility from the first $i$ clients with $k$ admissions and integer budget $b$. Initialize $V_0(0,0)=0$ and all other states to $-\infty$. The recurrence is
+\subsection{Action Construction (AC)}
+\label{sec:ac}
+Each round the aggregator selects, for every client, one action from the discrete set $a_i^t\in\{0\}\cup\mathcal R$ of Section~\ref{sec:problem}. AC builds and scores this action set (Algorithm~\ref{alg:ac}): the per-rank payload follows \eqref{eq:size}, the delivery hazard \eqref{eq:hazard} and the capacity gain \eqref{eq:cap} give the estimated utility $u_i(r)=G_i^t(r)\hat P_{\rm on,i}^t(r)$, and a conservative ceiling discretization onto a budget grid $q$ yields the integer cost $\widetilde B_i(r)=\lceil B_i^t(r)/q\rceil$. The same grid is applied to the dynamic program, the greedy baselines, and the admission checks, so that every scheduling method optimizes over the identical feasible region. Under this discretization, the single-round estimated problem \eqref{eq:objective}--\eqref{eq:constraints} is a multiple-choice knapsack with an admission constraint, for which an exact pseudo-polynomial dynamic program exists; the evaluated grid width and its quantization error are quantified in Section~\ref{sec:dp_study}.
+
+\begin{algorithm}[t]
+\caption{Action Construction (AC)}
+\label{alg:ac}
+\begin{algorithmic}[1]
+\REQUIRE clients $\mathcal D$, ranks $\mathcal R$, budget grid $q$, link states $\{x_i^t\}$
+\ENSURE scored action set $\{u_i(r),\,\widetilde B_i(r)\}_{i\in\mathcal D,\,r\in\mathcal R}$
+\FOR{each client $i$ and rank $r$}
+  \STATE payload $B_i^t(r)$ by \eqref{eq:size}; integer cost $\widetilde B_i(r)\gets\lceil B_i^t(r)/q\rceil$
+  \STATE delivery probability $\hat P_{\rm on,i}^t(r)$ by \eqref{eq:hazard}; capacity $G_i^t(r)$ by \eqref{eq:cap}
+  \STATE utility $u_i(r)\gets G_i^t(r)\,\hat P_{\rm on,i}^t(r)$
+\ENDFOR
+\STATE return the scored set; pairs with $\widetilde B_i(r)>\widetilde B_{\max}$ are infeasible
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{GridDP Assignment (GDP)}
+\label{sec:gdp}
+GDP solves the scored assignment exactly (Algorithm~\ref{alg:gdp}). Let $V_i(k,b)$ be the maximum estimated utility from the first $i$ clients with $k$ admissions and integer budget $b$. Initialize $V_0(0,0)=0$ and all other states to $-\infty$. The recurrence is
 \begin{equation}
 V_i(k,b)=\max\Big\{V_{i-1}(k,b),\;\max_{r\in\mathcal R}\big[V_{i-1}(k-1,b-\widetilde B_i(r))+u_i(r)\big]\Big\},
 \label{eq:dp}
 \end{equation}
-where $u_i(r)=G_i^t(r)\hat P_{\rm on,i}^t(r)$. Backpointers recover the assignment. Algorithm~\ref{alg:scheduler} summarizes one scheduling round. Propositions~\ref{prop:dp} and~\ref{prop:cohort} (Section~\ref{sec:theory}) establish the exactness of this recurrence and the regime in which the per-client rule of Section~\ref{sec:problem} is already optimal.
+where $u_i(r)=G_i^t(r)\hat P_{\rm on,i}^t(r)$. Backpointers recover the assignment. Propositions~\ref{prop:dp} and~\ref{prop:cohort} (Section~\ref{sec:theory}) establish the exactness of this recurrence and the regime in which the per-client maximizer rule $r_i^\star$ is already optimal, in which case GDP reduces to that rule at zero cost.
 
 \begin{algorithm}[t]
-\caption{FedRAS scheduling round}
-\label{alg:scheduler}
+\caption{GridDP Assignment (GDP)}
+\label{alg:gdp}
 \begin{algorithmic}[1]
-\REQUIRE clients $\mathcal D$, ranks $\mathcal R$, cap $K$, budget $B_{\max}$, deadline $\tau$, states $\{x_i^t\}$
-\ENSURE admitted set and assigned ranks
-\STATE Estimate $\hat P_{\rm on,i}^t(r)$ by \eqref{eq:hazard} and $G_i^t(r)$ by \eqref{eq:cap} for all $i,r$
-\STATE Initialize $V_0(0,0)=0$; other DP states to $-\infty$
+\REQUIRE scored actions $\{u_i(r),\,\widetilde B_i(r)\}$ from AC, cap $K$, budget grid $\widetilde B_{\max}$
+\ENSURE client--rank assignment $a^t$
+\STATE $V_0(0,0)\gets 0$; all other DP states $\gets -\infty$
 \FOR{each client $i\in\mathcal D$}
   \FOR{$k=0,\dots,K$ and each budget state $b$}
-    \STATE Apply skip and every feasible rank transition of \eqref{eq:dp}
-    \STATE Store the maximizing action as a backpointer
+    \STATE $V_i(k,b)\gets$ skip or best rank transition of \eqref{eq:dp}
+    \STATE store the maximizing action as a backpointer
   \ENDFOR
 \ENDFOR
-\STATE Backtrack from $\max_{k,b} V_{|\mathcal D|}(k,b)$; return the client--rank assignment
-\STATE Execute the round; aggregate timely rank-masked updates (Section~\ref{sec:aggregation}); update link-state history
+\STATE backtrack from $\max_{k,b}V_{|\mathcal D|}(k,b)$; return $a^t$
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Frozen-factor rank-masked aggregation}
+\subsection{Masked Aggregation (MA)}
 \label{sec:aggregation}
 Clients scheduled at different ranks share an $r_{\max}$ coordinate system. For one adapted layer, client $i$ has sample weight $n_i$ and delivered rank $r_i$. The factor $A\in\mathbb R^{r_{\max}\times k}$ is frozen and shared, while $B_i\in\mathbb R^{d\times r_{\max}}$ is trainable. A rank $r_i$ update activates columns $1$ through $r_i$ of $B_i$ and the matching rows of $A$, giving $\Delta W_i=\sum_{j\le r_i}[B_i]_{:,j}[A]_{j,:}$.
 
@@ -214,7 +244,21 @@ Jointly trained factor pairs $(A_i,B_i)$ are identifiable only up to invertible 
 W_j=\sum_{i:\,r_i\ge j} n_i ,
 \label{eq:maskavg}
 \end{equation}
-while the frozen factor aggregates to itself, $\bar A=A$. The server then applies momentum per factor tensor. With $\Delta^t=\bar B-S^{t-1}$, the velocity and state update as $v^t=\beta\,v^{t-1}+(1-\beta)\,\Delta^t$ and $S^t=S^{t-1}+v^t$, with damping coefficient $\beta$ absorbing client-sampling and link noise. Proposition~\ref{prop:agg} (Section~\ref{sec:theory}) states the exactness and dilution properties of this rule.
+while the frozen factor aggregates to itself, $\bar A=A$. The server then applies momentum per factor tensor. With $\Delta^t=\bar B-S^{t-1}$, the velocity and state update as $v^t=\beta\,v^{t-1}+(1-\beta)\,\Delta^t$ and $S^t=S^{t-1}+v^t$, with damping coefficient $\beta$ absorbing client-sampling and link noise. Algorithm~\ref{alg:ma} fixes the procedure; Proposition~\ref{prop:agg} (Section~\ref{sec:theory}) states its exactness and dilution properties.
+
+\begin{algorithm}[t]
+\caption{Masked Aggregation (MA)}
+\label{alg:ma}
+\begin{algorithmic}[1]
+\REQUIRE timely updates $\{(n_i,B_i,r_i)\}$, frozen shared $A$, momentum $\beta$, previous state $S^{t-1}$
+\ENSURE new adapter state $S^t$
+\FOR{each rank column $j$ of each adapted layer}
+  \STATE $W_j\gets\sum_{i:\,r_i\ge j} n_i$;\quad $\bar B_{:,j}\gets\frac{1}{W_j}\sum_{i:\,r_i\ge j} n_i\,[B_i]_{:,j}$
+\ENDFOR
+\STATE $\bar A\gets A$
+\STATE $\Delta^t\gets\bar B-S^{t-1}$;\quad $v^t\gets\beta\,v^{t-1}+(1-\beta)\,\Delta^t$;\quad $S^t\gets S^{t-1}+v^t$
+\end{algorithmic}
+\end{algorithm}
 
 \section{Theoretical analysis}
 \label{sec:theory}
@@ -270,7 +314,7 @@ The evaluation tests accuracy and network behavior in a real trainer (Section~5.
 
 \textbf{Deadline calibration.} All deadline regimes are calibrated to the real payloads. The nominal round deadline is $2.0$\,s, at which transmission time consumes only $3\%$ of a rank-16 update's delivery probability at the median 12\,Mbps rate, while a full-model update already misses $83\%$ of its deadlines. The stress deadlines are $0.1$\,s and $0.05$\,s, at which rank-16 timely delivery falls to $0.41$ and $0.27$ while rank-4 retains $0.62$ and $0.57$, so downshifting is genuinely load-bearing. A loose $10$\,s control restores full-model timely delivery to $0.52$.
 
-\textbf{Model and payload audit.} Table~\ref{tab:audit} audits the actual serialized sizes against the evaluated model. The frozen backbone has 1.28M parameters. Each adapted layer contributes a frozen-$A$ and a trainable-$B$ slice per rank column; only $B$ is transmitted, at $D{=}1{,}408$ parameters per rank column across the eight adapted layers. A rank-16 client therefore uploads 0.090\,MB, against 5.29\,MB for a full-model update.
+\textbf{Model and payload audit.} The frozen backbone has 1.28M parameters; each adapted layer contributes a frozen-$A$ and a trainable-$B$ slice per rank column, and only $B$ is transmitted. Table~\ref{tab:audit} lists the audited serialized sizes, and every deadline regime of this study is calibrated against them.
 
 \begin{table}[t]
 \centering
@@ -334,7 +378,7 @@ FedRAS (ours) & $0.9153\pm0.0016$ & 0.73 & 0.90 & 16.0\\
 \subsection{Evaluation with the federated LoRA trainer}
 
 \subsubsection{Accuracy parity and rank invariance}
-Table~\ref{tab:trainer} reports ten-seed means and standard deviations after 40 federated rounds on CIFAR-10. All LoRA methods hold the backbone accuracy within one standard deviation of 0.914, whether the rank is fixed at 4, fixed at 16, drawn at random, or selected by the rank rule. Full-parameter updates spend $58.7\times$ the bytes of a rank-16 update, and they lose roughly three quarters of their timely deliveries, 0.17 against 0.73, because their 5.29\,MB payloads rarely fit the round deadline. The cross-dataset results in Fig.~\ref{fig:crossds} agree at 0.693 on CIFAR-100 and 0.995 on MNIST. At the nominal deadline the rank rule selects rank 16 for every client of every round, so FedRAS coincides with fixed rank 16 in bytes and timeliness, and in accuracy up to floating-point nondeterminism; this identity, rather than a tuned advantage, is what the nominal regime is meant to show. Fig.~\ref{fig:trainer_acc} shows the corresponding trajectories, stable over the 40 rounds for every rank policy.
+Table~\ref{tab:trainer} reports ten-seed means and standard deviations after 40 federated rounds on CIFAR-10. All LoRA methods hold the backbone accuracy within one standard deviation of 0.914, whether the rank is fixed at 4, fixed at 16, drawn at random, or selected by the rank rule. Full-parameter updates spend orders of magnitude more bytes per round (Table~\ref{tab:audit}) and lose roughly three quarters of their timely deliveries because their payloads rarely fit the round deadline. The cross-dataset results in Fig.~\ref{fig:crossds} agree at 0.693 on CIFAR-100 and 0.995 on MNIST. At the nominal deadline the rank rule selects rank 16 for every client of every round, so FedRAS coincides with fixed rank 16 in bytes and timeliness, and in accuracy up to floating-point nondeterminism; this identity, rather than a tuned advantage, is what the nominal regime is meant to show. Fig.~\ref{fig:trainer_acc} shows the corresponding trajectories, stable over the 40 rounds for every rank policy.
 
 \begin{figure}[t]
 \centering
@@ -384,7 +428,7 @@ FedRAS (ours) & $0.9154\pm.0018$ & 0.49 & 0.69 & 12.7 & $0.9143\pm.0014$ & 0.49 
 \end{figure}
 
 \subsubsection{Extended stress matrix}
-Table~\ref{tab:extended} extends the study along further axes. A mobility-only scenario with Beta$(0.7,5)$ mobility at the nominal deadline leaves all LoRA policies at parity, so mobility alone does not force downshifting at this deadline. Extreme label heterogeneity with $\alpha{=}0.1$ reveals a second-order effect: rank-16 updates lose 0.32 percentage points relative to rank 4 (0.9107 versus 0.9139), consistent with capacity-amplified client drift, and full-parameter updates lose the most (0.9022). FedRAS follows the rank-16 trajectory here, so a heterogeneity-aware downshift is a natural extension. Loosening the deadline to 10\,s restores full-model timely delivery to 0.52 without changing any LoRA accuracy. Repeating the 0.1\,s deadline on CIFAR-100 and MNIST reproduces the CIFAR-10 stress picture. The scheduling conclusions are therefore not dataset-specific.
+Table~\ref{tab:extended} extends the study along further axes. A mobility-only scenario with Beta$(0.7,5)$ mobility at the nominal deadline leaves all LoRA policies at parity, so mobility alone does not force downshifting at this deadline. Extreme label heterogeneity with $\alpha{=}0.1$ reveals a second-order effect: rank-16 updates lose 0.32 percentage points relative to rank 4, consistent with capacity-amplified client drift, and full-parameter updates lose the most (Table~\ref{tab:extended}). FedRAS follows the rank-16 trajectory here, so a heterogeneity-aware downshift is a natural extension. Loosening the deadline to 10\,s restores full-model timely delivery to 0.52 without changing any LoRA accuracy. Repeating the 0.1\,s deadline on CIFAR-100 and MNIST reproduces the CIFAR-10 stress picture. The scheduling conclusions are therefore not dataset-specific.
 
 \begin{table}[t]
 \centering
@@ -409,7 +453,7 @@ MNIST, 0.1\,s & 0.9947 & 0.9949 & 0.9950 & 0.9949 & 0.9950\\
 \end{table}
 
 \subsubsection{External baselines}
-\textbf{Baseline behavior.} Table~\ref{tab:ext} reports the three external baselines of the setup in the real trainer. The link-oblivious annealing schedule settles at low rank and therefore buys timely delivery with only 0.29\,MB per round, but it cannot increase rank when links improve, and its capacity ceiling is rank 5. The Oort-style selector improves selection at fixed rank. Joint A/B training matches frozen-factor training at the adopted learning rate, and the ablations find no stability separation at an elevated learning rate either, so the case for the frozen factor rests on exactness and upload reduction rather than on an observed stability gap.
+\textbf{Baseline behavior.} Table~\ref{tab:ext} reports the three external baselines of the setup in the real trainer. The link-oblivious annealing schedule settles at low rank and therefore buys timely delivery at the lowest byte cost among the baselines (Table~\ref{tab:ext}), but it cannot increase rank when links improve. The Oort-style selector improves selection at fixed rank. Joint A/B training matches frozen-factor training at the adopted learning rate, and the ablations find no stability separation at an elevated learning rate either, so the case for the frozen factor rests on exactness and upload reduction rather than on an observed stability gap.
 
 \begin{table}[t]
 \centering
@@ -435,7 +479,7 @@ FedRAS (ours) & $0.9153\pm.0016$ & 0.73 & 0.90 & 16.0 & $0.9154\pm.0018$ & 0.49 
 
 \subsubsection{Scheduling variants}
 \label{sec:dpvfair}
-\textbf{Arms under evaluation.} To attribute the value of exact scheduling, the three arms defined in the setup are compared in the real trainer, over ten seeds at the nominal deadline and five seeds under stress. The full grid arm solves the dynamic program of Section~\ref{sec:solver} over the entire 20-client population under the participation cap and a 1.0\,MB budget, which equals ten rank-16 grid costs, so the budget binds only through downshifting or skipping. The same-cohort arm draws the identical cohort as fair cohort and restricts the same dynamic program to those candidates.
+\textbf{Arms under evaluation.} To attribute the value of exact scheduling, the three arms defined in the setup are compared in the real trainer, over ten seeds at the nominal deadline and five seeds under stress. The full grid arm solves the GridDP assignment (Section~\ref{sec:gdp}) over the entire 20-client population under the participation cap and a 1.0\,MB budget, which equals ten rank-16 grid costs, so the budget binds only through downshifting or skipping. The same-cohort arm draws the identical cohort as fair cohort and restricts the same dynamic program to those candidates.
 
 \begin{table}[t]
 \centering
@@ -495,7 +539,7 @@ joint A/B, lr 0.02 & $0.9132\pm.0012$ & 0.912\\
 
 \subsubsection{Scheduler behavior across operating regimes}
 \label{sec:simsim}
-\textbf{Regime comparison.} Table~\ref{tab:sim} summarizes the simulator across regimes, with five seeds at the final round. The accuracy column is the bounded utility state of Section~\ref{sec:eval}, not a dataset accuracy. In the nominal regime, FedRAS matches fixed rank 16 at 0.914 and dominates every low-rank policy. Under the 0.1\,s deadline, FedRAS reaches 0.781 against 0.763 for fixed rank 16 at 21\% fewer bytes, and full-model updates deliver nothing. Under the binding 1.2\,MB budget, full-model updates cannot be admitted even once, while FedRAS and rank 16 tie at 0.797. The mobility-stress and 1000-client regimes show the same pattern. A final cell repeats the stylized protocol of the earlier literature: with the $s(r)$ payload model the ordering is preserved (FedRAS 0.413, rank 16 0.404, annealing 0.374), confirming that the conclusions are not an artifact of the payload accounting.
+\textbf{Regime comparison.} Table~\ref{tab:sim} summarizes the simulator across regimes at the final round. In the nominal regime, FedRAS matches fixed rank 16 and dominates every low-rank policy. Under the 0.1\,s deadline, FedRAS leads fixed rank 16 at 21\% fewer bytes, and full-model updates deliver nothing. Under the binding 1.2\,MB budget, full-model updates cannot be admitted even once, while FedRAS and rank 16 tie (Table~\ref{tab:sim}). The mobility-stress and 1000-client regimes show the same pattern. A final cell repeats the stylized protocol of the earlier literature: with the $s(r)$ payload model the ordering is preserved, confirming that the conclusions are not an artifact of the payload accounting.
 
 \begin{table}[t]
 \centering
@@ -573,7 +617,7 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 \end{figure}
 
 \subsubsection{Delivery-predictor sensitivity}
-The calibration study of Fig.~\ref{fig:calib} measures both the fidelity of the deployed predictor and the scheduling cost of its errors (500 clients). With the oracle link state of the setup, the hazard-form predictor \eqref{eq:hazard} is calibrated by construction. Deliberately distorted variants --- power distortions of the predicted probability and multiplicative lognormal noise --- are measurably miscalibrated, yet the resulting assignment-objective loss, evaluated under the true probabilities, stays below 1\% in every cell. The loss follows the structure of the error: power distortions cost most under the stress deadline, where rank ordering matters most, while noise costs most in the nominal slack cell, where it perturbs an otherwise near-uniform rank preference. Mis-prediction therefore degrades the objective smoothly rather than catastrophically, and the observed delivery outcomes of Algorithm~\ref{alg:scheduler} are exactly the signal from which a per-client predictor would be recalibrated. Calibration on measured traces remains open and is taken up in Section~\ref{sec:discussion}.
+The calibration study of Fig.~\ref{fig:calib} measures both the fidelity of the deployed predictor and the scheduling cost of its errors (500 clients). With the oracle link state of the setup, the hazard-form predictor \eqref{eq:hazard} is calibrated by construction. Deliberately distorted variants --- power distortions of the predicted probability and multiplicative lognormal noise --- are measurably miscalibrated, yet the resulting assignment-objective loss, evaluated under the true probabilities, stays below 1\% in every cell. The loss follows the structure of the error: power distortions cost most under the stress deadline, where rank ordering matters most, while noise costs most in the nominal slack cell, where it perturbs an otherwise near-uniform rank preference. Mis-prediction therefore degrades the objective smoothly rather than catastrophically, and the observed delivery outcomes of Algorithm~\ref{alg:fedras} are exactly the signal from which a per-client predictor would be recalibrated. Calibration on measured traces remains open and is taken up in Section~\ref{sec:discussion}.
 
 \begin{figure}[t]
 \centering

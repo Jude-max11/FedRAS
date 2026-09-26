@@ -270,7 +270,7 @@ text((chx0 + chx1) / 2, chy0 - 2.0, f'${RBAR}_i$ over rounds', 'A.dia',
      va='center', color='#666666')
 
 # --- Box B: per-client-rank prediction --------------------------------------
-text((BX0 + BX1) / 2, 114.8, 'Per–client–rank prediction', 'B.title',
+text((BX0 + BX1) / 2, 114.8, 'Action Construction (AC)', 'B.title',
      (BX0 + 1, BX1 - 1, 113.0, 116.6), fontsize=7, fontweight='bold',
      ha='center', va='center')
 text(BX0 + 2.2, 111.4, 'delivery hazard  (eq. 3)', 'B.lead1',
@@ -309,7 +309,7 @@ text((p2x0 + p2x1) / 2, DIA_BOT + 1.4, 'G ↑ (saturating)', 'B.dia2',
      va='center', color='#666666')
 
 # --- Box C: deadline-aware scheduler (hero) ---------------------------------
-text((CX0 + CX1) / 2, 114.8, 'Deadline-aware scheduler', 'C.title',
+text((CX0 + CX1) / 2, 114.8, 'GridDP Assignment (GDP)', 'C.title',
      (CX0 + 1, CX1 - 1, 113.0, 116.6), fontsize=6.6, fontweight='bold',
      ha='center', va='center', color=RED)
 text((CX0 + CX1) / 2, 110.8,
@@ -355,7 +355,7 @@ text((bx0 + bx1) / 2, yb - 2.5, f'$\\mathrm{{byte\\ budget}}\\ {BTIL}_{{\\max}}$
      va='center', color='#666666')
 
 # --- Box D: rank-masked aggregation -----------------------------------------
-text((DX0 + DX1) / 2, 113.7, 'Rank-masked\naggregation', 'D.title',
+text((DX0 + DX1) / 2, 113.7, 'Masked\nAggregation (MA)', 'D.title',
      (DX0 + 1, DX1 - 1, 110.3, 117.1), fontsize=6.5, fontweight='bold',
      ha='center', va='center', linespacing=1.35)
 text((DX0 + DX1) / 2, 105.4, f'${BBAR}_{{:,j}}$ averaged\nover $r_i \\geq j$',

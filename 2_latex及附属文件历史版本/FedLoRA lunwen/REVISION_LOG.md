@@ -622,3 +622,30 @@ hatch='///' 的未裁剪路径 bbox 罩住全盒文本（碰撞审计 5 fail 根
   定义、结果段引"pre-registered margin"；外部基线定义只在 Baselines；
   "descriptive unless tested" 只在协议段；6.2.2 段首不再复述种子数。
 ④ 编译：干净版 36 页、红标版 44 页，均 0 错误 0 未解析引用。
+
+## 修订记录 22（2026-09-26，方法论算法表体系 AC/GDP/MA + 贡献三段式 + 严格图文去冗余）
+
+① §4 算法体系（小节名=算法名，正文简称引用）：
+  4.1 Overview + Algorithm 1 "FedRAS Round"（主算法，端到端七步，按名调用
+  三个子算法）；4.2 Action Construction (AC) + Algorithm 2（payload/hazard/
+  capacity/utility/整数成本打分）；4.3 GridDP Assignment (GDP) + Algorithm 3
+  （DP 递推+回溯，原主算法内联 DP 拆出）；4.4 Masked Aggregation (MA) +
+  Algorithm 4（零填充/逐列加权平均/动量）。新增 \label{sec:ac}、sec:gdp。
+② 贡献改三段式 enumerate：Framework（"To our knowledge, first framework
+  that treats the LoRA rank as a deadline-constrained, network-conditioned
+  schedulable resource"，与 2.4 诚实定位调和）/ Theoretical analysis
+  （Prop.1–3 + 复杂度）/ Experiments（22%/23% + 准入兑现 + 鲁棒性）。
+③ 正文组件引用改简称：§3.1 轮次协议、Fig.1 题注、6.2.5（sec:gdp）、
+  6.3.3（alg:fedras）；旧 alg:scheduler 标签引用清零。
+④ Q4 严格图文去冗余（表内数字正文不复述）：6.1 audit 段删 0.090/5.29/
+  D=1,408；6.2.1 删 58.7×/0.17/0.73/5.29（改"orders of magnitude"）；
+  6.2.3 删 0.9107/0.9139/0.9022（留派生值 0.32pp）；6.2.4 删 0.29MB/rank 5；
+  6.3.1 删 0.914/0.781/0.763/0.797/0.413/0.404/0.374（留派生 21%）；6.3.1
+  与 setup Metrics 重复句删除。
+⑤ Fig.1 框架图与算法对应（修改并行会话的 make_fedras_architecture.py 并
+  重生成）：Box B → "Action Construction (AC)"、Box C → "GridDP Assignment
+  (GDP)"、Box D → "Masked Aggregation (MA)"，Box A "Link states" 对应主算法
+  第 1 步；conda python 渲染（venv 的 matplotlib 触发 gate.late 边界假阳性），
+  fit-check 50 项全过。
+⑥ 编译：干净版 37 页、红标版（latexdiff 自基线）45 页，均 0 错误
+  0 未解析引用。
