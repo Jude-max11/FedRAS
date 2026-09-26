@@ -509,7 +509,7 @@ The elevated-learning-rate ablation tests the associated stability claim. It doe
 \textbf{\DIFadd{Scope of the analysis.}} \DIFadd{The exactness results concern the discretized single-round estimated assignment problem and the frozen-factor aggregation rule. They are not claims of optimality for the continuous-budget problem, for the multi-round stochastic control problem, or for final model accuracy, and they do }\DIFaddend not establish a \DIFdelbegin \DIFdel{general convergence guarantee }\DIFdelend \DIFaddbegin \DIFadd{convergence guarantee for federated training. The practical value of exactness is quantified experimentally in Sections~\ref{sec:dpvfair} and~\ref{sec:dp_study}}\DIFaddend .
 
 \section{\DIFdelbegin \DIFdel{Performance }\DIFdelend \DIFaddbegin \DIFadd{Experimental }\DIFaddend evaluation}
-\label{sec:eval}
+\label{sec:eval}\label{sec:summary}\label{tab:trainer}\label{tab:stress}\label{tab:sim}
 
 The evaluation tests accuracy and network behavior in a real trainer \DIFaddbegin \DIFadd{(Section~5.2)}\DIFaddend , scheduling quality at 500 clients \DIFdelbegin \DIFdel{, solver cost }\DIFdelend \DIFaddbegin \DIFadd{and solver cost (Section~5.3)}\DIFaddend , and sensitivity to payload, predictor, capacity, and budget-grid assumptions \DIFaddbegin \DIFadd{(Section~5.4)}\DIFaddend . All byte figures are real serialized sizes, and all deadline regimes are calibrated to those sizes.
 
