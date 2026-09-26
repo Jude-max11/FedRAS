@@ -53,7 +53,7 @@ We report accuracy, timely delivery ratio, and bytes per round as separate outco
 
 A preliminary poster version of this work studied joint client--protection scheduling for federated learning in space--air--ground mobile networks \cite{ma2026mswim}. The present article substantially reformulates that line of work around a different schedulable resource. It replaces compression-and-protection policies with the LoRA rank as the per-client decision variable. It introduces the real-payload delivery hazard and the saturating capacity model of Section~\ref{sec:model}, replaces the heuristic admission-and-repair procedure with a dynamic program that is exact on the stated budget grid, and adds frozen-factor rank-masked aggregation for heterogeneous ranks. It also reports a new two-tier evaluation comprising a real federated LoRA trainer, a 500-client scheduling simulator, and a solver exactness study. Accordingly, all numerical results in this article come from the revised formulation and implementation and are not comparable with the preliminary version.
 
-The remainder of this paper is organized as follows. Section~\ref{sec:related} reviews related work. Section~\ref{sec:model} presents the system model and the scheduling formulation, Section~\ref{sec:solver} the solution method and heterogeneous-rank aggregation, and Section~\ref{sec:eval} the experimental evaluation. Section~\ref{sec:discussion} discusses interpretation, deployment, and limitations, and Section~\ref{sec:conclusion} concludes.
+The remainder of this paper is organized as follows. Section~\ref{sec:related} reviews related work. Section~\ref{sec:model} presents the system model, the adversary and trust assumptions, and the scheduling formulation. Section~\ref{sec:solver} describes the FedRAS design and Section~\ref{sec:theory} its theoretical analysis. Section~\ref{sec:eval} reports the experimental evaluation, Section~\ref{sec:discussion} discusses interpretation, deployment, and limitations, and Section~\ref{sec:conclusion} concludes.
 
 \section{Related work}
 \label{sec:related}
@@ -100,7 +100,7 @@ FedRAS (ours) & per client/round & \checkmark & frozen-$A$ rank masking & \check
 }
 \end{table}
 
-\section{System model and scheduling formulation}
+\section{System model and threat model}
 \label{sec:model}
 
 \begin{figure}[t]
@@ -148,6 +148,9 @@ G_i^t(r)=\pi_i^t\,\sqrt{\min(r,r_{\max})/r_{\max}},
 \end{equation}
 where $\pi_i^t$ is a per-client contribution prior in the spirit of Oort-style utility \cite{oort2021oort}. The width $r_{\max}$ is the factor width provisioned at all clients. The square root encodes the diminishing returns of rank that the delivered-update norms exhibit directly in the trainer (Section~\ref{sec:eval}), and the saturation at $r_{\max}$ reflects that wider factors add payload but no expressible capacity once the provisioned width is reached. Full-parameter FedAvg updates are accounted at their true serialized size (Table~\ref{tab:audit}).
 
+\subsection{Adversary and trust model}
+Clients are honest but curious: they follow the training protocol, and raw data never leaves the devices, which is the standing premise of federated learning on this infrastructure. The edge aggregator is trusted scheduling infrastructure: it observes link states, client--rank assignments, and delivered update factors, and runs the aggregation of Section~\ref{sec:aggregation}. The external adversary of interest is an eavesdropper on the wireless uplink who observes the transmitted $B$ factors. Because the shared factor $A$ is never transmitted and a rank-$r$ client transmits only its first $r$ coordinates, the exposed gradient-inversion surface is the $B$-slice of the assigned rank, of strictly smaller dimensionality than a full-model or joint-factor update. Under this model, FedRAS optimizes communication efficiency and proposes no protection mechanism: differential-privacy accounting, secure aggregation, and Byzantine robustness are orthogonal and out of scope (Section~\ref{sec:discussion}).
+
 \subsection{Deadline-constrained client--rank scheduling formulation}
 \label{sec:problem}
 
@@ -162,8 +165,11 @@ Each round, the aggregator decides $a_i^t\in\{0\}\cup\mathcal R$, where $a_i^t=0
 \end{equation}
 The objective is a scheduling utility: expected useful delivered updates under the byte budget $B_{\max}$ and the participation cap $K$. It is a network-side objective, not a surrogate for final test accuracy; increasing $r$ raises $G$ sublinearly while raising payload and lowering the delivery surrogate. The experiments therefore report test accuracy, timely delivery ratio, bytes per round, and mean delivered rank as separate outcomes (Section~\ref{sec:eval}).
 
-\section{Solution method and heterogeneous-rank aggregation}
+\section{FedRAS design}
 \label{sec:solver}
+
+\subsection{Design overview}
+FedRAS turns the formulation of Section~\ref{sec:problem} into a per-round scheduling procedure with three components: a discretization that turns the client--rank actions into a multiple-choice knapsack, a grid-based dynamic program that solves the assignment exactly, together with a cheap per-client rule for the unconstrained regime, and a frozen-factor rank-masked aggregation rule for heterogeneous ranks. The next three subsections develop these components in turn; Fig.~\ref{fig:architecture} places them in the round pipeline. The design contains no training-side logic: admissions and ranks are chosen from network state alone.
 
 \subsection{From formulation to discrete action space}
 Each round the aggregator selects, for every client, one action from the discrete set $a_i^t\in\{0\}\cup\mathcal R$ of Section~\ref{sec:problem}. The per-rank payload follows \eqref{eq:size}, and the estimated utility of admitting client $i$ at rank $r$ is $u_i(r)=G_i^t(r)\hat P_{\rm on,i}^t(r)$. All budget arithmetic uses a conservative ceiling discretization onto a budget grid $q$, with integer cost $\widetilde B_i(r)=\lceil B_i^t(r)/q\rceil$, applied identically to the dynamic program, the greedy baselines, and the admission checks, so that every scheduling method optimizes over the identical feasible region. Under this discretization, the single-round estimated problem \eqref{eq:objective}--\eqref{eq:constraints} is a multiple-choice knapsack with an admission constraint, for which an exact pseudo-polynomial dynamic program exists; the evaluated grid width and its quantization error are quantified in Section~\ref{sec:dp_study}.
@@ -174,27 +180,7 @@ Let $V_i(k,b)$ be the maximum estimated utility from the first $i$ clients with 
 V_i(k,b)=\max\Big\{V_{i-1}(k,b),\;\max_{r\in\mathcal R}\big[V_{i-1}(k-1,b-\widetilde B_i(r))+u_i(r)\big]\Big\},
 \label{eq:dp}
 \end{equation}
-where $u_i(r)=G_i^t(r)\hat P_{\rm on,i}^t(r)$. Backpointers recover the assignment. Algorithm~\ref{alg:scheduler} summarizes one scheduling round.
-
-\subsection{Correctness and complexity analysis}
-
-\begin{proposition}[Per-round optimality]
-\label{prop:dp}
-For every reachable state $(k,b)$, recurrence \eqref{eq:dp} considers the skip action and every feasible rank for client $i$. Induction on $i$ therefore proves exactness for the discretized single round estimated assignment problem. The result is not a claim of optimality for the continuous budget problem, the multi-round stochastic control problem, or final model accuracy.
-\end{proposition}
-\begin{proof}
-The admission indicator and the rank of each client are exclusive actions that affect the two resources additively. Admitting client $i$ at rank $r$ consumes one admission slot and $\widetilde B_i(r)$ budget units and adds $u_i(r)$ value, independent of the other clients. The state $(k,b)$ therefore summarizes all interaction, and the standard interchange argument for the multiple-choice knapsack applies. Any optimal solution restricted to the first $i-1$ clients must itself be optimal for its state, which the recurrence maximizes.
-\end{proof}
-
-The complexity is $O(|\mathcal D|K\widetilde B_{\max}|\mathcal R|)$ time and $O(K\widetilde B_{\max})$ memory with rolling value arrays; the back-pointer table retained for reconstruction adds $O(|\mathcal D|K\widetilde B_{\max})$, where $\widetilde B_{\max}=\lceil B_{\max}/q\rceil$. Section~\ref{sec:dp_study} reports the resulting runtimes for 500 and 1000 clients. The exact formulation also yields a condition under which the cheap per-client rule of Section~\ref{sec:problem} is already optimal, which the trainer experiments of Section~\ref{sec:dpvfair} rely on.
-
-\begin{proposition}[Cohort-local optimality of the per-client rule]
-\label{prop:cohort}
-Consider the single-round problem \eqref{eq:objective}--\eqref{eq:constraints} restricted to a fixed candidate set, and suppose the all-$r_{\max}$ rank profile is budget-feasible, i.e., $\sum_i \widetilde B_i(r_{\max})\le\widetilde B_{\max}$ over the candidates. Then the profile that assigns every admitted client its per-client maximizer $r_i^\star=\arg\max_{r\in\mathcal R}G_i(r)\hat P_{{\rm on},i}(r)$ is a feasible optimal solution of the restricted problem.
-\end{proposition}
-\begin{proof}
-Each candidate's cost is at most its $r_{\max}$ cost, so the per-client maximizer profile satisfies the budget whenever the all-$r_{\max}$ profile does, and it uses no more than the cap. Being feasible, it attains $\sum_i\max_r u_i(r)$, which upper-bounds the objective of every feasible profile; it is therefore optimal. By Proposition~\ref{prop:dp}, the dynamic program returns an optimal profile and hence coincides with the per-client maximizer profile whenever the latter is unique.
-\end{proof}
+where $u_i(r)=G_i^t(r)\hat P_{\rm on,i}^t(r)$. Backpointers recover the assignment. Algorithm~\ref{alg:scheduler} summarizes one scheduling round. Propositions~\ref{prop:dp} and~\ref{prop:cohort} (Section~\ref{sec:theory}) establish the exactness of this recurrence and the regime in which the per-client rule of Section~\ref{sec:problem} is already optimal.
 
 \begin{algorithm}[t]
 \caption{FedRAS scheduling round}
@@ -228,8 +214,31 @@ Jointly trained factor pairs $(A_i,B_i)$ are identifiable only up to invertible 
 W_j=\sum_{i:\,r_i\ge j} n_i ,
 \label{eq:maskavg}
 \end{equation}
-while the frozen factor aggregates to itself, $\bar A=A$. The server then applies momentum per factor tensor. With $\Delta^t=\bar B-S^{t-1}$, the velocity and state update as $v^t=\beta\,v^{t-1}+(1-\beta)\,\Delta^t$ and $S^t=S^{t-1}+v^t$, with damping coefficient $\beta$ absorbing client-sampling and link noise.
+while the frozen factor aggregates to itself, $\bar A=A$. The server then applies momentum per factor tensor. With $\Delta^t=\bar B-S^{t-1}$, the velocity and state update as $v^t=\beta\,v^{t-1}+(1-\beta)\,\Delta^t$ and $S^t=S^{t-1}+v^t$, with damping coefficient $\beta$ absorbing client-sampling and link noise. Proposition~\ref{prop:agg} (Section~\ref{sec:theory}) states the exactness and dilution properties of this rule.
 
+\section{Theoretical analysis}
+\label{sec:theory}
+
+\subsection{Exactness of the DP assignment}
+\begin{proposition}[Per-round optimality]
+\label{prop:dp}
+For every reachable state $(k,b)$, recurrence \eqref{eq:dp} considers the skip action and every feasible rank for client $i$. Induction on $i$ therefore proves exactness for the discretized single round estimated assignment problem.
+\end{proposition}
+\begin{proof}
+The admission indicator and the rank of each client are exclusive actions that affect the two resources additively. Admitting client $i$ at rank $r$ consumes one admission slot and $\widetilde B_i(r)$ budget units and adds $u_i(r)$ value, independent of the other clients. The state $(k,b)$ therefore summarizes all interaction, and the standard interchange argument for the multiple-choice knapsack applies. Any optimal solution restricted to the first $i-1$ clients must itself be optimal for its state, which the recurrence maximizes.
+\end{proof}
+
+\subsection{Optimality condition of the per-client rule}
+The formulation also yields a condition under which the cheap per-client rule of Section~\ref{sec:problem} is already optimal, which the trainer experiments of Section~\ref{sec:dpvfair} rely on.
+\begin{proposition}[Cohort-local optimality of the per-client rule]
+\label{prop:cohort}
+Consider the single-round problem \eqref{eq:objective}--\eqref{eq:constraints} restricted to a fixed candidate set, and suppose the all-$r_{\max}$ rank profile is budget-feasible, i.e., $\sum_i \widetilde B_i(r_{\max})\le\widetilde B_{\max}$ over the candidates. Then the profile that assigns every admitted client its per-client maximizer $r_i^\star=\arg\max_{r\in\mathcal R}G_i(r)\hat P_{{\rm on},i}(r)$ is a feasible optimal solution of the restricted problem.
+\end{proposition}
+\begin{proof}
+Each candidate's cost is at most its $r_{\max}$ cost, so the per-client maximizer profile satisfies the budget whenever the all-$r_{\max}$ profile does, and it uses no more than the cap. Being feasible, it attains $\sum_i\max_r u_i(r)$, which upper-bounds the objective of every feasible profile; it is therefore optimal. By Proposition~\ref{prop:dp}, the dynamic program returns an optimal profile and hence coincides with the per-client maximizer profile whenever the latter is unique.
+\end{proof}
+
+\subsection{Exactness of frozen-factor aggregation}
 \begin{proposition}[Exactness of frozen-factor aggregation]
 \label{prop:agg}
 Under \eqref{eq:maskavg}, the $j$-th active rank slice of $\bar BA$ is the data-weighted average over clients with $r_i\ge j$. This is exact coordinate-wise averaging of active induced-update slices. It is not, in general, the unified data-weighted average of complete client updates. If a common denominator $W=\sum_i n_i$ is used instead of $W_j$, the unified average is recovered, but active high-rank slices are diluted by $W_j/W$. The two rules coincide for all possible updates when all delivered ranks are equal.
@@ -238,7 +247,10 @@ Under \eqref{eq:maskavg}, the $j$-th active rank slice of $\bar BA$ is the data-
 The first two parts follow from linearity. For frozen shared $A$, multiplying a weighted sum of $B$-coordinates by $\big[A\big]_{j,:}$ converts it into the same weighted sum of the matching update slices, and the two normalizers differ only in $W_j$ versus $W$. The product $\bar BA=\sum_j\bar B_{:,j}\big[A\big]_{j,:}$ collects the slices. The third part holds because $W_j=W$ for every active $j$ if and only if $r_i=\max_k r_k$ for all admitted $i$ with $n_i>0$.
 \end{proof}
 
-The proposition concerns active rank slices rather than whole-update equivalence. With shared frozen $A$, it gives coordinate-wise data-weighted averaging and avoids dilution caused by a common denominator. The elevated-learning-rate ablation tests the associated stability claim. It does not establish a general convergence guarantee.
+\subsection{Complexity and scope of the analysis}
+The complexity is $O(|\mathcal D|K\widetilde B_{\max}|\mathcal R|)$ time and $O(K\widetilde B_{\max})$ memory with rolling value arrays; the back-pointer table retained for reconstruction adds $O(|\mathcal D|K\widetilde B_{\max})$, where $\widetilde B_{\max}=\lceil B_{\max}/q\rceil$. Section~\ref{sec:dp_study} reports the resulting runtimes at 500- and 1000-client scale.
+
+\textbf{Scope of the analysis.} The exactness results concern the discretized single-round estimated assignment problem and the frozen-factor aggregation rule. They are not claims of optimality for the continuous-budget problem, for the multi-round stochastic control problem, or for final model accuracy, and they do not establish a convergence guarantee for federated training. The practical value of exactness is quantified experimentally in Sections~\ref{sec:dpvfair} and~\ref{sec:dp_study}.
 
 \section{Experimental evaluation}
 \label{sec:eval}
@@ -520,7 +532,7 @@ Fig.~\ref{fig:sim} shows the nominal and 0.1\,s trajectories, and Fig.~\ref{fig:
 \label{sec:dp_study}
 Table~\ref{tab:dp} reports the scheduling study with the identical ceiling discretization for the DP and every heuristic. When the byte budget is slack, value greedy and the fixed rank-16 rule are already optimal, so the choice of scheduler matters little; the value-per-byte greedy, by contrast, collapses to a smallest-rank preference. The interesting regimes are the binding ones: when the budget binds, every heuristic loses a substantial fraction of the objective --- up to 64\% for value-per-byte pricing --- while the DP reaches the optimum of the discretized single-round estimated problem in every cell. Its runtime is sub-second for 500 clients across the evaluated grid widths and scales linearly to 1000 clients, as Fig.~\ref{fig:dp} shows, which is compatible with per-round scheduling at minute-scale FL rounds.
 
-A dedicated grid sweep around the default step bounds the quantization error at about 3\% in the binding regime and below 1\% in slack regimes; a finer step reduces it further at a known runtime cost. The grid exactness claim of Section~\ref{sec:solver} therefore applies to a grid whose quantization error is bounded, measured, and adjustable.
+A dedicated grid sweep around the default step bounds the quantization error at about 3\% in the binding regime and below 1\% in slack regimes; a finer step reduces it further at a known runtime cost. The grid exactness claim of Section~\ref{sec:theory} therefore applies to a grid whose quantization error is bounded, measured, and adjustable.
 
 \begin{table}[t]
 \centering
@@ -593,9 +605,9 @@ Taken together, the two evaluation tiers give a consistent picture. Rank choice 
 
 \textbf{Estimator assumptions.} The hazard-form delivery model \eqref{eq:hazard} assumes the closed-form exponential realization, and the experiments supply generated link states as oracle estimates; training and processing times are included in the conceptual delivery model \eqref{eq:delivery} but are not separately measured. Production deployments should calibrate $P_{\rm on}$ per client from observed outcomes, for example with isotonic or Platt scaling monitored by a Brier score, and the scheduler treats the predictor as a plug-in. Calibration on measured wireless traces remains open.
 
-\textbf{Myopia.} The DP is exact for the estimated per-round problem, not for the multi-round stochastic control problem induced by budget carry-over and mobility correlation; a horizon-aware policy could shift admissions across rounds and is a natural extension.
+\textbf{Myopia.} The analysis is deliberately per-round (Section~\ref{sec:theory}); a horizon-aware policy that shifts admissions across rounds as budgets carry over and mobility correlates is a natural extension.
 
-\textbf{Security.} This work schedules communication and does not propose protection, so we make no privacy claim. Frozen-factor training incidentally reduces the dimensionality of transmitted gradients, which shrinks the gradient-inversion surface. Formal statements require differential-privacy accounting or secure aggregation, which compose orthogonally with rank scheduling \cite{bonawitz2017secureagg,wei2023pfl_dp}.
+\textbf{Security.} The adversary and trust assumptions are stated in Section~3.4. This work proposes no protection mechanism and makes no privacy claim; differential-privacy accounting, secure aggregation, and Byzantine robustness compose orthogonally with rank scheduling \cite{bonawitz2017secureagg,wei2023pfl_dp}.
 
 \textbf{Generality.} The trainer validates adapters on convolutional and linear layers of a CNN at $r_{\max}{=}16$ with 20 clients, and the simulator extends the population to 1000, both under synthetic link distributions. Extension to transformer backbones, measured rather than synthetic links, and larger rank sets may change the payload slope, capacity curve, and empirical conclusions. The formulation can be tested in those settings. The study does not measure energy, system overhead beyond scheduler runtime, or client fairness and therefore makes no claim about those properties.
 

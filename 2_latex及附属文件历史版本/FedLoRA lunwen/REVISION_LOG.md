@@ -577,3 +577,25 @@ hatch='///' 的未裁剪路径 bbox 罩住全盒文本（碰撞审计 5 fail 根
 ⑥ §6.1：0.32pp、satellite 0.49 改定性。
 ⑦ 编译：干净版 35 页、红标版（latexdiff 自基线重生成）41 页，均 0 错误
   0 未解析引用。58.7× 全文仅存 Table 2 与 5.2.1 两处。
+
+## 修订记录 20（2026-09-26，8 节定稿结构：System+Threat Model / Design / Theory 拆分）
+
+按确认的期刊经典弧线重排（1 Intro / 2 RW / 3 System+Threat / 4 Design / 5 Theory /
+6 Experiments / 7 Discussion / 8 Conclusion）：
+① §3 改名 "System model and threat model"，新增 3.4 "Adversary and trust model"
+  （honest-but-curious 客户端、受信聚合器、uplink 窃听者；frozen-A + rank 切片
+  = 更小的梯度反演暴露面；显式不主张 DP/拜占庭，正交组合），问题建模顺延为 3.5；
+② §4 改名 "FedRAS design"，新增 4.1 "Design overview"（三组件 + 一句无训练侧
+  逻辑声明，未复述 §3.1 轮次协议）；4.2 离散化 / 4.3 DP+Algorithm 1 /
+  4.4 聚合机制；
+③ 新 §5 "Theoretical analysis"：5.1 Prop.1（DP 精确性）/ 5.2 Prop.2（argmax
+  规则最优条件）/ 5.3 Prop.3（frozen-factor 聚合精确性）/ 5.4 复杂度 +
+  合并的 "Scope of the analysis" 段（三处命题后散落的 scope 句全部收拢于此）；
+④ 去重：§4.4 原收尾段（ablation 重复指针 + 稳定性声明）删除，指针只在 §4.4
+  留一处；Discussion Myopia 段与 5.4 scope 去重（改指 Section 5）；Security 段
+  收缩并指向 3.4；实验节 grid exactness 引用 sec:solver→sec:theory；
+⑤ Intro 路线图更新为 8 节版本。
+⑥ 编译：干净版 36 页、红标版（latexdiff 自基线重生成）43 页，均 0 错误
+  0 未解析引用。新增文字（威胁模型、overview）不含任何实验数字，延续
+  修订记录 19 的"数字只在实验节"原则。章节起始页：§3 p.6 / §4 p.9 / §5 p.11 /
+  §6 p.13–26 / §7 p.27 / §8 p.29。
