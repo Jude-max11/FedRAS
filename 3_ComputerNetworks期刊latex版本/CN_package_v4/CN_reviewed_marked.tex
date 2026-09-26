@@ -163,33 +163,37 @@ We do not claim each ingredient individually as new. Our contribution is their c
 
 \begin{figure}[t]
 \centering
-\resizebox{\columnwidth}{!}{%
-\begin{tikzpicture}[
-  node distance=6mm and 7mm, >=Latex,
-  box/.style={draw, rounded corners, align=center, minimum height=9mm, text width=31mm, font=\scriptsize, inner sep=3pt},
-  flow/.style={-{Latex[length=2mm]}, thick},
-  feedback/.style={-{Latex[length=2mm]}, dashed, thick}
-]
-\node[box] (estimate) {Link-state estimator\\rate, delay, mobility history};
-\node[box, right=of estimate] (actions) {Client--rank actions\\$r\in\mathcal R\cup\{0\}$, size, capacity};
-\node[box, right=of actions] (filter) {Feasibility and value\\$P_{\rm on}(r)$, $G(r)$, budget check};
-\node[box, below=of filter] (dp) {Grid-based DP\\assignment over $(k,b)$};
-\node[box, left=of dp] (assign) {Scheduled round\\clients and ranks};
-\node[box, left=of assign] (fl) {Federated LoRA round\\local training, upload, aggregation};
-\node[box, below=8mm of fl] (observe) {Observed outcomes\\timely, late, lost, outage};
-\draw[flow] (estimate) -- (actions);
-\draw[flow] (actions) -- (filter);
-\draw[flow] (filter) -- (dp);
-\draw[flow] (dp) -- (assign);
-\draw[flow] (assign) -- (fl);
-\draw[flow] (fl) -- (observe);
-\coordinate (fb) at ($(fl.south)+(0,-4mm)$);
-\draw[feedback] (observe.south) -- ++(0,-5mm) -| node[below, font=\scriptsize, pos=.3] {update link-state history} ($(estimate.west)+(-3mm,0)$) -- (estimate.west);
-\node[draw, dashed, rounded corners, fit=(estimate)(actions)(filter)(dp)(assign), inner sep=5pt,
-      label={[fill=white, inner sep=1pt, font=\scriptsize]above:Edge-aggregator scheduling layer}] {};
-\end{tikzpicture}%
-}
-\caption{Round pipeline of FedRAS. The edge aggregator jointly selects clients and LoRA ranks with the grid-based dynamic program; only observed transmission outcomes update the link-state history.}
+\DIFdelbeginFL
+%%DIFDELCMD < \resizebox{\columnwidth}{!}{%
+%%DIFDELCMD < \begin{tikzpicture}[
+%%DIFDELCMD <   node distance=6mm and 7mm, >=Latex,
+%%DIFDELCMD <   box/.style={draw, rounded corners, align=center, minimum height=9mm, text width=31mm, font=\scriptsize, inner sep=3pt},
+%%DIFDELCMD <   flow/.style={-{Latex[length=2mm]}, thick},
+%%DIFDELCMD <   feedback/.style={-{Latex[length=2mm]}, dashed, thick}
+%%DIFDELCMD < ]
+%%DIFDELCMD < \node[box] (estimate) {Link-state estimator\\rate, delay, mobility history};
+%%DIFDELCMD < \node[box, right=of estimate] (actions) {Client--rank actions\\$r\in\mathcal R\cup\{0\}$, size, capacity};
+%%DIFDELCMD < \node[box, right=of actions] (filter) {Feasibility and value\\$P_{\rm on}(r)$, $G(r)$, budget check};
+%%DIFDELCMD < \node[box, below=of filter] (dp) {Grid-based DP\\assignment over $(k,b)$};
+%%DIFDELCMD < \node[box, left=of dp] (assign) {Scheduled round\\clients and ranks};
+%%DIFDELCMD < \node[box, left=of assign] (fl) {Federated LoRA round\\local training, upload, aggregation};
+%%DIFDELCMD < \node[box, below=8mm of fl] (observe) {Observed outcomes\\timely, late, lost, outage};
+%%DIFDELCMD < \draw[flow] (estimate) -- (actions);
+%%DIFDELCMD < \draw[flow] (actions) -- (filter);
+%%DIFDELCMD < \draw[flow] (filter) -- (dp);
+%%DIFDELCMD < \draw[flow] (dp) -- (assign);
+%%DIFDELCMD < \draw[flow] (assign) -- (fl);
+%%DIFDELCMD < \draw[flow] (fl) -- (observe);
+%%DIFDELCMD < \coordinate (fb) at ($(fl.south)+(0,-4mm)$);
+%%DIFDELCMD < \draw[feedback] (observe.south) -- ++(0,-5mm) -| node[below, font=\scriptsize, pos=.3] {update link-state history} ($(estimate.west)+(-3mm,0)$) -- (estimate.west);
+%%DIFDELCMD < \node[draw, dashed, rounded corners, fit=(estimate)(actions)(filter)(dp)(assign), inner sep=5pt,
+%%DIFDELCMD <       label={[fill=white, inner sep=1pt, font=\scriptsize]above:Edge-aggregator scheduling layer}] {};
+%%DIFDELCMD < \end{tikzpicture}%
+%%DIFDELCMD < }
+%%DIFDELCMD < \caption{Round pipeline of FedRAS. The edge aggregator jointly selects clients and LoRA ranks with the grid-based dynamic program; only observed transmission outcomes update the link-state history.}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.98\columnwidth]{recolored_figures/fig_architecture}
+\DIFaddendFL \caption{\DIFaddbeginFL \DIFaddFL{FedRAS system architecture and round pipeline. The edge aggregator estimates client link states, scores every client--rank pair with the delivery hazard \eqref{eq:hazard} and the saturating capacity \eqref{eq:cap}, and computes the client--rank assignment with the exact grid-based dynamic program under the byte budget and the admission cap (Proposition~\ref{prop:dp}). Admitted clients train on a frozen backbone with LoRA factors sliced to the assigned rank and upload only the trainable factor $B$, at 5.63\,KB per rank column; the shared factor $A$ is never transmitted. Updates arriving within the deadline $\tau$ pass the on-time gate and are aggregated rank-maskedly while $A$ stays frozen (Proposition~\ref{prop:agg}); late or lost updates are discarded, and the observed outcomes update the link-state history.}}\DIFaddendFL
 \label{fig:architecture}
 \end{figure}
 

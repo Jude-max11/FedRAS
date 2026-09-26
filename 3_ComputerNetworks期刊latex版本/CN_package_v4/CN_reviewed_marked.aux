@@ -33,12 +33,12 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Communication-efficient federated learning}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Client selection and deadline-aware scheduling}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Positioning}{5}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Round pipeline of FedRAS. The edge aggregator jointly selects clients and LoRA ranks with the grid-based dynamic program; only observed transmission outcomes update the link-state history.}}{6}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \DIFaddbeginFL  {\color {blue}\uwave {FedRAS system architecture and round pipeline. The edge aggregator estimates client link states, scores every client--rank pair with the delivery hazard \eqref  {eq:hazard} and the saturating capacity \eqref  {eq:cap}, and computes the client--rank assignment with the exact grid-based dynamic program under the byte budget and the admission cap (Proposition~\ref {prop:dp}). Admitted clients train on a frozen backbone with LoRA factors sliced to the assigned rank and upload only the trainable factor $B$, at 5.63\,KB per rank column; the shared factor $A$ is never transmitted. Updates arriving within the deadline $\tau $ pass the on-time gate and are aggregated rank-maskedly while $A$ stays frozen (Proposition~\ref {prop:agg}); late or lost updates are discarded, and the observed outcomes update the link-state history.}}}}{6}{}\protected@file@percent }
 \newlabel{fig:architecture}{{1}{6}{}{}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}System model}{6}{}\protected@file@percent }
 \newlabel{sec:model}{{3}{6}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Mobile edge FL architecture}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Federated LoRA rounds}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Federated LoRA rounds}{7}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Link, mobility, and delivery model}{7}{}\protected@file@percent }
 \newlabel{eq:delivery}{{1}{7}{}{}{}}
 \newlabel{eq:pon}{{2}{7}{}{}{}}
@@ -49,18 +49,18 @@
 \newlabel{eq:cap}{{5}{8}{}{}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Deadline-aware client--rank scheduling}{8}{}\protected@file@percent }
 \newlabel{sec:problem}{{4}{8}{}{}{}}
-\newlabel{eq:objective}{{6}{8}{}{}{}}
-\newlabel{eq:constraints}{{7}{8}{}{}{}}
+\newlabel{eq:objective}{{6}{9}{}{}{}}
+\newlabel{eq:constraints}{{7}{9}{}{}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Grid-based solver and heterogeneous-rank aggregation}{9}{}\protected@file@percent }
 \newlabel{sec:solver}{{5}{9}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Dynamic program}{9}{}\protected@file@percent }
 \newlabel{eq:dp}{{8}{9}{}{}{}}
-\newlabel{prop:dp}{{1}{9}{}{}{}}
+\newlabel{prop:dp}{{1}{10}{}{}{}}
 \newlabel{prop:cohort}{{2}{10}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Rank-masked aggregation with frozen factors}{10}{}\protected@file@percent }
-\newlabel{sec:aggregation}{{5.2}{10}{}{}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces FedRAS scheduling round}}{11}{}\protected@file@percent }
 \newlabel{alg:scheduler}{{1}{11}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Rank-masked aggregation with frozen factors}{11}{}\protected@file@percent }
+\newlabel{sec:aggregation}{{5.2}{11}{}{}{}}
 \newlabel{eq:maskavg}{{9}{11}{}{}{}}
 \newlabel{prop:agg}{{3}{11}{}{}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Performance evaluation}{12}{}\protected@file@percent }
@@ -68,19 +68,19 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Experimental setup}{12}{}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Payload audit of real serialized update sizes. Frozen-$A$ clients upload only the trainable $B$ factor (1{,}408 parameters per rank column); the $A{+}B$ column is the joint-training equivalent. The stylized $s(r)$ column lists the normalized-cost protocol reused in the sensitivity study of Section~\ref {sec:simsim}.}}{13}{}\protected@file@percent }
 \newlabel{tab:audit}{{1}{13}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Final accuracy across datasets\DIFdelbeginFL  {\color {red}\sout {under the nominal deadline (}}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {. CIFAR-10 uses ten seeds; CIFAR-100 and MNIST use }}\DIFaddendFL  five seeds\DIFdelbeginFL  {\color {red}\sout {)}}\DIFdelendFL  . The parity and equivalence findings of Table~\ref {tab:trainer} are not CIFAR-10-specific.}}{14}{}\protected@file@percent }
-\newlabel{fig:crossds}{{2}{14}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Real trainer on non-IID CIFAR-10 at the nominal 2.0\,s deadline with \DIFdelbeginFL  {\color {red}\sout {five }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {ten }}\DIFaddendFL  seeds. Accuracy is measured at round 40. Timely delivery ratio is timely deliveries divided by selected clients. Bytes per round is the sum of attempted uplink payloads for selected clients over rounds 30 to 39, at real serialized sizes. Mean rank is computed over delivered updates.}}{15}{}\protected@file@percent }
-\newlabel{tab:trainer}{{2}{15}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Accuracy parity and rank invariance in the trainer}{15}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Accuracy parity and rank invariance in the trainer}{14}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Final accuracy across datasets\DIFdelbeginFL  {\color {red}\sout {under the nominal deadline (}}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {. CIFAR-10 uses ten seeds; CIFAR-100 and MNIST use }}\DIFaddendFL  five seeds\DIFdelbeginFL  {\color {red}\sout {)}}\DIFdelendFL  . The parity and equivalence findings of Table~\ref {tab:trainer} are not CIFAR-10-specific.}}{15}{}\protected@file@percent }
+\newlabel{fig:crossds}{{2}{15}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Deadline stress in the trainer}{15}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Real-trainer CIFAR-10 test accuracy over 40 federated rounds at the nominal deadline (mean over \DIFdelbeginFL  {\color {red}\sout {five }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {ten }}\DIFaddendFL  seeds). All rank policies hold the pretrained-backbone accuracy; differences appear in bytes and timeliness, not accuracy.}}{16}{}\protected@file@percent }
-\newlabel{fig:trainer_acc}{{3}{16}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Real trainer on non-IID CIFAR-10 at the nominal 2.0\,s deadline with \DIFdelbeginFL  {\color {red}\sout {five }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {ten }}\DIFaddendFL  seeds. Accuracy is measured at round 40. Timely delivery ratio is timely deliveries divided by selected clients. Bytes per round is the sum of attempted uplink payloads for selected clients over rounds 30 to 39, at real serialized sizes. Mean rank is computed over delivered updates.}}{16}{}\protected@file@percent }
+\newlabel{tab:trainer}{{2}{16}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Real trainer under deadline stress\DIFdelbeginFL  {\color {red}\sout {with five seeds}}\DIFdelendFL  . Accuracy is the round-40 mean and standard deviation. Timely delivery ratio, bytes per round, and mean delivered rank are averaged over rounds 30 to 39 at real serialized sizes. \DIFaddbeginFL  {\color {blue}\uwave {The 0.1\,s columns use ten seeds; the 0.05\,s columns use five seeds.}}\DIFaddendFL  }}{16}{}\protected@file@percent }
+\newlabel{tab:stress}{{3}{16}{}{}{}}
 \citation{yang2024safedlora}
 \citation{oort2021oort}
 \citation{guo2025fedsalora}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Real trainer under deadline stress\DIFdelbeginFL  {\color {red}\sout {with five seeds}}\DIFdelendFL  . Accuracy is the round-40 mean and standard deviation. Timely delivery ratio, bytes per round, and mean delivered rank are averaged over rounds 30 to 39 at real serialized sizes. \DIFaddbeginFL  {\color {blue}\uwave {The 0.1\,s columns use ten seeds; the 0.05\,s columns use five seeds.}}\DIFaddendFL  }}{17}{}\protected@file@percent }
-\newlabel{tab:stress}{{3}{17}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Real-trainer CIFAR-10 test accuracy over 40 federated rounds at the nominal deadline (mean over \DIFdelbeginFL  {\color {red}\sout {five }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {ten }}\DIFaddendFL  seeds). All rank policies hold the pretrained-backbone accuracy; differences appear in bytes and timeliness, not accuracy.}}{17}{}\protected@file@percent }
+\newlabel{fig:trainer_acc}{{3}{17}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Broader stress matrix with mobility, heterogeneity, and cross-dataset checks}{17}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.5}External baselines}{17}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Delivered mean rank per round for FedRAS under three deadlines (\DIFaddbeginFL  {\color {blue}\uwave {ten seeds for 2.0 s and 0.1 s, }}\DIFaddendFL  five seeds \DIFaddbeginFL  {\color {blue}\uwave {for 0.05 s}}\DIFaddendFL  ), against the fixed annealing schedule of the SA-FedLoRA-style baseline at 0.1\,s. FedRAS is link-aware, holding high rank when possible and downshifting under pressure.}}{18}{}\protected@file@percent }
@@ -89,26 +89,26 @@
 \newlabel{sec:dpvfair}{{6.6}{18}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Real-trainer accuracy trajectories under the 0.1\,s deadline (\DIFdelbeginFL  {\color {red}\sout {five }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {mean over ten }}\DIFaddendFL  seeds). All methods remain stable; full-model updates deliver nothing and stay at the backbone.}}{19}{}\protected@file@percent }
 \newlabel{fig:trainer_dl}{{5}{19}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Scheduler behavior at 500-client scale}{19}{}\protected@file@percent }
-\newlabel{sec:simsim}{{6.7}{19}{}{}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Extended stress matrix. Results use five seeds and report round-40 accuracy as mean over seeds. The mobility-only and $\alpha {=}1.0$ scenarios probe extreme conditions; the last two columns repeat the 0.1\,s deadline on CIFAR-100 and MNIST.}}{20}{}\protected@file@percent }
 \newlabel{tab:extended}{{4}{20}{}{}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces External baselines in the real trainer on non-IID CIFAR-10 with \DIFdelbeginFL  {\color {red}\sout {five }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {ten }}\DIFaddendFL  seeds. Accuracy is measured at round 40. Timely delivery ratio, bytes, and delivered mean rank are averaged over rounds 30--39.}}{20}{}\protected@file@percent }
 \newlabel{tab:ext}{{5}{20}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Solver optimality and runtime}{20}{}\protected@file@percent }
-\newlabel{sec:dp_study}{{6.8}{20}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Scheduler behavior at 500-client scale}{20}{}\protected@file@percent }
+\newlabel{sec:simsim}{{6.7}{20}{}{}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Scheduling arms in the real trainer. Top: nominal 2.0\,s deadline over ten seeds. Bottom: 0.1\,s deadline over five seeds. Both arms of each comparison share the candidate protocol described in the text.}}{21}{}\protected@file@percent }
 \newlabel{tab:dpvfair}{{6}{21}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Solver optimality and runtime}{21}{}\protected@file@percent }
+\newlabel{sec:dp_study}{{6.8}{21}{}{}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Scheduler simulation with 500 clients, 150 rounds, and five seeds. The accuracy column is a bounded scheduling proxy, not dataset accuracy. Timely delivery ratio is the mean delivery probability for admitted clients, and MB is the attempted uplink payload total for admitted clients in the final round. FedAvg refers to full-model updates at their real 5.29\,MB size.}}{22}{}\protected@file@percent }
 \newlabel{tab:sim}{{7}{22}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Solver study with 500 clients, $K{=}25$, and 30 instances per cell, all methods on the identical \DIFdelbeginFL  {\color {red}\sout {ceil }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {ceiling }}\DIFaddendFL  grid. The table reports heuristic objective loss relative to the grid-based DP and DP runtime.}}{22}{}\protected@file@percent }
-\newlabel{tab:dp}{{8}{22}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.9}Sensitivity\DIFdelbegin  {\color {red}\sout {analysis}}\DIFdelend  \DIFaddbegin  {\color {blue}\uwave {, link profile, and predictor calibration}}\DIFaddend  }{22}{}\protected@file@percent }
 \newlabel{sec:sens}{{6.9}{22}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Scheduler simulation utility-state trajectories (mean over five seeds). \DIFdelbeginFL  {\color {red}\sout {Left: nominal }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {(a)~Nominal }}\DIFaddendFL  2.0\,s deadline, where FedRAS matches fixed rank 16. \DIFdelbeginFL  {\color {red}\sout {Right: }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {(b)~}}\DIFaddendFL  0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16.}}{23}{}\protected@file@percent }
 \newlabel{fig:sim}{{6}{23}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Timely delivery ratio and attempted bytes per method across simulator regimes (five-seed means, final round). Full-model updates deliver nothing under stress and cannot be admitted at all under the binding budget.}}{23}{}\protected@file@percent }
 \newlabel{fig:simreg}{{7}{23}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Solver study with 500 clients, $K{=}25$, and 30 instances per cell, all methods on the identical \DIFdelbeginFL  {\color {red}\sout {ceil }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {ceiling }}\DIFaddendFL  grid. The table reports heuristic objective loss relative to the grid-based DP and DP runtime.}}{24}{}\protected@file@percent }
+\newlabel{tab:dp}{{8}{24}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Solver study. \DIFdelbeginFL  {\color {red}\sout {Left: objective }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {(a)~Objective }}\DIFaddendFL  loss of the heuristics relative to the DP across deadline and budget cells. \DIFdelbeginFL  {\color {red}\sout {Right: }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {(b)~}}\DIFaddendFL  DP runtime scaling with the client population.}}{24}{}\protected@file@percent }
 \newlabel{fig:dp}{{8}{24}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Sensitivity of the trainer to provisioned adapter width, cohort size, and label heterogeneity on CIFAR-10 with FedRAS (five seeds \DIFaddbeginFL  {\color {blue}\uwave {per variant; the nominal reference column uses ten seeds}}\DIFaddendFL  ). Accuracy is flat in $r_{\max }$, cohort size, and $\alpha $ across the tested ranges; their effect is on bytes and delivered updates (red, right axis).}}{25}{}\protected@file@percent }
@@ -120,11 +120,46 @@
 \newlabel{sec:summary}{{6.11}{26}{}{}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Component ablations, real trainer (non-IID CIFAR-10, five seeds, nominal deadline). The Min.\ column is the minimum over rounds of the per-round seed-mean accuracy in the elevated-learning-rate stability check at learning rate 0.02.}}{27}{}\protected@file@percent }
 \newlabel{tab:ablation}{{9}{27}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and limitations}{27}{}\protected@file@percent }
-\newlabel{sec:discussion}{{7}{27}{}{}{}}
 \citation{bonawitz2017secureagg,wei2023pfl_dp}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and limitations}{28}{}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{28}{}{}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{29}{}\protected@file@percent }
 \newlabel{sec:conclusion}{{8}{29}{}{}{}}
 \bibstyle{elsarticle-num}
 \bibdata{references}
-\gdef \@abspage@last{30}
+\bibcite{mcmahan2017fedavg}{{1}{}{{}}{{}}}
+\bibcite{kairouz2021advances}{{2}{}{{}}{{}}}
+\bibcite{liu2018sagin}{{3}{}{{}}{{}}}
+\bibcite{mahboob2024ntn}{{4}{}{{}}{{}}}
+\bibcite{razmi2022ground}{{5}{}{{}}{{}}}
+\bibcite{tang2023flsagin}{{6}{}{{}}{{}}}
+\bibcite{qin2024dfrl}{{7}{}{{}}{{}}}
+\bibcite{ribero2023intermittent}{{8}{}{{}}{{}}}
+\bibcite{hu2022lora}{{9}{}{{}}{{}}}
+\bibcite{babakniya2023slora}{{10}{}{{}}{{}}}
+\bibcite{zhang2024fedit}{{11}{}{{}}{{}}}
+\bibcite{cho2024hetlora}{{12}{}{{}}{{}}}
+\bibcite{fan2025helora}{{13}{}{{}}{{}}}
+\bibcite{wu2026fedara}{{14}{}{{}}{{}}}
+\bibcite{yang2024safedlora}{{15}{}{{}}{{}}}
+\bibcite{ma2026mswim}{{16}{}{{}}{{}}}
+\bibcite{yi2026pfedlora}{{17}{}{{}}{{}}}
+\bibcite{wang2024flora}{{18}{}{{}}{{}}}
+\bibcite{sun2024ffalora}{{19}{}{{}}{{}}}
+\bibcite{guo2025fedsalora}{{20}{}{{}}{{}}}
+\bibcite{oh2023fedqcs}{{21}{}{{}}{{}}}
+\bibcite{oh2024fedvqcs}{{22}{}{{}}{{}}}
+\bibcite{liu2023adaptivequant}{{23}{}{{}}{{}}}
+\bibcite{kim2023beamforming}{{24}{}{{}}{{}}}
+\bibcite{reisizadeh2020fedpaq}{{25}{}{{}}{{}}}
+\bibcite{lin2018deep}{{26}{}{{}}{{}}}
+\bibcite{oort2021oort}{{27}{}{{}}{{}}}
+\bibcite{chen2024clientselection}{{28}{}{{}}{{}}}
+\bibcite{dong2024aoi}{{29}{}{{}}{{}}}
+\bibcite{luo2021costeffective}{{30}{}{{}}{{}}}
+\bibcite{han2024orchestrating}{{31}{}{{}}{{}}}
+\bibcite{lin2025fedsn}{{32}{}{{}}{{}}}
+\bibcite{bonawitz2017secureagg}{{33}{}{{}}{{}}}
+\bibcite{wei2023pfl_dp}{{34}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\gdef \@abspage@last{35}

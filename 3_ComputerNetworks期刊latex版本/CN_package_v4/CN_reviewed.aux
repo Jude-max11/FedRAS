@@ -36,9 +36,9 @@
 \@writefile{toc}{\contentsline {section}{\numberline {3}System model}{5}{}\protected@file@percent }
 \newlabel{sec:model}{{3}{5}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Mobile edge FL architecture}{5}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Round pipeline of FedRAS. The edge aggregator jointly selects clients and LoRA ranks with the grid-based dynamic program; only observed transmission outcomes update the link-state history.}}{6}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces FedRAS system architecture and round pipeline. The edge aggregator estimates client link states, scores every client--rank pair with the delivery hazard \eqref  {eq:hazard} and the saturating capacity \eqref  {eq:cap}, and computes the client--rank assignment with the exact grid-based dynamic program under the byte budget and the admission cap (Proposition~\ref {prop:dp}). Admitted clients train on a frozen backbone with LoRA factors sliced to the assigned rank and upload only the trainable factor $B$, at 5.63\,KB per rank column; the shared factor $A$ is never transmitted. Updates arriving within the deadline $\tau $ pass the on-time gate and are aggregated rank-maskedly while $A$ stays frozen (Proposition~\ref {prop:agg}); late or lost updates are discarded, and the observed outcomes update the link-state history.}}{6}{}\protected@file@percent }
 \newlabel{fig:architecture}{{1}{6}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Federated LoRA rounds}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Federated LoRA rounds}{7}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Link, mobility, and delivery model}{7}{}\protected@file@percent }
 \newlabel{eq:delivery}{{1}{7}{}{}{}}
 \newlabel{eq:pon}{{2}{7}{}{}{}}
@@ -50,7 +50,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {4}Deadline-aware client--rank scheduling}{8}{}\protected@file@percent }
 \newlabel{sec:problem}{{4}{8}{}{}{}}
 \newlabel{eq:objective}{{6}{8}{}{}{}}
-\newlabel{eq:constraints}{{7}{8}{}{}{}}
+\newlabel{eq:constraints}{{7}{9}{}{}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Grid-based solver and heterogeneous-rank aggregation}{9}{}\protected@file@percent }
 \newlabel{sec:solver}{{5}{9}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Dynamic program}{9}{}\protected@file@percent }
@@ -68,11 +68,11 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Experimental setup}{12}{}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Payload audit of real serialized update sizes. Frozen-$A$ clients upload only the trainable $B$ factor (1{,}408 parameters per rank column); the $A{+}B$ column is the joint-training equivalent. The stylized $s(r)$ column lists the normalized-cost protocol reused in the sensitivity study of Section~\ref {sec:simsim}.}}{13}{}\protected@file@percent }
 \newlabel{tab:audit}{{1}{13}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Final accuracy across datasets. CIFAR-10 uses ten seeds; CIFAR-100 and MNIST use five seeds. The parity and equivalence findings of Table~\ref {tab:trainer} are not CIFAR-10-specific.}}{14}{}\protected@file@percent }
-\newlabel{fig:crossds}{{2}{14}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Real trainer on non-IID CIFAR-10 at the nominal 2.0\,s deadline with ten seeds. Accuracy is measured at round 40. Timely delivery ratio is timely deliveries divided by selected clients. Bytes per round is the sum of attempted uplink payloads for selected clients over rounds 30 to 39, at real serialized sizes. Mean rank is computed over delivered updates.}}{15}{}\protected@file@percent }
-\newlabel{tab:trainer}{{2}{15}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Accuracy parity and rank invariance in the trainer}{15}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Real trainer on non-IID CIFAR-10 at the nominal 2.0\,s deadline with ten seeds. Accuracy is measured at round 40. Timely delivery ratio is timely deliveries divided by selected clients. Bytes per round is the sum of attempted uplink payloads for selected clients over rounds 30 to 39, at real serialized sizes. Mean rank is computed over delivered updates.}}{14}{}\protected@file@percent }
+\newlabel{tab:trainer}{{2}{14}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Accuracy parity and rank invariance in the trainer}{14}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Final accuracy across datasets. CIFAR-10 uses ten seeds; CIFAR-100 and MNIST use five seeds. The parity and equivalence findings of Table~\ref {tab:trainer} are not CIFAR-10-specific.}}{15}{}\protected@file@percent }
+\newlabel{fig:crossds}{{2}{15}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Deadline stress in the trainer}{15}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Real-trainer CIFAR-10 test accuracy over 40 federated rounds at the nominal deadline (mean over ten seeds). All rank policies hold the pretrained-backbone accuracy; differences appear in bytes and timeliness, not accuracy.}}{16}{}\protected@file@percent }
 \newlabel{fig:trainer_acc}{{3}{16}{}{}{}}

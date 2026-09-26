@@ -1,0 +1,243 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{mcmahan2017fedavg}
+H.~B. McMahan, E.~Moore, D.~Ramage, S.~Hampson, B.~A. y~Arcas,
+  Communication-efficient learning of deep networks from decentralized data,
+  in: Proceedings of the 20th International Conference on Artificial
+  Intelligence and Statistics (AISTATS), 2017, pp. 1273--1282.
+
+\bibitem{kairouz2021advances}
+P.~Kairouz, H.~B. McMahan, B.~Avent, A.~Bellet, M.~Bennis, A.~N. Bhagoji,
+  K.~Bonawitz, Z.~Charles, G.~Cormode, R.~Cummings, R.~G.~L. D'Oliveira,
+  H.~Eichner, S.~E. Rouayheb, D.~Evans, J.~Gardner, Z.~Garrett, A.~Gasc{\'o}n,
+  B.~Ghazi, P.~B. Gibbons, M.~Gruteser, Z.~Harchaoui, C.~He, L.~He, Z.~Huo,
+  B.~Hutchinson, J.~Hsu, M.~Jaggi, T.~Javidi, G.~Joshi, M.~Khodak, J.~Kone{\v
+  c}n{\'y}, A.~Korolova, F.~Koushanfar, S.~Koyejo, T.~Lepoint, Y.~Liu,
+  P.~Mittal, M.~Mohri, R.~Nock, A.~{\"O}zg{\"u}r, R.~Pagh, M.~Raykova, H.~Qi,
+  D.~Ramage, R.~Raskar, D.~Song, W.~Song, S.~U. Stich, Z.~Sun, A.~T. Suresh,
+  F.~Tram{\`e}r, P.~Vepakomma, J.~Wang, L.~Xiong, Z.~Xu, Q.~Yang, F.~X. Yu,
+  H.~Yu, S.~Zhao, Advances and open problems in federated learning, Foundations
+  and Trends in Machine Learning 14~(1--2) (2021) 1--210.
+\newblock \href {https://doi.org/10.1561/2200000083}
+  {\path{doi:10.1561/2200000083}}.
+
+\bibitem{liu2018sagin}
+J.~Liu, Y.~Shi, Z.~M. Fadlullah, N.~Kato, Space-air-ground integrated network:
+  A survey, IEEE Communications Surveys \& Tutorials 20~(4) (2018) 2714--2741.
+\newblock \href {https://doi.org/10.1109/COMST.2018.2841996}
+  {\path{doi:10.1109/COMST.2018.2841996}}.
+
+\bibitem{mahboob2024ntn}
+S.~Mahboob, L.~Liu, Revolutionizing future connectivity: A contemporary survey
+  on ai-empowered satellite-based non-terrestrial networks in 6g, IEEE
+  Communications Surveys \& Tutorials 26~(2) (2024) 1279--1321.
+\newblock \href {https://doi.org/10.1109/COMST.2023.3347145}
+  {\path{doi:10.1109/COMST.2023.3347145}}.
+
+\bibitem{razmi2022ground}
+N.~Razmi, B.~Matthiesen, A.~Dekorsy, P.~Popovski, Ground-assisted federated
+  learning in leo satellite constellations, IEEE Wireless Communications
+  Letters 11~(4) (2022) 717--721.
+\newblock \href {https://doi.org/10.1109/LWC.2022.3141120}
+  {\path{doi:10.1109/LWC.2022.3141120}}.
+
+\bibitem{tang2023flsagin}
+F.~Tang, C.~Wen, X.~Chen, N.~Kato, Federated learning for intelligent
+  transmission with space-air-ground integrated network toward 6g, IEEE Network
+  37~(2) (2023) 198--204.
+\newblock \href {https://doi.org/10.1109/MNET.104.2100615}
+  {\path{doi:10.1109/MNET.104.2100615}}.
+
+\bibitem{qin2024dfrl}
+Y.~Qin, Y.~Yang, F.~Tang, X.~Yao, M.~Zhao, N.~Kato, Differentiated federated
+  reinforcement learning based traffic offloading on space-air-ground
+  integrated networks, IEEE Transactions on Mobile Computing 23~(12) (2024)
+  11000--11013.
+\newblock \href {https://doi.org/10.1109/TMC.2024.3389011}
+  {\path{doi:10.1109/TMC.2024.3389011}}.
+
+\bibitem{ribero2023intermittent}
+M.~Ribero, H.~Vikalo, G.~de~Veciana, Federated learning under intermittent
+  client availability and time-varying communication constraints, IEEE Journal
+  of Selected Topics in Signal Processing 17~(1) (2023) 98--111.
+\newblock \href {https://doi.org/10.1109/JSTSP.2022.3224590}
+  {\path{doi:10.1109/JSTSP.2022.3224590}}.
+
+\bibitem{hu2022lora}
+E.~J. Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, W.~Chen,
+  {LoRA}: Low-rank adaptation of large language models, in: International
+  Conference on Learning Representations (ICLR), 2022.
+
+\bibitem{babakniya2023slora}
+S.~Babakniya, A.~R. Elkordy, Y.~H. Ezzeldin, Q.~Liu, K.-B. Song, M.~El-Khamy,
+  S.~Avestimehr, {SLoRA}: Federated parameter efficient fine-tuning of language
+  models, in: International Workshop on Federated Learning in the Age of
+  Foundation Models (FedLLM), 2023.
+
+\bibitem{zhang2024fedit}
+J.~Zhang, S.~Vahidian, M.~Kuo, C.~Li, R.~Zhang, T.~Yu, G.~Wang, Y.~Zhang,
+  Y.~Chen, H.~Li, Towards building the federated {GPT}: Federated instruction
+  tuning, in: IEEE International Conference on Acoustics, Speech and Signal
+  Processing (ICASSP), 2024.
+
+\bibitem{cho2024hetlora}
+Y.~J. Cho, L.~Liu, Z.~Xu, A.~Fahrezi, G.~Joshi, Heterogeneous {LoRA} for
+  federated fine-tuning of on-device foundation models, in: Proceedings of the
+  2024 Conference on Empirical Methods in Natural Language Processing (EMNLP),
+  2024, pp. 12903--12913.
+\newblock \href {https://doi.org/10.18653/v1/2024.emnlp-main.717}
+  {\path{doi:10.18653/v1/2024.emnlp-main.717}}.
+
+\bibitem{fan2025helora}
+B.~Fan, X.~Su, S.~Tarkoma, P.~Hui, {HeLoRA}: {LoRA}-heterogeneous federated
+  fine-tuning for foundation models, ACM Transactions on Internet Technology
+  25~(2) (2025) 11:1--11:22.
+\newblock \href {https://doi.org/10.1145/3723877} {\path{doi:10.1145/3723877}}.
+
+\bibitem{wu2026fedara}
+F.~Wu, J.~Hu, G.~Min, S.~Wang, Adaptive rank allocation for federated
+  parameter-efficient fine-tuning of language models, IEEE Transactions on
+  Computers 75~(4) (2026) 1650--1663.
+\newblock \href {https://doi.org/10.1109/TC.2026.3655161}
+  {\path{doi:10.1109/TC.2026.3655161}}.
+
+\bibitem{yang2024safedlora}
+Y.~Yang, X.~Liu, T.~Gao, X.~Xu, G.~Wang, {SA-FedLoRA}: Adaptive parameter
+  allocation for efficient federated learning with {LoRA} tuning, arXiv
+  preprint arXiv:2405.09394 (2024).
+
+\bibitem{ma2026mswim}
+W.~Ma, T.~Hu, X.~Liu, Mobility-predictive risk-budgeted protection selection
+  for federated learning in space--air--ground mobile networks, in: Proceedings
+  of the ACM International Conference on Modeling, Analysis and Simulation of
+  Wireless and Mobile Systems (MSWiM), 2026, accepted poster paper; publication
+  details to be updated when available.
+
+\bibitem{yi2026pfedlora}
+L.~Yi, H.~Zhang, H.~Yu, G.~Wang, X.~Liu, Q.~Hu, {pFedLoRA}: Model-heterogeneous
+  personalized federated learning with homogeneous low-rank adapter sharing on
+  mobile edge devices, IEEE Transactions on Mobile Computing 25~(9) (2026)
+  13898--13911.
+\newblock \href {https://doi.org/10.1109/TMC.2026.3674996}
+  {\path{doi:10.1109/TMC.2026.3674996}}.
+
+\bibitem{wang2024flora}
+Z.~Wang, Z.~Gu, J.~Weng, X.~Shang, J.~Li, J.~Li, K.~Wan, {FLoRA}: Federated
+  fine-tuning large language models with heterogeneous low-rank adaptation, in:
+  Advances in Neural Information Processing Systems (NeurIPS), 2024.
+
+\bibitem{sun2024ffalora}
+Y.~Sun, Z.~Li, Y.~Li, B.~Ding, Improving {LoRA} in privacy-preserving federated
+  learning, in: International Conference on Learning Representations (ICLR),
+  2024.
+
+\bibitem{guo2025fedsalora}
+P.~Guo, S.~Zeng, Y.~Wang, Y.~Fang, W.~Huang, S.~Liu, D.~Guo, Selective
+  aggregation for low-rank adaptation in federated learning, in: International
+  Conference on Learning Representations (ICLR), 2025.
+
+\bibitem{oh2023fedqcs}
+Y.~Oh, N.~Lee, Y.-S. Jeon, H.~V. Poor, Communication-efficient federated
+  learning via quantized compressed sensing, IEEE Transactions on Wireless
+  Communications 22~(2) (2023) 1087--1100.
+\newblock \href {https://doi.org/10.1109/TWC.2022.3201207}
+  {\path{doi:10.1109/TWC.2022.3201207}}.
+
+\bibitem{oh2024fedvqcs}
+Y.~Oh, Y.-S. Jeon, M.~Chen, W.~Saad, Fedvqcs: Federated learning via vector
+  quantized compressed sensing, IEEE Transactions on Wireless Communications
+  23~(3) (2024) 1755--1770.
+\newblock \href {https://doi.org/10.1109/TWC.2023.3291877}
+  {\path{doi:10.1109/TWC.2023.3291877}}.
+
+\bibitem{liu2023adaptivequant}
+H.~Liu, F.~He, G.~Cao, Communication-efficient federated learning for
+  heterogeneous edge devices based on adaptive gradient quantization, in:
+  Proceedings of IEEE INFOCOM, 2023, pp. 1--10.
+\newblock \href {https://doi.org/10.1109/INFOCOM53939.2023.10228970}
+  {\path{doi:10.1109/INFOCOM53939.2023.10228970}}.
+
+\bibitem{kim2023beamforming}
+M.~Kim, A.~L. Swindlehurst, D.~Park, Beamforming vector design and device
+  selection in over-the-air federated learning, IEEE Transactions on Wireless
+  Communications 22~(11) (2023) 7464--7477.
+\newblock \href {https://doi.org/10.1109/TWC.2023.3251339}
+  {\path{doi:10.1109/TWC.2023.3251339}}.
+
+\bibitem{reisizadeh2020fedpaq}
+A.~Reisizadeh, A.~Mokhtari, H.~Hassani, A.~Jadbabaie, R.~Pedarsani, Fedpaq: A
+  communication-efficient federated learning method with periodic averaging and
+  quantization, in: Proceedings of the Twenty Third International Conference on
+  Artificial Intelligence and Statistics, Vol. 108 of Proceedings of Machine
+  Learning Research, PMLR, 2020, pp. 2021--2031.
+
+\bibitem{lin2018deep}
+Y.~Lin, S.~Han, H.~Mao, Y.~Wang, W.~J. Dally, Deep gradient compression:
+  Reducing the communication bandwidth for distributed training, in:
+  International Conference on Learning Representations, 2018.
+
+\bibitem{oort2021oort}
+F.~Lai, X.~Zhu, H.~V. Madhyastha, M.~Chowdhury, Oort: Efficient federated
+  learning via guided participant selection, in: Proceedings of the 15th USENIX
+  Symposium on Operating Systems Design and Implementation (OSDI), 2021, pp.
+  19--35.
+
+\bibitem{chen2024clientselection}
+X.~Chen, X.~Zhou, H.~Zhang, M.~Sun, H.~V. Poor, Client selection for wireless
+  federated learning with data and latency heterogeneity, IEEE Internet of
+  Things Journal 11~(19) (2024) 32183--32196.
+\newblock \href {https://doi.org/10.1109/JIOT.2024.3425757}
+  {\path{doi:10.1109/JIOT.2024.3425757}}.
+
+\bibitem{dong2024aoi}
+L.~Dong, Y.~Zhou, L.~Liu, Y.~Qi, Y.~Zhang, Age of information based client
+  selection for wireless federated learning with diversified learning
+  capabilities, IEEE Transactions on Mobile Computing 23~(12) (2024)
+  14934--14945.
+\newblock \href {https://doi.org/10.1109/TMC.2024.3450549}
+  {\path{doi:10.1109/TMC.2024.3450549}}.
+
+\bibitem{luo2021costeffective}
+B.~Luo, X.~Li, S.~Wang, J.~Huang, L.~Tassiulas, Cost-effective federated
+  learning in mobile edge networks, IEEE Journal on Selected Areas in
+  Communications 39~(12) (2021) 3606--3621.
+\newblock \href {https://doi.org/10.1109/JSAC.2021.3118436}
+  {\path{doi:10.1109/JSAC.2021.3118436}}.
+
+\bibitem{han2024orchestrating}
+D.-J. Han, W.~Fang, S.~Hosseinalipour, M.~Chiang, C.~G. Brinton, Orchestrating
+  federated learning in space-air-ground integrated networks: Adaptive data
+  offloading and seamless handover, IEEE Journal on Selected Areas in
+  Communications 42~(12) (2024) 3505--3520.
+\newblock \href {https://doi.org/10.1109/JSAC.2024.3459090}
+  {\path{doi:10.1109/JSAC.2024.3459090}}.
+
+\bibitem{lin2025fedsn}
+Z.~Lin, Z.~Chen, Z.~Fang, X.~Chen, X.~Wang, Y.~Gao, {FedSN}: A federated
+  learning framework over heterogeneous {LEO} satellite networks, IEEE
+  Transactions on Mobile Computing 24~(3) (2025) 1293--1307.
+\newblock \href {https://doi.org/10.1109/TMC.2024.3481275}
+  {\path{doi:10.1109/TMC.2024.3481275}}.
+
+\bibitem{bonawitz2017secureagg}
+K.~Bonawitz, V.~Ivanov, B.~Kreuter, A.~Marcedone, H.~B. McMahan, S.~Patel,
+  D.~Ramage, A.~Segal, K.~Seth, Practical secure aggregation for
+  privacy-preserving machine learning, in: Proceedings of the 2017 ACM SIGSAC
+  Conference on Computer and Communications Security (CCS), 2017, pp.
+  1175--1191.
+\newblock \href {https://doi.org/10.1145/3133956.3133982}
+  {\path{doi:10.1145/3133956.3133982}}.
+
+\bibitem{wei2023pfl_dp}
+K.~Wei, J.~Li, C.~Ma, M.~Ding, W.~Chen, J.~Wu, M.~Tao, H.~V. Poor, Personalized
+  federated learning with differential privacy and convergence guarantee, IEEE
+  Transactions on Information Forensics and Security 18 (2023) 4488--4503.
+\newblock \href {https://doi.org/10.1109/TIFS.2023.3293417}
+  {\path{doi:10.1109/TIFS.2023.3293417}}.
+
+\end{thebibliography}

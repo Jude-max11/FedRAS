@@ -466,3 +466,26 @@ PAPER 常量改指 3_.../CN_package_v4。
 同步：CN_reviewed_marked.tex 三处按 latexdiff 规范标记（新增蓝色波浪、
 five-→ten- 红删蓝加）。编译：干净版 34 页 0 错误；红标版 30 页 0 错误；
 PDF 渲染逐处目检（p10/p12/p16）确认标记正确。复验遗留问题清零。
+
+## 修订记录 17（2026-09-21，Fig.1 系统架构图重绘）
+
+按 nature-figure 规程（Python 后端）重绘 Fig.1：原 TikZ 七框流水线升级为
+投稿级系统架构示意（schematic-led composite，190mm 双栏幅面）：
+- 服务器带：Link states → Per–client–rank prediction（eq.3 hazard、eq.5
+  capacity 公式）→ 红色英雄框 Deadline-aware scheduler（exact DP 目标式与
+  预算约束）→ Rank-masked aggregation（B̄ 列平均、Ā=A frozen）；
+- 客户端带：ground/aerial/satellite 三类卡片（frozen backbone、shared A
+  never sent、B 按列分片着色 16/8/4、assigned r_i 胶囊）；
+- 管线箭头：蓝色虚线 broadcast（w + ranks）、红色 uplink（B_i(r_i) only，
+  经 on-time gate τ，timely/late-lost 分流）、灰色虚线 outcomes 反馈闭环；
+- 底注真实字节：1,408 params/rank column（5.63 KB）、r16 0.090 MB vs
+  5.29 MB（58.7×）。图内数字全部与 §3/§6 一致。
+质量闸门：validate_figure READY；字形审计 ≥5pt PASS（mathtext 母字号
+7.6pt、Unicode 重音替代 \hat/\tilde 消二级脚本缩放、exp 合并指数）；
+碰撞审计 0 fail 0 warn（实测 bbox 驱动布局，脚本内置 fit-check 断言）；
+独立视觉验收两轮（第一轮抓到卫星支管未接总线的设计缺陷，修复后 PASS）。
+tex 集成：clean 版 TikZ 块替换为 \includegraphics（0.98\columnwidth）+
+新题注（引 eq.3/5、Prop.1/3）；marked 版按 DIFDELCMD 惯例标记替换。
+顺带修复：红标版 CN_reviewed_marked.bbl 长期缺失导致参考文献表整表缺
+失、正文 51 处 [?]——复制 bbl 重编译后 0 undefined。
+编译：干净版 34 页 0 错误；红标版 35 页 0 错误 0 未解析引用。

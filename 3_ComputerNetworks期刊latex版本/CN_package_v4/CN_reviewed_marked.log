@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  21 SEP 2026 01:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  26 SEP 2026 08:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -665,312 +665,169 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-
-Package natbib Warning: Citation `mcmahan2017fedavg' on page 2 undefined on inp
-ut line 118.
-
-
-Package natbib Warning: Citation `kairouz2021advances' on page 2 undefined on i
-nput line 118.
-
-
-Package natbib Warning: Citation `liu2018sagin' on page 2 undefined on input li
-ne 118.
-
-
-Package natbib Warning: Citation `mahboob2024ntn' on page 2 undefined on input 
-line 118.
-
-
-Package natbib Warning: Citation `razmi2022ground' on page 2 undefined on input
- line 118.
-
-
-Package natbib Warning: Citation `tang2023flsagin' on page 2 undefined on input
- line 118.
-
-
-Package natbib Warning: Citation `qin2024dfrl' on page 2 undefined on input lin
-e 118.
-
-
-Package natbib Warning: Citation `ribero2023intermittent' on page 2 undefined o
-n input line 118.
-
-
-Package natbib Warning: Citation `hu2022lora' on page 2 undefined on input line
- 118.
-
-
-Package natbib Warning: Citation `babakniya2023slora' on page 2 undefined on in
-put line 118.
-
-
-Package natbib Warning: Citation `zhang2024fedit' on page 2 undefined on input 
-line 118.
-
-
-Package natbib Warning: Citation `cho2024hetlora' on page 2 undefined on input 
-line 120.
-
-
-Package natbib Warning: Citation `fan2025helora' on page 2 undefined on input l
-ine 120.
-
-
-Package natbib Warning: Citation `wu2026fedara' on page 2 undefined on input li
-ne 120.
-
-
-Package natbib Warning: Citation `yang2024safedlora' on page 2 undefined on inp
-ut line 120.
-
-[2]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
 Underfull \hbox (badness 1194) in paragraph at lines 131--132
 \OT1/cmr/m/n/12 a multiple-choice knap-sack with an ad-mis-sion cap. We de-rive
 
  []
 
-
-Package natbib Warning: Citation `ma2026mswim' on page 3 undefined on input lin
-e 136.
-
-[3{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-
-Package natbib Warning: Citation `hu2022lora' on page 4 undefined on input line
- 146.
-
-
-Package natbib Warning: Citation `babakniya2023slora' on page 4 undefined on in
-put line 146.
-
-
-Package natbib Warning: Citation `zhang2024fedit' on page 4 undefined on input 
-line 146.
-
-
-Package natbib Warning: Citation `yi2026pfedlora' on page 4 undefined on input 
-line 146.
-
-
-Package natbib Warning: Citation `cho2024hetlora' on page 4 undefined on input 
-line 146.
-
-
-Package natbib Warning: Citation `wang2024flora' on page 4 undefined on input l
-ine 146.
-
-
-Package natbib Warning: Citation `fan2025helora' on page 4 undefined on input l
-ine 146.
-
-
-Package natbib Warning: Citation `wu2026fedara' on page 4 undefined on input li
-ne 146.
-
-
-Package natbib Warning: Citation `sun2024ffalora' on page 4 undefined on input 
-line 148.
-
-
-Package natbib Warning: Citation `yang2024safedlora' on page 4 undefined on inp
-ut line 150.
-
-
-Package natbib Warning: Citation `guo2025fedsalora' on page 4 undefined on inpu
-t line 150.
-
-[4]
-
-Package natbib Warning: Citation `oh2023fedqcs' on page 5 undefined on input li
-ne 153.
-
-
-Package natbib Warning: Citation `oh2024fedvqcs' on page 5 undefined on input l
-ine 153.
-
-
-Package natbib Warning: Citation `liu2023adaptivequant' on page 5 undefined on 
-input line 153.
-
-
-Package natbib Warning: Citation `kim2023beamforming' on page 5 undefined on in
-put line 153.
-
-
-Package natbib Warning: Citation `reisizadeh2020fedpaq' on page 5 undefined on 
-input line 153.
-
-
-Package natbib Warning: Citation `lin2018deep' on page 5 undefined on input lin
-e 153.
-
-
-Package natbib Warning: Citation `oort2021oort' on page 5 undefined on input li
-ne 156.
-
-
-Package natbib Warning: Citation `chen2024clientselection' on page 5 undefined 
-on input line 156.
-
-
-Package natbib Warning: Citation `dong2024aoi' on page 5 undefined on input lin
-e 156.
-
-
-Package natbib Warning: Citation `luo2021costeffective' on page 5 undefined on 
-input line 156.
-
-
-Package natbib Warning: Citation `razmi2022ground' on page 5 undefined on input
- line 156.
-
-
-Package natbib Warning: Citation `tang2023flsagin' on page 5 undefined on input
- line 156.
-
-
-Package natbib Warning: Citation `qin2024dfrl' on page 5 undefined on input lin
-e 156.
-
-
-Package natbib Warning: Citation `ribero2023intermittent' on page 5 undefined o
-n input line 156.
-
-
-Package natbib Warning: Citation `han2024orchestrating' on page 5 undefined on 
-input line 156.
-
-
-Package natbib Warning: Citation `lin2025fedsn' on page 5 undefined on input li
-ne 156.
-
-
-Package natbib Warning: Citation `mahboob2024ntn' on page 5 undefined on input 
-line 198.
-
-
-Package natbib Warning: Citation `razmi2022ground' on page 5 undefined on input
- line 198.
-
-[5] [6] [7]
-
-Package natbib Warning: Citation `oort2021oort' on page 8 undefined on input li
-ne 233.
-
-[8] [9] [10] [11] [12] [13]
-Overfull \hbox (18.16547pt too wide) in paragraph at lines 361--362
+[3{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [4]
+<recolored_figures/fig_architecture.pdf, id=33, 555.05635pt x 316.0532pt>
+File: recolored_figures/fig_architecture.pdf Graphic file (type pdf)
+<use recolored_figures/fig_architecture.pdf>
+Package pdftex.def Info: recolored_figures/fig_architecture.pdf  used on input 
+line 195.
+(pdftex.def)             Requested size: 382.19833pt x 217.63326pt.
+ [5]
+[6 <./recolored_figures/fig_architecture.pdf>] [7] [8] [9] [10] [11] [12]
+[13]
+Overfull \hbox (18.16547pt too wide) in paragraph at lines 365--366
 \OT1/cmr/m/n/12 0.1, it up-dates as []|   [][][]|   [][],
  []
 
-<recolored_figures/fig_cross_dataset.pdf, id=68, 256.0748pt x 158.99399pt>
+<recolored_figures/fig_cross_dataset.pdf, id=105, 256.0748pt x 158.99399pt>
 File: recolored_figures/fig_cross_dataset.pdf Graphic file (type pdf)
 <use recolored_figures/fig_cross_dataset.pdf>
 Package pdftex.def Info: recolored_figures/fig_cross_dataset.pdf  used on input
- line 371.
+ line 375.
 (pdftex.def)             Requested size: 312.00119pt x 193.72491pt.
-[14 <./recolored_figures/fig_cross_dataset.pdf>]
-<recolored_figures/fig_trainer_nominal.pdf, id=87, 256.0748pt x 169.8345pt>
+[14]
+<recolored_figures/fig_trainer_nominal.pdf, id=109, 256.0748pt x 169.8345pt>
 File: recolored_figures/fig_trainer_nominal.pdf Graphic file (type pdf)
 <use recolored_figures/fig_trainer_nominal.pdf>
 Package pdftex.def Info: recolored_figures/fig_trainer_nominal.pdf  used on inp
-ut line 402.
+ut line 406.
 (pdftex.def)             Requested size: 312.00119pt x 206.93344pt.
- [15]
-<recolored_figures/fig_rank_dynamics.pdf, id=91, 256.0748pt x 169.8345pt>
+ [15 <./recolored_figures/fig_cross_dataset.pdf>]
+<recolored_figures/fig_rank_dynamics.pdf, id=128, 256.0748pt x 169.8345pt>
 File: recolored_figures/fig_rank_dynamics.pdf Graphic file (type pdf)
 <use recolored_figures/fig_rank_dynamics.pdf>
 Package pdftex.def Info: recolored_figures/fig_rank_dynamics.pdf  used on input
- line 437.
+ line 441.
 (pdftex.def)             Requested size: 312.00119pt x 206.93344pt.
-<recolored_figures/fig_trainer_stress.pdf, id=92, 256.0748pt x 169.8345pt>
+<recolored_figures/fig_trainer_stress.pdf, id=129, 256.0748pt x 169.8345pt>
 File: recolored_figures/fig_trainer_stress.pdf Graphic file (type pdf)
 <use recolored_figures/fig_trainer_stress.pdf>
 Package pdftex.def Info: recolored_figures/fig_trainer_stress.pdf  used on inpu
-t line 446.
+t line 450.
 (pdftex.def)             Requested size: 312.00119pt x 206.93344pt.
- [16 <./recolored_figures/fig_trainer_nominal.pdf>]
-
-Package natbib Warning: Citation `yang2024safedlora' on page 17 undefined on in
-put line 477.
-
-
-Package natbib Warning: Citation `oort2021oort' on page 17 undefined on input l
-ine 477.
-
-
-Package natbib Warning: Citation `guo2025fedsalora' on page 17 undefined on inp
-ut line 477.
-
-[17] [18 <./recolored_figures/fig_rank_dynamics.pdf>] [19 <./recolored_figures/
-fig_trainer_stress.pdf>]
-<recolored_figures/fig_sim_accuracy.pdf, id=144, 540.60239pt x 180.675pt>
+ [16] [17 <./recolored_figures/fig_trainer_nominal.pdf>] [18 <./recolored_figur
+es/fig_rank_dynamics.pdf>] [19 <./recolored_figures/fig_trainer_stress.pdf>] [2
+0]
+<recolored_figures/fig_sim_accuracy.pdf, id=184, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_accuracy.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_accuracy.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_accuracy.pdf  used on input 
-line 603.
+line 607.
 (pdftex.def)             Requested size: 382.19833pt x 127.73427pt.
-<recolored_figures/fig_sim_regimes.pdf, id=145, 540.60239pt x 180.675pt>
+<recolored_figures/fig_sim_regimes.pdf, id=185, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_regimes.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_regimes.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_regimes.pdf  used on input l
-ine 612.
+ine 616.
 (pdftex.def)             Requested size: 382.19833pt x 127.73427pt.
- [20] [21]
-<recolored_figures/fig_dp_study.pdf, id=152, 540.60239pt x 180.675pt>
+ [21]
+<recolored_figures/fig_dp_study.pdf, id=189, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_dp_study.pdf Graphic file (type pdf)
 <use recolored_figures/fig_dp_study.pdf>
 Package pdftex.def Info: recolored_figures/fig_dp_study.pdf  used on input line
- 653.
+ 657.
 (pdftex.def)             Requested size: 382.19833pt x 127.73427pt.
  [22] [23 <./recolored_figures/fig_sim_accuracy.pdf> <./recolored_figures/fig_s
 im_regimes.pdf>]
-<recolored_figures/fig_sensitivity.pdf, id=196, 540.60239pt x 158.99399pt>
+<recolored_figures/fig_sensitivity.pdf, id=234, 540.60239pt x 158.99399pt>
 File: recolored_figures/fig_sensitivity.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sensitivity.pdf>
 Package pdftex.def Info: recolored_figures/fig_sensitivity.pdf  used on input l
-ine 670.
+ine 674.
 (pdftex.def)             Requested size: 382.19833pt x 112.40616pt.
-<recolored_figures/fig_calibration.pdf, id=197, 540.60239pt x 180.675pt>
+<recolored_figures/fig_calibration.pdf, id=235, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_calibration.pdf Graphic file (type pdf)
 <use recolored_figures/fig_calibration.pdf>
 Package pdftex.def Info: recolored_figures/fig_calibration.pdf  used on input l
-ine 679.
+ine 683.
 (pdftex.def)             Requested size: 312.00119pt x 104.27327pt.
- [24 <./recolored_figures/fig_dp_study.pdf>] [25 <./recolored_figures/fig_sensi
-tivity.pdf>] [26 <./recolored_figures/fig_calibration.pdf>] [27]
 
-Package natbib Warning: Citation `bonawitz2017secureagg' on page 28 undefined o
-n input line 752.
+[24 <./recolored_figures/fig_dp_study.pdf>] [25 <./recolored_figures/fig_sensit
+ivity.pdf>] [26 <./recolored_figures/fig_calibration.pdf>] [27] [28] [29]
+[30] (./CN_reviewed_marked.bbl [31] [32]
+Underfull \hbox (badness 2600) in paragraph at lines 122--128
+[]\OT1/cmr/m/n/12 L. Yi, H. Zhang, H. Yu, G. Wang, X. Liu, Q. Hu, pFed-
+ []
 
 
-Package natbib Warning: Citation `wei2023pfl_dp' on page 28 undefined on input 
-line 752.
+Underfull \hbox (badness 2726) in paragraph at lines 122--128
+\OT1/cmr/m/n/12 Trans-ac-tions on Mo-bile Com-put-ing 25 (9) (2026) 13898--1391
+1.
+ []
 
-[28] [29]
-No file CN_reviewed_marked.bbl.
 
-Package natbib Warning: There were undefined citations.
+Underfull \hbox (badness 3701) in paragraph at lines 145--150
+\OT1/cmr/m/n/12 ac-tions on Wire-less Com-mu-ni-ca-tions 22 (2) (2023) 1087--11
+00.
+ []
 
-[30] (./CN_reviewed_marked.aux)
+
+Underfull \hbox (badness 2582) in paragraph at lines 152--157
+[]\OT1/cmr/m/n/12 Y. Oh, Y.-S. Jeon, M. Chen, W. Saad, Fed-vqcs: Fed-er-ated
+ []
+
+
+Underfull \hbox (badness 2512) in paragraph at lines 152--157
+\OT1/cmr/m/n/12 learn-ing via vec-tor quan-tized com-pressed sens-ing, IEEE Tra
+ns-
+ []
+
+
+Underfull \hbox (badness 3701) in paragraph at lines 152--157
+\OT1/cmr/m/n/12 ac-tions on Wire-less Com-mu-ni-ca-tions 23 (3) (2024) 1755--17
+70.
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 159--164
+\OT1/cmr/m/n/12 ti-za-tion, in: Pro-ceed-ings of IEEE IN-FO-COM, 2023, pp. 1--1
+0.
+ []
+
+[33]
+Underfull \hbox (badness 1168) in paragraph at lines 166--171
+[]\OT1/cmr/m/n/12 M. Kim, A. L. Swindle-hurst, D. Park, Beam-form-ing vec-tor d
+e-
+ []
+
+
+Underfull \hbox (badness 1067) in paragraph at lines 206--211
+[]\OT1/cmr/m/n/12 B. Luo, X. Li, S. Wang, J. Huang, L. Tas-si-u-las, Cost-effec
+tive
+ []
+
+
+Underfull \hbox (badness 3229) in paragraph at lines 206--211
+\OT1/cmr/m/n/12 fed-er-ated learn-ing in mo-bile edge net-works, IEEE Jour-nal 
+on
+ []
+
+
+Underfull \hbox (badness 4967) in paragraph at lines 206--211
+\OT1/cmr/m/n/12 Se-lected Ar-eas in Com-mu-ni-ca-tions 39 (12) (2021) 3606--362
+1.
+ []
+
+[34]) [35] (./CN_reviewed_marked.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 16988 strings out of 474222
- 328643 string characters out of 5748734
- 1968975 words of memory out of 5000000
- 38938 multiletter control sequences out of 15000+600000
+ 16969 strings out of 474222
+ 328648 string characters out of 5748734
+ 1975975 words of memory out of 5000000
+ 38916 multiletter control sequences out of 15000+600000
  568220 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,93p,1747b,892s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,93p,1747b,535s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
@@ -992,10 +849,10 @@ ts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/texmf-dist/fonts/type
 ic/amsfonts/latxfont/lasy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfr
 m1200.pfb>
-Output written on CN_reviewed_marked.pdf (30 pages, 556304 bytes).
+Output written on CN_reviewed_marked.pdf (35 pages, 600352 bytes).
 PDF statistics:
- 382 PDF objects out of 1000 (max. 8388607)
- 226 compressed objects within 3 object streams
+ 435 PDF objects out of 1000 (max. 8388607)
+ 258 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 63 words of extra memory for PDF output out of 10000 (max. 10000000)
 
