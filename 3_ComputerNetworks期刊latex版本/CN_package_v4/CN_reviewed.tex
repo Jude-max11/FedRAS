@@ -59,20 +59,46 @@ The remainder of this paper is organized as follows. Section~\ref{sec:related} r
 \label{sec:related}
 
 \subsection{Federated LoRA and heterogeneous-rank adaptation}
-LoRA freezes a pretrained backbone and learns low-rank increments $\Delta W=BA$ \cite{hu2022lora}. Federated LoRA trains these adapters across clients. Prior work has studied sparse updates, instruction tuning, and model-heterogeneous personalization \cite{babakniya2023slora,zhang2024fedit,yi2026pfedlora}. A further line lets the rank vary across clients and aligns heterogeneous ranks for aggregation, by rank self-pruning with sparsity-weighted averaging \cite{cho2024hetlora}, stacking \cite{wang2024flora}, zero-padded rank alignment \cite{fan2025helora}, or SVD-based dynamic rank allocation \cite{wu2026fedara}.
+LoRA freezes a pretrained backbone and learns low-rank increments $\Delta W=BA$ \cite{hu2022lora}. Federated LoRA trains these adapters across clients. Prior work has studied sparse updates and instruction tuning \cite{babakniya2023slora,zhang2024fedit}, examined how standard parameter-efficient tuning behaves under the federated setting \cite{zhang2023fedpetuning}, and pursued personalization through model-heterogeneous or dual-adapter designs \cite{yi2026pfedlora,yang2024feddpa}. A further line lets the rank vary across clients and aligns heterogeneous ranks for aggregation, by rank self-pruning with sparsity-weighted averaging \cite{cho2024hetlora}, stacking \cite{wang2024flora}, zero-padded rank alignment \cite{fan2025helora}, or SVD-based dynamic rank allocation \cite{wu2026fedara}.
 
 FFA-LoRA \cite{sun2024ffalora} froze one factor at its random initialization and showed that this improves stability in privacy-preserving federated fine-tuning. We adopt the same frozen-factor property for a stronger reason. When the frozen factor is identical across clients, averaging the trainable factor gives exact coordinate-wise averaging of the active induced-update slices, as Proposition~\ref{prop:agg} shows, and each client uploads only that factor. It thereby removes the factor-rotation ambiguity that makes joint factor averaging differ from update averaging. Section~\ref{sec:aggregation} develops this aggregation.
 
-SA-FedLoRA schedules rank over rounds without conditioning on link state \cite{yang2024safedlora}. FedSA-LoRA studies asymmetric factor aggregation with client-local parameters \cite{guo2025fedsalora}. These rank-adaptation rules respond to training progress or device capability, not to the delivery state of a deadline-constrained link. We evaluate an annealing baseline and joint A/B averaging while making rank a per-round decision conditioned on delivery state and deadline.
+SA-FedLoRA schedules rank over rounds without conditioning on link state \cite{yang2024safedlora}. FedSA-LoRA studies asymmetric factor aggregation with client-local parameters \cite{guo2025fedsalora}. Across these systems, the rank responds to training progress, parameter importance, or device capability; in none of them is it a decision variable conditioned on the delivery state of a deadline-constrained link. We evaluate an annealing baseline and joint A/B averaging while making rank a per-round decision conditioned on delivery state and deadline.
 
 \subsection{Communication-efficient federated learning}
 A broad literature reduces FL communication through sparsification, quantization, compressed sensing, and over-the-air aggregation \cite{oh2023fedqcs,oh2024fedvqcs,liu2023adaptivequant,kim2023beamforming,reisizadeh2020fedpaq,lin2018deep}. These methods compress a given update. Our scheduler selects its rank before transmission, so rank directly affects payload and deadline feasibility. The proposed capacity and delivery models can therefore be combined with other codecs.
 
 \subsection{Client selection and deadline-aware scheduling}
-Client selection improves FL efficiency under data, latency, and energy heterogeneity \cite{oort2021oort,chen2024clientselection,dong2024aoi,luo2021costeffective}. Deadline- and reliability-aware participation has also been studied in mobile and non-terrestrial networks \cite{razmi2022ground,tang2023flsagin,qin2024dfrl,ribero2023intermittent,han2024orchestrating}, and FedSN coordinates federated training across heterogeneous LEO satellite networks \cite{lin2025fedsn}. These methods generally treat update size as fixed. We include an Oort-style selector as a selection baseline. FedRAS chooses participation and update rank together, yielding a multiple-choice knapsack.
+Client selection improves FL efficiency under data, latency, and energy heterogeneity. Oort ranks candidates by a utility that couples data value with system efficiency \cite{oort2021oort}; FedCS selects clients under explicit resource constraints \cite{nishio2019fedcs}; TiFL groups clients into latency tiers to bound stragglers \cite{chai2020tifl}; further designs target cost and freshness \cite{chen2024clientselection,dong2024aoi,luo2021costeffective}. A second line makes participation deadline- and reliability-aware in mobile and non-terrestrial networks \cite{razmi2022ground,tang2023flsagin,qin2024dfrl,ribero2023intermittent,han2024orchestrating}: LESSON admits wireless clients at differentiated frequencies under a latency budget \cite{yu2023lesson}, and FedSN coordinates federated training across heterogeneous LEO satellite networks \cite{lin2025fedsn}. These methods generally treat update size as fixed: participation is decided for a given payload, not jointly with it. We include an Oort-style selector as a selection baseline. FedRAS chooses participation and update rank together, yielding a multiple-choice knapsack.
 
 \subsection{Research gap and positioning}
-We do not claim each ingredient individually as new. Our contribution is their combination. It comprises the LoRA rank treated as a deadline-constrained network resource with an explicit payload-conditioned delivery hazard, a client--rank assignment that is exact on the stated budget grid, with quantified greedy gaps and solver cost, and validation of the resulting trade-offs with a real federated trainer in which adapters are placed on every block of the backbone and all byte accounting uses real serialized sizes. The theoretical contribution is mechanism correctness rather than a learning-performance guarantee: exactness of the assignment on the stated grid (Proposition~\ref{prop:dp}) and exactness of frozen-factor aggregation (Proposition~\ref{prop:agg}), each with its scope conditions stated where it applies. The claim is conditional on the surveyed literature of Section~\ref{sec:related} and on the evaluated setting.
+Across these lines, a common interface is missing. The rank-adaptation methods of Section~2.1 decide the rank from training state, parameter importance, or device capability; the selection and deadline-aware methods of Section~2.3 decide participation for a fixed update size. Neither treats the LoRA rank as a schedulable network resource whose payload sets the delivery probability on a lossy link, and none formulates the joint client--rank assignment under byte-budget and deadline constraints. Table~\ref{tab:rwcompare} positions FedRAS against the closest systems along these dimensions.
+
+We do not claim each ingredient individually as new. Our contribution is their combination: the LoRA rank treated as a deadline-constrained network resource with an explicit payload-conditioned delivery hazard, a client--rank assignment that is exact on the stated budget grid with quantified greedy gaps and solver cost, and validation with a real federated trainer in which adapters are placed on every block of the backbone and all byte accounting uses real serialized sizes. The theoretical contribution is mechanism correctness rather than a learning-performance guarantee: exactness of the assignment on the stated grid (Proposition~\ref{prop:dp}) and exactness of frozen-factor aggregation (Proposition~\ref{prop:agg}), each with its scope conditions stated where it applies. The claim is conditional on the surveyed literature of Section~\ref{sec:related} and on the evaluated setting.
+
+\begin{table}[t]
+\centering
+\caption{Positioning against the closest federated LoRA and client-selection systems. Cell entries reflect the cited papers' own descriptions; ``link-aware'' means that a scheduling or adaptation decision conditions on network delivery state (rate, deadline, delivery probability) rather than on training progress or device capability alone; for fixed-rank systems the aggregation column is not applicable (---); n/r means not reported.}
+\label{tab:rwcompare}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{l cc cccc}
+\toprule
+System & Rank decision & Link-aware & Het.-rank aggregation & Joint adm.+rank & Payload accounting & Real training\\
+\midrule
+FFA-LoRA \cite{sun2024ffalora} & fixed & --- & --- & --- & parameter count & \checkmark\\
+SLoRA \cite{babakniya2023slora} & fixed & --- & --- & --- & parameter count & \checkmark\\
+HetLoRA \cite{cho2024hetlora} & per client/round & --- & zero-padding, sparsity-weighted & --- & parameter count & \checkmark\\
+HeLoRA \cite{fan2025helora} & per client & --- & zero-padding, KD variants & n/r & parameter count & \checkmark\\
+FedARA \cite{wu2026fedara} & per layer/round & --- & threshold mask arbitration & --- & parameter count & \checkmark\\
+SA-FedLoRA \cite{yang2024safedlora} & per round & --- & n/r & --- & parameter count & n/r\\
+FedSA-LoRA \cite{guo2025fedsalora} & fixed & --- & --- & --- & parameter count & \checkmark\\
+Oort \cite{oort2021oort} & none (rank fixed) & runtime profile & --- & \checkmark (admission) & runtime profile & \checkmark\\
+\midrule
+FedRAS (ours) & per client/round & \checkmark & frozen-$A$ rank masking & \checkmark (joint MCKP) & real serialized sizes & \checkmark\\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
 
 \section{System model and scheduling formulation}
 \label{sec:model}

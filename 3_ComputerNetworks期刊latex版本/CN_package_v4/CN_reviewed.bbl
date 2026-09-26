@@ -118,6 +118,14 @@ W.~Ma, T.~Hu, X.~Liu, Mobility-predictive risk-budgeted protection selection
   Wireless and Mobile Systems (MSWiM), 2026, accepted poster paper; publication
   details to be updated when available.
 
+\bibitem{zhang2023fedpetuning}
+Z.~Zhang, Y.~Yang, Y.~Dai, Q.~Wang, Y.~Yu, L.~Qu, Z.~Xu, {FedPETuning}: When
+  federated learning meets the parameter-efficient tuning methods of
+  pre-trained language models, in: Findings of the Association for
+  Computational Linguistics: ACL 2023, 2023, pp. 9963--9977.
+\newblock \href {https://doi.org/10.18653/v1/2023.findings-acl.632}
+  {\path{doi:10.18653/v1/2023.findings-acl.632}}.
+
 \bibitem{yi2026pfedlora}
 L.~Yi, H.~Zhang, H.~Yu, G.~Wang, X.~Liu, Q.~Hu, {pFedLoRA}: Model-heterogeneous
   personalized federated learning with homogeneous low-rank adapter sharing on
@@ -125,6 +133,11 @@ L.~Yi, H.~Zhang, H.~Yu, G.~Wang, X.~Liu, Q.~Hu, {pFedLoRA}: Model-heterogeneous
   13898--13911.
 \newblock \href {https://doi.org/10.1109/TMC.2026.3674996}
   {\path{doi:10.1109/TMC.2026.3674996}}.
+
+\bibitem{yang2024feddpa}
+Y.~Yang, G.~Long, T.~Shen, J.~Jiang, M.~Blumenstein, Dual-personalizing adapter
+  for federated foundation models, in: Advances in Neural Information
+  Processing Systems 37 (NeurIPS), 2024.
 
 \bibitem{wang2024flora}
 Z.~Wang, Z.~Gu, J.~Weng, X.~Shang, J.~Li, J.~Li, K.~Wan, {FLoRA}: Federated
@@ -187,6 +200,21 @@ F.~Lai, X.~Zhu, H.~V. Madhyastha, M.~Chowdhury, Oort: Efficient federated
   Symposium on Operating Systems Design and Implementation (OSDI), 2021, pp.
   19--35.
 
+\bibitem{nishio2019fedcs}
+T.~Nishio, R.~Yonetani, Client selection for federated learning with
+  heterogeneous resources in mobile edge, in: IEEE International Conference on
+  Communications (ICC), 2019.
+\newblock \href {https://doi.org/10.1109/ICC.2019.8761315}
+  {\path{doi:10.1109/ICC.2019.8761315}}.
+
+\bibitem{chai2020tifl}
+Z.~Chai, A.~Ali, S.~Zawad, S.~Truex, A.~Anwar, N.~Baracaldo, Y.~Zhou,
+  H.~Ludwig, F.~Yan, Y.~Cheng, {TiFL}: A tier-based federated learning system,
+  in: Proceedings of the 29th International Symposium on High-Performance
+  Parallel and Distributed Computing (HPDC), 2020.
+\newblock \href {https://doi.org/10.1145/3369583.3392686}
+  {\path{doi:10.1145/3369583.3392686}}.
+
 \bibitem{chen2024clientselection}
 X.~Chen, X.~Zhou, H.~Zhang, M.~Sun, H.~V. Poor, Client selection for wireless
   federated learning with data and latency heterogeneity, IEEE Internet of
@@ -216,6 +244,13 @@ D.-J. Han, W.~Fang, S.~Hosseinalipour, M.~Chiang, C.~G. Brinton, Orchestrating
   Communications 42~(12) (2024) 3505--3520.
 \newblock \href {https://doi.org/10.1109/JSAC.2024.3459090}
   {\path{doi:10.1109/JSAC.2024.3459090}}.
+
+\bibitem{yu2023lesson}
+L.~Yu, X.~Sun, R.~Albelaihi, C.~Yi, Latency-aware semi-synchronous client
+  selection and model aggregation for wireless federated learning, Future
+  Internet 15~(11) (2023) 352.
+\newblock \href {https://doi.org/10.3390/fi15110352}
+  {\path{doi:10.3390/fi15110352}}.
 
 \bibitem{lin2025fedsn}
 Z.~Lin, Z.~Chen, Z.~Fang, X.~Chen, X.~Wang, Y.~Gao, {FedSN}: A federated
