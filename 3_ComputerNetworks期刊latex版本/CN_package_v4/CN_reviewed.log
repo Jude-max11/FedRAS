@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  26 SEP 2026 08:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  26 SEP 2026 08:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -607,86 +607,89 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Underfull \hbox (badness 1194) in paragraph at lines 48--49
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2{/usr/share/texmf/fonts/
+enc/dvips/cm-super/cm-super-ts1.enc}]
+Underfull \hbox (badness 1194) in paragraph at lines 47--48
 \OT1/cmr/m/n/12 a multiple-choice knap-sack with an ad-mis-sion cap. We de-rive
 
  []
 
-[3{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [4]
+[3] [4]
 <recolored_figures/fig_architecture.pdf, id=32, 555.05635pt x 316.0532pt>
 File: recolored_figures/fig_architecture.pdf Graphic file (type pdf)
 <use recolored_figures/fig_architecture.pdf>
 Package pdftex.def Info: recolored_figures/fig_architecture.pdf  used on input 
-line 83.
+line 82.
 (pdftex.def)             Requested size: 382.19833pt x 217.63326pt.
- [5]
-[6 <./recolored_figures/fig_architecture.pdf>] [7] [8] [9] [10] [11] [12]
-[13]
+ [5] [6 <./recolored_figures/fig_architecture.pdf>] [7] [8] [9] [10]
+[11] [12] [13]
 <recolored_figures/fig_cross_dataset.pdf, id=104, 256.0748pt x 158.99399pt>
 File: recolored_figures/fig_cross_dataset.pdf Graphic file (type pdf)
 <use recolored_figures/fig_cross_dataset.pdf>
 Package pdftex.def Info: recolored_figures/fig_cross_dataset.pdf  used on input
- line 259.
+ line 262.
 (pdftex.def)             Requested size: 312.00119pt x 193.72491pt.
- [14]
-<recolored_figures/fig_trainer_nominal.pdf, id=108, 256.0748pt x 169.8345pt>
+ [14 <./recolored_figures/fig_cross_dataset.pdf>]
+<recolored_figures/fig_trainer_nominal.pdf, id=123, 256.0748pt x 169.8345pt>
 File: recolored_figures/fig_trainer_nominal.pdf Graphic file (type pdf)
 <use recolored_figures/fig_trainer_nominal.pdf>
 Package pdftex.def Info: recolored_figures/fig_trainer_nominal.pdf  used on inp
-ut line 288.
+ut line 293.
 (pdftex.def)             Requested size: 312.00119pt x 206.93344pt.
- [15 <./recolored_figures/fig_cross_dataset.pdf>]
+ [15]
 <recolored_figures/fig_rank_dynamics.pdf, id=127, 256.0748pt x 169.8345pt>
 File: recolored_figures/fig_rank_dynamics.pdf Graphic file (type pdf)
 <use recolored_figures/fig_rank_dynamics.pdf>
 Package pdftex.def Info: recolored_figures/fig_rank_dynamics.pdf  used on input
- line 321.
+ line 326.
 (pdftex.def)             Requested size: 312.00119pt x 206.93344pt.
 <recolored_figures/fig_trainer_stress.pdf, id=128, 256.0748pt x 169.8345pt>
 File: recolored_figures/fig_trainer_stress.pdf Graphic file (type pdf)
 <use recolored_figures/fig_trainer_stress.pdf>
 Package pdftex.def Info: recolored_figures/fig_trainer_stress.pdf  used on inpu
-t line 328.
+t line 333.
 (pdftex.def)             Requested size: 312.00119pt x 206.93344pt.
  [16 <./recolored_figures/fig_trainer_nominal.pdf>] [17] [18 <./recolored_figur
-es/fig_rank_dynamics.pdf>] [19 <./recolored_figures/fig_trainer_stress.pdf>]
-<recolored_figures/fig_sim_accuracy.pdf, id=180, 540.60239pt x 180.675pt>
+es/fig_rank_dynamics.pdf>] [19 <./recolored_figures/fig_trainer_stress.pdf>] [2
+0]
+<recolored_figures/fig_sim_accuracy.pdf, id=183, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_accuracy.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_accuracy.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_accuracy.pdf  used on input 
-line 446.
+line 481.
 (pdftex.def)             Requested size: 382.19833pt x 127.73427pt.
-<recolored_figures/fig_sim_regimes.pdf, id=181, 540.60239pt x 180.675pt>
+ [21]
+<recolored_figures/fig_sim_regimes.pdf, id=187, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_regimes.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_regimes.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_regimes.pdf  used on input l
-ine 453.
+ine 488.
 (pdftex.def)             Requested size: 382.19833pt x 127.73427pt.
- [20] [21]
 <recolored_figures/fig_dp_study.pdf, id=188, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_dp_study.pdf Graphic file (type pdf)
 <use recolored_figures/fig_dp_study.pdf>
 Package pdftex.def Info: recolored_figures/fig_dp_study.pdf  used on input line
- 491.
+ 524.
 (pdftex.def)             Requested size: 382.19833pt x 127.73427pt.
- [22] [23 <./recolored_figures/fig_sim_accuracy.pdf> <./recolored_figures/fig_s
-im_regimes.pdf>]
-<recolored_figures/fig_sensitivity.pdf, id=233, 540.60239pt x 158.99399pt>
-File: recolored_figures/fig_sensitivity.pdf Graphic file (type pdf)
-<use recolored_figures/fig_sensitivity.pdf>
-Package pdftex.def Info: recolored_figures/fig_sensitivity.pdf  used on input l
-ine 506.
-(pdftex.def)             Requested size: 382.19833pt x 112.40616pt.
-<recolored_figures/fig_calibration.pdf, id=234, 540.60239pt x 180.675pt>
+
+[22] [23 <./recolored_figures/fig_sim_accuracy.pdf> <./recolored_figures/fig_si
+m_regimes.pdf>]
+<recolored_figures/fig_calibration.pdf, id=233, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_calibration.pdf Graphic file (type pdf)
 <use recolored_figures/fig_calibration.pdf>
 Package pdftex.def Info: recolored_figures/fig_calibration.pdf  used on input l
-ine 513.
+ine 534.
 (pdftex.def)             Requested size: 312.00119pt x 104.27327pt.
- [24 <./recolored_figures/fig_dp_study.pdf> <./recolored_figures/fig_sensitivit
-y.pdf>] [25 <./recolored_figures/fig_calibration.pdf>] [26] [27] [28]
-[29] (./CN_reviewed.bbl [30] [31]
+ [24 <./recolored_figures/fig_dp_study.pdf>]
+<recolored_figures/fig_sensitivity.pdf, id=260, 540.60239pt x 158.99399pt>
+File: recolored_figures/fig_sensitivity.pdf Graphic file (type pdf)
+<use recolored_figures/fig_sensitivity.pdf>
+Package pdftex.def Info: recolored_figures/fig_sensitivity.pdf  used on input l
+ine 545.
+(pdftex.def)             Requested size: 382.19833pt x 112.40616pt.
+ [25 <./recolored_figures/fig_calibration.pdf> <./recolored_figures/fig_sensiti
+vity.pdf>] [26]
+[27] [28] [29] (./CN_reviewed.bbl [30] [31]
 Underfull \hbox (badness 2600) in paragraph at lines 122--128
 []\OT1/cmr/m/n/12 L. Yi, H. Zhang, H. Yu, G. Wang, X. Liu, Q. Hu, pFed-
  []
@@ -703,7 +706,7 @@ Underfull \hbox (badness 3701) in paragraph at lines 145--150
 00.
  []
 
-[32]
+
 Underfull \hbox (badness 2582) in paragraph at lines 152--157
 []\OT1/cmr/m/n/12 Y. Oh, Y.-S. Jeon, M. Chen, W. Saad, Fed-vqcs: Fed-er-ated
  []
@@ -726,13 +729,13 @@ Underfull \hbox (badness 1688) in paragraph at lines 159--164
 0.
  []
 
-
+[32]
 Underfull \hbox (badness 1168) in paragraph at lines 166--171
 []\OT1/cmr/m/n/12 M. Kim, A. L. Swindle-hurst, D. Park, Beam-form-ing vec-tor d
 e-
  []
 
-[33]
+
 Underfull \hbox (badness 1067) in paragraph at lines 206--211
 []\OT1/cmr/m/n/12 B. Luo, X. Li, S. Wang, J. Huang, L. Tas-si-u-las, Cost-effec
 tive
@@ -750,20 +753,20 @@ Underfull \hbox (badness 4967) in paragraph at lines 206--211
 1.
  []
 
-) [34] (./CN_reviewed.aux)
+[33]) [34] (./CN_reviewed.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 15397 strings out of 474222
- 305444 string characters out of 5748734
- 1951975 words of memory out of 5000000
- 37366 multiletter control sequences out of 15000+600000
+ 15396 strings out of 474222
+ 305431 string characters out of 5748734
+ 1945975 words of memory out of 5000000
+ 37365 multiletter control sequences out of 15000+600000
  568114 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,93p,1186b,535s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,93p,1418b,535s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
@@ -784,7 +787,7 @@ ts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
 rm1200.pfb>
-Output written on CN_reviewed.pdf (34 pages, 574958 bytes).
+Output written on CN_reviewed.pdf (34 pages, 572838 bytes).
 PDF statistics:
  427 PDF objects out of 1000 (max. 8388607)
  253 compressed objects within 3 object streams
