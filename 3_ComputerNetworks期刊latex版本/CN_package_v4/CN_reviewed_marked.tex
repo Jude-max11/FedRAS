@@ -1080,7 +1080,7 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 \DIFdelbegin \subsection{\DIFdel{Sensitivity, link profile, and predictor calibration}}
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
-%DIFDELCMD < \label{sec:sens}\label{sec:summary}
+%DIFDELCMD < \label{sec:sens}\label{sec:summary}\label{tab:trainer}\label{sec:summary}
 %DIFDELCMD < %%%
 \DIFdel{Fig.~\ref{fig:sens} varies the provisioned adapter width, the cohort size, and the label heterogeneity of the trainer on CIFAR-10. Each variant uses five seeds; the nominal reference column uses ten. Widening the adapter from $r_{\max}=8$ to 32 leaves accuracy flat while bytes rise from 0.45 to 1.80\,MB and timely delivery falls from 0.75 to 0.70; the provisioned width is a network-facing decision rather than an accuracy control. Cohort size from 5 to 20 leaves accuracy flat at linearly scaled bytes. Data heterogeneity from $\alpha=0.1$ to 1.0 moves accuracy as Table~\ref{tab:extended} shows at constant network cost. Per-decision scheduling cost is negligible in all settings: the per-client rank rule costs about 0.1\,ms per decision, roughly 1\,ms per round, against 23 to 421\,ms for the full grid-scheduling DP of Section~\ref{sec:dp_study}.
 }%DIFDELCMD < 
