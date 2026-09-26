@@ -504,3 +504,34 @@ tex 集成：clean 版 TikZ 块替换为 \includegraphics（0.98\columnwidth）+
 独立视觉验收两轮（第一轮抓到红上行箭头未锚定 gate 盒、绿箭头无杆两处
 缺陷，修复后逐像素确认 PASS）。
 两版重编译：干净版 34 页 0 错误；红标版 35 页 0 错误 0 未解析引用。
+
+## 修订记录 18（2026-09-26，结构重组：8 节 → 7 节 + RW 扩写 + R1–R5 去重）
+
+按已确认的结构计划执行（干净版 CN_reviewed.tex 单轮连续搬移，label 全部保留原名）：
+① 骨架重建：原 §3.1+3.2 合并为 "Mobile-edge federated learning architecture and
+  round protocol"；原 §4 降为 3.4 "Deadline-constrained client--rank scheduling
+  formulation"；原 §5 改名 "Solution method and heterogeneous-rank aggregation"
+  并拆为 4.1 离散化 / 4.2 DP+Algorithm 1 / 4.3 正确性与复杂度（Prop 1–2）/ 
+  4.4 frozen-factor rank-masked aggregation（Prop 3）；原 §6 改名 "Experimental
+  evaluation" 并分两层：5.2 真实 trainer（6 个三级小节，消融归队 5.2.6）、
+  5.3 大规模仿真（500 客户端行为 / solver / delivery-predictor sensitivity），
+  5.4 敏感性与鲁棒性（r_max/cohort/α/SAGIN），取消 5.5 Summary（并入 5.4 收尾
+  过渡段）；Discussion 拆 6.1 解释与部署（deployment recipe 迁入）/ 6.2 范围与
+  局限；Conclusion 缩至 1 段主体+范围+future work。
+② R1–R5 去重：轮次管线只在 3.1 正文与 Algorithm 1 各保留一次，Fig.1 题注压缩；
+  hazard 限定语三处分工（3.2 模型性质 / 5.1 oracle 披露 / 6.2 外推边界）；
+  0.090/5.29/58.7× 收敛至摘要、Table 1、5.1 计量、5.2 各一次；调度变体定义移入
+  5.1（离散化句留在 4.1）；objective 免责三处分工（3.4/5.1/6.2），摘要与结论
+  不再重复；结论仅保留一组代表性数字（22%/23%）。
+③ RW 扩写（1→2 页）：2.1 改名并补 FedPETuning（Findings ACL 2023, DOI 核实）与
+  FedDPA（Yang et al., NeurIPS 2024, arXiv 2403.19211）；2.3 按问题维度重组并补
+  FedCS（ICC 2019）、TiFL（HPDC 2020）、LESSON（Future Internet 2023）；2.4 改写
+  为研究缺口定位，新增对比表 tab:rwcompare（9 行 × 7 列，单元格逐篇对照原文核实，
+  HeLoRA/SA-FedLoRA 未核实格标 n/r）。5 篇新引用全部带 DOI 入 references.bib。
+④ 悬挂引用修复：行 47 "Sections…develop the model"→Section 3 统称；Table 1 题注
+  stylized 协议措辞随 sec:simsim 新位置改写；sec:summary 引用随 5.5 取消改为段内
+  指代；红标版对被删旧句的 sec:summary 残留以幽灵 label 兜底。
+⑤ 编译：干净版 35 页 0 错误 0 未解析引用；红标版（latexdiff 自基线 3b8f207 重新
+  生成，41 页）0 错误 0 未解析引用；浮动体逐页检查无堆积（每页 ≤2 个）。
+⑥ 比例实测（正文 28 页）：Intro 2 / RW 2 / 模型+建模 3 / 方法 3 / 实验 15 /
+  Discussion 2 / Conclusion 1；实验占比 54%（期刊常见带 40–60%）。
