@@ -109,9 +109,9 @@
 \newlabel{prop:cohort}{{2}{14}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Exactness of frozen-factor aggregation}{14}{}\protected@file@percent }
 \newlabel{prop:agg}{{3}{14}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Complexity and scope of the analysis}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Experimental evaluation}{16}{}\protected@file@percent }
-\newlabel{sec:eval}{{6}{16}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Complexity analysis}{15}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experimental evaluation}{15}{}\protected@file@percent }
+\newlabel{sec:eval}{{6}{15}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Experimental setup}{16}{}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Payload audit of real serialized update sizes. Frozen-$A$ clients upload only the trainable $B$ factor (1{,}408 parameters per rank column); the $A{+}B$ column is the joint-training equivalent. The stylized $s(r)$ column lists the protocol reused as a normalized-cost cell in Section~\ref {sec:simsim}.}}{17}{}\protected@file@percent }
 \newlabel{tab:audit}{{2}{17}{}{}{}}
@@ -143,25 +143,25 @@
 \newlabel{sec:simsim}{{6.3.1}{26}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Weak-backbone capacity payoff (one-epoch pretrain, five seeds). (a)~Nominal deadline: the rank--accuracy coupling appears (rank 16 above rank 4 by 2.1 points) and FedRAS coincides with rank 16; the dashed line marks the pretrained backbone. (b)~Stress deadline (0.1\,s): FedRAS lands between the fixed ranks on accuracy while delivering more updates than rank 16 at $20\%$ fewer bytes; annotations give attempted MB per round and mean delivered rank.}}{27}{}\protected@file@percent }
 \newlabel{fig:weakbb}{{5}{27}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}Solver optimality and runtime}{27}{}\protected@file@percent }
+\newlabel{sec:dp_study}{{6.3.2}{27}{}{}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Experiments at 500-client scale (five seeds unless noted). (a) Scheduler simulation across regimes; the utility column is the bounded scheduling utility of Section~\ref {sec:eval} and must not be read as dataset accuracy, MB is the attempted uplink payload of admitted clients in the final round billed on the same 0.01\,MB ceiling grid as budget admission, and FedAvg refers to full-model updates at their real serialized size. (b) Solver study with $K{=}25$ and 30 instances per cell on the identical ceiling grid; the table reports heuristic objective loss relative to the grid-based DP and DP runtime.}}{28}{}\protected@file@percent }
 \newlabel{tab:scalemain}{{4}{28}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Scheduler simulation utility-state trajectories (mean over five seeds). (a)~Nominal 2.0\,s deadline, where FedRAS matches fixed rank 16. (b)~0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16.}}{29}{}\protected@file@percent }
 \newlabel{fig:sim}{{6}{29}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Timely delivery ratio and attempted bytes per method across simulator regimes, including the 1000-client scalability regime (five-seed means, final round). Full-model updates deliver nothing under stress and cannot be admitted at all under the binding budget.}}{29}{}\protected@file@percent }
 \newlabel{fig:simreg}{{7}{29}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}Solver optimality and runtime}{29}{}\protected@file@percent }
-\newlabel{sec:dp_study}{{6.3.2}{29}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Solver study. (a)~Objective loss of the heuristics relative to the DP across deadline and budget cells. (b)~DP runtime scaling with the client population.}}{30}{}\protected@file@percent }
 \newlabel{fig:dp}{{8}{30}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Delivery-predictor calibration study (500 clients, 150 round-instances per cell). Left: reliability at the 0.1\,s deadline; with oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted ($\gamma $) and noisy variants are measurably miscalibrated. Right: assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% in every cell.}}{30}{}\protected@file@percent }
+\newlabel{fig:calib}{{9}{30}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3}Delivery-predictor sensitivity}{30}{}\protected@file@percent }
 \newlabel{sec:calsens}{{6.3.3}{30}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Delivery-predictor calibration study (500 clients, 150 round-instances per cell). Left: reliability at the 0.1\,s deadline; with oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted ($\gamma $) and noisy variants are measurably miscalibrated. Right: assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% in every cell.}}{31}{}\protected@file@percent }
-\newlabel{fig:calib}{{9}{31}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and limitations}{32}{}\protected@file@percent }
-\newlabel{sec:discussion}{{7}{32}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Interpretation and deployment considerations}{32}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Scope and limitations}{33}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and limitations}{31}{}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{31}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Interpretation and deployment considerations}{31}{}\protected@file@percent }
 \citation{bonawitz2017secureagg,wei2023pfl_dp}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Scope and limitations}{33}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{34}{}\protected@file@percent }
 \newlabel{sec:conclusion}{{8}{34}{}{}{}}
 \bibstyle{elsarticle-num}

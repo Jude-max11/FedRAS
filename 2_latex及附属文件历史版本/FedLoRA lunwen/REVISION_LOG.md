@@ -819,3 +819,26 @@ fit-check 46 条文本 OK。重编译 39 页 0 错误；图页 p7 视觉验收 P
 ③ 编译：42→41 页，0 错误 0 未解析 0 overfull；红标版 52 页同口径。视觉验收：
   改动图页 8 页全 PASS（normlaw/weakbb/sensitivity/sim×2/dp/calibration 在
   缩小后字号均高于 5pt 下限、无裁剪无空洞）。
+
+## 修订记录 33（2026-09-28，限制句大扫除：正文清零，归口 7.2）
+
+按作者指令执行"正文自贬/限制句清零，所有限制归口 7.2"：
+① MSWIM 段压缩为 3 句（作者给定中文版逐句英译）；
+② 2.4 删除 "We do not claim each ingredient individually as new. Our contribution
+  is their combination: …" 整句；"mechanism correctness rather than a
+  learning-performance guarantee" 改为正向 establish 句式；"The claim is
+  conditional on…" 删除；
+③ 5.4 改名 "Complexity analysis"，"Scope of the analysis" 段移出，其内容并入
+  7.2 Myopia（"the guarantees are confined to the discretized single-round
+  assignment and to frozen-factor aggregation"）；
+④ 3.4 威胁模型末句改正向：exposed-transmission 缩减定位为通信属性，DP/安全
+  聚合/拜占庭机制 "compose orthogonally with rank scheduling"（不再说 out of
+  scope；7.2 Security 保留完整非声明句）；
+⑤ 6.2.3 SAGIN "parameterized link model, not a measured trace" 句改正向
+  （合成链路边界由 7.2 Generality 承载）；
+⑥ 6.3.3 删 "Calibration on measured traces remains open…"（7.2 Estimator
+  assumptions 已有同句）；结论删 "The claims are conditional on…" 引导
+  （7.2 Scope of claims 承载），保留正向部署价值句。
+⑦ 全文残留检视：仅 7.2 内保留 4 处必要诚实声明（非可比性、隐私非声明、
+  未测属性边界、威胁模型范围），均属允许位置。
+编译：干净版 41 页、红标版 52+ 页，0 错误 0 未解析引用。
