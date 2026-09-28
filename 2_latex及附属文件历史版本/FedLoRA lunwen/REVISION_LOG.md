@@ -718,3 +718,16 @@ hatch='///' 的未裁剪路径 bbox 罩住全盒文本（碰撞审计 5 fail 根
   则记号统一 P̂_on；DP 运行时解释改 "budget grid width"。
 ⑥ 编译：干净版 39 页 0 错误 0 未解析；红标版 49 页同口径（幻影标签扩至新三
   标签）。视觉验收 10 页全 PASS。
+
+修订记录 27（2026-09-28，引言引用加固 16→22 条）
+① 新增 bib 2 条（均经 CrossRef 核实）：nguyen2021iotfl（Nguyen 等，
+  "Federated Learning for Internet of Things: A Comprehensive Survey"，
+  IEEE COMST 23(3):1622-1658, 2021, DOI 10.1109/COMST.2021.3075439，1551 引）；
+  hamdi2022ehfl（Hamdi 等，"Federated Learning Over Energy Harvesting
+  Wireless Networks"，IEEE IoT-J 9(1):92-103, 2022, DOI 10.1109/JIOT.2021.3089054，
+  76 引）。bib 总量 39→41。
+② 引言插入：开篇设备句加 IoT-FL 综述；"drain client energy" 句加能效 FL；
+  缺口段重构为固定/变秩/轮内自适应/个性化四族枚举，拉回 sun2024ffalora、
+  zhang2023fedpetuning、yi2026pfedlora、yang2024feddpa（三条原有条目元数据
+  经 CrossRef 核对无误）。
+③ 编译：干净版 39 页 0 错误 0 未解析；红标版 49 页同口径。视觉验收 p1-3 PASS。

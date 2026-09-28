@@ -5,10 +5,16 @@
 \Newlabel{inst2}{b}
 \Newlabel{inst3}{c}
 \citation{mcmahan2017fedavg,kairouz2021advances,liu2018sagin,mahboob2024ntn}
+\citation{mcmahan2017fedavg,kairouz2021advances,nguyen2021iotfl,liu2018sagin,mahboob2024ntn}
 \citation{razmi2022ground,tang2023flsagin,qin2024dfrl,ribero2023intermittent}
+\citation{hamdi2022ehfl,razmi2022ground,tang2023flsagin,qin2024dfrl,ribero2023intermittent}
 \citation{hu2022lora,babakniya2023slora,zhang2024fedit}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{}\protected@file@percent }
 \newlabel{sec:intro}{{1}{2}{}{}{}}
+\citation{sun2024ffalora,zhang2023fedpetuning}
+\citation{cho2024hetlora,fan2025helora}
+\citation{wu2026fedara,yang2024safedlora}
+\citation{yi2026pfedlora,yang2024feddpa}
 \citation{cho2024hetlora,fan2025helora}
 \citation{wu2026fedara,yang2024safedlora}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}{\color {red}\sout {Contributions}}}{3}{}\protected@file@percent }
@@ -58,14 +64,14 @@
 \citation{lin2025fedsn}
 \citation{mahboob2024ntn,razmi2022ground}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}\DIFdelbegin  {\color {red}\sout {Positioning}}\DIFdelend  \DIFaddbegin  {\color {blue}\uwave {Research gap and positioning}}\DIFaddend  }{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}System model \DIFaddbegin  {\color {blue}\uwave {and threat model}}\DIFaddend  }{7}{}\protected@file@percent }
-\newlabel{sec:model}{{3}{7}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}\DIFdelbegin  {\color {red}\sout {Mobile edge FL }}\DIFdelend  \DIFaddbegin  {\color {blue}\uwave {Mobile-edge federated learning }}\DIFaddend  architecture \DIFaddbegin  {\color {blue}\uwave {and round protocol}}\DIFaddend  }{7}{}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces {\color {blue}\uwave {Positioning against federated LoRA and client-selection systems. }}\text  {$\mathsurround \z@ \mathchar "458$}{} {\color {blue}\uwave {= the property holds in the cited papers' own descriptions; $\times $ = absent or not reported. Delivery-aware means that a scheduling or adaptation decision conditions on per-round network delivery state (rate, deadline, delivery probability) rather than on training progress, device capability, or static profiling alone. Real payload means payload is accounted as transmitted bytes rather than a fixed or parameter-count proxy. Real training means model training is executed in the evaluation as reported.}}}}{8}{}\protected@file@percent }
 \newlabel{tab:rwcompare}{{1}{8}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}{\color {red}\sout {Federated LoRA rounds}}}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}System model \DIFaddbegin  {\color {blue}\uwave {and threat model}}\DIFaddend  }{8}{}\protected@file@percent }
+\newlabel{sec:model}{{3}{8}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}\DIFdelbegin  {\color {red}\sout {Mobile edge FL }}\DIFdelend  \DIFaddbegin  {\color {blue}\uwave {Mobile-edge federated learning }}\DIFaddend  architecture \DIFaddbegin  {\color {blue}\uwave {and round protocol}}\DIFaddend  }{8}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces FedRAS \DIFdelbeginFL  {\color {red}\sout {system architecture and }}\DIFdelendFL  round pipeline. \DIFdelbeginFL  {\color {red}\sout {The edge aggregator estimates client link states, }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {Action Construction (AC) }}\DIFaddendFL  scores every client--rank pair with the delivery hazard \eqref  {eq:hazard} and the saturating capacity \eqref  {eq:cap}\DIFdelbeginFL  {\color {red}\sout {, and }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {; the GridDP assignment (GDP) }}\DIFaddendFL  computes the client--rank assignment \DIFdelbeginFL  {\color {red}\sout {with the exact grid-based dynamic program }}\DIFdelendFL  under the byte budget and the admission cap\DIFdelbeginFL  {\color {red}\sout {(Proposition~\ref {prop:dp}). Admitted clients train on a frozen backbone with LoRA factors sliced to the assigned rank and upload only the trainable factor $B$, at 5.63\,KB per rank column; the shared factor $A$ is never transmitted}}\DIFdelendFL  . Updates arriving within the deadline $\tau $ pass the on-time gate and are \DIFdelbeginFL  {\color {red}\sout {aggregated rank-maskedly }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {merged by Masked Aggregation (MA) }}\DIFaddendFL  while \DIFaddbeginFL  {\color {blue}\uwave {the shared factor }}\DIFaddendFL  $A$ stays frozen\DIFdelbeginFL  {\color {red}\sout {(Proposition~\ref {prop:agg})}}\DIFdelendFL  ; \DIFdelbeginFL  {\color {red}\sout {late or lost updates are discarded, and the }}\DIFdelendFL  observed outcomes update the link-state history.}}{9}{}\protected@file@percent }
 \newlabel{fig:architecture}{{1}{9}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}{\color {red}\sout {Federated LoRA rounds}}}{9}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Link, mobility, and \DIFdelbegin  {\color {red}\sout {delivery }}\DIFdelend  \DIFaddbegin  {\color {blue}\uwave {timely-delivery }}\DIFaddend  model}{10}{}\protected@file@percent }
 \newlabel{eq:delivery}{{1}{10}{}{}{}}
 \newlabel{eq:pon}{{2}{10}{}{}{}}
@@ -74,17 +80,17 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Rank-dependent \DIFdelbegin  {\color {red}\sout {update size }}\DIFdelend  \DIFaddbegin  {\color {blue}\uwave {payload }}\DIFaddend  and \DIFaddbegin  {\color {blue}\uwave {adaptation }}\DIFaddend  capacity}{11}{}\protected@file@percent }
 \newlabel{eq:size}{{4}{11}{}{}{}}
 \newlabel{eq:cap}{{5}{11}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}{\color {blue}\uwave {Adversary and trust model}}}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}{\color {blue}\uwave {Adversary and trust model}}}{12}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}{\color {red}\sout {Deadline-aware client--rank scheduling}}}{12}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}{\color {blue}\uwave {Deadline-constrained client--rank scheduling formulation}}}{12}{}\protected@file@percent }
 \newlabel{sec:problem}{{3.1}{12}{}{}{}}
 \newlabel{eq:objective}{{6}{12}{}{}{}}
 \newlabel{eq:constraints}{{7}{12}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}{\color {blue}\uwave {FedRAS design}}}{12}{}\protected@file@percent }
-\newlabel{sec:solver}{{4}{12}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}{\color {blue}\uwave {Overview}}}{12}{}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces {\color {blue}\uwave {FedRAS Round}}}}{13}{}\protected@file@percent }
 \newlabel{alg:fedras}{{1}{13}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}{\color {blue}\uwave {FedRAS design}}}{13}{}\protected@file@percent }
+\newlabel{sec:solver}{{4}{13}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}{\color {blue}\uwave {Overview}}}{13}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}{\color {blue}\uwave {Action Construction (AC)}}}{13}{}\protected@file@percent }
 \newlabel{sec:ac}{{4.2}{13}{}{}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces {\color {blue}\uwave {Action Construction (AC)}}}}{14}{}\protected@file@percent }
@@ -94,22 +100,22 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}{\color {blue}\uwave {GridDP Assignment (GDP)}}}{14}{}\protected@file@percent }
 \newlabel{sec:gdp}{{4.1}{14}{}{}{}}
 \newlabel{eq:dp}{{8}{14}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}{\color {blue}\uwave {Masked Aggregation (MA)}}}{14}{}\protected@file@percent }
-\newlabel{sec:aggregation}{{4.2}{14}{}{}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces {\color {blue}\uwave {GridDP Assignment (GDP)}}}}{15}{}\protected@file@percent }
 \newlabel{alg:gdp}{{3}{15}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}{\color {blue}\uwave {Masked Aggregation (MA)}}}{15}{}\protected@file@percent }
+\newlabel{sec:aggregation}{{4.2}{15}{}{}{}}
 \newlabel{eq:maskavg}{{9}{15}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}{\color {blue}\uwave {Theoretical analysis}}}{15}{}\protected@file@percent }
-\newlabel{sec:theory}{{5}{15}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}{\color {blue}\uwave {Exactness of the DP assignment}}}{15}{}\protected@file@percent }
-\newlabel{prop:dp}{{1}{15}{}{}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces {\color {blue}\uwave {Masked Aggregation (MA)}}}}{16}{}\protected@file@percent }
 \newlabel{alg:ma}{{4}{16}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}{\color {blue}\uwave {Theoretical analysis}}}{16}{}\protected@file@percent }
+\newlabel{sec:theory}{{5}{16}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}{\color {blue}\uwave {Exactness of the DP assignment}}}{16}{}\protected@file@percent }
+\newlabel{prop:dp}{{1}{16}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}{\color {blue}\uwave {Optimality condition of the per-client rule}}}{17}{}\protected@file@percent }
 \newlabel{prop:cohort}{{2}{17}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}{\color {red}\sout {Rank-masked aggregation with frozen factors}}}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}{\color {blue}\uwave {Exactness of frozen-factor aggregation}}}{18}{}\protected@file@percent }
-\newlabel{prop:agg}{{3}{18}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}{\color {red}\sout {Rank-masked aggregation with frozen factors}}}{18}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}{\color {blue}\uwave {Exactness of frozen-factor aggregation}}}{19}{}\protected@file@percent }
+\newlabel{prop:agg}{{3}{19}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}{\color {blue}\uwave {Complexity and scope of the analysis}}}{19}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6}\DIFdelbegin  {\color {red}\sout {Performance }}\DIFdelend  \DIFaddbegin  {\color {blue}\uwave {Experimental }}\DIFaddend  evaluation}{20}{}\protected@file@percent }
 \newlabel{sec:eval}{{6}{20}{}{}{}}
@@ -133,11 +139,11 @@
 \newlabel{sec:rwlora}{{6}{20}{}{}{}}
 \newlabel{sec:rwselect}{{6}{20}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Experimental setup}{20}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Payload audit of real serialized update sizes. Frozen-$A$ clients upload only the trainable $B$ factor (1{,}408 parameters per rank column); the $A{+}B$ column is the joint-training equivalent. The stylized $s(r)$ column lists the \DIFdelbeginFL  {\color {red}\sout {normalized-cost }}\DIFdelendFL  protocol reused \DIFaddbeginFL  {\color {blue}\uwave {as a normalized-cost cell }}\DIFaddendFL  in \DIFdelbeginFL  {\color {red}\sout {the sensitivity study of }}\DIFdelendFL  Section~\ref {sec:simsim}.}}{21}{}\protected@file@percent }
-\newlabel{tab:audit}{{2}{21}{}{}{}}
 \citation{yang2024safedlora}
 \citation{oort2021oort}
 \citation{guo2025fedsalora}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Payload audit of real serialized update sizes. Frozen-$A$ clients upload only the trainable $B$ factor (1{,}408 parameters per rank column); the $A{+}B$ column is the joint-training equivalent. The stylized $s(r)$ column lists the \DIFdelbeginFL  {\color {red}\sout {normalized-cost }}\DIFdelendFL  protocol reused \DIFaddbeginFL  {\color {blue}\uwave {as a normalized-cost cell }}\DIFaddendFL  in \DIFdelbeginFL  {\color {red}\sout {the sensitivity study of }}\DIFdelendFL  Section~\ref {sec:simsim}.}}{22}{}\protected@file@percent }
+\newlabel{tab:audit}{{2}{22}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2}\DIFdelbegin  {\color {red}\sout {Accuracy parity and rank invariance in }}\DIFdelend  \DIFaddbegin  {\color {blue}\uwave {Evaluation with }}\DIFaddend  the \DIFaddbegin  {\color {blue}\uwave {federated LoRA }}\DIFaddend  trainer\DIFdelbegin  {\color {red}\sout {Table~\ref {tab:trainer} }}\DIFdelend  \DIFaddbegin  }{23}{}\protected@file@percent }
 \newlabel{sec:traineval}{{6.2}{23}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}{\color {blue}\uwave {Accuracy parity and rank invariance}}}{23}{}\protected@file@percent }
@@ -145,16 +151,16 @@
 \newlabel{tab:trainermain}{{3}{24}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \DIFdelbeginFL  {\color {red}\sout {Final accuracy across datasets. }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {Real-trainer experiments (}}\DIFaddendFL  CIFAR-10\DIFdelbeginFL  {\color {red}\sout {uses ten }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {, means over }}\DIFaddendFL  seeds\DIFdelbeginFL  {\color {red}\sout {; CIFAR-100 }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {). (a)~At the nominal deadline all rank policies hold the pretrained-backbone accuracy. (b)~Under the 0.1\,s deadline all methods remain stable while full-model updates deliver nothing }}\DIFaddendFL  and \DIFdelbeginFL  {\color {red}\sout {MNIST use five seeds}}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {stay at the backbone}}\DIFaddendFL  . \DIFdelbeginFL  {\color {red}\sout {The parity }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {(c)~FedRAS is link-aware: delivered rank holds 16, tracks 13, }}\DIFaddendFL  and \DIFdelbeginFL  {\color {red}\sout {equivalence findings }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {tracks 8 under the 2.0, 0.1, and 0.05\,s deadlines, against the fixed annealing schedule }}\DIFaddendFL  of \DIFdelbeginFL  {\color {red}\sout {Table}}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {the SA-FedLoRA-style baseline. (d)}}\DIFaddendFL  ~\DIFdelbeginFL  {\color {red}\sout {\ref {tab:trainer} are }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {Final accuracy across datasets; the parity is }}\DIFaddendFL  not CIFAR-10-specific \DIFaddbeginFL  {\color {blue}\uwave {(numbers in Table~\ref {tab:trainermain}(b))}}\DIFaddendFL  .}}{25}{}\protected@file@percent }
 \newlabel{fig:trainermain}{{2}{25}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}{\color {red}\sout {Deadline stress in the trainer}}}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}{\color {red}\sout {Deadline stress in the trainer}}}{26}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}{\color {blue}\uwave {Deadline stress}}}{26}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}{\color {red}\sout {Broader stress matrix with mobility, heterogeneity, and cross-dataset checks}}}{27}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}{\color {blue}\uwave {Extended stress matrix}}}{27}{}\protected@file@percent }
 \citation{yang2024safedlora}
 \citation{oort2021oort}
 \citation{guo2025fedsalora}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces {\color {blue}\uwave {Sensitivity of the trainer to provisioned adapter width, cohort size, and label heterogeneity on CIFAR-10 with FedRAS (five seeds per variant; the nominal reference column uses ten seeds). Accuracy is flat in $r_{\max }$ and cohort size, with a second-order drop only at $\alpha {=}0.1$; the dominant effect of all three axes is on bytes and delivered updates (red, right axis).}}}}{28}{}\protected@file@percent }
-\newlabel{fig:sens}{{3}{28}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}{\color {red}\sout {Broader stress matrix with mobility, heterogeneity, and cross-dataset checks}}}{28}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}{\color {blue}\uwave {Extended stress matrix}}}{28}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}{\color {red}\sout {External baselines}}}{28}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces {\color {blue}\uwave {Sensitivity of the trainer to provisioned adapter width, cohort size, and label heterogeneity on CIFAR-10 with FedRAS (five seeds per variant; the nominal reference column uses ten seeds). Accuracy is flat in $r_{\max }$ and cohort size, with a second-order drop only at $\alpha {=}0.1$; the dominant effect of all three axes is on bytes and delivered updates (red, right axis).}}}}{29}{}\protected@file@percent }
+\newlabel{fig:sens}{{3}{29}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}{\color {blue}\uwave {External baselines}}}{29}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}{\color {red}\sout {Full grid scheduling, same-cohort scheduling, and fair cohort}}}{29}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}{\color {blue}\uwave {Scheduling variants}}}{29}{}\protected@file@percent }
@@ -166,13 +172,13 @@
 \newlabel{sec:simsim}{{6.3.1}{31}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Scheduler simulation utility-state trajectories (mean over five seeds). (a)~Nominal 2.0\,s deadline, where FedRAS matches fixed rank 16. (b)~0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16.}}{32}{}\protected@file@percent }
 \newlabel{fig:sim}{{4}{32}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Timely delivery ratio and attempted bytes per method across simulator regimes (five-seed means, final round). Full-model updates deliver nothing under stress and cannot be admitted at all under the binding budget.}}{32}{}\protected@file@percent }
-\newlabel{fig:simreg}{{5}{32}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.4}{\color {red}\sout {Solver optimality and runtime}}}{32}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}{\color {blue}\uwave {Solver optimality and runtime}}}{32}{}\protected@file@percent }
 \newlabel{sec:dp_study}{{6.3.1}{32}{}{}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces {\color {blue}\uwave {Experiments at 500-client scale (five seeds unless noted). (a) Scheduler simulation across regimes; the utility column is the bounded scheduling utility of Section~\ref {sec:eval} and must not be read as dataset accuracy, MB is the attempted uplink payload of admitted clients in the final round, and FedAvg refers to full-model updates at their real serialized size. (b) Solver study with $K{=}25$ and 30 instances per cell on the identical ceiling grid; the table reports heuristic objective loss relative to the grid-based DP and DP runtime.}}}}{33}{}\protected@file@percent }
 \newlabel{tab:scalemain}{{4}{33}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Timely delivery ratio and attempted bytes per method across simulator regimes (five-seed means, final round). Full-model updates deliver nothing under stress and cannot be admitted at all under the binding budget.}}{34}{}\protected@file@percent }
+\newlabel{fig:simreg}{{5}{34}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.4}{\color {red}\sout {Sensitivity, link profile, and predictor calibration}}}{35}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \DIFdelbeginFL  {\color {red}\sout {Sensitivity }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {Solver study. (a)~Objective loss }}\DIFaddendFL  of the \DIFdelbeginFL  {\color {red}\sout {trainer }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {heuristics relative }}\DIFaddendFL  to \DIFdelbeginFL  {\color {red}\sout {provisioned adapter width, cohort size, and label heterogeneity on CIFAR-10 with FedRAS (five seeds per variant; }}\DIFdelendFL  the \DIFdelbeginFL  {\color {red}\sout {nominal reference column uses ten seeds). Accuracy is flat in $r_{\max }$, cohort size, and $\alpha $ }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {DP }}\DIFaddendFL  across \DIFdelbeginFL  {\color {red}\sout {the tested ranges; their effect is on bytes }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {deadline }}\DIFaddendFL  and \DIFdelbeginFL  {\color {red}\sout {delivered updates }}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {budget cells. }}\DIFaddendFL  (\DIFdelbeginFL  {\color {red}\sout {red, right axis}}\DIFdelendFL  \DIFaddbeginFL  {\color {blue}\uwave {b}}\DIFaddendFL  )\DIFaddbeginFL  {\color {blue}\uwave {~DP runtime scaling with the client population}}\DIFaddendFL  .}}{36}{}\protected@file@percent }
 \newlabel{fig:dp}{{6}{36}{}{}{}}
@@ -196,40 +202,42 @@
 \bibcite{kairouz2021advances}{{2}{}{{}}{{}}}
 \bibcite{liu2018sagin}{{3}{}{{}}{{}}}
 \bibcite{mahboob2024ntn}{{4}{}{{}}{{}}}
-\bibcite{razmi2022ground}{{5}{}{{}}{{}}}
-\bibcite{tang2023flsagin}{{6}{}{{}}{{}}}
-\bibcite{qin2024dfrl}{{7}{}{{}}{{}}}
-\bibcite{ribero2023intermittent}{{8}{}{{}}{{}}}
-\bibcite{hu2022lora}{{9}{}{{}}{{}}}
-\bibcite{babakniya2023slora}{{10}{}{{}}{{}}}
-\bibcite{zhang2024fedit}{{11}{}{{}}{{}}}
-\bibcite{cho2024hetlora}{{12}{}{{}}{{}}}
-\bibcite{fan2025helora}{{13}{}{{}}{{}}}
-\bibcite{wu2026fedara}{{14}{}{{}}{{}}}
-\bibcite{yang2024safedlora}{{15}{}{{}}{{}}}
-\bibcite{ma2026mswim}{{16}{}{{}}{{}}}
-\bibcite{yi2026pfedlora}{{17}{}{{}}{{}}}
-\bibcite{zhang2023fedpetuning}{{18}{}{{}}{{}}}
-\bibcite{yang2024feddpa}{{19}{}{{}}{{}}}
-\bibcite{wang2024flora}{{20}{}{{}}{{}}}
-\bibcite{sun2024ffalora}{{21}{}{{}}{{}}}
-\bibcite{guo2025fedsalora}{{22}{}{{}}{{}}}
-\bibcite{oh2023fedqcs}{{23}{}{{}}{{}}}
-\bibcite{oh2024fedvqcs}{{24}{}{{}}{{}}}
-\bibcite{liu2023adaptivequant}{{25}{}{{}}{{}}}
-\bibcite{kim2023beamforming}{{26}{}{{}}{{}}}
-\bibcite{reisizadeh2020fedpaq}{{27}{}{{}}{{}}}
-\bibcite{lin2018deep}{{28}{}{{}}{{}}}
-\bibcite{oort2021oort}{{29}{}{{}}{{}}}
-\bibcite{chen2024clientselection}{{30}{}{{}}{{}}}
-\bibcite{dong2024aoi}{{31}{}{{}}{{}}}
-\bibcite{luo2021costeffective}{{32}{}{{}}{{}}}
-\bibcite{nishio2019fedcs}{{33}{}{{}}{{}}}
-\bibcite{chai2020tifl}{{34}{}{{}}{{}}}
-\bibcite{han2024orchestrating}{{35}{}{{}}{{}}}
-\bibcite{yu2023lesson}{{36}{}{{}}{{}}}
-\bibcite{lin2025fedsn}{{37}{}{{}}{{}}}
-\bibcite{bonawitz2017secureagg}{{38}{}{{}}{{}}}
-\bibcite{wei2023pfl_dp}{{39}{}{{}}{{}}}
+\bibcite{nguyen2021iotfl}{{5}{}{{}}{{}}}
+\bibcite{razmi2022ground}{{6}{}{{}}{{}}}
+\bibcite{tang2023flsagin}{{7}{}{{}}{{}}}
+\bibcite{qin2024dfrl}{{8}{}{{}}{{}}}
+\bibcite{ribero2023intermittent}{{9}{}{{}}{{}}}
+\bibcite{hamdi2022ehfl}{{10}{}{{}}{{}}}
+\bibcite{hu2022lora}{{11}{}{{}}{{}}}
+\bibcite{babakniya2023slora}{{12}{}{{}}{{}}}
+\bibcite{zhang2024fedit}{{13}{}{{}}{{}}}
+\bibcite{sun2024ffalora}{{14}{}{{}}{{}}}
+\bibcite{zhang2023fedpetuning}{{15}{}{{}}{{}}}
+\bibcite{cho2024hetlora}{{16}{}{{}}{{}}}
+\bibcite{fan2025helora}{{17}{}{{}}{{}}}
+\bibcite{wu2026fedara}{{18}{}{{}}{{}}}
+\bibcite{yang2024safedlora}{{19}{}{{}}{{}}}
+\bibcite{yi2026pfedlora}{{20}{}{{}}{{}}}
+\bibcite{yang2024feddpa}{{21}{}{{}}{{}}}
+\bibcite{ma2026mswim}{{22}{}{{}}{{}}}
+\bibcite{wang2024flora}{{23}{}{{}}{{}}}
+\bibcite{guo2025fedsalora}{{24}{}{{}}{{}}}
+\bibcite{oh2023fedqcs}{{25}{}{{}}{{}}}
+\bibcite{oh2024fedvqcs}{{26}{}{{}}{{}}}
+\bibcite{liu2023adaptivequant}{{27}{}{{}}{{}}}
+\bibcite{kim2023beamforming}{{28}{}{{}}{{}}}
+\bibcite{reisizadeh2020fedpaq}{{29}{}{{}}{{}}}
+\bibcite{lin2018deep}{{30}{}{{}}{{}}}
+\bibcite{oort2021oort}{{31}{}{{}}{{}}}
+\bibcite{chen2024clientselection}{{32}{}{{}}{{}}}
+\bibcite{dong2024aoi}{{33}{}{{}}{{}}}
+\bibcite{luo2021costeffective}{{34}{}{{}}{{}}}
+\bibcite{nishio2019fedcs}{{35}{}{{}}{{}}}
+\bibcite{chai2020tifl}{{36}{}{{}}{{}}}
+\bibcite{han2024orchestrating}{{37}{}{{}}{{}}}
+\bibcite{yu2023lesson}{{38}{}{{}}{{}}}
+\bibcite{lin2025fedsn}{{39}{}{{}}{{}}}
+\bibcite{bonawitz2017secureagg}{{40}{}{{}}{{}}}
+\bibcite{wei2023pfl_dp}{{41}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
 \gdef \@abspage@last{49}

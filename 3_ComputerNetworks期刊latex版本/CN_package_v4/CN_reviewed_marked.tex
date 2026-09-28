@@ -1,7 +1,7 @@
 % !TeX program = pdflatex
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL /tmp/old_baseline.tex   Sat Sep 26 08:41:20 2026
-%DIF ADD CN_reviewed.tex         Mon Sep 28 01:12:50 2026
+%DIF ADD CN_reviewed.tex         Mon Sep 28 01:47:22 2026
 \documentclass[preprint,12pt]{elsarticle}
 \journal{Computer Networks}
 \usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,algorithm,algorithmic,multirow}
@@ -117,9 +117,29 @@ Federated LoRA \sep Mobile edge computing \sep Rank selection \sep Deadline sche
 \section{Introduction}
 \label{sec:intro}
 
-Mobile edge networks increasingly host federated learning (FL) workloads\DIFdelbegin \DIFdel{in which heterogeneous clients such as }\DIFdelend \DIFaddbegin \DIFadd{, with clients that include }\DIFaddend smartphones, vehicles, UAV terminals, and satellite-connected devices \DIFdelbegin \DIFdel{collaborate on a shared model without exposing raw data }\DIFdelend \cite{mcmahan2017fedavg,kairouz2021advances,liu2018sagin,mahboob2024ntn}. The dominant cost \DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{of }\DIFaddend such systems is the uplink\DIFdelbegin \DIFdel{. Full-parameter }\DIFdelend \DIFaddbegin \DIFadd{: full-parameter }\DIFaddend model updates saturate wireless capacity, drain client energy, and frequently miss round deadlines when links degrade during handover or outage \DIFdelbegin \DIFdel{, as reported for ground, aerial, and satellite segments }\DIFdelend \cite{razmi2022ground,tang2023flsagin,qin2024dfrl,ribero2023intermittent}. Low-rank adaptation (LoRA) has therefore become an attractive transmission format\DIFdelbegin \DIFdel{for FL, because }\DIFdelend \DIFaddbegin \DIFadd{, because each adapted layer communicates }\DIFaddend only two small factor matrices \DIFdelbegin \DIFdel{per adapted layer are communicated }\DIFdelend instead of the full weight delta \cite{hu2022lora,babakniya2023slora,zhang2024fedit}.
+Mobile edge networks increasingly host federated learning (FL) workloads\DIFdelbegin \DIFdel{in which heterogeneous clients such as }\DIFdelend \DIFaddbegin \DIFadd{, with clients that include }\DIFaddend smartphones, vehicles, UAV terminals, and satellite-connected devices \DIFdelbegin \DIFdel{collaborate on a shared model without exposing raw data \mbox{%DIFAUXCMD
+\cite{mcmahan2017fedavg,kairouz2021advances,liu2018sagin,mahboob2024ntn}}\hskip0pt%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{mcmahan2017fedavg,kairouz2021advances,nguyen2021iotfl,liu2018sagin,mahboob2024ntn}}\hskip0pt%DIFAUXCMD
+}\DIFaddend . The dominant cost \DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{of }\DIFaddend such systems is the uplink\DIFdelbegin \DIFdel{. Full-parameter }\DIFdelend \DIFaddbegin \DIFadd{: full-parameter }\DIFaddend model updates saturate wireless capacity, drain client energy, and frequently miss round deadlines when links degrade during handover or outage \DIFdelbegin \DIFdel{, as reported for ground, aerial, and satellite segments \mbox{%DIFAUXCMD
+\cite{razmi2022ground,tang2023flsagin,qin2024dfrl,ribero2023intermittent}}\hskip0pt%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{hamdi2022ehfl,razmi2022ground,tang2023flsagin,qin2024dfrl,ribero2023intermittent}}\hskip0pt%DIFAUXCMD
+}\DIFaddend . Low-rank adaptation (LoRA) has therefore become an attractive transmission format\DIFdelbegin \DIFdel{for FL, because }\DIFdelend \DIFaddbegin \DIFadd{, because each adapted layer communicates }\DIFaddend only two small factor matrices \DIFdelbegin \DIFdel{per adapted layer are communicated }\DIFdelend instead of the full weight delta \cite{hu2022lora,babakniya2023slora,zhang2024fedit}.
 
-Existing \DIFdelbegin \DIFdel{Federated }\DIFdelend \DIFaddbegin \DIFadd{federated }\DIFaddend LoRA systems, however, treat the rank $r$ as a model hyperparameter. The rank is selected from data and system constraints alone, possibly varying across clients \cite{cho2024hetlora,fan2025helora} or adapting across rounds \cite{wu2026fedara,yang2024safedlora}, but \DIFdelbegin \DIFdel{not }\DIFdelend \DIFaddbegin \DIFadd{never }\DIFaddend from the state of a lossy, deadline-constrained link. This convention ignores a scheduling dimension that is directly visible to the network. The omitted coupling is mechanical\DIFdelbegin \DIFdel{. A }\DIFdelend \DIFaddbegin \DIFadd{: a }\DIFaddend larger rank transmits more bytes and therefore loses delivery probability exactly where it gains adaptation capacity, while a smaller rank travels light but forfeits capacity on the healthy links that could have carried it. Whether the extra capacity is worth the delivery risk depends on the link state, and no training-side rule observes that state. \DIFaddbegin \DIFadd{Each round must therefore decide jointly, under a byte budget and a participation cap, which clients participate and at what rank.
+Existing \DIFdelbegin \DIFdel{Federated }\DIFdelend \DIFaddbegin \DIFadd{federated }\DIFaddend LoRA systems, however, treat the rank $r$ as a model hyperparameter\DIFdelbegin \DIFdel{. The }\DIFdelend \DIFaddbegin \DIFadd{, whether fixed across the fleet \mbox{%DIFAUXCMD
+\cite{sun2024ffalora,zhang2023fedpetuning}}\hskip0pt%DIFAUXCMD
+, varied across clients \mbox{%DIFAUXCMD
+\cite{cho2024hetlora,fan2025helora}}\hskip0pt%DIFAUXCMD
+, adapted across rounds \mbox{%DIFAUXCMD
+\cite{wu2026fedara,yang2024safedlora}}\hskip0pt%DIFAUXCMD
+, or personalized through model-heterogeneous and dual-adapter designs \mbox{%DIFAUXCMD
+\cite{yi2026pfedlora,yang2024feddpa}}\hskip0pt%DIFAUXCMD
+. In all of these systems the }\DIFaddend rank is selected from data and system constraints alone, \DIFdelbegin \DIFdel{possibly varying across clients \mbox{%DIFAUXCMD
+\cite{cho2024hetlora,fan2025helora} }\hskip0pt%DIFAUXCMD
+or adapting across rounds \mbox{%DIFAUXCMD
+\cite{wu2026fedara,yang2024safedlora}}\hskip0pt%DIFAUXCMD
+, but not }\DIFdelend \DIFaddbegin \DIFadd{never }\DIFaddend from the state of a lossy, deadline-constrained link. This convention ignores a scheduling dimension that is directly visible to the network. The omitted coupling is mechanical\DIFdelbegin \DIFdel{. A }\DIFdelend \DIFaddbegin \DIFadd{: a }\DIFaddend larger rank transmits more bytes and therefore loses delivery probability exactly where it gains adaptation capacity, while a smaller rank travels light but forfeits capacity on the healthy links that could have carried it. Whether the extra capacity is worth the delivery risk depends on the link state, and no training-side rule observes that state. \DIFaddbegin \DIFadd{Each round must therefore decide jointly, under a byte budget and a participation cap, which clients participate and at what rank.
 }\DIFaddend 
 
 This raises three questions \DIFdelbegin \DIFdel{. How should }\DIFdelend \DIFaddbegin \DIFadd{that must be answered. First, how should the }\DIFaddend delivery probability depend on \DIFdelbegin \DIFdel{rank and }\DIFdelend \DIFaddbegin \DIFadd{the rank and the }\DIFaddend observable link state? \DIFdelbegin \DIFdel{How should }\DIFdelend \DIFaddbegin \DIFadd{The rank directly determines the payload size, and the payload determines whether an update can meet the deadline on a lossy link, so the delivery model must take the rank as an argument rather than an afterthought. Second, how should the }\DIFaddend client--rank assignment be solved under budget and participation constraints? \DIFdelbegin \DIFdel{Does }\DIFdelend \DIFaddbegin \DIFadd{The problem is a multiple-choice knapsack with an admission constraint, greedy rules are not necessarily optimal, and one must establish when exact solving is necessary and when it may degrade to a cheap rule. Third, does }\DIFaddend the resulting adaptation improve network behavior in a real trainer? \DIFdelbegin \DIFdel{These questions are answered in Sections~\ref{sec:model}, \ref{sec:solver}, and \ref{sec:eval}, respectively}\DIFdelend \DIFaddbegin \DIFadd{The scheduling objective is a network-side utility, not the training accuracy, and the two need not agree, so the validation must show that accuracy does not degrade because of the scheduling}\DIFaddend .
@@ -445,12 +465,12 @@ W_j=\sum_{i:\,r_i\ge j} n_i ,
 }\STATE \DIFadd{$\Delta^t\gets\bar B-S^{t-1}$;}\quad \DIFadd{$v^t\gets\beta\,v^{t-1}+(1-\beta)\,\Delta^t$;}\quad \DIFadd{$S^t\gets S^{t-1}+v^t$
 }\end{algorithmic}
 \end{algorithm}
+
+\section{\DIFadd{Theoretical analysis}}
+\label{sec:theory}
 \DIFaddend 
 
-\DIFaddbegin \section{\DIFadd{Theoretical analysis}}
-\label{sec:theory}
-
-\subsection{\DIFadd{Exactness of the DP assignment}}
+\DIFaddbegin \subsection{\DIFadd{Exactness of the DP assignment}}
 \DIFaddend \begin{proposition}[Per-round optimality]
 \label{prop:dp}
 For every reachable state $(k,b)$, recurrence \eqref{eq:dp} considers the skip action and every feasible rank for client $i$. Induction on $i$ therefore proves exactness for the discretized single round estimated assignment problem.

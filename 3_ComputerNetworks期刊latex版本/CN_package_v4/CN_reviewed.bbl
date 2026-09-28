@@ -26,6 +26,13 @@ P.~Kairouz, H.~B. McMahan, B.~Avent, A.~Bellet, M.~Bennis, A.~N. Bhagoji,
 \newblock \href {https://doi.org/10.1561/2200000083}
   {\path{doi:10.1561/2200000083}}.
 
+\bibitem{nguyen2021iotfl}
+D.~C. Nguyen, M.~Ding, P.~N. Pathirana, A.~Seneviratne, J.~Li, H.~V. Poor,
+  Federated learning for internet of things: A comprehensive survey, IEEE
+  Communications Surveys \& Tutorials 23~(3) (2021) 1622--1658.
+\newblock \href {https://doi.org/10.1109/COMST.2021.3075439}
+  {\path{doi:10.1109/COMST.2021.3075439}}.
+
 \bibitem{liu2018sagin}
 J.~Liu, Y.~Shi, Z.~M. Fadlullah, N.~Kato, Space-air-ground integrated network:
   A survey, IEEE Communications Surveys \& Tutorials 20~(4) (2018) 2714--2741.
@@ -38,6 +45,13 @@ S.~Mahboob, L.~Liu, Revolutionizing future connectivity: A contemporary survey
   Communications Surveys \& Tutorials 26~(2) (2024) 1279--1321.
 \newblock \href {https://doi.org/10.1109/COMST.2023.3347145}
   {\path{doi:10.1109/COMST.2023.3347145}}.
+
+\bibitem{hamdi2022ehfl}
+R.~Hamdi, M.~Chen, A.~Ben~Said, M.~Qaraqe, H.~V. Poor, Federated learning over
+  energy harvesting wireless networks, IEEE Internet of Things Journal 9~(1)
+  (2022) 92--103.
+\newblock \href {https://doi.org/10.1109/JIOT.2021.3089054}
+  {\path{doi:10.1109/JIOT.2021.3089054}}.
 
 \bibitem{razmi2022ground}
 N.~Razmi, B.~Matthiesen, A.~Dekorsy, P.~Popovski, Ground-assisted federated
@@ -85,6 +99,19 @@ J.~Zhang, S.~Vahidian, M.~Kuo, C.~Li, R.~Zhang, T.~Yu, G.~Wang, Y.~Zhang,
   tuning, in: IEEE International Conference on Acoustics, Speech and Signal
   Processing (ICASSP), 2024.
 
+\bibitem{sun2024ffalora}
+Y.~Sun, Z.~Li, Y.~Li, B.~Ding, Improving {LoRA} in privacy-preserving federated
+  learning, in: International Conference on Learning Representations (ICLR),
+  2024.
+
+\bibitem{zhang2023fedpetuning}
+Z.~Zhang, Y.~Yang, Y.~Dai, Q.~Wang, Y.~Yu, L.~Qu, Z.~Xu, {FedPETuning}: When
+  federated learning meets the parameter-efficient tuning methods of
+  pre-trained language models, in: Findings of the Association for
+  Computational Linguistics: ACL 2023, 2023, pp. 9963--9977.
+\newblock \href {https://doi.org/10.18653/v1/2023.findings-acl.632}
+  {\path{doi:10.18653/v1/2023.findings-acl.632}}.
+
 \bibitem{cho2024hetlora}
 Y.~J. Cho, L.~Liu, Z.~Xu, A.~Fahrezi, G.~Joshi, Heterogeneous {LoRA} for
   federated fine-tuning of on-device foundation models, in: Proceedings of the
@@ -111,21 +138,6 @@ Y.~Yang, X.~Liu, T.~Gao, X.~Xu, G.~Wang, {SA-FedLoRA}: Adaptive parameter
   allocation for efficient federated learning with {LoRA} tuning, arXiv
   preprint arXiv:2405.09394 (2024).
 
-\bibitem{ma2026mswim}
-W.~Ma, T.~Hu, X.~Liu, Mobility-predictive risk-budgeted protection selection
-  for federated learning in space--air--ground mobile networks, in: Proceedings
-  of the ACM International Conference on Modeling, Analysis and Simulation of
-  Wireless and Mobile Systems (MSWiM), 2026, accepted poster paper; publication
-  details to be updated when available.
-
-\bibitem{zhang2023fedpetuning}
-Z.~Zhang, Y.~Yang, Y.~Dai, Q.~Wang, Y.~Yu, L.~Qu, Z.~Xu, {FedPETuning}: When
-  federated learning meets the parameter-efficient tuning methods of
-  pre-trained language models, in: Findings of the Association for
-  Computational Linguistics: ACL 2023, 2023, pp. 9963--9977.
-\newblock \href {https://doi.org/10.18653/v1/2023.findings-acl.632}
-  {\path{doi:10.18653/v1/2023.findings-acl.632}}.
-
 \bibitem{yi2026pfedlora}
 L.~Yi, H.~Zhang, H.~Yu, G.~Wang, X.~Liu, Q.~Hu, {pFedLoRA}: Model-heterogeneous
   personalized federated learning with homogeneous low-rank adapter sharing on
@@ -139,15 +151,17 @@ Y.~Yang, G.~Long, T.~Shen, J.~Jiang, M.~Blumenstein, Dual-personalizing adapter
   for federated foundation models, in: Advances in Neural Information
   Processing Systems 37 (NeurIPS), 2024.
 
+\bibitem{ma2026mswim}
+W.~Ma, T.~Hu, X.~Liu, Mobility-predictive risk-budgeted protection selection
+  for federated learning in space--air--ground mobile networks, in: Proceedings
+  of the ACM International Conference on Modeling, Analysis and Simulation of
+  Wireless and Mobile Systems (MSWiM), 2026, accepted poster paper; publication
+  details to be updated when available.
+
 \bibitem{wang2024flora}
 Z.~Wang, Z.~Gu, J.~Weng, X.~Shang, J.~Li, J.~Li, K.~Wan, {FLoRA}: Federated
   fine-tuning large language models with heterogeneous low-rank adaptation, in:
   Advances in Neural Information Processing Systems (NeurIPS), 2024.
-
-\bibitem{sun2024ffalora}
-Y.~Sun, Z.~Li, Y.~Li, B.~Ding, Improving {LoRA} in privacy-preserving federated
-  learning, in: International Conference on Learning Representations (ICLR),
-  2024.
 
 \bibitem{guo2025fedsalora}
 P.~Guo, S.~Zeng, Y.~Wang, Y.~Fang, W.~Huang, S.~Liu, D.~Guo, Selective
