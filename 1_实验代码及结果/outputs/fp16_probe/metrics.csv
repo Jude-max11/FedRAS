@@ -1,0 +1,2 @@
+seed,round,method,accuracy,timely_ratio,bytes_mb,mean_rank,selected,aggregated,update_norm
+0,0,FedLoRA_r16,0.4987,0.4,0.4505599999999999,16.0,10,4,0.08538676978744383

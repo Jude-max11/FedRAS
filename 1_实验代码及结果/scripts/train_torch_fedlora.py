@@ -336,6 +336,8 @@ def main():
     p.add_argument('--rmax', type=int, default=16, help='provisioned adapter factor width')
     p.add_argument('--methods', default='', help='comma-separated subset of methods to run (default: standard five)')
     p.add_argument('--no-rank-mask', action='store_true', help='ablation: plain weighted averaging without rank masking')
+    p.add_argument('--fp16-upload', action='store_true',
+                   help='compression baseline: trainable B is uploaded at 2 bytes/param with a real fp16 round-trip (quantize on delivery); delivery and byte accounting use the halved payload')
     p.add_argument('--no-capacity-term', action='store_true', help='ablation: adaptive rule uses delivery probability only (no capacity gain)')
     p.add_argument('--dp-budget', type=float, default=1.0,
                    help='byte budget in REAL MB for the DP_cohort/DP_same arms; 1.0 MB = 10x the ceil-grid cost of rank 16')
@@ -506,7 +508,7 @@ def main():
                                 loss = loss + .5 * a.prox * sum(((p_ - t_) ** 2).sum() for p_, t_ in anchor_pairs)
                         loss.backward()
                         torch.nn.utils.clip_grad_norm_(params, a.clip_grad); opt.step()
-                size = full_mb if is_full else size_mb(r, bytes_per_rank)
+                size = full_mb if is_full else size_mb(r, bytes_per_rank) * (.5 if a.fp16_upload else 1.0)
                 used += size
                 pon = 1.0 if method == 'FedAvg_offline' else \
                     math.exp(-mob[i]) * math.exp(-8.0 * size / (rate[i] * a.deadline))
@@ -522,6 +524,9 @@ def main():
                         ss.append(cur)
                     else:
                         cur = ls_b(local) if not is_joint else ls(local)
+                        if a.fp16_upload and not is_joint:
+                            # fp16 compression baseline: real round-trip quantization
+                            cur = {k: v.half().float() for k, v in cur.items()}
                         deltas.append(frob({k: cur[k] - method_states[method][k] for k in cur}))
                         ss.append(cur)
                     ww.append(len(pp[i])); rr.append(r); ok += 1

@@ -1,7 +1,7 @@
 % !TeX program = pdflatex
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL /tmp/old_baseline.tex   Sat Sep 26 08:41:20 2026
-%DIF ADD CN_reviewed.tex         Mon Sep 28 01:47:22 2026
+%DIF ADD CN_reviewed.tex         Mon Sep 28 07:35:55 2026
 \documentclass[preprint,12pt]{elsarticle}
 \journal{Computer Networks}
 \usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,algorithm,algorithmic,multirow}
@@ -281,7 +281,7 @@ to traffic offloading driven by federated reinforcement learning \mbox{%DIFAUXCM
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.98\columnwidth]{recolored_figures/fig_architecture}
-\caption{FedRAS \DIFdelbeginFL \DIFdelFL{system architecture and }\DIFdelendFL round pipeline. \DIFdelbeginFL \DIFdelFL{The edge aggregator estimates client link states, }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Action Construction (AC) }\DIFaddendFL scores every client--rank pair with the delivery hazard \eqref{eq:hazard} and the saturating capacity \eqref{eq:cap}\DIFdelbeginFL \DIFdelFL{, and }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{; the GridDP assignment (GDP) }\DIFaddendFL computes the client--rank assignment \DIFdelbeginFL \DIFdelFL{with the exact grid-based dynamic program }\DIFdelendFL under the byte budget and the admission cap\DIFdelbeginFL \DIFdelFL{(Proposition~\ref{prop:dp}). Admitted clients train on a frozen backbone with LoRA factors sliced to the assigned rank and upload only the trainable factor $B$, at 5.63\,KB per rank column; the shared factor $A$ is never transmitted}\DIFdelendFL . Updates arriving within the deadline $\tau$ pass the on-time gate and are \DIFdelbeginFL \DIFdelFL{aggregated rank-maskedly }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{merged by Masked Aggregation (MA) }\DIFaddendFL while \DIFaddbeginFL \DIFaddFL{the shared factor }\DIFaddendFL $A$ stays frozen\DIFdelbeginFL \DIFdelFL{(Proposition~\ref{prop:agg})}\DIFdelendFL ; \DIFdelbeginFL \DIFdelFL{late or lost updates are discarded, and the }\DIFdelendFL observed outcomes update the link-state history.}
+\caption{FedRAS \DIFdelbeginFL \DIFdelFL{system architecture and }\DIFdelendFL round pipeline. \DIFdelbeginFL \DIFdelFL{The edge aggregator estimates client link states, }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Action Construction (AC) }\DIFaddendFL scores every client--rank pair with the delivery hazard \eqref{eq:hazard} and the saturating capacity \eqref{eq:cap}\DIFdelbeginFL \DIFdelFL{, and }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{; the GridDP assignment (GDP) }\DIFaddendFL computes the client--rank assignment \DIFdelbeginFL \DIFdelFL{with the exact grid-based dynamic program }\DIFdelendFL under the byte budget and the admission cap\DIFdelbeginFL \DIFdelFL{(Proposition~\ref{prop:dp}). Admitted clients train on a frozen backbone with LoRA factors sliced to the assigned rank and upload only the trainable factor $B$, at 5.63\,KB per rank column; the shared factor $A$ is never transmitted}\DIFdelendFL . Updates arriving within the deadline $\tau$ pass the on-time gate and are \DIFdelbeginFL \DIFdelFL{aggregated rank-maskedly }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{merged by Masked Aggregation (MA) }\DIFaddendFL while \DIFaddbeginFL \DIFaddFL{the shared factor }\DIFaddendFL $A$ stays frozen\DIFdelbeginFL \DIFdelFL{(Proposition~\ref{prop:agg})}\DIFdelendFL ; \DIFdelbeginFL \DIFdelFL{late or lost updates are discarded, and the }\DIFdelendFL observed outcomes update the link-state history. \DIFaddbeginFL \DIFaddFL{AC, GDP, and MA correspond to Algorithms~\ref{alg:ac}--\ref{alg:ma}; the overall round is Algorithm~\ref{alg:fedras}.}\DIFaddendFL }
 \label{fig:architecture}
 \end{figure}
 
@@ -450,9 +450,9 @@ W_j=\sum_{i:\,r_i\ge j} n_i ,
 \label{eq:maskavg}
 }\end{equation}
 \DIFadd{while the frozen factor aggregates to itself, $\bar A=A$. The server then applies momentum per factor tensor. With $\Delta^t=\bar B-S^{t-1}$, the velocity and state update as $v^t=\beta\,v^{t-1}+(1-\beta)\,\Delta^t$ and $S^t=S^{t-1}+v^t$, with damping coefficient $\beta$ absorbing client-sampling and link noise. Algorithm~\ref{alg:ma} fixes the procedure; Proposition~\ref{prop:agg} (Section~\ref{sec:theory}) states its exactness and dilution properties.
-}
+}\DIFaddend 
 
-\begin{algorithm}[t]
+\DIFaddbegin \begin{algorithm}[t]
 \caption{\DIFadd{Masked Aggregation (MA)}}
 \label{alg:ma}
 \begin{algorithmic}[1]
@@ -468,9 +468,8 @@ W_j=\sum_{i:\,r_i\ge j} n_i ,
 
 \section{\DIFadd{Theoretical analysis}}
 \label{sec:theory}
-\DIFaddend 
 
-\DIFaddbegin \subsection{\DIFadd{Exactness of the DP assignment}}
+\subsection{\DIFadd{Exactness of the DP assignment}}
 \DIFaddend \begin{proposition}[Per-round optimality]
 \label{prop:dp}
 For every reachable state $(k,b)$, recurrence \eqref{eq:dp} considers the skip action and every feasible rank for client $i$. Induction on $i$ therefore proves exactness for the discretized single round estimated assignment problem.
@@ -570,7 +569,7 @@ The \DIFdelbegin \DIFdel{proposition concerns active rank slices rather than who
 \textbf{\DIFadd{Scope of the analysis.}} \DIFadd{The exactness results concern the discretized single-round estimated assignment problem and the frozen-factor aggregation rule. They are not claims of optimality for the continuous-budget problem, for the multi-round stochastic control problem, or for final model accuracy, and they do }\DIFaddend not establish a \DIFdelbegin \DIFdel{general convergence guarantee }\DIFdelend \DIFaddbegin \DIFadd{convergence guarantee for federated training. The practical value of exactness is quantified experimentally in Sections~\ref{sec:dpvfair} and~\ref{sec:dp_study}}\DIFaddend .
 
 \section{\DIFdelbegin \DIFdel{Performance }\DIFdelend \DIFaddbegin \DIFadd{Experimental }\DIFaddend evaluation}
-\label{sec:eval}\label{sec:summary}\label{sec:sens}\label{tab:trainer}\label{tab:stress}\label{tab:sim}\label{tab:extended}\label{tab:ext}\label{tab:dpvfair}\label{tab:ablation}\label{tab:dp}\label{alg:scheduler}\label{fig:crossds}\label{fig:trainer_acc}\label{fig:trainer_dl}\label{fig:rankdyn}\label{sec:calsens}\label{sec:traineval}\label{sec:rwlora}\label{sec:rwselect}
+\label{sec:eval}\label{sec:summary}\label{sec:sens}\label{tab:trainer}\label{tab:stress}\label{tab:sim}\label{tab:extended}\label{tab:ext}\label{tab:dpvfair}\label{tab:ablation}\label{tab:dp}\label{alg:scheduler}\label{fig:crossds}\label{fig:trainer_acc}\label{fig:trainer_dl}\label{fig:rankdyn}
 
 The evaluation tests accuracy and network behavior in a real trainer \DIFaddbegin \DIFadd{(Section~\ref{sec:traineval})}\DIFaddend , scheduling quality at 500 clients \DIFdelbegin \DIFdel{, solver cost }\DIFdelend \DIFaddbegin \DIFadd{and solver cost (Section~\ref{sec:simsim})}\DIFaddend , and sensitivity to payload, predictor, capacity, and budget-grid assumptions \DIFaddbegin \DIFadd{(Sections~\ref{sec:dp_study} and~\ref{sec:calsens})}\DIFaddend . All byte figures are real serialized sizes, and all deadline regimes are calibrated to those sizes.
 
@@ -1152,7 +1151,7 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 \addtocounter{subsection}{-1}%DIFAUXCMD
 %DIFDELCMD < \label{sec:sens}
 %DIFDELCMD < %%%
-\DIFdel{Fig. ~\ref{fig:sens} varies the provisioned adapter width , the cohort size, and the label heterogeneity of the trainer on CIFAR-10. Each variant uses five seeds; the nominal reference column uses ten. Widening the adapter from $r_{\max}=8$ to 32 leaves accuracy flat while bytes rise from 0.45 to 1.80}\DIFdelend \DIFaddbegin \DIFadd{rules cannot see. The runtime column follows the budget grid width rather than the client count: tightening the budget from 30}\DIFaddend \,MB \DIFdelbegin \DIFdel{and timely delivery falls from 0.75 to 0.70; the provisioned width is a network-facing decision rather than an accuracy control. Cohort size from 5 }\DIFdelend to \DIFdelbegin \DIFdel{20 leaves accuracy flat at linearly scaled bytes. Data heterogeneity from $\alpha=0.1$ to 1.0 moves accuracy as Table~\ref{tab:extended} shows at constant network cost. Per-decision scheduling cost is negligible in all settings: the per-client rank rule costs about 0.1\,ms per decision, roughly 1\,ms per round, against 23 to 421}\DIFdelend \DIFaddbegin \DIFadd{1.2}\DIFaddend \,\DIFdelbegin \DIFdel{ms for the full grid-scheduling DP of Section~\ref{sec:dp_study}}\DIFdelend \DIFaddbegin \DIFadd{MB shrinks the discretized grid by the same ratio, which is why the DP is fastest under exactly the binding budgets that need it most}\DIFaddend .
+\DIFdel{Fig. ~\ref{fig:sens} varies the provisioned adapter width , the cohort size, and the label heterogeneity of the trainer on CIFAR-10. Each variant uses five seeds; the nominal reference column uses ten. Widening the adapter from $r_{\max}=8$ to 32 leaves accuracy flat while bytes rise from 0.45 to 1.80}\DIFdelend \DIFaddbegin \DIFadd{rules cannot see. The runtime column follows the budget grid width rather than the client count: tightening the budget from 30}\DIFaddend \,MB \DIFdelbegin \DIFdel{and timely delivery falls from 0.75 to 0.70; the provisioned width is a network-facing decision rather than an accuracy control. Cohort size from 5 to 20 leaves accuracy flat at linearly scaled bytes. Data heterogeneity from $\alpha=0.1$ to 1.0 moves accuracy as Table~\ref{tab:extended} shows at constant network cost. Per-decision scheduling cost is negligible in all settings: the per-client rank rule costs about 0.1\,ms per decision, roughly 1\,ms per round, against 23 }\DIFdelend to \DIFdelbegin \DIFdel{421}\DIFdelend \DIFaddbegin \DIFadd{1.2}\DIFaddend \,\DIFdelbegin \DIFdel{ms for the full grid-scheduling DP of Section~\ref{sec:dp_study}}\DIFdelend \DIFaddbegin \DIFadd{MB shrinks the discretized grid by the same ratio, which is why the DP is fastest under exactly the binding budgets that need it most}\DIFaddend .
 
 \textbf{\DIFdelbegin \DIFdel{SAGIN link profile}\DIFdelend \DIFaddbegin \DIFadd{Grid sweep}\DIFaddend .} \DIFdelbegin \DIFdel{Grouping the 20 clients into ground, aerial, and satellite classes with distinct rate and mobility laws reproduces the aggregate parity at the nominal deadline (accuracy 0.9141) while exposing the expected per-class structure: timely delivery is 0.71 for ground, 0.61 for aerial, and 0.49 for satellite clients. At this deadline the scheduler holds rank 16 across all classes, so the class gap reflects the link laws alone rather than rank allocation. This profile is a parameterized link model, not a measured trace; its role is to show that the scheduler responds sensibly to client-class heterogeneity, and calibration on measured traces remains open. }%DIFDELCMD < 
 
