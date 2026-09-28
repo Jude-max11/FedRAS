@@ -480,7 +480,14 @@ joint A/B, lr 0.02 & $.9132\pm.0012$ & 0.912\\
 \subsubsection{Accuracy parity and rank invariance}
 Table~\ref{tab:trainermain}(a) reports ten-seed means and standard deviations after 40 federated rounds on CIFAR-10. All LoRA methods hold the backbone accuracy within one standard deviation of 0.914, whether the rank is fixed at 4, fixed at 16, drawn at random, or selected by the rank rule. Full-parameter updates spend orders of magnitude more bytes per round (Table~\ref{tab:audit}) and lose roughly three quarters of their timely deliveries because their payloads rarely fit the round deadline. The cross-dataset results in Fig.~\ref{fig:trainermain}(d) and Table~\ref{tab:trainermain}(b) repeat the parity at 0.693 on CIFAR-100 and 0.995 on MNIST. At the nominal deadline the rank rule selects rank 16 for every client of every round, so FedRAS coincides with fixed rank 16 in bytes and timeliness, and in accuracy up to floating-point nondeterminism; this identity, rather than a tuned advantage, is what the nominal regime is meant to show. Fig.~\ref{fig:trainermain}(a) shows the corresponding trajectories, stable over the 40 rounds for every rank policy.
 
-\textbf{Delivered-update norms.} The capacity law of \eqref{eq:cap} is anchored in measured updates. The trainer logs the mean Frobenius norm of each round's delivered updates; pooled over the ten nominal seeds, the norm grows from $0.0158$ at rank 4 to $0.0297$ at rank 16, a ratio of $1.9$ against the square-root law's $2.0\times$ and linear payload growth's $4\times$, and the 0.1\,s deadline reproduces the ratio ($1.9$). The diminishing returns that \eqref{eq:cap} prices are therefore a measured property of the delivered updates, not a modeling assumption.
+\textbf{Delivered-update norms.} The capacity law of \eqref{eq:cap} is anchored in measured updates. The trainer logs the mean Frobenius norm of each round's delivered updates; pooled over the ten nominal seeds, the norm grows from $0.0158$ at rank 4 to $0.0297$ at rank 16, a ratio of $1.9$ against the square-root law's $2.0\times$ and linear payload growth's $4\times$, and the 0.1\,s deadline reproduces the ratio ($1.9$). Dedicated fixed-rank runs at ranks 2 and 8 extend the measurement to the full candidate set (Fig.~\ref{fig:normlaw}): the curve tracks the $\sqrt{r}$ fit across all four ranks ($2.5\times$ from rank 2 to 16 against $2.8\times$ predicted), and the stress series coincides with the nominal one. The diminishing returns that \eqref{eq:cap} prices are therefore a measured property of the delivered updates, not a modeling assumption.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\columnwidth]{recolored_figures/fig_normlaw}
+\caption{Delivered-update norm vs.\ rank on CIFAR-10 (mean over delivered rounds; five seeds per point, error bars are one standard deviation). The measured growth ($2.5\times$ from rank 2 to 16, $1.9\times$ from rank 4 to 16) tracks the square-root capacity law of \eqref{eq:cap} ($2.8\times$ and $2.0\times$) rather than linear payload growth ($8\times$ and $4\times$); the nominal and stress series coincide.}
+\label{fig:normlaw}
+\end{figure}
 
 \subsubsection{Deadline stress}
 \textbf{Delivered-rank adaptation.} Table~\ref{tab:trainermain}(a) tightens the deadline to 0.1\,s and 0.05\,s. Three effects emerge. First, FedRAS downshifts under pressure. Its delivered mean rank falls from 16.0 at the nominal deadline to 12.7 at 0.1\,s and 8.1 at 0.05\,s, where the delivery hazard \eqref{eq:hazard} makes rank-16 payloads marginal. Second, downshifting pays. At 0.1\,s, FedRAS delivers 0.49 timely updates against 0.41 for fixed rank 16 while transmitting 0.69\,MB against 0.90\,MB, i.e., 23\% fewer bytes; at 0.05\,s the gap widens to 0.49 against 0.27 timely deliveries at 51\% fewer bytes. Third, full-parameter updates collapse completely. Their timely delivery ratio is 0.00 at both stress deadlines, so not a single full-size update arrives on time in any seed; the reported stress accuracy of this row is exactly the per-seed pretrained backbone ($0.914\pm0.002$ across seeds), whose spread explains the nonzero standard deviation.
@@ -522,7 +529,14 @@ Table~\ref{tab:trainermain}(b) extends the study along further axes. A mobility-
 
 \subsubsection{Weak-backbone capacity payoff}
 \label{sec:weakbb}
-\textbf{When capacity becomes valuable.} The strong-backbone regime makes adaptation capacity free, so preserving rank carries no measurable benefit (Section~\ref{sec:traineval}). Weakening the backbone to a one-epoch pretrain breaks that regime: federated adaptation now improves on the pretrained weights by roughly six points, and the rank--accuracy coupling appears at the nominal deadline, where rank 16 reaches $0.564$ against rank 4's $0.543$ over five paired seeds ($+2.1$ points, Wilcoxon $p{=}0.062$, the minimum possible at five seeds), with FedRAS coinciding with rank 16. Under the 0.1\,s deadline the coupling persists ($+2.7$ points for rank 16 over rank 4) and the scheduler prices it without any retuning: FedRAS holds a delivered rank of 12.8, finishes $1.4$ points above rank 4 (five of five pairs), and gives back $1.4$ points to fixed rank 16 in exchange for a $13\%$ higher timely-delivery ratio and $20\%$ fewer bytes. Preserved capacity therefore converts into accuracy exactly when the backbone is weak enough to need adaptation, which is the regime in which a rank scheduler has a reason to exist; characterizing that regime more precisely is future work.
+\textbf{When capacity becomes valuable.} The strong-backbone regime makes adaptation capacity free, so preserving rank carries no measurable benefit (Section~\ref{sec:traineval}). Weakening the backbone to a one-epoch pretrain (backbone accuracy $0.530$) breaks that regime: federated adaptation now improves on the pretrained weights by roughly three and a half points, and the rank--accuracy coupling appears at the nominal deadline (Fig.~\ref{fig:weakbb}a), where rank 16 reaches $0.564$ against rank 4's $0.543$ over five paired seeds ($+2.1$ points, Wilcoxon $p{=}0.062$, the minimum possible at five seeds), with FedRAS coinciding with rank 16. Under the 0.1\,s deadline the coupling persists ($+2.7$ points for rank 16 over rank 4) and the scheduler prices it without any retuning (Fig.~\ref{fig:weakbb}b): FedRAS holds a delivered rank of 12.8, finishes $1.4$ points above rank 4 (five of five pairs), and gives back $1.4$ points to fixed rank 16 in exchange for a $13\%$ higher timely-delivery ratio and $20\%$ fewer bytes. Preserved capacity therefore converts into accuracy exactly when the backbone is weak enough to need adaptation, which is the regime in which a rank scheduler has a reason to exist; characterizing that regime more precisely is future work.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.98\columnwidth]{recolored_figures/fig_weakbb}
+\caption{Weak-backbone capacity payoff (one-epoch pretrain, five seeds). (a)~Nominal deadline: the rank--accuracy coupling appears (rank 16 above rank 4 by 2.1 points) and FedRAS coincides with rank 16; the dashed line marks the pretrained backbone. (b)~Stress deadline (0.1\,s): FedRAS lands between the fixed ranks on accuracy while delivering more updates than rank 16 at $20\%$ fewer bytes; annotations give attempted MB per round and mean delivered rank.}
+\label{fig:weakbb}
+\end{figure}
 
 \subsection{Large-scale scheduling simulation}
 
@@ -586,7 +600,7 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.98\columnwidth]{recolored_figures/fig_sim_regimes}
-\caption{Timely delivery ratio and attempted bytes per method across simulator regimes (five-seed means, final round). Full-model updates deliver nothing under stress and cannot be admitted at all under the binding budget.}
+\caption{Timely delivery ratio and attempted bytes per method across simulator regimes, including the 1000-client scalability regime (five-seed means, final round). Full-model updates deliver nothing under stress and cannot be admitted at all under the binding budget.}
 \label{fig:simreg}
 \end{figure}
 

@@ -391,6 +391,7 @@ def main():
     all_methods = ['FedLoRA_r4', f'FedLoRA_r{ranks[-1]}', 'Random_rank', 'Adaptive_rank',
                    'DP_cohort', 'DP_same', 'SA_rank', 'Oort_utility', 'JointAB', 'FedAvg_offline'] \
                   + ([] if a.no_full_baseline else ['FedAvg_full'])
+    all_methods += [f'FedLoRA_r{r}' for r in ranks if f'FedLoRA_r{r}' not in all_methods]
     if a.methods:
         req = [x.strip() for x in a.methods.split(',')]
         methods = [x for x in all_methods if x in req]

@@ -125,7 +125,7 @@ def band(ax, m, s, color, label):
 
 def load_sim():
     frames = {}
-    for tag in ['nominal', 'dl0.1', 'dl0.05', 'budget1.2', 'mob0.7']:
+    for tag in ['nominal', 'dl0.1', 'dl0.05', 'budget1.2', 'mob0.7', 'clients1000']:
         fs = sorted(glob.glob(os.path.join(
             ROOT, f'outputs/fedlora_sim_v4/{tag}/round_metrics_seed*.csv')))
         if fs:
@@ -215,8 +215,8 @@ def main():
     save_pub(fig, 'fig_sim_accuracy', panels=2)
 
     # -- 6. simulator regime summary ------------------------------------------
-    tags = ['nominal', 'dl0.1', 'dl0.05', 'budget1.2', 'mob0.7']
-    tnames = ['2.0 s', '0.1 s', '0.05 s', '1.2 MB', 'mob 0.7']
+    tags = ['nominal', 'dl0.1', 'dl0.05', 'budget1.2', 'mob0.7', 'clients1000']
+    tnames = ['2.0 s', '0.1 s', '0.05 s', '1.2 MB', 'mob 0.7', '1000 cl.']
     fig, axes = plt.subplots(1, 2, figsize=(DOUBLE, 2.5))
     xs = np.arange(len(tags)); w = .13
     for j, m in enumerate(SIMM):

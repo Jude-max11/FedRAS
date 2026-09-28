@@ -119,41 +119,45 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Evaluation with the federated LoRA trainer}{21}{}\protected@file@percent }
 \newlabel{sec:traineval}{{6.2}{21}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}Accuracy parity and rank invariance}{21}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}Deadline stress}{22}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.3}Extended stress matrix}{23}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Sensitivity of the trainer to provisioned adapter width, cohort size, and label heterogeneity on CIFAR-10 with FedRAS (five seeds per variant; the nominal reference column uses ten seeds). Accuracy is flat in $r_{\max }$ and cohort size, with a second-order drop only at $\alpha {=}0.1$; the dominant effect of all three axes is on bytes and delivered updates (red, right axis).}}{24}{}\protected@file@percent }
-\newlabel{fig:sens}{{3}{24}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.4}External baselines}{24}{}\protected@file@percent }
-\newlabel{sec:extbase}{{6.2.4}{24}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.5}Scheduling variants}{25}{}\protected@file@percent }
-\newlabel{sec:dpvfair}{{6.2.5}{25}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Delivered-update norm vs.\ rank on CIFAR-10 (mean over delivered rounds; five seeds per point, error bars are one standard deviation). The measured growth ($2.5\times $ from rank 2 to 16, $1.9\times $ from rank 4 to 16) tracks the square-root capacity law of \eqref  {eq:cap} ($2.8\times $ and $2.0\times $) rather than linear payload growth ($8\times $ and $4\times $); the nominal and stress series coincide.}}{22}{}\protected@file@percent }
+\newlabel{fig:normlaw}{{3}{22}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}Deadline stress}{23}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.3}Extended stress matrix}{24}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Sensitivity of the trainer to provisioned adapter width, cohort size, and label heterogeneity on CIFAR-10 with FedRAS (five seeds per variant; the nominal reference column uses ten seeds). Accuracy is flat in $r_{\max }$ and cohort size, with a second-order drop only at $\alpha {=}0.1$; the dominant effect of all three axes is on bytes and delivered updates (red, right axis).}}{25}{}\protected@file@percent }
+\newlabel{fig:sens}{{4}{25}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.4}External baselines}{25}{}\protected@file@percent }
+\newlabel{sec:extbase}{{6.2.4}{25}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.5}Scheduling variants}{26}{}\protected@file@percent }
+\newlabel{sec:dpvfair}{{6.2.5}{26}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.6}Component ablations}{26}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.7}Weak-backbone capacity payoff}{26}{}\protected@file@percent }
-\newlabel{sec:weakbb}{{6.2.7}{26}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.7}Weak-backbone capacity payoff}{27}{}\protected@file@percent }
+\newlabel{sec:weakbb}{{6.2.7}{27}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Large-scale scheduling simulation}{27}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}Scheduler behavior across operating regimes}{27}{}\protected@file@percent }
 \newlabel{sec:simsim}{{6.3.1}{27}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Experiments at 500-client scale (five seeds unless noted). (a) Scheduler simulation across regimes; the utility column is the bounded scheduling utility of Section~\ref {sec:eval} and must not be read as dataset accuracy, MB is the attempted uplink payload of admitted clients in the final round billed on the same 0.01\,MB ceiling grid as budget admission, and FedAvg refers to full-model updates at their real serialized size. (b) Solver study with $K{=}25$ and 30 instances per cell on the identical ceiling grid; the table reports heuristic objective loss relative to the grid-based DP and DP runtime.}}{28}{}\protected@file@percent }
-\newlabel{tab:scalemain}{{4}{28}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Scheduler simulation utility-state trajectories (mean over five seeds). (a)~Nominal 2.0\,s deadline, where FedRAS matches fixed rank 16. (b)~0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16.}}{29}{}\protected@file@percent }
-\newlabel{fig:sim}{{4}{29}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Timely delivery ratio and attempted bytes per method across simulator regimes (five-seed means, final round). Full-model updates deliver nothing under stress and cannot be admitted at all under the binding budget.}}{29}{}\protected@file@percent }
-\newlabel{fig:simreg}{{5}{29}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Weak-backbone capacity payoff (one-epoch pretrain, five seeds). (a)~Nominal deadline: the rank--accuracy coupling appears (rank 16 above rank 4 by 2.1 points) and FedRAS coincides with rank 16; the dashed line marks the pretrained backbone. (b)~Stress deadline (0.1\,s): FedRAS lands between the fixed ranks on accuracy while delivering more updates than rank 16 at $20\%$ fewer bytes; annotations give attempted MB per round and mean delivered rank.}}{28}{}\protected@file@percent }
+\newlabel{fig:weakbb}{{5}{28}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Scheduler simulation utility-state trajectories (mean over five seeds). (a)~Nominal 2.0\,s deadline, where FedRAS matches fixed rank 16. (b)~0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16.}}{29}{}\protected@file@percent }
+\newlabel{fig:sim}{{6}{29}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Timely delivery ratio and attempted bytes per method across simulator regimes, including the 1000-client scalability regime (five-seed means, final round). Full-model updates deliver nothing under stress and cannot be admitted at all under the binding budget.}}{29}{}\protected@file@percent }
+\newlabel{fig:simreg}{{7}{29}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}Solver optimality and runtime}{29}{}\protected@file@percent }
 \newlabel{sec:dp_study}{{6.3.2}{29}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Solver study. (a)~Objective loss of the heuristics relative to the DP across deadline and budget cells. (b)~DP runtime scaling with the client population.}}{30}{}\protected@file@percent }
-\newlabel{fig:dp}{{6}{30}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3}Delivery-predictor sensitivity}{30}{}\protected@file@percent }
-\newlabel{sec:calsens}{{6.3.3}{30}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Delivery-predictor calibration study (500 clients, 150 round-instances per cell). Left: reliability at the 0.1\,s deadline; with oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted ($\gamma $) and noisy variants are measurably miscalibrated. Right: assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% in every cell.}}{31}{}\protected@file@percent }
-\newlabel{fig:calib}{{7}{31}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and limitations}{32}{}\protected@file@percent }
-\newlabel{sec:discussion}{{7}{32}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Interpretation and deployment considerations}{32}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Scope and limitations}{33}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Experiments at 500-client scale (five seeds unless noted). (a) Scheduler simulation across regimes; the utility column is the bounded scheduling utility of Section~\ref {sec:eval} and must not be read as dataset accuracy, MB is the attempted uplink payload of admitted clients in the final round billed on the same 0.01\,MB ceiling grid as budget admission, and FedAvg refers to full-model updates at their real serialized size. (b) Solver study with $K{=}25$ and 30 instances per cell on the identical ceiling grid; the table reports heuristic objective loss relative to the grid-based DP and DP runtime.}}{30}{}\protected@file@percent }
+\newlabel{tab:scalemain}{{4}{30}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Solver study. (a)~Objective loss of the heuristics relative to the DP across deadline and budget cells. (b)~DP runtime scaling with the client population.}}{31}{}\protected@file@percent }
+\newlabel{fig:dp}{{8}{31}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3}Delivery-predictor sensitivity}{31}{}\protected@file@percent }
+\newlabel{sec:calsens}{{6.3.3}{31}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Delivery-predictor calibration study (500 clients, 150 round-instances per cell). Left: reliability at the 0.1\,s deadline; with oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted ($\gamma $) and noisy variants are measurably miscalibrated. Right: assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% in every cell.}}{32}{}\protected@file@percent }
+\newlabel{fig:calib}{{9}{32}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and limitations}{33}{}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{33}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Interpretation and deployment considerations}{33}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Scope and limitations}{34}{}\protected@file@percent }
 \citation{bonawitz2017secureagg,wei2023pfl_dp}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{34}{}\protected@file@percent }
-\newlabel{sec:conclusion}{{8}{34}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{35}{}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{35}{}{}{}}
 \bibstyle{elsarticle-num}
 \bibdata{references}
 \bibcite{mcmahan2017fedavg}{{1}{}{{}}{{}}}
@@ -198,4 +202,4 @@
 \bibcite{bonawitz2017secureagg}{{40}{}{{}}{{}}}
 \bibcite{wei2023pfl_dp}{{41}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\gdef \@abspage@last{41}
+\gdef \@abspage@last{42}
