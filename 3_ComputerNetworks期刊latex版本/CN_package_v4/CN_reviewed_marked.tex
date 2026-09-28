@@ -1,7 +1,7 @@
 % !TeX program = pdflatex
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL /tmp/old_baseline.tex   Sat Sep 26 08:41:20 2026
-%DIF ADD CN_reviewed.tex         Sun Sep 27 14:20:22 2026
+%DIF ADD CN_reviewed.tex         Mon Sep 28 00:06:00 2026
 \documentclass[preprint,12pt]{elsarticle}
 \journal{Computer Networks}
 \usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,algorithm,algorithmic,multirow}
@@ -106,7 +106,7 @@
 }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdel{Experiments on non-IID CIFAR-10, CIFAR-100, and MNIST with }\DIFdelend \DIFaddbegin \DIFadd{On a real trainer and }\DIFaddend a 500-client scheduler simulation\DIFdelbegin \DIFdel{use deadlines recalibrated to these real payloads. At the nominal deadline, rank selection reduces to fixed rank-16 behavior at zero cost. Under a 0.1\,s deadline}\DIFdelend , FedRAS delivers 22\% more timely updates \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{with }\DIFaddend 23\% fewer bytes than fixed rank 16 \DIFdelbegin \DIFdel{over ten seeds ($p{=}0.002$), while a full-model update misses }\DIFdelend \DIFaddbegin \DIFadd{under deadline stress at statistically equivalent accuracy; full-parameter updates miss }\DIFaddend every stress deadline\DIFdelbegin \DIFdel{and spends $58.7\times$ the bytes. A pre-registered TOST equivalence test confirms that accuracy is preserved. The dynamic program improves on greedy scheduling by 28 to 55\% when }\DIFdelend \DIFaddbegin \DIFadd{; and exact scheduling beats greedy heuristics whenever }\DIFaddend the budget binds, \DIFdelbegin \DIFdel{and by up to 64\% over value-per-byte pricing, at 23--421\,ms solver cost, and a deliberately miscalibrated delivery predictor costs at most 1\% of the assignment objective. These results describe network-side gains in the evaluated frozen-backbone setting and do not imply universal accuracy gains}\DIFdelend \DIFaddbegin \DIFadd{at sub-second per-round cost}\DIFaddend .
+\DIFdel{Experiments on non-IID CIFAR-10, CIFAR-100, and MNIST with a }\DIFdelend \DIFaddbegin \DIFadd{The design comes with mechanism-level guarantees: the grid assignment is exact on the stated budget grid, the budget regime in which a per-client greedy rule is already optimal is characterized in closed form, and frozen-factor aggregation of heterogeneous ranks is exact. The gains come from delivering more updates within the deadline rather than from changing training, which is why accuracy remains statistically equivalent while the network-side outcomes improve. On a real trainer and a }\DIFaddend 500-client \DIFdelbegin \DIFdel{scheduler simulation use deadlines recalibrated to these real payloads. At the nominal deadline , rank selection reduces to fixed rank-16 behavior at zero cost. Under a 0.1\,s deadline}\DIFdelend \DIFaddbegin \DIFadd{scheduler simulation}\DIFaddend , FedRAS delivers 22\% more timely updates \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{with }\DIFaddend 23\% fewer bytes than fixed rank 16 \DIFdelbegin \DIFdel{over ten seeds ($p{=}0.002$), while a full-model update misses }\DIFdelend \DIFaddbegin \DIFadd{under deadline stress at statistically equivalent accuracy; full-parameter updates miss }\DIFaddend every stress deadline\DIFdelbegin \DIFdel{and spends $58.7\times$ the bytes. A pre-registered TOST equivalence test confirms that accuracy is preserved. The dynamic program improves on greedy scheduling by 28 to 55\% when }\DIFdelend \DIFaddbegin \DIFadd{; and exact scheduling beats greedy heuristics whenever }\DIFaddend the budget binds, \DIFdelbegin \DIFdel{and by up to 64\% over value-per-byte pricing, at 23--421\,ms solver cost, and a deliberately miscalibrated delivery predictor costs at most 1\% of the assignment objective. These results describe network-side gains in the evaluated frozen-backbone setting and do not imply universal accuracy gains}\DIFdelend \DIFaddbegin \DIFadd{at sub-second per-round cost}\DIFaddend .
 \end{abstract}
 
 \begin{keyword}
@@ -127,24 +127,18 @@ This raises three questions \DIFdelbegin \DIFdel{. How should }\DIFdelend \DIFad
 \DIFdelbegin \subsection{\DIFdel{Contributions}}
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdelend We answer these questions with a delivery model, a grid-based dynamic-programming solver, a rank-selection rule, and a two-tier evaluation\DIFdelbegin \DIFdel{. We call the }\DIFdelend \DIFaddbegin \DIFadd{, and call the resulting }\DIFaddend method FedRAS. \DIFdelbegin \DIFdel{The contributions are as follows. }%DIFDELCMD < 
+\DIFdelend We answer these questions with a delivery model, a grid-based dynamic-programming solver, a rank-selection rule, and a two-tier evaluation\DIFdelbegin \DIFdel{. We call the }\DIFdelend \DIFaddbegin \DIFadd{, and call the resulting }\DIFaddend method FedRAS. \DIFdelbegin \DIFdel{The contributions are as follows}\DIFdelend \DIFaddbegin \DIFadd{Our contributions are threefold}\DIFaddend .
 
-%DIFDELCMD < \begin{itemize}
-%DIFDELCMD < \item %%%
-\textbf{\DIFdel{Deadline-aware client--rank model.}} %DIFAUXCMD
-\DIFdel{We formulate each round as a joint assignment in which }\DIFdelend \DIFaddbegin \DIFadd{Our contributions are threefold. First, we propose FedRAS, to our knowledge the first framework that treats the LoRA rank as a deadline-constrained, network-conditioned, schedulable resource: each round, client }\DIFaddend admission and rank are \DIFdelbegin \DIFdel{selected together. The model links rank to its real serialized payload, a delivery probability $P_{\mathrm{on}}(r)$, and a saturating capacity gain $G(r)$. Sections~\ref{sec:model}and \ref{sec:problem} develop the model.
+\begin{itemize}
+\item \textbf{\DIFdelbegin \DIFdel{Deadline-aware client--rank model}\DIFdelend \DIFaddbegin \DIFadd{FedRAS framework}\DIFaddend .} We \DIFdelbegin \DIFdel{formulate each round as a joint assignment in which }\DIFdelend \DIFaddbegin \DIFadd{propose FedRAS, to our knowledge the first framework that treats the LoRA rank as a deadline-constrained, network-conditioned, schedulable resource: each round, client }\DIFaddend admission and rank are \DIFdelbegin \DIFdel{selected together. The model links rank to its real serialized payload, a delivery probability $P_{\mathrm{on}}(r)$, and a saturating capacity gain $G(r)$. Sections~\ref{sec:model}and \ref{sec:problem} develop the model.
 }%DIFDELCMD < \item %%%
+\item%DIFAUXCMD
 \textbf{\DIFdel{Dynamic-programming scheduler.}} %DIFAUXCMD
-\DIFdel{The estimated problem is a multiple-choice knapsack with an admission cap. We derive a pseudo-polynomial dynamic program that is exact for the discretized single-round estimated assignment problem, with complexity $O(|\mathcal D| K B_{\max}|\mathcal R|)$. The solver study measures greedy gaps and runtime. }%DIFDELCMD < \item %%%
-\textbf{\DIFdel{Heterogeneous-rank aggregation.}} %DIFAUXCMD
-\DIFdel{We use rank-masked averaging with a shared frozen $A$ factor, so only the trainable $B$ factor is ever uploaded. Under this condition, the rule gives }\DIFdelend \DIFaddbegin \DIFadd{decided jointly under a byte budget and participation constraints, and all payloads are accounted at their real serialized sizes (Section~\ref{sec:model}); this makes the scheduling decision, for the first time, directly responsive to link state rather than only to training progress or device capability. Second, we prove the exactness of the grid-based dynamic-programming assignment on the stated budget grid (Proposition~\ref{prop:dp}), derive the budget-feasibility condition under which the cheap per-client rule is already optimal (Proposition~\ref{prop:cohort}), and establish }\DIFaddend exact coordinate-wise \DIFdelbegin \DIFdel{averaging of active induced-update slices. }\DIFdelend \DIFaddbegin \DIFadd{aggregation of heterogeneous ranks under a frozen shared factor (}\DIFaddend Proposition~\ref{prop:agg}\DIFdelbegin \DIFdel{states the conditions and limits.
-}%DIFDELCMD < \item %%%
-\textbf{\DIFdel{Two-tier evaluation at real payload sizes.}} %DIFAUXCMD
-\DIFdel{A real trainer covers non-IID CIFAR-10, CIFAR-100, and MNIST over ten seeds, }\DIFdelend \DIFaddbegin \DIFadd{); together, these answer when exact solving is worth its cost, when it may degrade, and how heterogeneous ranks aggregate consistently, with bounded time and memory complexity (Section~\ref{sec:theory}). Third, we validate the design on a real federated LoRA trainer }\DIFaddend and a 500-client scheduler simulation \DIFdelbegin \DIFdel{covers deadline, budget, mobility, and scale regimes. Under a 0.1\,s deadline }\DIFdelend \DIFaddbegin \DIFadd{(Section~\ref{sec:eval}): under deadline stress}\DIFaddend , FedRAS delivers 22\% more timely updates \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{with }\DIFaddend 23\% fewer bytes than fixed rank 16 at \DIFaddbegin \DIFadd{statistically }\DIFaddend equivalent accuracy, while \DIFdelbegin \DIFdel{full-parameter }\DIFdelend \DIFaddbegin \DIFadd{full-model }\DIFaddend updates miss every stress deadline\DIFdelbegin \DIFdel{at $58.7\times$ the bytes. The evaluation further covers external baselines, a candidate-pool decomposition of the scheduler's gains, a SAGIN link profile, and pre-registered equivalence tests.
-}%DIFDELCMD < \end{itemize}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \DIFadd{; the exact assignment pays through admission over heterogeneous pools; and the conclusions are robust across datasets, link profiles, and delivery-predictor distortions. Throughout, we report accuracy, timely delivery ratio, and bytes per round as separate outcomes, and do not read a network-side advantage as an accuracy advantage.
-}\DIFaddend 
+\DIFdel{The estimated problem is a multiple-choice knapsack with an admission cap. We derive a pseudo-polynomial dynamic program that is exact for the discretized single-round estimated assignment problem, with complexity $O(|\mathcal D| K B_{\max}|\mathcal R|)$. The solver study measures greedy gaps and runtime}\DIFdelend \DIFaddbegin \DIFadd{decided jointly under a byte budget and participation constraints, and all payloads are accounted at their real serialized sizes (Section~\ref{sec:model}). This makes the scheduling decision, for the first time, directly responsive to link state rather than only to training progress or device capability}\DIFaddend .
+\item \textbf{\DIFdelbegin \DIFdel{Heterogeneous-rank aggregation}\DIFdelend \DIFaddbegin \DIFadd{Theoretical analysis}\DIFaddend .} We \DIFdelbegin \DIFdel{use rank-masked averaging with a shared frozen $A$ factor, so only the trainable $B$ factor is ever uploaded. Under this condition , the rule gives }\DIFdelend \DIFaddbegin \DIFadd{prove the exactness of the grid-based dynamic-programming assignment on the stated budget grid (Proposition~\ref{prop:dp}), derive the budget-feasibility condition under which the cheap per-client rule is already optimal (Proposition~\ref{prop:cohort}), and establish }\DIFaddend exact coordinate-wise \DIFdelbegin \DIFdel{averaging of active induced-update slices. }\DIFdelend \DIFaddbegin \DIFadd{aggregation of heterogeneous ranks under a frozen shared factor (}\DIFaddend Proposition~\ref{prop:agg}\DIFdelbegin \DIFdel{states the conditions and limits. }\DIFdelend \DIFaddbegin \DIFadd{). Together, these answer when exact solving is worth its cost, when it may degrade, and how heterogeneous ranks aggregate consistently, with bounded time and memory complexity (Section~\ref{sec:theory}).
+}\DIFaddend \item \DIFdelbegin \textbf{\DIFdel{Two-tier evaluation at real payload sizes.}} %DIFAUXCMD
+\DIFdel{A real trainer covers non-IID CIFAR-10, CIFAR-100, and MNIST over ten seeds, }\DIFdelend \DIFaddbegin \textbf{\DIFadd{Experiments and validation.}} \DIFadd{We validate the design on a real federated LoRA trainer }\DIFaddend and a 500-client scheduler simulation \DIFdelbegin \DIFdel{covers deadline, budget, mobility, and scale regimes. Under a 0.1\,s deadline }\DIFdelend \DIFaddbegin \DIFadd{(Section~\ref{sec:eval}): under deadline stress}\DIFaddend , FedRAS delivers 22\% more timely updates \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{with }\DIFaddend 23\% fewer bytes than fixed rank 16 at \DIFaddbegin \DIFadd{statistically }\DIFaddend equivalent accuracy, while \DIFdelbegin \DIFdel{full-parameter }\DIFdelend \DIFaddbegin \DIFadd{full-model }\DIFaddend updates miss every stress deadline\DIFdelbegin \DIFdel{at $58.7\times$ the bytes. The evaluation further covers external baselines, a candidate-pool decomposition of the scheduler's gains, a SAGIN link profile, and pre-registered equivalence tests}\DIFdelend \DIFaddbegin \DIFadd{; the exact assignment pays through admission over heterogeneous pools; and the conclusions are robust across datasets, link profiles, and delivery-predictor distortions. Throughout, we report accuracy, timely delivery ratio, and bytes per round as separate outcomes, and do not read a network-side advantage as an accuracy advantage}\DIFaddend .
+\end{itemize}
 
 A preliminary poster version of this work studied joint client--protection scheduling for federated learning in space--air--ground mobile networks \cite{ma2026mswim}. The present article substantially reformulates that line of work around a different schedulable resource. It replaces compression-and-protection policies with the LoRA rank as the per-client decision variable. It introduces the real-payload delivery hazard and the saturating capacity model of Section~\ref{sec:model}, replaces the heuristic admission-and-repair procedure with a dynamic program that is exact on the stated budget grid, and adds frozen-factor rank-masked aggregation for heterogeneous ranks. It also reports a new two-tier evaluation comprising a real federated LoRA trainer, a 500-client scheduling simulator, and a solver exactness study. Accordingly, all numerical results in this article come from the revised formulation and implementation and are not comparable with the preliminary version.
 
@@ -295,7 +289,7 @@ Each round, the aggregator decides $a_i^t\in\{0\}\cup\mathcal R$, where $a_i^t=0
 \end{equation}
 The objective is a scheduling utility\DIFdelbegin \DIFdel{. It counts }\DIFdelend \DIFaddbegin \DIFadd{: }\DIFaddend expected useful delivered updates under the byte budget $B_{\max}$ and \DIFaddbegin \DIFadd{the }\DIFaddend participation cap $K$. It is \DIFdelbegin \DIFdel{not }\DIFdelend a \DIFdelbegin \DIFdel{direct }\DIFdelend \DIFaddbegin \DIFadd{network-side objective, not a }\DIFaddend surrogate for final test accuracy\DIFdelbegin \DIFdel{. Increasing }\DIFdelend \DIFaddbegin \DIFadd{; increasing }\DIFaddend $r$ raises $G$ sublinearly \DIFdelbegin \DIFdel{, increases payload , and lowers }\DIFdelend \DIFaddbegin \DIFadd{while raising payload and lowering }\DIFaddend the delivery surrogate. The experiments therefore report test accuracy, timely delivery ratio, bytes per round, and mean delivered rank as separate outcomes \DIFaddbegin \DIFadd{(Section~\ref{sec:eval})}\DIFaddend .
 
-\DIFdelbegin \DIFdel{Two deployment variants are evaluated. In full grid scheduling }\DIFdelend \DIFaddbegin \section{\DIFadd{FedRAS design}}
+\DIFdelbegin \DIFdel{Two deployment variants are evaluated. In full grid scheduling , the aggregator solves \eqref{eq:objective} and \eqref{eq:constraints} over all clients. The solver study evaluates this variant at 500-client scale, }\DIFdelend \DIFaddbegin \section{\DIFadd{FedRAS design}}
 \label{sec:solver}
 
 \subsection{\DIFadd{Overview}}
@@ -306,7 +300,7 @@ The objective is a scheduling utility\DIFdelbegin \DIFdel{. It counts }\DIFdelen
 \caption{\DIFadd{FedRAS Round}}
 \label{alg:fedras}
 \begin{algorithmic}[1]
-\REQUIRE \DIFadd{clients $\mathcal D$, rank set $\mathcal R$, cap $K$, budget $B_{\max}$, deadline $\tau$}\DIFaddend , \DIFdelbegin \DIFdel{the aggregator solves \eqref{eq:objective} and \eqref{eq:constraints} over all clients. The solver study evaluates this variant at 500-client scale, }\DIFdelend \DIFaddbegin \DIFadd{link-state history $\mathcal H^{t-1}$
+\REQUIRE \DIFadd{clients $\mathcal D$, rank set $\mathcal R$, cap $K$, budget $B_{\max}$, deadline $\tau$, link-state history $\mathcal H^{t-1}$
 }\ENSURE \DIFadd{assignment $a^t$; new adapter state $S^t$; updated history $\mathcal H^t$
 }\STATE \DIFadd{estimate per-client link states $x_i^t$ from $\mathcal H^{t-1}$
 }\STATE \DIFadd{score all pairs $(i,r)$: utilities $u_i(r)$ and integer costs $\widetilde B_i(r)$ (AC, Algorithm~\ref{alg:ac})
@@ -395,9 +389,9 @@ W_j=\sum_{i:\,r_i\ge j} n_i ,
 \label{eq:maskavg}
 }\end{equation}
 \DIFadd{while the frozen factor aggregates to itself, $\bar A=A$. The server then applies momentum per factor tensor. With $\Delta^t=\bar B-S^{t-1}$, the velocity and state update as $v^t=\beta\,v^{t-1}+(1-\beta)\,\Delta^t$ and $S^t=S^{t-1}+v^t$, with damping coefficient $\beta$ absorbing client-sampling and link noise. Algorithm~\ref{alg:ma} fixes the procedure; Proposition~\ref{prop:agg} (Section~\ref{sec:theory}) states its exactness and dilution properties.
-}\DIFaddend 
+}
 
-\DIFaddbegin \begin{algorithm}[t]
+\begin{algorithm}[t]
 \caption{\DIFadd{Masked Aggregation (MA)}}
 \label{alg:ma}
 \begin{algorithmic}[1]
@@ -410,8 +404,9 @@ W_j=\sum_{i:\,r_i\ge j} n_i ,
 }\STATE \DIFadd{$\Delta^t\gets\bar B-S^{t-1}$;}\quad \DIFadd{$v^t\gets\beta\,v^{t-1}+(1-\beta)\,\Delta^t$;}\quad \DIFadd{$S^t\gets S^{t-1}+v^t$
 }\end{algorithmic}
 \end{algorithm}
+\DIFaddend 
 
-\section{\DIFadd{Theoretical analysis}}
+\DIFaddbegin \section{\DIFadd{Theoretical analysis}}
 \label{sec:theory}
 
 \subsection{\DIFadd{Exactness of the DP assignment}}
@@ -1037,11 +1032,9 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 
 %DIFDELCMD < %%%
 \textbf{\DIFdel{Deployment recipe.}} %DIFAUXCMD
-\DIFdel{The results translate into three planning rules for a practitioner. Calibrate the deadline ladder from the real payload of the widest provisioned rank, so that the nominal deadline leaves rank $r_{\max}$ near-constraint-free while at least one stress deadline drives its timely delivery below one half. Size the byte budget at ten times the grid cost of rank $r_{\max}$, which forces the budget to bind only through downshifting or skipping.
-Finally, by Proposition~\ref{prop:cohort}, use the per-client argmax rule when the budget accommodates every candidate at rank $r_{\max}$ and invoke the full dynamic program only when the pool is heterogeneous enough that admission control matters.
-}%DIFDELCMD < 
+\DIFdel{The results translate into three planning rules for a practitioner. Calibrate the deadline ladder from the real payload of the widest provisioned rank, so that the nominal deadline leaves rank $r_{\max}$ near-constraint-free while at least one stress deadline drives its timely delivery below one half. Size the byte budget at ten times the grid cost of rank $r_{\max}$, which forces the budget to bind only through downshifting or skipping. Finally, by Proposition~\ref{prop:cohort}, use the per-client argmax rule when the budget accommodates every candidate at rank $r_{\max}$ and invoke the full dynamic program only when the pool is heterogeneous enough that admission control matters}\DIFdelend .
 
-%DIFDELCMD < \begin{table}[t]
+\DIFdelbegin %DIFDELCMD < \begin{table}[t]
 %DIFDELCMD < \centering
 %DIFDELCMD < %%%
 %DIFDELCMD < \caption{%
@@ -1067,11 +1060,10 @@ Finally, by Proposition~\ref{prop:cohort}, use the per-client argmax rule when t
 %DIFDELCMD < \end{tabular}%
 %DIFDELCMD < }
 %DIFDELCMD < \end{table}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \DIFadd{.
-}\DIFaddend 
+%DIFDELCMD < 
 
-\DIFaddbegin \subsubsection{\DIFadd{Delivery-predictor sensitivity}}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Delivery-predictor sensitivity}}
 \DIFaddend \begin{figure}[t]
 \centering
 \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.98\columnwidth]{recolored_figures/fig_dp_study}
