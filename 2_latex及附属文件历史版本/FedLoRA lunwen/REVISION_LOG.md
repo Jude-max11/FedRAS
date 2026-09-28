@@ -697,3 +697,24 @@ hatch='///' 的未裁剪路径 bbox 罩住全盒文本（碰撞审计 5 fail 根
   可信聚合器假设、去中心化变体未研究。
 ⑦ 新标签 sec:calsens（6.3.3）。编译：干净版 38 页 0 错误 0 未解析；红标版
   48 页同口径（幻影标签含 sec:calsens）。视觉验收 14 页全 PASS。
+
+修订记录 26（2026-09-28，评审修复轮 + 表1重设计）
+背景：三人隔离模拟评审一致 Major revision（存档 reviewer_simulation_round1.md）。
+① 贡献三条 itemize 精简（每条 1–2 句），删除第二个无限定 "for the first time"。
+② 表 1 重设计：14 系统 × 7 属性全 ✓/✗ 矩阵（新增 FedDPA/FedCS/TiFL/LESSON/
+  FedSN 五行；五篇评估性质经文献核实），ours 全 ✓，footnotesize+tabcolsep
+  4pt 无 resizebox。DFRL 经核实为 FL 卸载而非参与调度，§2.3 归类修正。
+③ P0 主张重构：摘要/结论改为 trainer 口径 + 新增 "Against low-rank baselines"
+  段正面披露 random/Oort-style/annealing 双指标占优（0.56/0.54/0.62 vs 0.49，
+  0.42/0.45/0.29 vs 0.69 MB，送达秩 6.2/8.0/5.0 vs 12.7），主张改为"容量保持端
+  + 同容量域内严格占优 fixed r16"。表4(a) Acc. 列改名 Util.，"best or tied"
+  限定到 utility 列。
+④ P2 命题 2 补 "at most K candidates" 假设，5.2 部署规则、7.1 两处部署表述
+  加 pool≤cap 条件；per-client 规则在 5.2 首次定义（修 3.5 悬空回指）。
+⑤ P5 成稿错误：§6 导语与 2.4 硬编码旧编号改 \ref（新增 sec:traineval/
+  sec:rwlora/sec:rwselect 标签）；"up to 64%" 改为 slack 63.6% / binding
+  54.8% 归属；offline control 句落数字 0.913±0.002（FedAvg_offline 五种子，
+  outputs/real_fedlora_v4）并补入 6.1 Baselines；Fig.3 图题 α 例外；6.1 秩规
+  则记号统一 P̂_on；DP 运行时解释改 "budget grid width"。
+⑥ 编译：干净版 39 页 0 错误 0 未解析；红标版 49 页同口径（幻影标签扩至新三
+  标签）。视觉验收 10 页全 PASS。
