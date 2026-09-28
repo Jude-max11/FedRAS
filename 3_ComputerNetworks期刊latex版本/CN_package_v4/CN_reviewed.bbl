@@ -168,6 +168,25 @@ P.~Guo, S.~Zeng, Y.~Wang, Y.~Fang, W.~Huang, S.~Liu, D.~Guo, Selective
   aggregation for low-rank adaptation in federated learning, in: International
   Conference on Learning Representations (ICLR), 2025.
 
+\bibitem{lin2018deep}
+Y.~Lin, S.~Han, H.~Mao, Y.~Wang, W.~J. Dally, Deep gradient compression:
+  Reducing the communication bandwidth for distributed training, in:
+  International Conference on Learning Representations, 2018.
+
+\bibitem{liu2023adaptivequant}
+H.~Liu, F.~He, G.~Cao, Communication-efficient federated learning for
+  heterogeneous edge devices based on adaptive gradient quantization, in:
+  Proceedings of IEEE INFOCOM, 2023, pp. 1--10.
+\newblock \href {https://doi.org/10.1109/INFOCOM53939.2023.10228970}
+  {\path{doi:10.1109/INFOCOM53939.2023.10228970}}.
+
+\bibitem{reisizadeh2020fedpaq}
+A.~Reisizadeh, A.~Mokhtari, H.~Hassani, A.~Jadbabaie, R.~Pedarsani, Fedpaq: A
+  communication-efficient federated learning method with periodic averaging and
+  quantization, in: Proceedings of the Twenty Third International Conference on
+  Artificial Intelligence and Statistics, Vol. 108 of Proceedings of Machine
+  Learning Research, PMLR, 2020, pp. 2021--2031.
+
 \bibitem{oh2023fedqcs}
 Y.~Oh, N.~Lee, Y.-S. Jeon, H.~V. Poor, Communication-efficient federated
   learning via quantized compressed sensing, IEEE Transactions on Wireless
@@ -182,31 +201,12 @@ Y.~Oh, Y.-S. Jeon, M.~Chen, W.~Saad, Fedvqcs: Federated learning via vector
 \newblock \href {https://doi.org/10.1109/TWC.2023.3291877}
   {\path{doi:10.1109/TWC.2023.3291877}}.
 
-\bibitem{liu2023adaptivequant}
-H.~Liu, F.~He, G.~Cao, Communication-efficient federated learning for
-  heterogeneous edge devices based on adaptive gradient quantization, in:
-  Proceedings of IEEE INFOCOM, 2023, pp. 1--10.
-\newblock \href {https://doi.org/10.1109/INFOCOM53939.2023.10228970}
-  {\path{doi:10.1109/INFOCOM53939.2023.10228970}}.
-
 \bibitem{kim2023beamforming}
 M.~Kim, A.~L. Swindlehurst, D.~Park, Beamforming vector design and device
   selection in over-the-air federated learning, IEEE Transactions on Wireless
   Communications 22~(11) (2023) 7464--7477.
 \newblock \href {https://doi.org/10.1109/TWC.2023.3251339}
   {\path{doi:10.1109/TWC.2023.3251339}}.
-
-\bibitem{reisizadeh2020fedpaq}
-A.~Reisizadeh, A.~Mokhtari, H.~Hassani, A.~Jadbabaie, R.~Pedarsani, Fedpaq: A
-  communication-efficient federated learning method with periodic averaging and
-  quantization, in: Proceedings of the Twenty Third International Conference on
-  Artificial Intelligence and Statistics, Vol. 108 of Proceedings of Machine
-  Learning Research, PMLR, 2020, pp. 2021--2031.
-
-\bibitem{lin2018deep}
-Y.~Lin, S.~Han, H.~Mao, Y.~Wang, W.~J. Dally, Deep gradient compression:
-  Reducing the communication bandwidth for distributed training, in:
-  International Conference on Learning Representations, 2018.
 
 \bibitem{oort2021oort}
 F.~Lai, X.~Zhu, H.~V. Madhyastha, M.~Chowdhury, Oort: Efficient federated

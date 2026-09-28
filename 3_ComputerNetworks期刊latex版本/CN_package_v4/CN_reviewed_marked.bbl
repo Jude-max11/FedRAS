@@ -46,6 +46,13 @@ D.~C. Nguyen, M.~Ding, P.~N. Pathirana, A.~Seneviratne, J.~Li, H.~V. Poor,
 \newblock \href {https://doi.org/10.1109/COMST.2021.3075439}
   {\path{doi:10.1109/COMST.2021.3075439}}.
 
+\bibitem{hamdi2022ehfl}
+R.~Hamdi, M.~Chen, A.~Ben~Said, M.~Qaraqe, H.~V. Poor, Federated learning over
+  energy harvesting wireless networks, IEEE Internet of Things Journal 9~(1)
+  (2022) 92--103.
+\newblock \href {https://doi.org/10.1109/JIOT.2021.3089054}
+  {\path{doi:10.1109/JIOT.2021.3089054}}.
+
 \bibitem{razmi2022ground}
 N.~Razmi, B.~Matthiesen, A.~Dekorsy, P.~Popovski, Ground-assisted federated
   learning in leo satellite constellations, IEEE Wireless Communications
@@ -74,13 +81,6 @@ M.~Ribero, H.~Vikalo, G.~de~Veciana, Federated learning under intermittent
   of Selected Topics in Signal Processing 17~(1) (2023) 98--111.
 \newblock \href {https://doi.org/10.1109/JSTSP.2022.3224590}
   {\path{doi:10.1109/JSTSP.2022.3224590}}.
-
-\bibitem{hamdi2022ehfl}
-R.~Hamdi, M.~Chen, A.~Ben~Said, M.~Qaraqe, H.~V. Poor, Federated learning over
-  energy harvesting wireless networks, IEEE Internet of Things Journal 9~(1)
-  (2022) 92--103.
-\newblock \href {https://doi.org/10.1109/JIOT.2021.3089054}
-  {\path{doi:10.1109/JIOT.2021.3089054}}.
 
 \bibitem{hu2022lora}
 E.~J. Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, W.~Chen,
@@ -168,6 +168,25 @@ P.~Guo, S.~Zeng, Y.~Wang, Y.~Fang, W.~Huang, S.~Liu, D.~Guo, Selective
   aggregation for low-rank adaptation in federated learning, in: International
   Conference on Learning Representations (ICLR), 2025.
 
+\bibitem{lin2018deep}
+Y.~Lin, S.~Han, H.~Mao, Y.~Wang, W.~J. Dally, Deep gradient compression:
+  Reducing the communication bandwidth for distributed training, in:
+  International Conference on Learning Representations, 2018.
+
+\bibitem{liu2023adaptivequant}
+H.~Liu, F.~He, G.~Cao, Communication-efficient federated learning for
+  heterogeneous edge devices based on adaptive gradient quantization, in:
+  Proceedings of IEEE INFOCOM, 2023, pp. 1--10.
+\newblock \href {https://doi.org/10.1109/INFOCOM53939.2023.10228970}
+  {\path{doi:10.1109/INFOCOM53939.2023.10228970}}.
+
+\bibitem{reisizadeh2020fedpaq}
+A.~Reisizadeh, A.~Mokhtari, H.~Hassani, A.~Jadbabaie, R.~Pedarsani, Fedpaq: A
+  communication-efficient federated learning method with periodic averaging and
+  quantization, in: Proceedings of the Twenty Third International Conference on
+  Artificial Intelligence and Statistics, Vol. 108 of Proceedings of Machine
+  Learning Research, PMLR, 2020, pp. 2021--2031.
+
 \bibitem{oh2023fedqcs}
 Y.~Oh, N.~Lee, Y.-S. Jeon, H.~V. Poor, Communication-efficient federated
   learning via quantized compressed sensing, IEEE Transactions on Wireless
@@ -182,31 +201,12 @@ Y.~Oh, Y.-S. Jeon, M.~Chen, W.~Saad, Fedvqcs: Federated learning via vector
 \newblock \href {https://doi.org/10.1109/TWC.2023.3291877}
   {\path{doi:10.1109/TWC.2023.3291877}}.
 
-\bibitem{liu2023adaptivequant}
-H.~Liu, F.~He, G.~Cao, Communication-efficient federated learning for
-  heterogeneous edge devices based on adaptive gradient quantization, in:
-  Proceedings of IEEE INFOCOM, 2023, pp. 1--10.
-\newblock \href {https://doi.org/10.1109/INFOCOM53939.2023.10228970}
-  {\path{doi:10.1109/INFOCOM53939.2023.10228970}}.
-
 \bibitem{kim2023beamforming}
 M.~Kim, A.~L. Swindlehurst, D.~Park, Beamforming vector design and device
   selection in over-the-air federated learning, IEEE Transactions on Wireless
   Communications 22~(11) (2023) 7464--7477.
 \newblock \href {https://doi.org/10.1109/TWC.2023.3251339}
   {\path{doi:10.1109/TWC.2023.3251339}}.
-
-\bibitem{reisizadeh2020fedpaq}
-A.~Reisizadeh, A.~Mokhtari, H.~Hassani, A.~Jadbabaie, R.~Pedarsani, Fedpaq: A
-  communication-efficient federated learning method with periodic averaging and
-  quantization, in: Proceedings of the Twenty Third International Conference on
-  Artificial Intelligence and Statistics, Vol. 108 of Proceedings of Machine
-  Learning Research, PMLR, 2020, pp. 2021--2031.
-
-\bibitem{lin2018deep}
-Y.~Lin, S.~Han, H.~Mao, Y.~Wang, W.~J. Dally, Deep gradient compression:
-  Reducing the communication bandwidth for distributed training, in:
-  International Conference on Learning Representations, 2018.
 
 \bibitem{oort2021oort}
 F.~Lai, X.~Zhu, H.~V. Madhyastha, M.~Chowdhury, Oort: Efficient federated

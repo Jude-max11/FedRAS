@@ -1,8 +1,11 @@
 % !TeX program = pdflatex
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL /tmp/old_baseline.tex   Sat Sep 26 08:41:20 2026
-%DIF ADD CN_reviewed.tex         Mon Sep 28 13:01:30 2026
+%DIF ADD CN_reviewed.tex         Mon Sep 28 13:09:53 2026
 \documentclass[preprint,12pt]{elsarticle}
+%DIF 3a3
+\biboptions{numbers,sort&compress} %DIF > 
+%DIF -------
 \journal{Computer Networks}
 \usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,algorithm,algorithmic,multirow}
 \usepackage{float}
@@ -120,12 +123,14 @@ Federated LoRA \sep Mobile edge computing \sep Rank selection \sep Deadline sche
 Mobile edge networks increasingly host federated learning (FL) workloads\DIFdelbegin \DIFdel{in which heterogeneous clients such as }\DIFdelend \DIFaddbegin \DIFadd{, with clients that include }\DIFaddend smartphones, vehicles, UAV terminals, and satellite-connected devices \DIFdelbegin \DIFdel{collaborate on a shared model without exposing raw data \mbox{%DIFAUXCMD
 \cite{mcmahan2017fedavg,kairouz2021advances,liu2018sagin,mahboob2024ntn}}\hskip0pt%DIFAUXCMD
 }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
-\cite{mcmahan2017fedavg,kairouz2021advances,nguyen2021iotfl,liu2018sagin,mahboob2024ntn}}\hskip0pt%DIFAUXCMD
-}\DIFaddend . The dominant cost \DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{of }\DIFaddend such systems is the uplink\DIFdelbegin \DIFdel{. Full-parameter }\DIFdelend \DIFaddbegin \DIFadd{: full-parameter }\DIFaddend model updates saturate wireless capacity, drain client energy, and frequently miss round deadlines when links degrade during handover or outage \DIFdelbegin \DIFdel{, as reported for ground, aerial, and satellite segments \mbox{%DIFAUXCMD
-\cite{razmi2022ground,tang2023flsagin,qin2024dfrl,ribero2023intermittent}}\hskip0pt%DIFAUXCMD
-}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
-\cite{hamdi2022ehfl,razmi2022ground,tang2023flsagin,qin2024dfrl,ribero2023intermittent}}\hskip0pt%DIFAUXCMD
-}\DIFaddend . Low-rank adaptation (LoRA) has therefore become an attractive transmission format\DIFdelbegin \DIFdel{for FL, because }\DIFdelend \DIFaddbegin \DIFadd{, because each adapted layer communicates }\DIFaddend only two small factor matrices \DIFdelbegin \DIFdel{per adapted layer are communicated }\DIFdelend instead of the full weight delta \cite{hu2022lora,babakniya2023slora,zhang2024fedit}.
+\cite{mcmahan2017fedavg,kairouz2021advances}}\hskip0pt%DIFAUXCMD
+, spanning IoT deployments \mbox{%DIFAUXCMD
+\cite{nguyen2021iotfl} }\hskip0pt%DIFAUXCMD
+and space--air--ground systems \mbox{%DIFAUXCMD
+\cite{liu2018sagin,mahboob2024ntn}}\hskip0pt%DIFAUXCMD
+}\DIFaddend . The dominant cost \DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{of }\DIFaddend such systems is the uplink\DIFdelbegin \DIFdel{. Full-parameter }\DIFdelend \DIFaddbegin \DIFadd{: full-parameter }\DIFaddend model updates saturate wireless capacity \DIFdelbegin \DIFdel{, }\DIFdelend \DIFaddbegin \DIFadd{and }\DIFaddend drain client energy \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{hamdi2022ehfl}}\hskip0pt%DIFAUXCMD
+}\DIFaddend , and frequently miss round deadlines when links degrade during handover or outage \DIFdelbegin \DIFdel{, as reported for ground, aerial, and satellite segments }\DIFdelend \cite{razmi2022ground,tang2023flsagin,qin2024dfrl,ribero2023intermittent}. Low-rank adaptation (LoRA) has therefore become an attractive transmission format\DIFdelbegin \DIFdel{for FL, because }\DIFdelend \DIFaddbegin \DIFadd{, because each adapted layer communicates }\DIFaddend only two small factor matrices \DIFdelbegin \DIFdel{per adapted layer are communicated }\DIFdelend instead of the full weight delta \cite{hu2022lora,babakniya2023slora,zhang2024fedit}.
 
 Existing \DIFdelbegin \DIFdel{Federated }\DIFdelend \DIFaddbegin \DIFadd{federated }\DIFaddend LoRA systems, however, treat the rank $r$ as a model hyperparameter\DIFdelbegin \DIFdel{. The }\DIFdelend \DIFaddbegin \DIFadd{, whether fixed across the fleet \mbox{%DIFAUXCMD
 \cite{sun2024ffalora,zhang2023fedpetuning}}\hskip0pt%DIFAUXCMD
@@ -195,7 +200,17 @@ FFA-LoRA \cite{sun2024ffalora} froze one factor at its random initialization and
 SA-FedLoRA schedules rank over rounds without conditioning on link state \cite{yang2024safedlora}. FedSA-LoRA studies asymmetric factor aggregation with client-local parameters \cite{guo2025fedsalora}. \DIFdelbegin \DIFdel{These rank-adaptation rules respond }\DIFdelend \DIFaddbegin \DIFadd{Across these systems, the rank responds }\DIFaddend to training progress\DIFaddbegin \DIFadd{, parameter importance, }\DIFaddend or device capability\DIFdelbegin \DIFdel{, not to }\DIFdelend \DIFaddbegin \DIFadd{; in none of them is it a decision variable conditioned on }\DIFaddend the delivery state of a deadline-constrained link. We evaluate an annealing baseline and joint A/B averaging while making rank a per-round decision conditioned on delivery state and deadline.
 
 \subsection{Communication-efficient federated learning}
-A broad literature reduces FL communication through sparsification, quantization, compressed sensing, and over-the-air aggregation \cite{oh2023fedqcs,oh2024fedvqcs,liu2023adaptivequant,kim2023beamforming,reisizadeh2020fedpaq,lin2018deep}. These methods compress a given update. Our scheduler selects its rank before transmission, so rank directly affects payload and deadline feasibility. The proposed capacity and delivery models can therefore be combined with other codecs\DIFaddbegin \DIFadd{; Section~\ref{sec:extbase} validates this composition with an FP16 upload}\DIFaddend .
+A broad literature reduces FL communication through sparsification \DIFdelbegin \DIFdel{, quantization, compressed sensing, and }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{lin2018deep}}\hskip0pt%DIFAUXCMD
+, quantization \mbox{%DIFAUXCMD
+\cite{liu2023adaptivequant,reisizadeh2020fedpaq}}\hskip0pt%DIFAUXCMD
+, quantized compressed sensing \mbox{%DIFAUXCMD
+\cite{oh2023fedqcs,oh2024fedvqcs}}\hskip0pt%DIFAUXCMD
+, and beamformed }\DIFaddend over-the-air aggregation \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite{oh2023fedqcs,oh2024fedvqcs,liu2023adaptivequant,kim2023beamforming,reisizadeh2020fedpaq,lin2018deep}}\hskip0pt%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{kim2023beamforming}}\hskip0pt%DIFAUXCMD
+}\DIFaddend . These methods compress a given update. Our scheduler selects its rank before transmission, so rank directly affects payload and deadline feasibility. The proposed capacity and delivery models can therefore be combined with other codecs\DIFaddbegin \DIFadd{; Section~\ref{sec:extbase} validates this composition with an FP16 upload}\DIFaddend .
 
 \subsection{Client selection and deadline-aware scheduling}
 \DIFaddbegin \label{sec:rwselect}
@@ -368,11 +383,11 @@ The objective is a scheduling utility\DIFdelbegin \DIFdel{. It counts }\DIFdelen
 \caption{\DIFadd{FedRAS Round}}
 \label{alg:fedras}
 \begin{algorithmic}[1]
-\REQUIRE \DIFadd{clients $\mathcal D$, rank set $\mathcal R$, cap $K$, budget $B_{\max}$, deadline $\tau$}\DIFaddend , \DIFdelbegin \DIFdel{the aggregator solves \eqref{eq:objective} and \eqref{eq:constraints} over all clients. The solver study evaluates this variant at 500-client scale, and a same-cohort variant restricts the dynamic program to a uniformly sampled cohort, isolating the value of candidate-pool widening from in-cohort rank allocation. In the real trainer, fair-cohort scheduling samples the fixed cohort of ten clients and applies the }\DIFdelend \DIFaddbegin \DIFadd{link-state history $\mathcal H^{t-1}$
+\REQUIRE \DIFadd{clients $\mathcal D$, rank set $\mathcal R$, cap $K$, budget $B_{\max}$, deadline $\tau$}\DIFaddend , \DIFdelbegin \DIFdel{the aggregator solves \eqref{eq:objective} and \eqref{eq:constraints} over all clients. The solver study evaluates this variant at 500-client scale, }\DIFdelend \DIFaddbegin \DIFadd{link-state history $\mathcal H^{t-1}$
 }\ENSURE \DIFadd{assignment $a^t$; new adapter state $S^t$; updated history $\mathcal H^t$
-}\STATE \DIFadd{estimate }\DIFaddend per-client \DIFdelbegin \DIFdel{rank rule $r_i^\star=\arg\max_r G_i^t(r)P_{\rm on,i}^t(r)$. All budget arithmetic uses }\DIFdelend \DIFaddbegin \DIFadd{link states $x_i^t$ from $\mathcal H^{t-1}$
+}\STATE \DIFadd{estimate per-client link states $x_i^t$ from $\mathcal H^{t-1}$
 }\STATE \DIFadd{score all pairs $(i,r)$: utilities $u_i(r)$ and integer costs $\widetilde B_i(r)$ (AC, Algorithm~\ref{alg:ac})
-}\STATE \DIFadd{solve the assignment $a^t$ under $K$ and $B_{\max}$ (GDP, Algorithm~\ref{alg:gdp}); when the all-$r_{\max}$ profile is budget-feasible, the per-client maximizer rule is already optimal (Proposition~\ref{prop:cohort})
+}\STATE \DIFadd{solve the assignment $a^t$ under $K$ }\DIFaddend and \DIFdelbegin \DIFdel{a same-cohort variant restricts the dynamic program to a uniformly sampled cohort, isolating the value of candidate-pool widening from in-cohort rank allocation. In the real trainer, fair-cohort scheduling samples the fixed cohort of ten clients and applies the }\DIFdelend \DIFaddbegin \DIFadd{$B_{\max}$ (GDP, Algorithm~\ref{alg:gdp}); when the all-$r_{\max}$ profile is budget-feasible, the }\DIFaddend per-client \DIFdelbegin \DIFdel{rank rule $r_i^\star=\arg\max_r G_i^t(r)P_{\rm on,i}^t(r)$. All budget arithmetic uses }\DIFdelend \DIFaddbegin \DIFadd{maximizer rule is already optimal (Proposition~\ref{prop:cohort})
 }\STATE \DIFadd{broadcast the backbone $w^t$; admitted clients train locally with factors sliced to $a_i^t$ and upload before $\tau$
 }\STATE \DIFadd{pass uploads arriving within $\tau$ (on-time gate)
 }\STATE \DIFadd{aggregate timely updates with the frozen shared $A$ (MA, Algorithm~\ref{alg:ma})
@@ -447,9 +462,9 @@ where $u_i(r)=G_i^t(r)\hat P_{\rm on,i}^t(r)$. Backpointers recover the assignme
 }
 
 \DIFadd{Jointly trained factor pairs $(A_i,B_i)$ are identifiable only up to invertible transforms, so separately averaged factors need not average the updates at all. The elevated-learning-rate ablation of Section~\ref{sec:eval} examines this aggregation rule empirically.
-}
+}\DIFaddend 
 
-\textbf{\DIFadd{Rank-masked averaging.}} \DIFadd{The server zero-pads inactive columns of each delivered $B_i$ and averages each active coordinate over the clients that activate it,
+\DIFaddbegin \textbf{\DIFadd{Rank-masked averaging.}} \DIFadd{The server zero-pads inactive columns of each delivered $B_i$ and averages each active coordinate over the clients that activate it,
 }\begin{equation}
 \DIFadd{\bar B_{:,j}=\frac{1}{W_j}\sum_{i:\,r_i\ge j} n_i\,\big[B_i\big]_{:,j},
 \qquad
@@ -457,9 +472,9 @@ W_j=\sum_{i:\,r_i\ge j} n_i ,
 \label{eq:maskavg}
 }\end{equation}
 \DIFadd{while the frozen factor aggregates to itself, $\bar A=A$. The server then applies momentum per factor tensor. With $\Delta^t=\bar B-S^{t-1}$, the velocity and state update as $v^t=\beta\,v^{t-1}+(1-\beta)\,\Delta^t$ and $S^t=S^{t-1}+v^t$, with damping coefficient $\beta$ absorbing client-sampling and link noise. Algorithm~\ref{alg:ma} fixes the procedure; Proposition~\ref{prop:agg} (Section~\ref{sec:theory}) states its exactness and dilution properties.
-}\DIFaddend 
+}
 
-\DIFaddbegin \begin{algorithm}[t]
+\begin{algorithm}[t]
 \caption{\DIFadd{Masked Aggregation (MA)}}
 \label{alg:ma}
 \begin{algorithmic}[1]
@@ -1134,14 +1149,13 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 \DIFdelbegin \DIFdel{A dedicated grid sweep with steps from 0.02 to 0.005\,MB compares each step against a 0.0025\,MB reference. In the binding 1.2\,MB regime the default 0.01\,MB step deviates by at most 3.1\%, and a 0.005\,MB }\DIFdelend \DIFaddbegin \textbf{\DIFadd{Why the heuristics fail where they do.}} \DIFadd{Value-per-byte pricing fails structurally: the capacity gain $G(r)$ saturates while payload grows linearly, so its ratio always favors the smallest rank regardless of link state. Fixed rank 16 and value greedy fail only under scarcity, where choosing which candidates to drop is the coupling that per-client rules cannot see. The DP runtime follows the budget grid width rather than the client count, which is why it is fastest under exactly the binding budgets that need it most.
 }
 
-\textbf{\DIFadd{Grid sweep.}} \DIFadd{A dedicated grid sweep around the default }\DIFaddend step bounds the \DIFdelbegin \DIFdel{deviation to 2.4\% ; slack regimes stay }\DIFdelend \DIFaddbegin \DIFadd{quantization error at about 3\% in the binding regime and }\DIFaddend below 1\% \DIFaddbegin \DIFadd{in slack regimes; a finer step reduces it further at a known runtime cost}\DIFaddend . The grid exactness claim of Section~\DIFdelbegin \DIFdel{\ref{sec:solver} }\DIFdelend \DIFaddbegin \DIFadd{\ref{sec:theory} }\DIFaddend therefore applies to a grid whose quantization error is bounded, measured, and adjustable\DIFdelbegin \DIFdel{at a known runtime cost.
+\textbf{\DIFadd{Grid sweep.}} \DIFadd{A dedicated grid sweep around the default }\DIFaddend step bounds the \DIFdelbegin \DIFdel{deviation to 2.4\% ; slack regimes stay }\DIFdelend \DIFaddbegin \DIFadd{quantization error at about 3\% in the binding regime and }\DIFaddend below 1\% \DIFaddbegin \DIFadd{in slack regimes; a finer step reduces it further at a known runtime cost}\DIFaddend . The grid exactness claim of Section~\DIFdelbegin \DIFdel{\ref{sec:solver} }\DIFdelend \DIFaddbegin \DIFadd{\ref{sec:theory} }\DIFaddend therefore applies to a grid whose quantization error is bounded, measured, and adjustable\DIFdelbegin \DIFdel{at a known runtime cost}\DIFdelend .
+
+\DIFdelbegin \textbf{\DIFdel{Deployment recipe.}} %DIFAUXCMD
+\DIFdel{The results translate into three planning rules for a practitioner. Calibrate the deadline ladder from the real payload of the widest provisioned rank, so that the nominal deadline leaves rank $r_{\max}$ near-constraint-free while at least one stress deadline drives its timely delivery below one half. Size the byte budget at ten times the grid cost of rank $r_{\max}$, which forces the budget to bind only through downshifting or skipping. Finally, by Proposition~\ref{prop:cohort}, use the per-client argmax rule when the budget accommodates every candidate at rank $r_{\max}$ and invoke the full dynamic program only when the pool is heterogeneous enough that admission control matters.
 }%DIFDELCMD < 
 
-%DIFDELCMD < %%%
-\textbf{\DIFdel{Deployment recipe.}} %DIFAUXCMD
-\DIFdel{The results translate into three planning rules for a practitioner. Calibrate the deadline ladder from the real payload of the widest provisioned rank, so that the nominal deadline leaves rank $r_{\max}$ near-constraint-free while at least one stress deadline drives its timely delivery below one half. Size the byte budget at ten times the grid cost of rank $r_{\max}$, which forces the budget to bind only through downshifting or skipping. Finally, by Proposition~\ref{prop:cohort}, use the per-client argmax rule when the budget accommodates every candidate at rank $r_{\max}$ and invoke the full dynamic program only when the pool is heterogeneous enough that admission control matters}\DIFdelend .
-
-\DIFdelbegin %DIFDELCMD < \begin{table}[t]
+%DIFDELCMD < \begin{table}[t]
 %DIFDELCMD < \centering
 %DIFDELCMD < %%%
 %DIFDELCMD < \caption{%
@@ -1279,7 +1293,7 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 \DIFdel{Across both tiers , rank }\DIFdelend \DIFaddbegin \textbf{\DIFadd{Cross-tier summary.}} \DIFadd{Taken together, the two evaluation tiers give a consistent picture. Rank }\DIFaddend choice does not measurably change accuracy for the frozen backbone \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{at the }\DIFaddend 40-round horizon, and every accuracy comparison against fixed rank 16 passes the \DIFdelbegin \DIFdel{pre-registered }\DIFdelend TOST equivalence test \DIFaddbegin \DIFadd{fixed in advance }\DIFaddend at the $\pm0.5$ percentage-point margin\DIFdelbegin \DIFdel{. The main differences are on the network side. Full-parameter updates cost $58.7\times$ the bytes of a rank-16 upload, miss $83\%$ of nominal deadlines and all stress deadlines, and fail to improve on the backbone when only sparse updates arrive}\DIFdelend ; an offline control \DIFdelbegin \DIFdel{without delivery modeling trains }\DIFdelend \DIFaddbegin \DIFadd{that ignores delivery modeling entirely and trains on every scheduled update reaches $0.913\pm0.002$ at the nominal deadline, }\DIFaddend close to the backbone\DIFdelbegin \DIFdel{level}\DIFdelend \DIFaddbegin \DIFadd{'s $0.914$}\DIFaddend , separating learning capacity from delivery feasibility. \DIFdelbegin %DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdel{FedRAS behaves as designed, holding }\DIFdelend \DIFaddbegin \DIFadd{The methods instead separate on the network side: FedRAS holds }\DIFaddend high ranks on healthy links and \DIFdelbegin \DIFdel{downshifting under pressure. Over ten seeds at the 0.1\,s deadline it transmits 23\% fewer bytes than fixed rank 16 (bootstrap 95\% CI $[-26.6\%, -20.6\%]$, Wilcoxon $p{=}0.002$}\DIFdelend \DIFaddbegin \DIFadd{downshifts under pressure}\DIFaddend , \DIFdelbegin \DIFdel{matched-pairs rank-biserial 1.0), delivers 22\% more timely updates ($p{=}0.002$), and is accuracy-equivalent. At the nominal deadline it reduces to fixed rank-16 behavior at zero cost. The exact dynamic program }\DIFdelend \DIFaddbegin \DIFadd{full-parameter updates collapse once deadlines bind at real payload sizes, and the exact scheduler }\DIFaddend pays through admission over the \DIFdelbegin \DIFdel{wider candidate pool , $+9$ percentage points of timely delivery at the nominal deadline and $+8\%$ under stress , while the per-client argmax rule is already optimal inside a cohort (Proposition~\ref{prop:cohort}}\DIFdelend \DIFaddbegin \DIFadd{candidate pool rather than in-cohort rank allocation (Proposition~\ref{prop:cohort}). Two stress tests bound these claims from both sides: the network-side gains survive stacking on an FP16 codec (Section~\ref{sec:extbase}), and a weaker backbone reveals accuracy value in the preserved capacity exactly where the strong-backbone regime shows none (Section~\ref{sec:weakbb}}\DIFaddend ). These tests rest on ten-seed replications of the headline trainer regimes\DIFdelbegin \DIFdel{with common random numbers within each seed}\DIFdelend ; they support the stated network-side comparisons and the accuracy equivalence, and they do not establish accuracy dominance. \DIFaddbegin \DIFadd{Section~\ref{sec:discussion} interprets these findings, states their scope conditions, and translates them into deployment guidance.
+\DIFdel{FedRAS behaves as designed, holding }\DIFdelend \DIFaddbegin \DIFadd{The methods instead separate on the network side: FedRAS holds }\DIFaddend high ranks on healthy links and \DIFdelbegin \DIFdel{downshifting under pressure. Over ten seeds at the 0.1\,s deadline it transmits 23\% fewer bytes than fixed rank 16 (bootstrap 95\% CI $[-26.6\%, -20.6\%]$, Wilcoxon $p{=}0.002$, matched-pairs rank-biserial 1.0), delivers 22\% more timely updates ($p{=}0.002$), and is accuracy-equivalent. At the nominal deadline it reduces to fixed rank-16 behavior at zero cost. The exact dynamic program }\DIFdelend \DIFaddbegin \DIFadd{downshifts under pressure, full-parameter updates collapse once deadlines bind at real payload sizes, and the exact scheduler }\DIFaddend pays through admission over the \DIFdelbegin \DIFdel{wider candidate pool , $+9$ percentage points of timely delivery at the nominal deadline and $+8\%$ under stress , while the per-client argmax rule is already optimal inside a cohort (Proposition~\ref{prop:cohort}}\DIFdelend \DIFaddbegin \DIFadd{candidate pool rather than in-cohort rank allocation (Proposition~\ref{prop:cohort}). Two stress tests bound these claims from both sides: the network-side gains survive stacking on an FP16 codec (Section~\ref{sec:extbase}), and a weaker backbone reveals accuracy value in the preserved capacity exactly where the strong-backbone regime shows none (Section~\ref{sec:weakbb}}\DIFaddend ). These tests rest on ten-seed replications of the headline trainer regimes\DIFdelbegin \DIFdel{with common random numbers within each seed}\DIFdelend ; they support the stated network-side comparisons and the accuracy equivalence, and they do not establish accuracy dominance. \DIFaddbegin \DIFadd{Section~\ref{sec:discussion} interprets these findings, states their scope conditions, and translates them into deployment guidance.
 }\DIFaddend 
 
 \section{Discussion and limitations}
