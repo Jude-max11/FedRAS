@@ -805,3 +805,17 @@ fit-check 46 条文本 OK。重编译 39 页 0 错误；图页 p7 视觉验收 P
 ⑤ 图题同步：(c) 注明灰虚线为 annealing 路径；(d) 改"相对骨干 (pp)"。
 ⑥ QA：四张改动图 collision audit 全 PASS（0 fail 0 warn）；面板对齐门通过
   （submission 脚本内建）。编译干净版 42 页、红标版 54 页，0 错误 0 未解析。
+
+修订记录 32（2026-09-28，实验正文去报告腔 + 九图缩小）
+作者反馈：正文写得像实验报告、图可缩小但都要在。
+① 正文压缩（§6 约 −350 词，总计 9,385→9,032）："Why downshifting dominates"
+  5 句→2 句；"Against low-rank baselines" 收紧并改指向 6.2.7 的变现实验；
+  "Mechanism and replication" 删与统计协议段重复的全套统计量（数字只保留在
+  协议段一处）；范数段、压缩基线段、模拟器机理段、启发式失效段、弱骨干段
+  各压缩至 2-4 句，全部关键数字与评审答辩点保留。
+② 九图缩小：双栏图 0.98→0.85-0.88；fig_normlaw 0.8→0.55（回归 90mm 设计
+  原尺寸，字号不再放大）；fig_weakbb 0.98→0.92；trainer 四联 0.49 保持
+  （原设计尺寸）。
+③ 编译：42→41 页，0 错误 0 未解析 0 overfull；红标版 52 页同口径。视觉验收：
+  改动图页 8 页全 PASS（normlaw/weakbb/sensitivity/sim×2/dp/calibration 在
+  缩小后字号均高于 5pt 下限、无裁剪无空洞）。
