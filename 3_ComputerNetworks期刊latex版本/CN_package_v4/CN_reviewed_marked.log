@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  28 SEP 2026 12:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  28 SEP 2026 13:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -605,32 +605,7 @@ File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
 Package: listings 2023/02/27 1.9 (Carsten Heinz)
 
-(./CN_reviewed_marked.aux
-
-LaTeX Warning: Label `sec:rwlora' multiply defined.
-
-
-LaTeX Warning: Label `sec:rwselect' multiply defined.
-
-
-LaTeX Warning: Label `sec:traineval' multiply defined.
-
-
-LaTeX Warning: Label `sec:extbase' multiply defined.
-
-
-LaTeX Warning: Label `sec:weakbb' multiply defined.
-
-
-LaTeX Warning: Label `sec:calsens' multiply defined.
-
-
-LaTeX Warning: Label `fig:normlaw' multiply defined.
-
-
-LaTeX Warning: Label `fig:weakbb' multiply defined.
-
-)
+(./CN_reviewed_marked.aux)
 \openout1 = `CN_reviewed_marked.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
@@ -647,7 +622,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 92.
 LaTeX Font Info:    ... okay on input line 92.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 92.
 LaTeX Font Info:    ... okay on input line 92.
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count324
 \scratchdimen=\dimen288
@@ -711,36 +687,36 @@ Underfull \hbox (badness 2334) in paragraph at lines 159--160
  []
 
 [4{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Overfull \hbox (8.01918pt too wide) in paragraph at lines 174--174
+Overfull \hbox (8.01918pt too wide) in paragraph at lines 181--181
 [][]|   []   |   []   |   []   [][]|   []   []\OT1/cmr/m/it/12 LoRA []|   []   
 |   []
  []
 
 
-Overfull \hbox (8.5167pt too wide) in paragraph at lines 176--185
+Overfull \hbox (8.5167pt too wide) in paragraph at lines 183--192
 \OT1/cmr/m/n/12 work has stud-ied sparse up-dates []|   []   |   []   |   []   
 |   []   |   []   |   []
  []
 
-[5] [6]
-Overfull \hbox (13.88974pt too wide) in paragraph at lines 228--276
+[5] [6] [7]
+Overfull \hbox (13.88974pt too wide) in paragraph at lines 235--283
  [][] 
  []
 
-<recolored_figures/fig_architecture.pdf, id=39, 555.05635pt x 361.57762pt>
+<recolored_figures/fig_architecture.pdf, id=43, 555.05635pt x 361.57762pt>
 File: recolored_figures/fig_architecture.pdf Graphic file (type pdf)
 <use recolored_figures/fig_architecture.pdf>
 Package pdftex.def Info: recolored_figures/fig_architecture.pdf  used on input 
-line 283.
+line 290.
 (pdftex.def)             Requested size: 382.19833pt x 248.98123pt.
-[7] [8] [9] [10] [11]
-Overfull \hbox (0.718pt too wide) in paragraph at lines 392--394
+[8] [9] [10] [11]
+Overfull \hbox (0.718pt too wide) in paragraph at lines 399--401
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []   |   [][][]|   []
  []
 
 [12]
-Overfull \hbox (19.3958pt too wide) in paragraph at lines 416--419
+Overfull \hbox (19.3958pt too wide) in paragraph at lines 423--426
 \OT1/cmr/m/n/12 where $\OML/cmm/m/it/12 u[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r\
 OT1/cmr/m/n/12 ) = \OML/cmm/m/it/12 G[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r\OT1/
 cmr/m/n/12 )[](\OML/cmm/m/it/12 r\OT1/cmr/m/n/12 )$. Back-point-ers re-cover th
@@ -752,10 +728,10 @@ e as-sign-ment. []|   []   |   []
 File: recolored_figures/fig_trainer_nominal.pdf Graphic file (type pdf)
 <use recolored_figures/fig_trainer_nominal.pdf>
 Package pdftex.def Info: recolored_figures/fig_trainer_nominal.pdf  used on inp
-ut line 655.
+ut line 662.
 (pdftex.def)             Requested size: 191.10214pt x 126.74841pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 655--655
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 662--662
  [][][] 
  []
 
@@ -763,10 +739,10 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 655--655
 File: recolored_figures/fig_trainer_stress.pdf Graphic file (type pdf)
 <use recolored_figures/fig_trainer_stress.pdf>
 Package pdftex.def Info: recolored_figures/fig_trainer_stress.pdf  used on inpu
-t line 660.
+t line 667.
 (pdftex.def)             Requested size: 191.10214pt x 126.74841pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 660--660
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 667--667
  [][][] 
  []
 
@@ -774,10 +750,10 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 660--660
 File: recolored_figures/fig_rank_dynamics.pdf Graphic file (type pdf)
 <use recolored_figures/fig_rank_dynamics.pdf>
 Package pdftex.def Info: recolored_figures/fig_rank_dynamics.pdf  used on input
- line 665.
+ line 672.
 (pdftex.def)             Requested size: 191.10214pt x 126.74841pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 665--665
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 672--672
  [][][] 
  []
 
@@ -785,81 +761,85 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 665--665
 File: recolored_figures/fig_cross_dataset.pdf Graphic file (type pdf)
 <use recolored_figures/fig_cross_dataset.pdf>
 Package pdftex.def Info: recolored_figures/fig_cross_dataset.pdf  used on input
- line 670.
+ line 677.
 (pdftex.def)             Requested size: 191.10214pt x 118.65808pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 670--670
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 677--677
  [][][] 
  []
 
 
-LaTeX Warning: Float too large for page by 53.47942pt on input line 781.
+LaTeX Warning: Float too large for page by 53.47942pt on input line 788.
 
 [23] [24]
+Overfull \hbox (7.17053pt too wide) in paragraph at lines 798--800
+[][]|   []   |   [][] []|   []   |   []   |   []   |   []   |   []   |   []   |
+   []
+ []
+
 <recolored_figures/fig_normlaw.pdf, id=110, 256.0748pt x 166.22101pt>
 File: recolored_figures/fig_normlaw.pdf Graphic file (type pdf)
 <use recolored_figures/fig_normlaw.pdf>
 Package pdftex.def Info: recolored_figures/fig_normlaw.pdf  used on input line 
-798.
-(pdftex.def)             Requested size: 312.00119pt x 202.5306pt.
- [25] [26]
+805.
+(pdftex.def)             Requested size: 214.50119pt x 139.23915pt.
+[25] [26]
 <recolored_figures/fig_sensitivity.pdf, id=118, 540.60239pt x 158.99399pt>
 File: recolored_figures/fig_sensitivity.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sensitivity.pdf>
 Package pdftex.def Info: recolored_figures/fig_sensitivity.pdf  used on input l
-ine 904.
-(pdftex.def)             Requested size: 382.19833pt x 112.40616pt.
+ine 913.
+(pdftex.def)             Requested size: 331.50238pt x 97.49565pt.
  [27] [28] [29]
-Overfull \hbox (5.77505pt too wide) in paragraph at lines 1005--1007
+Overfull \hbox (5.77505pt too wide) in paragraph at lines 1014--1016
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
-[30]
-<recolored_figures/fig_weakbb.pdf, id=131, 540.60239pt x 180.675pt>
+<recolored_figures/fig_weakbb.pdf, id=128, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_weakbb.pdf Graphic file (type pdf)
 <use recolored_figures/fig_weakbb.pdf>
 Package pdftex.def Info: recolored_figures/fig_weakbb.pdf  used on input line 1
-015.
-(pdftex.def)             Requested size: 382.19833pt x 127.73427pt.
- [31]
-<recolored_figures/fig_sim_accuracy.pdf, id=136, 540.60239pt x 180.675pt>
+024.
+(pdftex.def)             Requested size: 358.79929pt x 119.91577pt.
+[30]
+<recolored_figures/fig_sim_accuracy.pdf, id=132, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_accuracy.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_accuracy.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_accuracy.pdf  used on input 
-line 1102.
-(pdftex.def)             Requested size: 382.19833pt x 127.73427pt.
-<recolored_figures/fig_sim_regimes.pdf, id=137, 540.60239pt x 180.675pt>
+line 1113.
+(pdftex.def)             Requested size: 343.2019pt x 114.70253pt.
+<recolored_figures/fig_sim_regimes.pdf, id=133, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_regimes.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_regimes.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_regimes.pdf  used on input l
-ine 1109.
-(pdftex.def)             Requested size: 382.19833pt x 127.73427pt.
- [32] [33] [34]
-<recolored_figures/fig_dp_study.pdf, id=147, 540.60239pt x 180.675pt>
+ine 1122.
+(pdftex.def)             Requested size: 343.2019pt x 114.70253pt.
+ [31] [32] [33]
+<recolored_figures/fig_dp_study.pdf, id=144, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_dp_study.pdf Graphic file (type pdf)
 <use recolored_figures/fig_dp_study.pdf>
 Package pdftex.def Info: recolored_figures/fig_dp_study.pdf  used on input line
- 1188.
-(pdftex.def)             Requested size: 312.00119pt x 104.27327pt.
-<recolored_figures/fig_calibration.pdf, id=148, 540.60239pt x 180.675pt>
+ 1179.
+(pdftex.def)             Requested size: 331.50238pt x 110.79051pt.
+<recolored_figures/fig_calibration.pdf, id=145, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_calibration.pdf Graphic file (type pdf)
 <use recolored_figures/fig_calibration.pdf>
 Package pdftex.def Info: recolored_figures/fig_calibration.pdf  used on input l
 ine 1197.
-(pdftex.def)             Requested size: 312.00119pt x 104.27327pt.
-
-Overfull \hbox (4.37683pt too wide) in paragraph at lines 1202--1204
+(pdftex.def)             Requested size: 331.50238pt x 110.79051pt.
+ [34]
+Overfull \hbox (4.37683pt too wide) in paragraph at lines 1232--1234
 [][]|   []   |   []   |   []   |   []   |   [][] []|   []   |   []   |   []   |
    []
  []
 
 [35]
-Underfull \hbox (badness 1297) in paragraph at lines 1220--1242
+Underfull \hbox (badness 1297) in paragraph at lines 1250--1272
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
-[36] [37] [38] [39] [40] [41] (./CN_reviewed_marked.bbl [42] [43] [44]
+[36] [37] [38] [39] [40] [41] (./CN_reviewed_marked.bbl [42] [43]
 Underfull \hbox (badness 2600) in paragraph at lines 142--148
 []\OT1/cmr/m/n/12 L. Yi, H. Zhang, H. Yu, G. Wang, X. Liu, Q. Hu, pFed-
  []
@@ -875,13 +855,13 @@ Underfull \hbox (badness 1484) in paragraph at lines 150--153
 []\OT1/cmr/m/n/12 Y. Yang, G. Long, T. Shen, J. Jiang, M. Blu-men-stein, Dual-
  []
 
-
+[44]
 Underfull \hbox (badness 3701) in paragraph at lines 172--177
 \OT1/cmr/m/n/12 ac-tions on Wire-less Com-mu-ni-ca-tions 22 (2) (2023) 1087--11
 00.
  []
 
-[45]
+
 Underfull \hbox (badness 2582) in paragraph at lines 179--184
 []\OT1/cmr/m/n/12 Y. Oh, Y.-S. Jeon, M. Chen, W. Saad, Fed-vqcs: Fed-er-ated
  []
@@ -910,7 +890,7 @@ Underfull \hbox (badness 1168) in paragraph at lines 193--198
 e-
  []
 
-[46]
+[45]
 Underfull \hbox (badness 1067) in paragraph at lines 233--238
 []\OT1/cmr/m/n/12 B. Luo, X. Li, S. Wang, J. Huang, L. Tas-si-u-las, Cost-effec
 tive
@@ -928,31 +908,27 @@ Underfull \hbox (badness 4967) in paragraph at lines 233--238
 1.
  []
 
-[47]) [48] [49 <./recolored_figures/fig_architecture.pdf>] [50 <./recolored_fig
+[46]) [47] [48 <./recolored_figures/fig_architecture.pdf>] [49 <./recolored_fig
 ures/fig_trainer_nominal.pdf> <./recolored_figures/fig_trainer_stress.pdf> <./r
 ecolored_figures/fig_rank_dynamics.pdf> <./recolored_figures/fig_cross_dataset.
-pdf>] [51 <./recolored_figures/fig_normlaw.pdf>] [52 <./recolored_figures/fig_s
-ensitivity.pdf> <./recolored_figures/fig_weakbb.pdf>] [53 <./recolored_figures/
-fig_sim_accuracy.pdf> <./recolored_figures/fig_sim_regimes.pdf>] [54 <./recolor
-ed_figures/fig_dp_study.pdf> <./recolored_figures/fig_calibration.pdf>]
+pdf>] [50 <./recolored_figures/fig_normlaw.pdf> <./recolored_figures/fig_sensit
+ivity.pdf>] [51 <./recolored_figures/fig_weakbb.pdf> <./recolored_figures/fig_s
+im_accuracy.pdf>] [52 <./recolored_figures/fig_sim_regimes.pdf> <./recolored_fi
+gures/fig_dp_study.pdf> <./recolored_figures/fig_calibration.pdf>]
 (./CN_reviewed_marked.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
  17037 strings out of 474222
  330326 string characters out of 5748734
- 2086975 words of memory out of 5000000
+ 2074975 words of memory out of 5000000
  38983 multiletter control sequences out of 15000+600000
  568872 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,93p,2565b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,93p,2463b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
@@ -976,10 +952,10 @@ onts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/l
 atxfont/lasy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sy
 mbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on CN_reviewed_marked.pdf (54 pages, 864439 bytes).
+Output written on CN_reviewed_marked.pdf (52 pages, 862427 bytes).
 PDF statistics:
- 541 PDF objects out of 1000 (max. 8388607)
- 324 compressed objects within 4 object streams
+ 535 PDF objects out of 1000 (max. 8388607)
+ 320 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
  73 words of extra memory for PDF output out of 10000 (max. 10000000)
 
