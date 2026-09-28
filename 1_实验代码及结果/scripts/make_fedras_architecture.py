@@ -18,9 +18,9 @@ carry small explanatory illustrations, not text alone):
   D  Aggregation          - per-client rank stacks -> averaged B-bar, with a
                              hatched frozen-A strip carrying a padlock.
 - pictographic icons kept from v5 (rack, phone/drone/satellite, padlocks,
-  clock); notation and every number match CN_reviewed.tex Section 3
-  (eq. 3 hazard, eq. 5 capacity, 1,408 params/rank column = 5.63 KB,
-  r16 0.090 MB vs 5.29 MB full model = 58.7x; Propositions 1 and 3 in caption).
+  clock); notation matches CN_reviewed.tex Section 3 conceptually (formulas
+  live in the manuscript only; v7 removed per-box equations and the payload
+  statistics footer per author request to reduce in-figure text).
 Glyph floor: mathtext with sub/superscripts uses parents >= 7.4 pt (scripts
 >= 5.0 pt); diagram captions avoid subscripts entirely.
 Layout safety: every text artist is measured against its host region after
@@ -273,20 +273,12 @@ text((chx0 + chx1) / 2, chy0 - 2.0, f'${RBAR}_i$ over rounds', 'A.dia',
 text((BX0 + BX1) / 2, 114.8, 'Action Construction (AC)', 'B.title',
      (BX0 + 1, BX1 - 1, 113.0, 116.6), fontsize=7, fontweight='bold',
      ha='center', va='center')
-text(BX0 + 2.2, 111.4, 'delivery hazard  (eq. 3)', 'B.lead1',
-     (BX0 + 1, BX1 - 1, 110.1, 112.7), fontsize=6.0, ha='left', va='center',
+text((BX0 + BX1) / 2, 108.6, 'scores every client-rank pair', 'B.lead1',
+     (BX0 + 1, BX1 - 1, 106.6, 110.6), fontsize=6.5, ha='center', va='center',
+     color=DARK)
+text((BX0 + BX1) / 2, 104.4, 'delivery risk $\\times$ capacity gain', 'B.lead2',
+     (BX0 + 1, BX1 - 1, 102.4, 106.4), fontsize=6.0, ha='center', va='center',
      color='#666666')
-text((BX0 + BX1) / 2, 107.9,
-     f'${PHAT}_{{\\mathrm{{on}},i}}(r) = \\exp(-\\mu_i - 8B_i(r)/({RBAR}_i \\tau))$',
-     'B.formula1', (BX0 + 1, BX1 - 1, 105.7, 110.1), fontsize=MATH,
-     ha='center', va='center')
-text(BX0 + 2.2, 103.5, 'saturating capacity  (eq. 5)', 'B.lead2',
-     (BX0 + 1, BX1 - 1, 102.2, 104.8), fontsize=6.0, ha='left', va='center',
-     color='#666666')
-text((BX0 + BX1) / 2, 100.0,
-     '$G_i(r) = \\pi_i\\sqrt{\\min(r,\\, r_{\\max})/r_{\\max}}$',
-     'B.formula2', (BX0 + 1, BX1 - 1, 97.6, 102.4), fontsize=MATH,
-     ha='center', va='center')
 # mini-diagram: the trade-off — on-time decays with rank, capacity saturates
 p1x0, p1x1 = BX0 + 2.5, BX0 + 22.5
 p2x0, p2x1 = BX1 - 22.5, BX1 - 2.5
@@ -312,14 +304,13 @@ text((p2x0 + p2x1) / 2, DIA_BOT + 1.4, 'G ↑ (saturating)', 'B.dia2',
 text((CX0 + CX1) / 2, 114.8, 'GridDP Assignment (GDP)', 'C.title',
      (CX0 + 1, CX1 - 1, 113.0, 116.6), fontsize=6.6, fontweight='bold',
      ha='center', va='center', color=RED)
-text((CX0 + CX1) / 2, 110.8,
-     '$\\max\\ \\sum_i G_i(r_i)\\,%s_{\\mathrm{on},i}(r_i)$' % PHAT,
-     'C.obj', (CX0 + 1, CX1 - 1, 107.4, 114.2), fontsize=MATH, ha='center',
-     va='center')
-text((CX0 + CX1) / 2, 104.0,
-     f'$\\mathrm{{s.t.}}\\ \\sum_i {BTIL}_i(r_i) \\leq {BTIL}_{{\\max}}$',
-     'C.s.t.', (CX0 + 1, CX1 - 1, 100.6, 107.4), fontsize=MATH, ha='center',
-     va='center')
+text((CX0 + CX1) / 2, 108.6, 'exact client-rank assignment', 'C.obj',
+     (CX0 + 1, CX1 - 1, 106.6, 110.6), fontsize=6.5, ha='center', va='center',
+     color=DARK)
+text((CX0 + CX1) / 2, 104.4,
+     f'under byte budget and cap $K$', 'C.s.t.',
+     (CX0 + 1, CX1 - 1, 102.4, 106.4), fontsize=6.0, ha='center', va='center',
+     color='#666666')
 text((CX0 + CX1) / 2, 99.2, 'output: client i → rank r', 'C.out',
      (CX0 + 1, CX1 - 1, 97.7, 100.7), fontsize=7.0, ha='center', va='center',
      color=RED)
@@ -358,12 +349,9 @@ text((bx0 + bx1) / 2, yb - 2.5, f'$\\mathrm{{byte\\ budget}}\\ {BTIL}_{{\\max}}$
 text((DX0 + DX1) / 2, 113.7, 'Masked\nAggregation (MA)', 'D.title',
      (DX0 + 1, DX1 - 1, 110.3, 117.1), fontsize=6.5, fontweight='bold',
      ha='center', va='center', linespacing=1.35)
-text((DX0 + DX1) / 2, 105.4, f'${BBAR}_{{:,j}}$ averaged\nover $r_i \\geq j$',
-     'D.body', (DX0 + 1, DX1 - 1, 101.3, 109.5), fontsize=MATH, ha='center',
-     va='center', color=DARK, linespacing=1.3)
-text((DX0 + DX1) / 2, 99.6, f'${ABAR} = A$ frozen', 'D.frozen',
-     (DX0 + 1, DX1 - 1, 97.5, 101.7), fontsize=MATH, ha='center', va='center',
-     color=DARK)
+text((DX0 + DX1) / 2, 105.4, 'rank-masked averaging',
+     'D.body', (DX0 + 1, DX1 - 1, 103.3, 107.5), fontsize=6.5, ha='center',
+     va='center', color=DARK)
 # mini-diagram: per-client rank stacks -> averaged bar + frozen-A strip
 sy0 = 81.0
 for k, (sw, sh) in enumerate(((2.4, 12.0), (2.4, 7.0), (2.4, 4.0))):
@@ -473,11 +461,6 @@ for cx0, cx1, header, icon, r in CARDS:
     text(cxc, 9.6, 'assigned $r_i = %d$' % r, f'card{r}.pill',
          (cxc - 14, cxc + 14, 7.2, 12.0), fontsize=MATH, ha='center', va='center',
          color=RED)
-
-text(95, 3.2, 'Uplink = trainable B only: 1,408 params per rank column (5.63 KB); '
-              'rank 16: 0.090 MB vs 5.29 MB full model (58.7×).',
-     'payload', (8, 182, 1.6, 4.8), fontsize=6.0, ha='center', va='center',
-     color='#555555')
 
 check_fits()
 

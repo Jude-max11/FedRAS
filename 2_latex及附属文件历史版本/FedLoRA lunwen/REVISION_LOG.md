@@ -731,3 +731,16 @@ hatch='///' 的未裁剪路径 bbox 罩住全盒文本（碰撞审计 5 fail 根
   zhang2023fedpetuning、yi2026pfedlora、yang2024feddpa（三条原有条目元数据
   经 CrossRef 核对无误）。
 ③ 编译：干净版 39 页 0 错误 0 未解析；红标版 49 页同口径。视觉验收 p1-3 PASS。
+
+修订记录 28（2026-09-28，框架图瘦身）
+作者反馈图内文字偏多。make_fedras_architecture.py 三处替换 + 删页脚：
+① AC 盒：两条公式（hazard/capacity，即式 3/5 复制）→ 一句话
+  "scores every client-rank pair" + 灰色限定 "delivery risk × capacity gain"，
+  两条迷你曲线保留；
+② GDP 盒：完整优化问题（式 6/7 复制）→ "exact client-rank assignment" +
+  "under byte budget and cap K"，预算条与人形图标保留，output 行保留；
+③ MA 盒：两行公式 → "rank-masked averaging"（冻结 A 条带+锁图标保留）；
+④ 删除页脚统计行（1,408 params/5.63 KB/0.090 vs 5.29 MB/58.7×——表 2 已有）；
+⑤ 修 matplotlib 双连字符渲染（client--rank → client-rank）。
+fit-check 46 条文本 OK。重编译 39 页 0 错误；图页 p7 视觉验收 PASS（无空洞带、
+微标签可读、无碰撞）。红标版重编译 49 页同口径。
