@@ -127,7 +127,7 @@ def pretrain_backbone(model, ds, device, epochs, lr, batch):
     sch = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=max(1, epochs))
     amp = device.type == 'cuda'
     for _ in range(epochs):
-        for x, y in DataLoader(ds, batch, shuffle=True, num_workers=2, persistent_workers=False):
+        for x, y in DataLoader(ds, batch, shuffle=True, num_workers=0):
             opt.zero_grad()
             with torch.autocast(device.type, dtype=torch.bfloat16, enabled=amp):
                 loss = nn.functional.cross_entropy(model(x.to(device)), y.to(device))
@@ -410,7 +410,7 @@ def main():
     full_velocity = {x: {k: torch.zeros_like(vv) for k, vv in s.items()} for x, s in full_states.items()}
     ck = os.path.join(a.out, 'checkpoint.pt'); start = 0
     if a.resume and os.path.exists(ck):
-        z = torch.load(ck, map_location=d)
+        z = torch.load(ck, map_location='cpu')  # server states live on cpu; cuda map breaks cpu-cuda arithmetic after resume
         method_states = z['method_states']; server_velocity = z.get('server_velocity', server_velocity)
         full_states = z.get('full_states', full_states); full_velocity = z.get('full_velocity', full_velocity)
         a_init = z.get('a_init', a_init)

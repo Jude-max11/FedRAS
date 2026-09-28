@@ -46,5 +46,6 @@
   "fedavg_full_mb": 5.2859,
   "budget_grid_mb": 0.01,
   "backbone_pretrained": true,
-  "backbone_acc": 0.9138
+  "backbone_acc": 0.9138,
+  "sched_ms_total": 2.72
 }
