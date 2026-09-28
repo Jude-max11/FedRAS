@@ -121,7 +121,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Evaluation with the federated LoRA trainer}{19}{}\protected@file@percent }
 \newlabel{sec:traineval}{{6.2}{19}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}Accuracy parity and rank invariance}{19}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Real-trainer experiments (non-IID CIFAR-10 unless stated). Accuracy is round-40 test accuracy; timely delivery ratio, bytes per round (rounds 30--39, attempted uplink), and mean delivered rank follow the definitions of Section~\ref {sec:eval}. (a) Deadline ladder. (b) Extended stress matrix, five seeds. (c) External baselines, ten seeds except the two FP16 rows (five seeds). (d) Scheduling arms, 1.0\,MB budget. (e) Component ablations, five seeds.}}{20}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Real-trainer experiments (non-IID CIFAR-10 unless stated). Accuracy is round-40 test accuracy; timely delivery ratio, bytes per round (rounds 30--39, attempted uplink), and mean delivered rank follow the definitions of Section~\ref {sec:eval}. (a) Deadline ladder (nominal and 0.1\,s: ten seeds; 0.05\,s: five seeds). (b) Extended stress matrix, five seeds. (c) External baselines, ten seeds except the two FP16 rows (five seeds). (d) Scheduling arms, 1.0\,MB budget. (e) Component ablations, five seeds.}}{20}{}\protected@file@percent }
 \newlabel{tab:trainermain}{{3}{20}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Real-trainer experiments (CIFAR-10, means over seeds). (a)~At the nominal deadline all rank policies hold the pretrained-backbone accuracy. (b)~Under the 0.1\,s deadline all methods remain stable while full-model updates deliver nothing and stay at the backbone. (c)~FedRAS is link-aware: delivered rank holds 16, tracks 13, and tracks 8 under the 2.0, 0.1, and 0.05\,s deadlines, against the fixed heat--cool path (gray dashed) that the annealing baseline follows regardless of link state. (d)~Final accuracy relative to the per-dataset pretrained backbone; the parity is not CIFAR-10-specific (numbers in Table~\ref {tab:trainermain}(b)).}}{21}{}\protected@file@percent }
 \newlabel{fig:trainermain}{{2}{21}{}{}{}}
@@ -133,16 +133,16 @@
 \newlabel{fig:sens}{{4}{24}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.4}External baselines}{24}{}\protected@file@percent }
 \newlabel{sec:extbase}{{6.2.4}{24}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.5}Scheduling variants}{25}{}\protected@file@percent }
-\newlabel{sec:dpvfair}{{6.2.5}{25}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.5}Scheduling variants}{24}{}\protected@file@percent }
+\newlabel{sec:dpvfair}{{6.2.5}{24}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.6}Component ablations}{25}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Weak-backbone capacity payoff (one-epoch pretrain, five seeds). (a)~Nominal deadline: the rank--accuracy coupling appears (rank 16 above rank 4 by 2.1 points) and FedRAS coincides with rank 16; the dashed line marks the pretrained backbone. (b)~Stress deadline (0.1\,s): FedRAS lands between the fixed ranks on accuracy while delivering more updates than rank 16 at $20\%$ fewer bytes; annotations give attempted MB per round and mean delivered rank.}}{26}{}\protected@file@percent }
+\newlabel{fig:weakbb}{{5}{26}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.7}Weak-backbone capacity payoff}{26}{}\protected@file@percent }
 \newlabel{sec:weakbb}{{6.2.7}{26}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Large-scale scheduling simulation}{26}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}Scheduler behavior across operating regimes}{26}{}\protected@file@percent }
-\newlabel{sec:simsim}{{6.3.1}{26}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Weak-backbone capacity payoff (one-epoch pretrain, five seeds). (a)~Nominal deadline: the rank--accuracy coupling appears (rank 16 above rank 4 by 2.1 points) and FedRAS coincides with rank 16; the dashed line marks the pretrained backbone. (b)~Stress deadline (0.1\,s): FedRAS lands between the fixed ranks on accuracy while delivering more updates than rank 16 at $20\%$ fewer bytes; annotations give attempted MB per round and mean delivered rank.}}{27}{}\protected@file@percent }
-\newlabel{fig:weakbb}{{5}{27}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Large-scale scheduling simulation}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}Scheduler behavior across operating regimes}{27}{}\protected@file@percent }
+\newlabel{sec:simsim}{{6.3.1}{27}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}Solver optimality and runtime}{27}{}\protected@file@percent }
 \newlabel{sec:dp_study}{{6.3.2}{27}{}{}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Experiments at 500-client scale (five seeds unless noted). (a) Scheduler simulation across regimes; the utility column is the bounded scheduling utility of Section~\ref {sec:eval} and must not be read as dataset accuracy, MB is the attempted uplink payload of admitted clients in the final round billed on the same 0.01\,MB ceiling grid as budget admission, and FedAvg refers to full-model updates at their real serialized size. (b) Solver study with $K{=}25$ and 30 instances per cell on the identical ceiling grid; the table reports heuristic objective loss relative to the grid-based DP and DP runtime.}}{28}{}\protected@file@percent }
@@ -160,8 +160,8 @@
 \@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and limitations}{31}{}\protected@file@percent }
 \newlabel{sec:discussion}{{7}{31}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Interpretation and deployment considerations}{31}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Scope and limitations}{32}{}\protected@file@percent }
 \citation{bonawitz2017secureagg,wei2023pfl_dp}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Scope and limitations}{33}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{34}{}\protected@file@percent }
 \newlabel{sec:conclusion}{{8}{34}{}{}{}}
 \bibstyle{elsarticle-num}

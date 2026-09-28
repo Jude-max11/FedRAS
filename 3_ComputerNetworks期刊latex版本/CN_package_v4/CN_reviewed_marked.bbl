@@ -91,13 +91,15 @@ E.~J. Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, W.~Chen,
 S.~Babakniya, A.~R. Elkordy, Y.~H. Ezzeldin, Q.~Liu, K.-B. Song, M.~El-Khamy,
   S.~Avestimehr, {SLoRA}: Federated parameter efficient fine-tuning of language
   models, in: International Workshop on Federated Learning in the Age of
-  Foundation Models (FedLLM), 2023.
+  Foundation Models (FedLLM), 2023, arXiv:2308.06522.
 
 \bibitem{zhang2024fedit}
 J.~Zhang, S.~Vahidian, M.~Kuo, C.~Li, R.~Zhang, T.~Yu, G.~Wang, Y.~Zhang,
   Y.~Chen, H.~Li, Towards building the federated {GPT}: Federated instruction
   tuning, in: IEEE International Conference on Acoustics, Speech and Signal
-  Processing (ICASSP), 2024.
+  Processing (ICASSP), 2024, pp. 6915--6919.
+\newblock \href {https://doi.org/10.1109/ICASSP48485.2024.10447454}
+  {\path{doi:10.1109/ICASSP48485.2024.10447454}}.
 
 \bibitem{sun2024ffalora}
 Y.~Sun, Z.~Li, Y.~Li, B.~Ding, Improving {LoRA} in privacy-preserving federated
@@ -136,7 +138,7 @@ F.~Wu, J.~Hu, G.~Min, S.~Wang, Adaptive rank allocation for federated
 \bibitem{yang2024safedlora}
 Y.~Yang, X.~Liu, T.~Gao, X.~Xu, G.~Wang, {SA-FedLoRA}: Adaptive parameter
   allocation for efficient federated learning with {LoRA} tuning, arXiv
-  preprint arXiv:2405.09394 (2024).
+  preprint arXiv:2405.09394v1 (2024).
 
 \bibitem{yi2026pfedlora}
 L.~Yi, H.~Zhang, H.~Yu, G.~Wang, X.~Liu, Q.~Hu, {pFedLoRA}: Model-heterogeneous
@@ -160,8 +162,8 @@ W.~Ma, T.~Hu, X.~Liu, Mobility-predictive risk-budgeted protection selection
 
 \bibitem{wang2024flora}
 Z.~Wang, Z.~Gu, J.~Weng, X.~Shang, J.~Li, J.~Li, K.~Wan, {FLoRA}: Federated
-  fine-tuning large language models with heterogeneous low-rank adaptation, in:
-  Advances in Neural Information Processing Systems (NeurIPS), 2024.
+  fine-tuning large language models with heterogeneous low-rank adaptations,
+  in: Advances in Neural Information Processing Systems (NeurIPS), 2024.
 
 \bibitem{guo2025fedsalora}
 P.~Guo, S.~Zeng, Y.~Wang, Y.~Fang, W.~Huang, S.~Liu, D.~Guo, Selective
