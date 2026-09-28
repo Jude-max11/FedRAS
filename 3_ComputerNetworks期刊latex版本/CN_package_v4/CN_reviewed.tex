@@ -381,9 +381,9 @@ Full model & \multicolumn{4}{c}{5.29\,MB FP32 ($58.7\times$ the rank-16 $B$-only
 \begin{minipage}[t]{0.49\columnwidth}
 \centering
 \includegraphics[width=\linewidth]{recolored_figures/fig_cross_dataset}\\[1pt]
-{\small (d) accuracy across datasets}
+{\small (d) accuracy relative to backbone (pp)}
 \end{minipage}
-\caption{Real-trainer experiments (CIFAR-10, means over seeds). (a)~At the nominal deadline all rank policies hold the pretrained-backbone accuracy. (b)~Under the 0.1\,s deadline all methods remain stable while full-model updates deliver nothing and stay at the backbone. (c)~FedRAS is link-aware: delivered rank holds 16, tracks 13, and tracks 8 under the 2.0, 0.1, and 0.05\,s deadlines, against the fixed annealing schedule of the SA-FedLoRA-style baseline. (d)~Final accuracy across datasets; the parity is not CIFAR-10-specific (numbers in Table~\ref{tab:trainermain}(b)).}
+\caption{Real-trainer experiments (CIFAR-10, means over seeds). (a)~At the nominal deadline all rank policies hold the pretrained-backbone accuracy. (b)~Under the 0.1\,s deadline all methods remain stable while full-model updates deliver nothing and stay at the backbone. (c)~FedRAS is link-aware: delivered rank holds 16, tracks 13, and tracks 8 under the 2.0, 0.1, and 0.05\,s deadlines, against the fixed heat--cool path (gray dashed) that the annealing baseline follows regardless of link state. (d)~Final accuracy relative to the per-dataset pretrained backbone; the parity is not CIFAR-10-specific (numbers in Table~\ref{tab:trainermain}(b)).}
 \label{fig:trainermain}
 \end{figure}
 

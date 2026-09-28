@@ -116,11 +116,11 @@ def wrank_traj(d, ds, method):
         include_groups=False)
 
 
-def band(ax, m, s, color, label):
-    ax.plot(m.index, m.values, color=color, lw=1.2, label=label)
+def band(ax, m, s, color, label, alpha=.15, lw=1.2):
+    ax.plot(m.index, m.values, color=color, lw=lw, label=label)
     if s is not None:
         ax.fill_between(m.index, m.values - s.values, m.values + s.values,
-                        color=color, alpha=.15, lw=0)
+                        color=color, alpha=alpha, lw=0)
 
 
 def load_sim():
@@ -144,7 +144,9 @@ def main():
     for m in M5:
         mm, ss = traj(d, 'cifar10', m)
         if mm is not None:
-            band(ax, mm, ss, COL[m], LBL[m])
+            band(ax, mm, ss, COL[m], LBL[m],
+                 alpha=.07 if m == 'FedAvg_full' else .16,
+                 lw=.9 if m == 'FedAvg_full' else 1.2)
     ax.set_xlabel('Federated round'); ax.set_ylabel('Test accuracy')
     ax.set_ylim(.903, .9185); ax.legend(loc='lower right', handlelength=1.4)
     fig.tight_layout(pad=.4)
@@ -155,7 +157,9 @@ def main():
     for m in M5:
         mm, ss = traj(d, 'cifar10_dl0.1', m)
         if mm is not None:
-            band(ax, mm, ss, COL[m], LBL[m])
+            band(ax, mm, ss, COL[m], LBL[m],
+                 alpha=.07 if m == 'FedAvg_full' else .16,
+                 lw=.9 if m == 'FedAvg_full' else 1.2)
     ax.set_xlabel('Federated round'); ax.set_ylabel('Test accuracy')
     ax.set_ylim(.903, .9185); ax.legend(loc='lower right', handlelength=1.4)
     fig.tight_layout(pad=.4)
@@ -169,7 +173,7 @@ def main():
         mm = wrank_traj(d, ds, 'Adaptive_rank')
         if mm is not None:
             ax.plot(mm.index, mm.values, color=color, lw=1.3, label=f'FedRAS, {lb}')
-    mm = wrank_traj(d, 'cifar10_dl0.1', 'SA_rank')
+    mm = wrank_traj(d, 'cifar10_ext_dl0.1', 'SA_rank')
     if mm is not None:
         ax.plot(mm.index, mm.values, color='#7f7f7f', lw=1.0, ls='--',
                 label='SA-annealing, 0.1 s')
@@ -179,20 +183,29 @@ def main():
     fig.tight_layout(pad=.4)
     save_pub(fig, 'fig_rank_dynamics', panels=1)
 
-    # -- 4. cross-dataset final accuracy -------------------------------------
-    datasets = [('cifar10', 'CIFAR-10'), ('cifar100', 'CIFAR-100'), ('mnist', 'MNIST')]
+    # -- 4. cross-dataset accuracy vs backbone --------------------------------
+    datasets = [('cifar10', 'CIFAR-10', .914), ('cifar100', 'CIFAR-100', .693),
+                ('mnist', 'MNIST', .995)]
     fig, ax = plt.subplots(figsize=(SINGLE, 2.2))
     xs = np.arange(len(datasets)); w = .15
     for j, m in enumerate(M5):
-        vals = []
-        for ds, _ in datasets:
+        deltas, errs = [], []
+        for ds, _, bb in datasets:
             acc = d[d.dataset == ds].query('method == @m') \
                 .sort_values('round').groupby('run').tail(1).accuracy
-            vals.append(acc.mean() if len(acc) else np.nan)
-        ax.bar(xs + (j - 2) * w, vals, w, color=COL[m], label=LBL[m])
-    ax.set_xticks(xs); ax.set_xticklabels([n for _, n in datasets])
+            if len(acc):
+                deltas.append((acc.mean() - bb) * 100)
+                errs.append(acc.std())
+            else:
+                deltas.append(np.nan); errs.append(0)
+        ax.bar(xs + (j - 2) * w, deltas, w, color=COL[m], label=LBL[m])
+        ax.errorbar(xs + (j - 2) * w, deltas, yerr=errs, fmt='none',
+                    ecolor='#555555', elinewidth=.6, capsize=1.5)
+    ax.axhline(0, color='#7f7f7f', lw=.8)
+    ax.set_xticks(xs); ax.set_xticklabels([n for _, n, _ in datasets])
     ax.tick_params(axis='x', which='major', pad=3)
-    ax.set_ylabel('Final accuracy'); ax.set_ylim(.60, 1.06)
+    ax.set_ylabel('Accuracy $-$ backbone (pp)')
+    ax.set_ylim(-1.4, 1.4)
     ax.legend(loc='upper center', bbox_to_anchor=(.5, 1.17), ncol=3,
               handlelength=1.2, columnspacing=.9)
     fig.tight_layout(pad=.4)
@@ -244,10 +257,10 @@ def main():
     labels = [f'{r:g}s\n{b:g}MB' for r, b in zip(grid.deadline, grid.budget)]
     fig, axes = plt.subplots(1, 2, figsize=(DOUBLE, 2.5))
     xs = np.arange(len(grid))
-    heur = [('greedy_vb_gap', 'Value/byte greedy', '#d62728'),
-            ('greedy_v_gap', 'Value greedy', '#1f77b4'),
-            ('myopic_gap', 'Cohort myopic', '#ff7f0e'),
-            ('r16_gap', 'Fixed $r{=}16$', '#7f7f7f')]
+    heur = [('greedy_vb_gap', 'Value/byte greedy', '#969696'),
+            ('greedy_v_gap', 'Value greedy', '#ff7f0e'),
+            ('myopic_gap', 'Cohort myopic', '#8c6d31'),
+            ('r16_gap', 'Fixed $r{=}16$', '#2ca02c')]
     for j, (m, lb, c) in enumerate(heur):
         axes[0].bar(xs + (j - 1.5) * .2, 100 * grid[m], .2, color=c, label=lb)
     axes[0].set_xticks(xs); axes[0].set_xticklabels(labels, fontsize=5.8)

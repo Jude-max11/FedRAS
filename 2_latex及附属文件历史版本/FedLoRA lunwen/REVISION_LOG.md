@@ -791,3 +791,17 @@ fit-check 46 条文本 OK。重编译 39 页 0 错误；图页 p7 视觉验收 P
 ⑤ 视觉验收：初轮 p28 不过（灰色骨干标注叠红柱不可读）→白底衬注修复后复验
   PASS；其余 7 页一次 PASS。编译：干净版 42 页、红标版 54 页，均 0 错误
   0 未解析。
+
+修订记录 31（2026-09-28，九图整体风格与信息量改造）
+基于 12 图接触表审查（nature-figure 契约：信号红专属 FedRAS、直接标注优先、
+不确定性属于图本体）：
+① fig_rank_dynamics：补回 SA-annealing 热冷虚线（数据源改 cifar10_ext_dl0.1；
+  all_metrics 未收录导致正文"固定热冷路径"声明此前无图可指）。
+② fig_cross_dataset：从绝对精度柱（MNIST 全 1.0 不可读）改为相对预训练骨干的
+  Δ(pp) 柱 + 误差棒，CIFAR-10 +0.17pp / CIFAR-100≈0 / MNIST≈0 一眼可读。
+③ fig_trainer_nominal/stress：FedAvg 带透明度 .15→.07、线宽减淡，LoRA 四线
+  （真正的 parity 主角）从灰雾中显出。
+④ fig_dp_study：启发式配色归位（红不再误用；灰/橙/深黄 + Fixed r16 绿）。
+⑤ 图题同步：(c) 注明灰虚线为 annealing 路径；(d) 改"相对骨干 (pp)"。
+⑥ QA：四张改动图 collision audit 全 PASS（0 fail 0 warn）；面板对齐门通过
+  （submission 脚本内建）。编译干净版 42 页、红标版 54 页，0 错误 0 未解析。
