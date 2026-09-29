@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  29 SEP 2026 03:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  29 SEP 2026 08:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -652,35 +652,35 @@ Package pdftex.def Info: recolored_figures/fig_normlaw.pdf  used on input line
 422.
 (pdftex.def)             Requested size: 214.50119pt x 139.23915pt.
  [21 <./recolored_figures/fig_normlaw.pdf>]
-[22]
-<recolored_figures/fig_sensitivity.pdf, id=204, 540.60239pt x 158.99399pt>
+<recolored_figures/fig_sensitivity.pdf, id=200, 540.60239pt x 158.99399pt>
 File: recolored_figures/fig_sensitivity.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sensitivity.pdf>
 Package pdftex.def Info: recolored_figures/fig_sensitivity.pdf  used on input l
 ine 441.
 (pdftex.def)             Requested size: 331.50238pt x 97.49565pt.
- [23 <./recolored_figures/fig_sensitivity.pdf>] [24] [25]
+
+[22] [23 <./recolored_figures/fig_sensitivity.pdf>] [24] [25]
 <recolored_figures/fig_weakbb.pdf, id=234, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_weakbb.pdf Graphic file (type pdf)
 <use recolored_figures/fig_weakbb.pdf>
 Package pdftex.def Info: recolored_figures/fig_weakbb.pdf  used on input line 5
 34.
 (pdftex.def)             Requested size: 358.79929pt x 119.91577pt.
- [26 <./recolored_figures/fig_weakbb.pdf>] [27]
-<recolored_figures/fig_sim_accuracy.pdf, id=256, 540.60239pt x 180.675pt>
+ [26 <./recolored_figures/fig_weakbb.pdf>]
+<recolored_figures/fig_sim_accuracy.pdf, id=253, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_accuracy.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_accuracy.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_accuracy.pdf  used on input 
 line 619.
 (pdftex.def)             Requested size: 343.2019pt x 114.70253pt.
-<recolored_figures/fig_sim_regimes.pdf, id=257, 540.60239pt x 180.675pt>
+<recolored_figures/fig_sim_regimes.pdf, id=254, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_regimes.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_regimes.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_regimes.pdf  used on input l
 ine 626.
 (pdftex.def)             Requested size: 343.2019pt x 114.70253pt.
- [28 <./recolored_figures/fig_sim_accuracy.pdf> <./recolored_figures/fig_sim_re
-gimes.pdf>] [29]
+ [27] [28] [29 <./recolored_figures/fig_sim_accuracy.pdf> <./recolored_figures/
+fig_sim_regimes.pdf>]
 <recolored_figures/fig_dp_study.pdf, id=301, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_dp_study.pdf Graphic file (type pdf)
 <use recolored_figures/fig_dp_study.pdf>
@@ -695,7 +695,7 @@ ine 650.
 (pdftex.def)             Requested size: 331.50238pt x 110.79051pt.
  [30 <./recolored_figures/fig_dp_study.pdf>] [31 <./recolored_figures/fig_calib
 ration.pdf>] [32] [33] [34]
-[35] (./CN_reviewed.bbl [36] [37]
+[35] (./CN_reviewed.bbl [36] [37] [38]
 Underfull \hbox (badness 2600) in paragraph at lines 144--150
 []\OT1/cmr/m/n/12 L. Yi, H. Zhang, H. Yu, G. Wang, X. Liu, Q. Hu, pFed-
  []
@@ -711,13 +711,13 @@ Underfull \hbox (badness 1484) in paragraph at lines 152--155
 []\OT1/cmr/m/n/12 Y. Yang, G. Long, T. Shen, J. Jiang, M. Blu-men-stein, Dual-
  []
 
-[38]
+
 Underfull \hbox (badness 1688) in paragraph at lines 179--184
 \OT1/cmr/m/n/12 ti-za-tion, in: Pro-ceed-ings of IEEE IN-FO-COM, 2023, pp. 1--1
 0.
  []
 
-
+[39]
 Underfull \hbox (badness 3701) in paragraph at lines 193--198
 \OT1/cmr/m/n/12 ac-tions on Wire-less Com-mu-ni-ca-tions 22 (2) (2023) 1087--11
 00.
@@ -746,7 +746,7 @@ Underfull \hbox (badness 1168) in paragraph at lines 207--212
 e-
  []
 
-[39]
+[40]
 Underfull \hbox (badness 1067) in paragraph at lines 250--255
 []\OT1/cmr/m/n/12 B. Luo, X. Li, S. Wang, J. Huang, L. Tas-si-u-las, Cost-effec
 tive
@@ -764,7 +764,7 @@ Underfull \hbox (badness 4967) in paragraph at lines 250--255
 1.
  []
 
-[40]) [41] (./CN_reviewed.aux)
+) [41] (./CN_reviewed.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -773,7 +773,7 @@ L3 programming layer <2024-01-22>
 Here is how much of TeX's memory you used:
  15447 strings out of 474222
  306825 string characters out of 5748734
- 1944975 words of memory out of 5000000
+ 1945975 words of memory out of 5000000
  37416 multiletter control sequences out of 15000+600000
  568414 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -800,7 +800,7 @@ ic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.
 pfb>
-Output written on CN_reviewed.pdf (41 pages, 650473 bytes).
+Output written on CN_reviewed.pdf (41 pages, 651149 bytes).
 PDF statistics:
  489 PDF objects out of 1000 (max. 8388607)
  290 compressed objects within 3 object streams
