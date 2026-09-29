@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  28 SEP 2026 14:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  29 SEP 2026 03:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -605,7 +605,14 @@ File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
 Package: listings 2023/02/27 1.9 (Carsten Heinz)
 
-(./CN_reviewed_marked.aux)
+(./CN_reviewed_marked.aux
+
+LaTeX Warning: Label `tab:extended' multiply defined.
+
+
+LaTeX Warning: Label `tab:ablation' multiply defined.
+
+)
 \openout1 = `CN_reviewed_marked.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
@@ -622,8 +629,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
 LaTeX Font Info:    ... okay on input line 95.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
 LaTeX Font Info:    ... okay on input line 95.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count324
 \scratchdimen=\dimen288
@@ -780,73 +786,70 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 693--693
  [][][] 
  []
 
-
-LaTeX Warning: Float too large for page by 53.47942pt on input line 804.
-
-[23] [24]
-Overfull \hbox (7.17053pt too wide) in paragraph at lines 814--816
+[23]
+Overfull \hbox (7.17053pt too wide) in paragraph at lines 749--751
 [][]|   []   |   [][] []|   []   |   []   |   []   |   []   |   []   |   []   |
    []
  []
 
-<recolored_figures/fig_normlaw.pdf, id=110, 256.0748pt x 166.22101pt>
+<recolored_figures/fig_normlaw.pdf, id=106, 256.0748pt x 166.22101pt>
 File: recolored_figures/fig_normlaw.pdf Graphic file (type pdf)
 <use recolored_figures/fig_normlaw.pdf>
 Package pdftex.def Info: recolored_figures/fig_normlaw.pdf  used on input line 
-821.
+756.
 (pdftex.def)             Requested size: 214.50119pt x 139.23915pt.
-[25] [26]
-<recolored_figures/fig_sensitivity.pdf, id=118, 540.60239pt x 158.99399pt>
+[24] [25]
+<recolored_figures/fig_sensitivity.pdf, id=114, 540.60239pt x 158.99399pt>
 File: recolored_figures/fig_sensitivity.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sensitivity.pdf>
 Package pdftex.def Info: recolored_figures/fig_sensitivity.pdf  used on input l
-ine 941.
+ine 864.
 (pdftex.def)             Requested size: 331.50238pt x 97.49565pt.
- [27] [28] [29]
-<recolored_figures/fig_weakbb.pdf, id=128, 540.60239pt x 180.675pt>
+ [26] [27] [28] [29]
+<recolored_figures/fig_weakbb.pdf, id=127, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_weakbb.pdf Graphic file (type pdf)
 <use recolored_figures/fig_weakbb.pdf>
 Package pdftex.def Info: recolored_figures/fig_weakbb.pdf  used on input line 1
-041.
+028.
 (pdftex.def)             Requested size: 358.79929pt x 119.91577pt.
  [30]
-<recolored_figures/fig_sim_accuracy.pdf, id=132, 540.60239pt x 180.675pt>
+<recolored_figures/fig_sim_accuracy.pdf, id=131, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_accuracy.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_accuracy.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_accuracy.pdf  used on input 
-line 1130.
+line 1143.
 (pdftex.def)             Requested size: 343.2019pt x 114.70253pt.
-<recolored_figures/fig_sim_regimes.pdf, id=133, 540.60239pt x 180.675pt>
+<recolored_figures/fig_sim_regimes.pdf, id=132, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_regimes.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_regimes.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_regimes.pdf  used on input l
-ine 1139.
+ine 1152.
 (pdftex.def)             Requested size: 343.2019pt x 114.70253pt.
- [31] [32]
-<recolored_figures/fig_dp_study.pdf, id=141, 540.60239pt x 180.675pt>
+ [31] [32] [33]
+<recolored_figures/fig_dp_study.pdf, id=143, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_dp_study.pdf Graphic file (type pdf)
 <use recolored_figures/fig_dp_study.pdf>
 Package pdftex.def Info: recolored_figures/fig_dp_study.pdf  used on input line
- 1195.
+ 1209.
 (pdftex.def)             Requested size: 331.50238pt x 110.79051pt.
-<recolored_figures/fig_calibration.pdf, id=142, 540.60239pt x 180.675pt>
+<recolored_figures/fig_calibration.pdf, id=144, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_calibration.pdf Graphic file (type pdf)
 <use recolored_figures/fig_calibration.pdf>
 Package pdftex.def Info: recolored_figures/fig_calibration.pdf  used on input l
-ine 1213.
+ine 1227.
 (pdftex.def)             Requested size: 331.50238pt x 110.79051pt.
- [33]
-Overfull \hbox (4.37683pt too wide) in paragraph at lines 1248--1251
+ [34]
+Overfull \hbox (4.37683pt too wide) in paragraph at lines 1262--1265
 [][]|   []   |   []   |   []   |   []   |   [][] []|   []   |   []   |   []   |
    []
  []
 
-[34]
-Underfull \hbox (badness 1297) in paragraph at lines 1266--1288
+[35]
+Underfull \hbox (badness 1297) in paragraph at lines 1280--1302
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
-[35] [36] [37] [38] [39] [40] (./CN_reviewed_marked.bbl [41] [42] [43]
+[36] [37] [38] [39] [40] [41] (./CN_reviewed_marked.bbl [42] [43] [44]
 Underfull \hbox (badness 2600) in paragraph at lines 144--150
 []\OT1/cmr/m/n/12 L. Yi, H. Zhang, H. Yu, G. Wang, X. Liu, Q. Hu, pFed-
  []
@@ -862,13 +865,13 @@ Underfull \hbox (badness 1484) in paragraph at lines 152--155
 []\OT1/cmr/m/n/12 Y. Yang, G. Long, T. Shen, J. Jiang, M. Blu-men-stein, Dual-
  []
 
-[44]
+
 Underfull \hbox (badness 1688) in paragraph at lines 179--184
 \OT1/cmr/m/n/12 ti-za-tion, in: Pro-ceed-ings of IEEE IN-FO-COM, 2023, pp. 1--1
 0.
  []
 
-
+[45]
 Underfull \hbox (badness 3701) in paragraph at lines 193--198
 \OT1/cmr/m/n/12 ac-tions on Wire-less Com-mu-ni-ca-tions 22 (2) (2023) 1087--11
 00.
@@ -897,7 +900,7 @@ Underfull \hbox (badness 1168) in paragraph at lines 207--212
 e-
  []
 
-[45]
+
 Underfull \hbox (badness 1067) in paragraph at lines 235--240
 []\OT1/cmr/m/n/12 B. Luo, X. Li, S. Wang, J. Huang, L. Tas-si-u-las, Cost-effec
 tive
@@ -918,22 +921,26 @@ Underfull \hbox (badness 4967) in paragraph at lines 235--240
 [46]) [47] [48 <./recolored_figures/fig_architecture.pdf>] [49 <./recolored_fig
 ures/fig_trainer_nominal.pdf> <./recolored_figures/fig_trainer_stress.pdf> <./r
 ecolored_figures/fig_rank_dynamics.pdf> <./recolored_figures/fig_cross_dataset.
-pdf>] [50 <./recolored_figures/fig_normlaw.pdf>] [51 <./recolored_figures/fig_s
-ensitivity.pdf>] [52 <./recolored_figures/fig_weakbb.pdf> <./recolored_figures/
-fig_sim_accuracy.pdf>] [53 <./recolored_figures/fig_sim_regimes.pdf> <./recolor
-ed_figures/fig_dp_study.pdf> <./recolored_figures/fig_calibration.pdf>]
+pdf>] [50 <./recolored_figures/fig_normlaw.pdf> <./recolored_figures/fig_sensit
+ivity.pdf>] [51 <./recolored_figures/fig_weakbb.pdf> <./recolored_figures/fig_s
+im_accuracy.pdf>] [52 <./recolored_figures/fig_sim_regimes.pdf> <./recolored_fi
+gures/fig_dp_study.pdf> <./recolored_figures/fig_calibration.pdf>]
 (./CN_reviewed_marked.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 17037 strings out of 474222
- 330326 string characters out of 5748734
- 2094975 words of memory out of 5000000
- 38983 multiletter control sequences out of 15000+600000
- 568872 words of font info for 77 fonts, out of 8000000 for 9000
+ 17038 strings out of 474222
+ 330345 string characters out of 5748734
+ 2090975 words of memory out of 5000000
+ 38985 multiletter control sequences out of 15000+600000
+ 568520 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,13n,93p,2387b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -954,15 +961,15 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/l
-atxfont/lasy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sy
-mbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
-bols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on CN_reviewed_marked.pdf (53 pages, 865972 bytes).
+ic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/latxfont/lasy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.p
+fb>
+Output written on CN_reviewed_marked.pdf (52 pages, 844238 bytes).
 PDF statistics:
- 538 PDF objects out of 1000 (max. 8388607)
- 322 compressed objects within 4 object streams
+ 530 PDF objects out of 1000 (max. 8388607)
+ 317 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
  73 words of extra memory for PDF output out of 10000 (max. 10000000)
 
