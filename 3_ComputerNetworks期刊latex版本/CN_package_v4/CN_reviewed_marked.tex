@@ -1,7 +1,7 @@
 % !TeX program = pdflatex
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL /tmp/old_baseline.tex   Sat Sep 26 08:41:20 2026
-%DIF ADD CN_reviewed.tex         Tue Sep 29 08:15:58 2026
+%DIF ADD CN_reviewed.tex         Wed Sep 30 01:13:23 2026
 \documentclass[preprint,12pt]{elsarticle}
 %DIF 3a3
 \biboptions{numbers,sort&compress} %DIF > 
@@ -314,8 +314,10 @@ to traffic offloading driven by federated reinforcement learning \mbox{%DIFAUXCM
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.98\columnwidth]{recolored_figures/fig_architecture}
-\caption{FedRAS \DIFdelbeginFL \DIFdelFL{system architecture and }\DIFdelendFL round pipeline. \DIFdelbeginFL \DIFdelFL{The edge aggregator estimates client link states, }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Action Construction (AC) }\DIFaddendFL scores every client--rank pair with the delivery hazard \eqref{eq:hazard} and the saturating capacity \eqref{eq:cap}\DIFdelbeginFL \DIFdelFL{, and }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{; the GridDP assignment (GDP) }\DIFaddendFL computes the client--rank assignment \DIFdelbeginFL \DIFdelFL{with the exact grid-based dynamic program }\DIFdelendFL under the byte budget and the admission cap\DIFdelbeginFL \DIFdelFL{(Proposition~\ref{prop:dp}). Admitted clients train on a frozen backbone with LoRA factors sliced to the assigned rank and upload only the trainable factor $B$, at 5.63\,KB per rank column; the shared factor $A$ is never transmitted}\DIFdelendFL . Updates arriving within the deadline $\tau$ pass the on-time gate and are \DIFdelbeginFL \DIFdelFL{aggregated rank-maskedly }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{merged by Masked Aggregation (MA) }\DIFaddendFL while \DIFaddbeginFL \DIFaddFL{the shared factor }\DIFaddendFL $A$ stays frozen\DIFdelbeginFL \DIFdelFL{(Proposition~\ref{prop:agg})}\DIFdelendFL ; \DIFdelbeginFL \DIFdelFL{late or lost updates are discarded, and the }\DIFdelendFL observed outcomes update the link-state history. \DIFaddbeginFL \DIFaddFL{AC, GDP, and MA correspond to Algorithms~\ref{alg:ac}--\ref{alg:ma}; the overall round is Algorithm~\ref{alg:fedras}.}\DIFaddendFL }
+\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.98\columnwidth]{recolored_figures/fig_architecture}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.98\columnwidth]{recolored_figures/1.png}
+\DIFaddendFL \caption{FedRAS \DIFdelbeginFL \DIFdelFL{system architecture and }\DIFdelendFL round pipeline. \DIFdelbeginFL \DIFdelFL{The edge aggregator estimates client link states, }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Action Construction (AC) }\DIFaddendFL scores every client--rank pair with the delivery hazard \eqref{eq:hazard} and the saturating capacity \eqref{eq:cap}\DIFdelbeginFL \DIFdelFL{, and }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{; the GridDP assignment (GDP) }\DIFaddendFL computes the client--rank assignment \DIFdelbeginFL \DIFdelFL{with the exact grid-based dynamic program }\DIFdelendFL under the byte budget and the admission cap\DIFdelbeginFL \DIFdelFL{(Proposition~\ref{prop:dp}). Admitted clients train on a frozen backbone with LoRA factors sliced to the assigned rank and upload only the trainable factor $B$, at 5.63\,KB per rank column; the shared factor $A$ is never transmitted}\DIFdelendFL . Updates arriving within the deadline $\tau$ pass the on-time gate and are \DIFdelbeginFL \DIFdelFL{aggregated rank-maskedly }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{merged by Masked Aggregation (MA) }\DIFaddendFL while \DIFaddbeginFL \DIFaddFL{the shared factor }\DIFaddendFL $A$ stays frozen\DIFdelbeginFL \DIFdelFL{(Proposition~\ref{prop:agg})}\DIFdelendFL ; \DIFdelbeginFL \DIFdelFL{late or lost updates are discarded, and the }\DIFdelendFL observed outcomes update the link-state history. \DIFaddbeginFL \DIFaddFL{AC, GDP, and MA correspond to Algorithms~\ref{alg:ac}--\ref{alg:ma}; the overall round is Algorithm~\ref{alg:fedras}.}\DIFaddendFL }
 \label{fig:architecture}
 \end{figure}
 
@@ -472,12 +474,12 @@ where $u_i(r)=G_i^t(r)\hat P_{\rm on,i}^t(r)$. Backpointers recover the assignme
 \subsection{\DIFadd{Masked Aggregation (MA)}}
 \label{sec:aggregation}
 \DIFadd{Clients scheduled at different ranks share an $r_{\max}$ coordinate system. For one adapted layer, client $i$ has sample weight $n_i$ and delivered rank $r_i$. The factor $A\in\mathbb R^{r_{\max}\times k}$ is frozen and shared, while $B_i\in\mathbb R^{d\times r_{\max}}$ is trainable. A rank $r_i$ update activates columns $1$ through $r_i$ of $B_i$ and the matching rows of $A$, giving $\Delta W_i=\sum_{j\le r_i}[B_i]_{:,j}[A]_{j,:}$.
-}
-
-\DIFadd{Jointly trained factor pairs $(A_i,B_i)$ are identifiable only up to invertible transforms, so separately averaged factors need not average the updates at all. The elevated-learning-rate ablation of Section~\ref{sec:eval} examines this aggregation rule empirically.
 }\DIFaddend 
 
-\DIFaddbegin \textbf{\DIFadd{Rank-masked averaging.}} \DIFadd{The server zero-pads inactive columns of each delivered $B_i$ and averages each active coordinate over the clients that activate it,
+\DIFaddbegin \DIFadd{Jointly trained factor pairs $(A_i,B_i)$ are identifiable only up to invertible transforms, so separately averaged factors need not average the updates at all. The elevated-learning-rate ablation of Section~\ref{sec:eval} examines this aggregation rule empirically.
+}
+
+\textbf{\DIFadd{Rank-masked averaging.}} \DIFadd{The server zero-pads inactive columns of each delivered $B_i$ and averages each active coordinate over the clients that activate it,
 }\begin{equation}
 \DIFadd{\bar B_{:,j}=\frac{1}{W_j}\sum_{i:\,r_i\ge j} n_i\,\big[B_i\big]_{:,j},
 \qquad

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  29 SEP 2026 08:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  30 SEP 2026 01:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -725,20 +725,19 @@ Overfull \hbox (13.88974pt too wide) in paragraph at lines 261--309
  [][] 
  []
 
-<recolored_figures/fig_architecture.pdf, id=43, 555.05635pt x 361.57762pt>
-File: recolored_figures/fig_architecture.pdf Graphic file (type pdf)
-<use recolored_figures/fig_architecture.pdf>
-Package pdftex.def Info: recolored_figures/fig_architecture.pdf  used on input 
-line 317.
-(pdftex.def)             Requested size: 382.19833pt x 248.98123pt.
+<recolored_figures/1.png, id=43, 1075.01625pt x 772.8875pt>
+File: recolored_figures/1.png Graphic file (type png)
+<use recolored_figures/1.png>
+Package pdftex.def Info: recolored_figures/1.png  used on input line 319.
+(pdftex.def)             Requested size: 382.19833pt x 274.78384pt.
 [8] [9] [10] [11] [12] [13]
-Overfull \hbox (0.718pt too wide) in paragraph at lines 427--429
+Overfull \hbox (0.718pt too wide) in paragraph at lines 429--431
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []   |   [][][]|   []
  []
 
 
-Overfull \hbox (19.3958pt too wide) in paragraph at lines 451--454
+Overfull \hbox (19.3958pt too wide) in paragraph at lines 453--456
 \OT1/cmr/m/n/12 where $\OML/cmm/m/it/12 u[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r\
 OT1/cmr/m/n/12 ) = \OML/cmm/m/it/12 G[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r\OT1/
 cmr/m/n/12 )[](\OML/cmm/m/it/12 r\OT1/cmr/m/n/12 )$. Back-point-ers re-cover th
@@ -746,302 +745,302 @@ e as-sign-ment. []|   []   |   []
  []
 
 [14] [15] [16] [17] [18] [19] [20] [21] [22]
-<recolored_figures/fig_trainer_nominal.pdf, id=99, 256.0748pt x 169.8345pt>
+<recolored_figures/fig_trainer_nominal.pdf, id=100, 256.0748pt x 169.8345pt>
 File: recolored_figures/fig_trainer_nominal.pdf Graphic file (type pdf)
 <use recolored_figures/fig_trainer_nominal.pdf>
 Package pdftex.def Info: recolored_figures/fig_trainer_nominal.pdf  used on inp
-ut line 687.
+ut line 689.
 (pdftex.def)             Requested size: 191.10214pt x 126.74841pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 687--687
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 689--689
  [][][] 
  []
 
-<recolored_figures/fig_trainer_stress.pdf, id=100, 256.0748pt x 169.8345pt>
+<recolored_figures/fig_trainer_stress.pdf, id=101, 256.0748pt x 169.8345pt>
 File: recolored_figures/fig_trainer_stress.pdf Graphic file (type pdf)
 <use recolored_figures/fig_trainer_stress.pdf>
 Package pdftex.def Info: recolored_figures/fig_trainer_stress.pdf  used on inpu
-t line 692.
+t line 694.
 (pdftex.def)             Requested size: 191.10214pt x 126.74841pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 692--692
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 694--694
  [][][] 
  []
 
-<recolored_figures/fig_rank_dynamics.pdf, id=101, 256.0748pt x 169.8345pt>
+<recolored_figures/fig_rank_dynamics.pdf, id=102, 256.0748pt x 169.8345pt>
 File: recolored_figures/fig_rank_dynamics.pdf Graphic file (type pdf)
 <use recolored_figures/fig_rank_dynamics.pdf>
 Package pdftex.def Info: recolored_figures/fig_rank_dynamics.pdf  used on input
- line 697.
+ line 699.
 (pdftex.def)             Requested size: 191.10214pt x 126.74841pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 697--697
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 699--699
  [][][] 
  []
 
-<recolored_figures/fig_cross_dataset.pdf, id=102, 256.0748pt x 158.99399pt>
+<recolored_figures/fig_cross_dataset.pdf, id=103, 256.0748pt x 158.99399pt>
 File: recolored_figures/fig_cross_dataset.pdf Graphic file (type pdf)
 <use recolored_figures/fig_cross_dataset.pdf>
 Package pdftex.def Info: recolored_figures/fig_cross_dataset.pdf  used on input
- line 702.
+ line 704.
 (pdftex.def)             Requested size: 191.10214pt x 118.65808pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 702--702
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 704--704
  [][][] 
  []
 
 [23]
-Overfull \hbox (7.17053pt too wide) in paragraph at lines 758--760
+Overfull \hbox (7.17053pt too wide) in paragraph at lines 760--762
 [][]|   []   |   [][] []|   []   |   []   |   []   |   []   |   []   |   []   |
    []
  []
 
-<recolored_figures/fig_normlaw.pdf, id=106, 256.0748pt x 166.22101pt>
+<recolored_figures/fig_normlaw.pdf, id=107, 256.0748pt x 166.22101pt>
 File: recolored_figures/fig_normlaw.pdf Graphic file (type pdf)
 <use recolored_figures/fig_normlaw.pdf>
 Package pdftex.def Info: recolored_figures/fig_normlaw.pdf  used on input line 
-765.
+767.
 (pdftex.def)             Requested size: 214.50119pt x 139.23915pt.
 [24] [25] [26]
-<recolored_figures/fig_sensitivity.pdf, id=117, 540.60239pt x 158.99399pt>
+<recolored_figures/fig_sensitivity.pdf, id=118, 540.60239pt x 158.99399pt>
 File: recolored_figures/fig_sensitivity.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sensitivity.pdf>
 Package pdftex.def Info: recolored_figures/fig_sensitivity.pdf  used on input l
-ine 871.
+ine 873.
 (pdftex.def)             Requested size: 331.50238pt x 97.49565pt.
  [27] [28] [29]
-<recolored_figures/fig_weakbb.pdf, id=127, 540.60239pt x 180.675pt>
+<recolored_figures/fig_weakbb.pdf, id=128, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_weakbb.pdf Graphic file (type pdf)
 <use recolored_figures/fig_weakbb.pdf>
 Package pdftex.def Info: recolored_figures/fig_weakbb.pdf  used on input line 1
-035.
+037.
 (pdftex.def)             Requested size: 358.79929pt x 119.91577pt.
  [30] [31]
-<recolored_figures/fig_sim_accuracy.pdf, id=135, 540.60239pt x 180.675pt>
+<recolored_figures/fig_sim_accuracy.pdf, id=136, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_accuracy.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_accuracy.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_accuracy.pdf  used on input 
-line 1150.
+line 1152.
 (pdftex.def)             Requested size: 343.2019pt x 114.70253pt.
-<recolored_figures/fig_sim_regimes.pdf, id=136, 540.60239pt x 180.675pt>
+<recolored_figures/fig_sim_regimes.pdf, id=137, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_sim_regimes.pdf Graphic file (type pdf)
 <use recolored_figures/fig_sim_regimes.pdf>
 Package pdftex.def Info: recolored_figures/fig_sim_regimes.pdf  used on input l
-ine 1159.
+ine 1161.
 (pdftex.def)             Requested size: 343.2019pt x 114.70253pt.
  [32] [33] [34]
-<recolored_figures/fig_dp_study.pdf, id=146, 540.60239pt x 180.675pt>
+<recolored_figures/fig_dp_study.pdf, id=147, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_dp_study.pdf Graphic file (type pdf)
 <use recolored_figures/fig_dp_study.pdf>
 Package pdftex.def Info: recolored_figures/fig_dp_study.pdf  used on input line
- 1239.
+ 1241.
 (pdftex.def)             Requested size: 331.50238pt x 110.79051pt.
-<recolored_figures/fig_calibration.pdf, id=147, 540.60239pt x 180.675pt>
+<recolored_figures/fig_calibration.pdf, id=148, 540.60239pt x 180.675pt>
 File: recolored_figures/fig_calibration.pdf Graphic file (type pdf)
 <use recolored_figures/fig_calibration.pdf>
 Package pdftex.def Info: recolored_figures/fig_calibration.pdf  used on input l
-ine 1250.
+ine 1252.
 (pdftex.def)             Requested size: 331.50238pt x 110.79051pt.
 
-Overfull \hbox (4.37683pt too wide) in paragraph at lines 1255--1258
+Overfull \hbox (4.37683pt too wide) in paragraph at lines 1257--1260
 [][]|   []   |   []   |   []   |   []   |   [][] []|   []   |   []   |   []   |
    []
  []
 
 [35]
-Underfull \hbox (badness 1297) in paragraph at lines 1273--1295
+Underfull \hbox (badness 1297) in paragraph at lines 1275--1297
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 [36] [37] [38] [39] [40] [41] [42]
-Underfull \hbox (badness 1112) in paragraph at lines 1396--1408
+Underfull \hbox (badness 1112) in paragraph at lines 1398--1410
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
 
-Underfull \hbox (badness 1028) in paragraph at lines 1396--1408
+Underfull \hbox (badness 1028) in paragraph at lines 1398--1410
 |   []   |   []   |   []   |   [][][]|   [][][]|   []   |   []   |   []   |   [
 ]   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 1515) in paragraph at lines 1396--1408
+Underfull \hbox (badness 1515) in paragraph at lines 1398--1410
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []   |   []
  []
 
 [43]
-Underfull \hbox (badness 4569) in paragraph at lines 1428--1431
+Underfull \hbox (badness 4569) in paragraph at lines 1430--1433
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1444--1447
+Underfull \hbox (badness 10000) in paragraph at lines 1446--1449
 |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1444--1447
+Underfull \hbox (badness 10000) in paragraph at lines 1446--1449
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   []
  []
 
 
-Underfull \hbox (badness 5036) in paragraph at lines 1461--1464
+Underfull \hbox (badness 5036) in paragraph at lines 1463--1466
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1461--1464
+Underfull \hbox (badness 10000) in paragraph at lines 1463--1466
 |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1461--1464
+Underfull \hbox (badness 10000) in paragraph at lines 1463--1466
 |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 1112) in paragraph at lines 1469--1472
+Underfull \hbox (badness 1112) in paragraph at lines 1471--1474
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]   |   []
  []
 
 
-Underfull \hbox (badness 6220) in paragraph at lines 1469--1472
+Underfull \hbox (badness 6220) in paragraph at lines 1471--1474
 |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 [44]
-Underfull \hbox (badness 2142) in paragraph at lines 1481--1485
+Underfull \hbox (badness 2142) in paragraph at lines 1483--1487
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 1394) in paragraph at lines 1488--1494
+Underfull \hbox (badness 1394) in paragraph at lines 1490--1496
 |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 6001) in paragraph at lines 1496--1500
+Underfull \hbox (badness 6001) in paragraph at lines 1498--1502
 |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 2368) in paragraph at lines 1511--1518
+Underfull \hbox (badness 2368) in paragraph at lines 1513--1520
 [][]|   [][] []|   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 [45]
-Underfull \hbox (badness 10000) in paragraph at lines 1541--1548
+Underfull \hbox (badness 10000) in paragraph at lines 1543--1550
 |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 2653) in paragraph at lines 1541--1548
+Underfull \hbox (badness 2653) in paragraph at lines 1543--1550
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1553--1554
+Underfull \hbox (badness 10000) in paragraph at lines 1555--1556
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]   |   []
  []
 
 
-Underfull \hbox (badness 3271) in paragraph at lines 1553--1554
+Underfull \hbox (badness 3271) in paragraph at lines 1555--1556
 |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 2922) in paragraph at lines 1564--1568
+Underfull \hbox (badness 2922) in paragraph at lines 1566--1570
 |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1585--1588
+Underfull \hbox (badness 10000) in paragraph at lines 1587--1590
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 [46]
-Underfull \hbox (badness 10000) in paragraph at lines 1601--1604
+Underfull \hbox (badness 10000) in paragraph at lines 1603--1606
 |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 2582) in paragraph at lines 1609--1612
+Underfull \hbox (badness 2582) in paragraph at lines 1611--1614
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]   |   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1609--1612
+Underfull \hbox (badness 10000) in paragraph at lines 1611--1614
 |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 4940) in paragraph at lines 1617--1620
+Underfull \hbox (badness 4940) in paragraph at lines 1619--1622
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]
  []
 
 
-Underfull \hbox (badness 2538) in paragraph at lines 1632--1635
+Underfull \hbox (badness 2538) in paragraph at lines 1634--1637
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1632--1635
+Underfull \hbox (badness 10000) in paragraph at lines 1634--1637
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1632--1635
+Underfull \hbox (badness 10000) in paragraph at lines 1634--1637
 |   []   |   []   |   []   |   []   |   []   |   []   []
  []
 
 [47]
-Underfull \hbox (badness 1622) in paragraph at lines 1649--1652
+Underfull \hbox (badness 1622) in paragraph at lines 1651--1654
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   []
  []
 
 
-Underfull \hbox (badness 1067) in paragraph at lines 1666--1669
+Underfull \hbox (badness 1067) in paragraph at lines 1668--1671
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]   |   []   |   []
  []
 
 
-Underfull \hbox (badness 3229) in paragraph at lines 1666--1669
+Underfull \hbox (badness 3229) in paragraph at lines 1668--1671
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 2608) in paragraph at lines 1666--1669
+Underfull \hbox (badness 2608) in paragraph at lines 1668--1671
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   []
  []
 
 
-Underfull \hbox (badness 4713) in paragraph at lines 1675--1678
+Underfull \hbox (badness 4713) in paragraph at lines 1677--1680
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]   |   []
  []
 
 
-Underfull \hbox (badness 1033) in paragraph at lines 1688--1694
+Underfull \hbox (badness 1033) in paragraph at lines 1690--1696
 |   []   |   []   |   []   |   []   |   []   |   []   [][]|   [][] []|   []
  []
 
-[48] [49] [50 <./recolored_figures/fig_architecture.pdf>] [51 <./recolored_figu
-res/fig_trainer_nominal.pdf> <./recolored_figures/fig_trainer_stress.pdf> <./re
-colored_figures/fig_rank_dynamics.pdf> <./recolored_figures/fig_cross_dataset.p
-df>] [52 <./recolored_figures/fig_normlaw.pdf> <./recolored_figures/fig_sensiti
-vity.pdf>] [53 <./recolored_figures/fig_weakbb.pdf> <./recolored_figures/fig_si
-m_accuracy.pdf>] [54 <./recolored_figures/fig_sim_regimes.pdf> <./recolored_fig
-ures/fig_dp_study.pdf>] [55 <./recolored_figures/fig_calibration.pdf>]
+[48] [49] [50 <./recolored_figures/1.png>] [51 <./recolored_figures/fig_trainer
+_nominal.pdf> <./recolored_figures/fig_trainer_stress.pdf> <./recolored_figures
+/fig_rank_dynamics.pdf> <./recolored_figures/fig_cross_dataset.pdf>] [52 <./rec
+olored_figures/fig_normlaw.pdf> <./recolored_figures/fig_sensitivity.pdf>]
+[53 <./recolored_figures/fig_weakbb.pdf> <./recolored_figures/fig_sim_accuracy.
+pdf>] [54 <./recolored_figures/fig_sim_regimes.pdf> <./recolored_figures/fig_dp
+_study.pdf>] [55 <./recolored_figures/fig_calibration.pdf>]
 (./CN_reviewed_marked.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -1053,10 +1052,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 17031 strings out of 474222
- 330189 string characters out of 5748734
- 2107975 words of memory out of 5000000
- 38981 multiletter control sequences out of 15000+600000
+ 17029 strings out of 474222
+ 329980 string characters out of 5748734
+ 2106975 words of memory out of 5000000
+ 38979 multiletter control sequences out of 15000+600000
  568520 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,13n,93p,2489b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1083,10 +1082,10 @@ fonts/latxfont/lasy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.p
 fb>
-Output written on CN_reviewed_marked.pdf (55 pages, 869690 bytes).
+Output written on CN_reviewed_marked.pdf (55 pages, 912517 bytes).
 PDF statistics:
- 540 PDF objects out of 1000 (max. 8388607)
- 324 compressed objects within 4 object streams
+ 512 PDF objects out of 1000 (max. 8388607)
+ 308 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
  73 words of extra memory for PDF output out of 10000 (max. 10000000)
 

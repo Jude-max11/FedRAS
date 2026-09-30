@@ -110,7 +110,7 @@ FedSN \cite{lin2025fedsn} & $\times$ & \checkmark & $\times$ & \checkmark & $\ti
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.98\columnwidth]{recolored_figures/fig_architecture}
+\includegraphics[width=0.98\columnwidth]{recolored_figures/1.png}
 \caption{FedRAS round pipeline. Action Construction (AC) scores every client--rank pair with the delivery hazard \eqref{eq:hazard} and the saturating capacity \eqref{eq:cap}; the GridDP assignment (GDP) computes the client--rank assignment under the byte budget and the admission cap. Updates arriving within the deadline $\tau$ pass the on-time gate and are merged by Masked Aggregation (MA) while the shared factor $A$ stays frozen; observed outcomes update the link-state history. AC, GDP, and MA correspond to Algorithms~\ref{alg:ac}--\ref{alg:ma}; the overall round is Algorithm~\ref{alg:fedras}.}
 \label{fig:architecture}
 \end{figure}

@@ -871,3 +871,14 @@ fit-check 46 条文本 OK。重编译 39 页 0 错误；图页 p7 视觉验收 P
   \providecommand{href/path/url/urlprefix}；红标版文献已内联，跳过 bibtex。
 编译：干净版 41 页、红标版 55 页，均 0 错误 0 未解析引用；投稿 zip 已刷新
   并 clean-room 复核。
+
+## 修订记录 35（2026-09-30，作者更新框架图 1.png）
+
+① 作者自绘新框架图 recolored_figures/1.png 替换 fig_architecture.pdf
+  （tex 引用同步改为 1.png；1071×770px，88mm 版面宽约合 309 dpi）；
+② 视觉验收发现图内拼写错误 "Satallite client - Outage"：在同文字行内
+  移植 "client" 的 'e' 字形替换第 4 字母 'a'（字体/颜色/背景完全一致），
+  8×接缝核查与二轮 visual-judge 均 PASS；
+③ 投稿 zip 图清单改为 tex 实际引用：11 个 PDF + 1.png（不再含
+  fig_architecture.pdf）；clean-room 独立编译 41 页 0 错误 0 未解析。
+编译：干净版 41 页、红标版 55 页，均 0 错误。
