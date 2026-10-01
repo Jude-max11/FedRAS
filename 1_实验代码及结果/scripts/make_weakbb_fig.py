@@ -107,7 +107,10 @@ for m in COL:
                 fmt='o', ms=5, color=COL[m], lw=.8, capsize=2, label=LBL[m])
     ax.annotate(f'{b.mean():.2f} MB, rank {r.mean():.0f}',
                 (t.mean(), a.mean()), textcoords='offset points',
-                xytext=(6, -11), fontsize=5.6, color=COL[m])
+                # r=16 sits left of FedRAS: label above-right, else the text
+                # tail crosses FedRAS's upper error-bar whisker
+                xytext=(6, 3) if m == 'FedLoRA_r16' else (6, -11),
+                fontsize=5.6, color=COL[m])
 ax.set_xlabel('Timely delivery ratio (rounds 30–39)')
 ax.set_ylabel('Final accuracy')
 ax.set_xlim(.46, .76)
