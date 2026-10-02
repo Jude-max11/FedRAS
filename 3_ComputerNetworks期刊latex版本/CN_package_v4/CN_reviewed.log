@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  1 OCT 2026 22:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  2 OCT 2026 00:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -992,13 +992,29 @@ Underfull \hbox (badness 4001) in paragraph at lines 52--53
  []
 
 
-Underfull \hbox (badness 1199) in paragraph at lines 59--60
-\T1/stix/m/n/10 up-dates and in-struc-tion tun-ing [[], []], ex-am-ined how
+Underfull \hbox (badness 1629) in paragraph at lines 70--71
+[]\T1/stix/m/n/10 Client se-lec-tion im-proves FL ef-fi-ciency un-der data,
  []
 
 
-Underfull \hbox (badness 6001) in paragraph at lines 59--60
-\T1/stix/m/n/10 stan-dard parameter-efficient tun-ing be-haves un-der the
+Underfull \hbox (badness 2846) in paragraph at lines 70--71
+\T1/stix/m/n/10 [[]]; TiFL groups clients into la-tency tiers to bound
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+\T1/stix/m/n/10 schedul-ing deadline- and reliability-aware in mo-bile
+ []
+
+
+Underfull \hbox (badness 5064) in paragraph at lines 70--71
+\T1/stix/m/n/10 and non-terrestrial net-works, from client par-tic-i-pa-tion
+ []
+
+
+Underfull \hbox (badness 1521) in paragraph at lines 70--71
+\T1/stix/m/n/10 [[], [], [], []] to traf-fic of-fload-ing driven by fed-er-ated
+
  []
 
 [2]
@@ -1505,10 +1521,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.668 \textbf{Estimator assumptions.}
-                                      The hazard-form delivery model \eqref{...
- <./recolored_figures/panels/fig_calibration_a.pdf> <./recolored_figures/panels
-/fig_calibration_b.pdf>]
+l.667 
+       <./recolored_figures/panels/fig_calibration_a.pdf> <./recolored_figures/
+panels/fig_calibration_b.pdf>]
 Underfull \hbox (badness 4621) in paragraph at lines 668--669
 []\T1/stix/b/n/10 Estimator as-sump-tions. \T1/stix/m/n/10 The hazard-form de-l
 iv-ery
@@ -1536,7 +1551,9 @@ Underfull \hbox (badness 1024) in paragraph at lines 227--233
 ,
  []
 
-) [19] (./CN_reviewed.aux)
+) [19
+
+] (./CN_reviewed.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1551,7 +1568,7 @@ Here is how much of TeX's memory you used:
  40516 multiletter control sequences out of 15000+600000
  660934 words of font info for 161 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,13n,117p,1951b,670s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,13n,117p,1951b,672s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4
 r.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/STIXGeneral-BoldItali
@@ -1569,10 +1586,10 @@ ic/stix/stix-mathrm-bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 stix/stix-mathrm.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/sti
 x-mathscr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/stix-maths
 f.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/stix-mathtt.pfb>
-Output written on CN_reviewed.pdf (19 pages, 963918 bytes).
+Output written on CN_reviewed.pdf (19 pages, 964027 bytes).
 PDF statistics:
- 1316 PDF objects out of 1440 (max. 8388607)
- 1012 compressed objects within 11 object streams
+ 1317 PDF objects out of 1440 (max. 8388607)
+ 1013 compressed objects within 11 object streams
  184 named destinations out of 1000 (max. 500000)
  431 words of extra memory for PDF output out of 10000 (max. 10000000)
 

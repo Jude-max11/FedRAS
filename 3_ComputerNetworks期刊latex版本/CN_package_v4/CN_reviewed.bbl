@@ -94,10 +94,10 @@ S.~Babakniya, A.~R. Elkordy, Y.~H. Ezzeldin, Q.~Liu, K.-B. Song, M.~El-Khamy,
   Foundation Models (FedLLM), 2023, arXiv:2308.06522.
 
 \bibitem{zhang2024fedit}
-J.~Zhang, S.~Vahidian, M.~Kuo, C.~Li, R.~Zhang, T.~Yu, G.~Wang, Y.~Zhang,
-  Y.~Chen, H.~Li, Towards building the federated {GPT}: Federated instruction
-  tuning, in: IEEE International Conference on Acoustics, Speech and Signal
-  Processing (ICASSP), 2024, pp. 6915--6919.
+J.~Zhang, S.~Vahidian, M.~Kuo, C.~Li, R.~Zhang, T.~Yu, Y.~Zhou, G.~Wang,
+  Y.~Chen, Towards building the federated {GPT}: Federated instruction tuning,
+  in: IEEE International Conference on Acoustics, Speech and Signal Processing
+  (ICASSP), 2024, pp. 6915--6919.
 \newblock \href {https://doi.org/10.1109/ICASSP48485.2024.10447454}
   {\path{doi:10.1109/ICASSP48485.2024.10447454}}.
 
@@ -161,14 +161,14 @@ W.~Ma, T.~Hu, X.~Liu, Mobility-predictive risk-budgeted protection selection
   details to be updated when available.
 
 \bibitem{wang2024flora}
-Z.~Wang, Z.~Gu, J.~Weng, X.~Shang, J.~Li, J.~Li, K.~Wan, {FLoRA}: Federated
+Z.~Wang, Z.~Shen, Y.~He, G.~Sun, H.~Wang, L.~Lyu, A.~Li, {FLoRA}: Federated
   fine-tuning large language models with heterogeneous low-rank adaptations,
   in: Advances in Neural Information Processing Systems (NeurIPS), 2024.
 
 \bibitem{guo2025fedsalora}
-P.~Guo, S.~Zeng, Y.~Wang, Y.~Fang, W.~Huang, S.~Liu, D.~Guo, Selective
-  aggregation for low-rank adaptation in federated learning, in: International
-  Conference on Learning Representations (ICLR), 2025.
+P.~Guo, S.~Zeng, Y.~Wang, H.~Fan, F.~Wang, L.~Qu, Selective aggregation for
+  low-rank adaptation in federated learning, in: International Conference on
+  Learning Representations (ICLR), 2025.
 
 \bibitem{lin2018deep}
 Y.~Lin, S.~Han, H.~Mao, Y.~Wang, W.~J. Dally, Deep gradient compression:
