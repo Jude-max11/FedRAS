@@ -166,9 +166,6 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.6}Component ablations}{12}{subsubsection.6.2.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.7}Weak-backbone capacity payoff}{12}{subsubsection.6.2.7}\protected@file@percent }
 \newlabel{sec:weakbb}{{6.2.7}{12}{Weak-backbone capacity payoff}{subsubsection.6.2.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Large-scale scheduling simulation}{12}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}Scheduler behavior across operating regimes}{12}{subsubsection.6.3.1}\protected@file@percent }
-\newlabel{sec:simsim}{{6.3.1}{12}{Scheduler behavior across operating regimes}{subsubsection.6.3.1}{}}
 \newlabel{fig:weakbba}{{5(a)}{13}{Subfigure 5(a)}{subfigure.5.1}{}}
 \newlabel{sub@fig:weakbba}{{((a))}{5(a)}{Subfigure 5(a)\relax }{subfigure.5.1}{}}
 \newlabel{fig:weakbbb}{{5(b)}{13}{Subfigure 5(b)}{subfigure.5.2}{}}
@@ -179,20 +176,23 @@
 \newlabel{fig:weakbb}{{5}{13}{Weak-backbone capacity payoff (one-epoch pretrain, five seeds). (a)~Nominal deadline: the rank--accuracy coupling appears (rank 16 above rank 4 by 2.1 points) and FedRAS coincides with rank 16; the dashed line marks the pretrained backbone. (b)~Stress deadline (0.1\,s): FedRAS lands between the fixed ranks on accuracy while delivering more updates than rank 16 at $20\%$ fewer bytes; annotations give attempted MB per round and mean delivered rank}{figure.5}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Component ablations of the real trainer at the nominal deadline (five seeds). Min.\ is the minimum over rounds of the per-round seed-mean accuracy in the elevated-learning-rate check (lr 0.02).}}{13}{table.7}\protected@file@percent }
 \newlabel{tab:ablation}{{7}{13}{Component ablations of the real trainer at the nominal deadline (five seeds). Min.\ is the minimum over rounds of the per-round seed-mean accuracy in the elevated-learning-rate check (lr 0.02)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Large-scale scheduling simulation}{13}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}Scheduler behavior across operating regimes}{13}{subsubsection.6.3.1}\protected@file@percent }
+\newlabel{sec:simsim}{{6.3.1}{13}{Scheduler behavior across operating regimes}{subsubsection.6.3.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}Solver optimality and runtime}{13}{subsubsection.6.3.2}\protected@file@percent }
 \newlabel{sec:dp_study}{{6.3.2}{13}{Solver optimality and runtime}{subsubsection.6.3.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Experiments at 500-client scale (five seeds unless noted). (a) Scheduler simulation across regimes; the utility column is the bounded scheduling utility of Section~\ref {sec:eval} and must not be read as dataset accuracy, MB is the attempted uplink payload of admitted clients in the final round billed on the same 0.01\,MB ceiling grid as budget admission, and FedAvg refers to full-model updates at their real serialized size. (b) Solver study with $K{=}25$ and 30 instances per cell on the identical ceiling grid; the table reports heuristic objective loss relative to the grid-based DP and DP runtime.}}{14}{table.8}\protected@file@percent }
 \newlabel{tab:scalemain}{{8}{14}{Experiments at 500-client scale (five seeds unless noted). (a) Scheduler simulation across regimes; the utility column is the bounded scheduling utility of Section~\ref {sec:eval} and must not be read as dataset accuracy, MB is the attempted uplink payload of admitted clients in the final round billed on the same 0.01\,MB ceiling grid as budget admission, and FedAvg refers to full-model updates at their real serialized size. (b) Solver study with $K{=}25$ and 30 instances per cell on the identical ceiling grid; the table reports heuristic objective loss relative to the grid-based DP and DP runtime}{table.8}{}}
-\newlabel{fig:sima}{{6(a)}{14}{Subfigure 6(a)}{subfigure.6.1}{}}
-\newlabel{sub@fig:sima}{{((a))}{6(a)}{Subfigure 6(a)\relax }{subfigure.6.1}{}}
-\newlabel{fig:simb}{{6(b)}{14}{Subfigure 6(b)}{subfigure.6.2}{}}
-\newlabel{sub@fig:simb}{{((b))}{6(b)}{Subfigure 6(b)\relax }{subfigure.6.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Scheduler simulation utility-state trajectories (mean over five seeds). (a)~Nominal 2.0\,s deadline, where FedRAS matches fixed rank 16. (b)~0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16.}}{14}{figure.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{((a))}{\ignorespaces {Nominal deadline (2.0 s)}}}{14}{subfigure.6.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{((b))}{\ignorespaces {Stress deadline (0.1 s)}}}{14}{subfigure.6.2}\protected@file@percent }
-\newlabel{fig:sim}{{6}{14}{Scheduler simulation utility-state trajectories (mean over five seeds). (a)~Nominal 2.0\,s deadline, where FedRAS matches fixed rank 16. (b)~0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16}{figure.6}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3}Delivery-predictor sensitivity}{14}{subsubsection.6.3.3}\protected@file@percent }
 \newlabel{sec:calsens}{{6.3.3}{14}{Delivery-predictor sensitivity}{subsubsection.6.3.3}{}}
+\newlabel{fig:sima}{{6(a)}{15}{Subfigure 6(a)}{subfigure.6.1}{}}
+\newlabel{sub@fig:sima}{{((a))}{6(a)}{Subfigure 6(a)\relax }{subfigure.6.1}{}}
+\newlabel{fig:simb}{{6(b)}{15}{Subfigure 6(b)}{subfigure.6.2}{}}
+\newlabel{sub@fig:simb}{{((b))}{6(b)}{Subfigure 6(b)\relax }{subfigure.6.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Scheduler simulation utility-state trajectories (mean over five seeds). (a)~Nominal 2.0\,s deadline, where FedRAS matches fixed rank 16. (b)~0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16.}}{15}{figure.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{((a))}{\ignorespaces {Nominal deadline (2.0 s)}}}{15}{subfigure.6.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{((b))}{\ignorespaces {Stress deadline (0.1 s)}}}{15}{subfigure.6.2}\protected@file@percent }
+\newlabel{fig:sim}{{6}{15}{Scheduler simulation utility-state trajectories (mean over five seeds). (a)~Nominal 2.0\,s deadline, where FedRAS matches fixed rank 16. (b)~0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16}{figure.6}{}}
 \newlabel{fig:simrega}{{7(a)}{15}{Subfigure 7(a)}{subfigure.7.1}{}}
 \newlabel{sub@fig:simrega}{{((a))}{7(a)}{Subfigure 7(a)\relax }{subfigure.7.1}{}}
 \newlabel{fig:simregb}{{7(b)}{15}{Subfigure 7(b)}{subfigure.7.2}{}}
@@ -201,27 +201,27 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{((a))}{\ignorespaces {timely delivery ratio}}}{15}{subfigure.7.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {subfigure}{\numberline{((b))}{\ignorespaces {bytes per round (MB)}}}{15}{subfigure.7.2}\protected@file@percent }
 \newlabel{fig:simreg}{{7}{15}{Timely delivery ratio and attempted bytes per method across simulator regimes, including the 1000-client scalability regime (five-seed means, final round). Full-model updates deliver nothing under stress and cannot be admitted at all under the binding budget}{figure.7}{}}
-\newlabel{fig:dpa}{{8(a)}{15}{Subfigure 8(a)}{subfigure.8.1}{}}
-\newlabel{sub@fig:dpa}{{((a))}{8(a)}{Subfigure 8(a)\relax }{subfigure.8.1}{}}
-\newlabel{fig:dpb}{{8(b)}{15}{Subfigure 8(b)}{subfigure.8.2}{}}
-\newlabel{sub@fig:dpb}{{((b))}{8(b)}{Subfigure 8(b)\relax }{subfigure.8.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Solver study. (a)~Objective loss of the heuristics relative to the DP across deadline and budget cells. (b)~DP runtime scaling with the client population.}}{15}{figure.8}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{((a))}{\ignorespaces {objective loss vs.\ DP}}}{15}{subfigure.8.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{((b))}{\ignorespaces {DP runtime}}}{15}{subfigure.8.2}\protected@file@percent }
-\newlabel{fig:dp}{{8}{15}{Solver study. (a)~Objective loss of the heuristics relative to the DP across deadline and budget cells. (b)~DP runtime scaling with the client population}{figure.8}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and limitations}{15}{section.7}\protected@file@percent }
 \newlabel{sec:discussion}{{7}{15}{Discussion and limitations}{section.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Interpretation and deployment considerations}{15}{subsection.7.1}\protected@file@percent }
+\newlabel{fig:dpa}{{8(a)}{16}{Subfigure 8(a)}{subfigure.8.1}{}}
+\newlabel{sub@fig:dpa}{{((a))}{8(a)}{Subfigure 8(a)\relax }{subfigure.8.1}{}}
+\newlabel{fig:dpb}{{8(b)}{16}{Subfigure 8(b)}{subfigure.8.2}{}}
+\newlabel{sub@fig:dpb}{{((b))}{8(b)}{Subfigure 8(b)\relax }{subfigure.8.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Solver study. (a)~Objective loss of the heuristics relative to the DP across deadline and budget cells. (b)~DP runtime scaling with the client population.}}{16}{figure.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{((a))}{\ignorespaces {objective loss vs.\ DP}}}{16}{subfigure.8.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{((b))}{\ignorespaces {DP runtime}}}{16}{subfigure.8.2}\protected@file@percent }
+\newlabel{fig:dp}{{8}{16}{Solver study. (a)~Objective loss of the heuristics relative to the DP across deadline and budget cells. (b)~DP runtime scaling with the client population}{figure.8}{}}
 \newlabel{fig:caliba}{{9(a)}{16}{Subfigure 9(a)}{subfigure.9.1}{}}
 \newlabel{sub@fig:caliba}{{((a))}{9(a)}{Subfigure 9(a)\relax }{subfigure.9.1}{}}
 \newlabel{fig:calibb}{{9(b)}{16}{Subfigure 9(b)}{subfigure.9.2}{}}
 \newlabel{sub@fig:calibb}{{((b))}{9(b)}{Subfigure 9(b)\relax }{subfigure.9.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Delivery-predictor calibration study (500 clients, 150 round-instances per cell). (a)~Reliability at the 0.1\,s deadline; with oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted ($\gamma $) and noisy variants are measurably miscalibrated. (b)~Assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% on average in every cell.}}{16}{figure.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Delivery-predictor calibration study (500 clients, 150 round-instances per cell). (a)~Reliability at the 0.1\,s deadline; with oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted ($\gamma $) and noisy variants are measurably miscalibrated. (b)~Assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% on average in every cell; the $\gamma {=}0.5$ loss is $<0.001\%$ throughout (no visible bars).}}{16}{figure.9}\protected@file@percent }
 \@writefile{lof}{\contentsline {subfigure}{\numberline{((a))}{\ignorespaces {reliability at the 0.1\,s deadline}}}{16}{subfigure.9.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {subfigure}{\numberline{((b))}{\ignorespaces {objective loss under true probabilities}}}{16}{subfigure.9.2}\protected@file@percent }
-\newlabel{fig:calib}{{9}{16}{Delivery-predictor calibration study (500 clients, 150 round-instances per cell). (a)~Reliability at the 0.1\,s deadline; with oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted ($\gamma $) and noisy variants are measurably miscalibrated. (b)~Assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% on average in every cell}{figure.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Scope and limitations}{16}{subsection.7.2}\protected@file@percent }
+\newlabel{fig:calib}{{9}{16}{Delivery-predictor calibration study (500 clients, 150 round-instances per cell). (a)~Reliability at the 0.1\,s deadline; with oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted ($\gamma $) and noisy variants are measurably miscalibrated. (b)~Assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% on average in every cell; the $\gamma {=}0.5$ loss is $<0.001\%$ throughout (no visible bars)}{figure.9}{}}
 \citation{bonawitz2017secureagg,wei2023pfl_dp}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Scope and limitations}{17}{subsection.7.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{17}{section.8}\protected@file@percent }
 \newlabel{sec:conclusion}{{8}{17}{Conclusion}{section.8}{}}
 \bibstyle{elsarticle-num}

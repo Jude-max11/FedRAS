@@ -362,10 +362,11 @@ Full model & \multicolumn{4}{c}{5.29\,MB FP32 ($58.7\times$ the rank-16 $B$-only
 
 \begin{figure*}[pos=tbp]
 \centering
+\includegraphics[width=0.45\linewidth]{recolored_figures/panels/fig_trainer_legend.pdf}\\[4pt]
 \subfloat[nominal deadline: accuracy]{\includegraphics[width=.49\linewidth]{recolored_figures/panels/fig_trainer_nominal.pdf}\label{fig:trainermaina}}\hfill
 \subfloat[0.1\,s deadline: accuracy]{\includegraphics[width=.49\linewidth]{recolored_figures/panels/fig_trainer_stress.pdf}\label{fig:trainermainb}}\\[3pt]
-\subfloat[delivered rank per round]{\includegraphics[width=.49\linewidth]{recolored_figures/panels/fig_rank_dynamics.pdf}\label{fig:trainermainc}}\hfill
-\subfloat[accuracy relative to backbone (pp)]{\includegraphics[width=.49\linewidth]{recolored_figures/panels/fig_cross_dataset.pdf}\label{fig:trainermaind}}
+\subfloat[delivered rank per round]{\includegraphics[width=.4919\linewidth]{recolored_figures/panels/fig_rank_dynamics.pdf}\label{fig:trainermainc}}\hfill
+\subfloat[accuracy relative to backbone (pp)]{\includegraphics[width=.4881\linewidth]{recolored_figures/panels/fig_cross_dataset.pdf}\label{fig:trainermaind}}
 \caption{Real-trainer experiments (CIFAR-10, means over seeds). (a)~At the nominal deadline all rank policies hold the pretrained-backbone accuracy. (b)~Under the 0.1\,s deadline all methods remain stable while full-model updates deliver nothing and stay at the backbone. (c)~FedRAS is link-aware: delivered rank holds the provisioned width at the nominal deadline and steps down as the deadline tightens, against the fixed heat--cool path (gray dashed) that the annealing baseline follows regardless of link state. (d)~Final accuracy relative to the per-dataset pretrained backbone; the parity is not CIFAR-10-specific (numbers in Table~\ref{tab:extended}).}
 \label{fig:trainermain}
 \end{figure*}
@@ -603,6 +604,7 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 
 \begin{figure*}[pos=tbp]
 \centering
+\includegraphics{recolored_figures/panels/fig_simacc_legend.pdf}\\[4pt]
 \subfloat[Nominal deadline (2.0 s)]{\includegraphics[width=.5007\linewidth]{recolored_figures/panels/fig_sim_accuracy_a.pdf}\label{fig:sima}}\hfill
 \subfloat[Stress deadline (0.1 s)]{\includegraphics[width=.4797\linewidth]{recolored_figures/panels/fig_sim_accuracy_b.pdf}\label{fig:simb}}
 \caption{Scheduler simulation utility-state trajectories (mean over five seeds). (a)~Nominal 2.0\,s deadline, where FedRAS matches fixed rank 16. (b)~0.1\,s deadline, where FedRAS downshifting separates from fixed rank 16.}
@@ -641,7 +643,7 @@ Deadline (s) & Budget (MB) & Greedy val/byte & Greedy value & Cohort myopic & Fi
 \centering
 \subfloat[reliability at the 0.1\,s deadline]{\includegraphics[width=.4903\linewidth]{recolored_figures/panels/fig_calibration_a.pdf}\label{fig:caliba}}\hfill
 \subfloat[objective loss under true probabilities]{\includegraphics[width=.4900\linewidth]{recolored_figures/panels/fig_calibration_b.pdf}\label{fig:calibb}}
-\caption{Delivery-predictor calibration study (500 clients, 150 round-instances per cell). (a)~Reliability at the 0.1\,s deadline; with oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted ($\gamma$) and noisy variants are measurably miscalibrated. (b)~Assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% on average in every cell.}
+\caption{Delivery-predictor calibration study (500 clients, 150 round-instances per cell). (a)~Reliability at the 0.1\,s deadline; with oracle link state the hazard-form predictor is calibrated by construction, while the power-distorted ($\gamma$) and noisy variants are measurably miscalibrated. (b)~Assignment-objective loss of optimizing against the distorted predictor, evaluated under true probabilities, at most 1\% on average in every cell; the $\gamma{=}0.5$ loss is $<0.001\%$ throughout (no visible bars).}
 \label{fig:calib}
 \end{figure*}
 

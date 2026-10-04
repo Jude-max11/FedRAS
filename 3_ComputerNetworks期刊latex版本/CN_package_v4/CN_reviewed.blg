@@ -15,15 +15,15 @@ Warning--empty pages in nishio2019fedcs
 Warning--empty pages in chai2020tifl
 You've used 41 entries,
             2952 wiz_defined-function locations,
-            914 strings with 16496 characters,
-and the built_in function-call counts, 16576 in all, are:
+            914 strings with 16477 characters,
+and the built_in function-call counts, 16550 in all, are:
 = -- 1442
-> -- 842
+> -- 836
 < -- 9
-+ -- 308
-- -- 267
-* -- 1408
-:= -- 2286
++ -- 306
+- -- 265
+* -- 1404
+:= -- 2280
 add.period$ -- 70
 call.type$ -- 41
 change.case$ -- 43
@@ -31,8 +31,8 @@ chr.to.int$ -- 0
 cite$ -- 51
 duplicate$ -- 465
 empty$ -- 1710
-format.name$ -- 308
-if$ -- 4102
+format.name$ -- 306
+if$ -- 4098
 int.to.chr$ -- 0
 int.to.str$ -- 41
 missing$ -- 41
