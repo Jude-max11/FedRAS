@@ -23,13 +23,13 @@
   "full_lr_scale": 0.4,
   "prox": 0.0,
   "no_freeze_a": false,
-  "seed": 0,
+  "seed": 1,
   "alpha": 0.5,
   "no_reset_lora": false,
   "no_augment": false,
   "no_full_baseline": false,
   "rmax": 16,
-  "methods": "FedLoRA_r4,FedLoRA_r16,Adaptive_rank",
+  "methods": "FedLoRA_r4,FedLoRA_r16,Adaptive_rank,SA_rank,Oort_utility,JointAB",
   "no_rank_mask": false,
   "fp16_upload": false,
   "no_capacity_term": false,
@@ -46,6 +46,6 @@
   "fedavg_full_mb": 5.2859,
   "budget_grid_mb": 0.01,
   "backbone_pretrained": true,
-  "backbone_acc": 0.5347,
-  "sched_ms_total": 28.56
+  "backbone_acc": 0.5668,
+  "sched_ms_total": 72.75
 }

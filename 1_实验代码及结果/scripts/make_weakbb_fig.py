@@ -105,15 +105,17 @@ for m in COL:
     a, t, b, r = strs[m]
     ax.errorbar(t.mean(), a.mean(), xerr=t.std(ddof=1), yerr=a.std(ddof=1),
                 fmt='o', ms=5, color=COL[m], lw=.8, capsize=2, label=LBL[m])
+    # r=16 sits left of FedRAS: label above-right, else the text tail
+    # crosses FedRAS's upper error-bar whisker; r=4 sits above the
+    # lower-right legend, so its label goes to the left of the point
+    xytext = (6, 3) if m == 'FedLoRA_r16' else (-6, -11) if m == 'FedLoRA_r4' else (6, -11)
     ax.annotate(f'{b.mean():.2f} MB, rank {r.mean():.0f}',
                 (t.mean(), a.mean()), textcoords='offset points',
-                # r=16 sits left of FedRAS: label above-right, else the text
-                # tail crosses FedRAS's upper error-bar whisker
-                xytext=(6, 3) if m == 'FedLoRA_r16' else (6, -11),
+                xytext=xytext, ha='right' if m == 'FedLoRA_r4' else 'left',
                 fontsize=5.6, color=COL[m])
 ax.set_xlabel('Timely delivery ratio (rounds 30–39)')
 ax.set_ylabel('Final accuracy')
-ax.set_xlim(.46, .76)
+ax.set_xlim(.40, .76)
 ax.set_ylim(.50, .62)
 ax.set_title('(b) Stress deadline (0.1 s)', loc='left', fontsize=7)
 ax.legend(loc='lower right', handlelength=1.2, fontsize=5.8)
