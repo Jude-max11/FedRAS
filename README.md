@@ -19,6 +19,7 @@ greedy scheduling by 28–55% when the budget binds.
 | `1_实验代码及结果/` | Simulation and experiment code, configs, result CSVs/figures (see its own README) |
 | `2_latex及附属文件历史版本/` | Historical versions of the manuscript and related files |
 | `3_ComputerNetworks期刊latex版本/` | Current Computer Networks submission package (LaTeX + figures) |
+| `release_staging/` | Anonymized release repos staged for review: `Deadline-Aware-FedLoRA` (IEEE WCNC 2026) and `FedRAS` (CN journal), each a standalone git repo with its own GitHub remote (moved here 2026-10-06) |
 
 ## Notes
 
