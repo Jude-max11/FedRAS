@@ -131,11 +131,12 @@ def panel_law(ax):
     ax.set_xlabel('rank $r$')
     ax.set_ylabel('$\\sqrt{r/r_{\\max}}\\,\\hat P_{\\rm on}(r)$')
     ax.set_xticks(RANKS)
-    ax.annotate('$r^{\\star}=\\bar R\\tau/16c$', xy=(0.42, 0.86), xycoords='axes fraction',
-                fontsize=6.5)
+    ax.annotate('$r^{\\star}=\\bar R\\tau/16c$', xy=(0.40, 0.60), xycoords='axes fraction',
+                fontsize=6.5, bbox=dict(fc='white', ec='none', alpha=0.85, pad=1.5))
     ax.annotate('', xy=(0.97, 0.02), xytext=(0.62, 0.02),
                 xycoords='axes fraction', arrowprops=dict(arrowstyle='-', lw=0))
-    ax.text(0.30, 0.04, 'measured $\\triangleleft$', transform=ax.transAxes, fontsize=6)
+    ax.text(0.28, 0.09, 'measured $\\triangleleft$', transform=ax.transAxes, fontsize=6,
+            bbox=dict(fc='white', ec='none', alpha=0.85, pad=1.0))
 
 
 def panel_conversion(ax):

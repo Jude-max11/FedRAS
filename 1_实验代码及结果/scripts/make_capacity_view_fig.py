@@ -90,7 +90,8 @@ def main():
     a.set_ylabel('test accuracy')
     b.set_xlabel('cumulative delivered capacity')
     b.set_ylabel('test accuracy')
-    b.legend(loc='upper left', handlelength=1.4, borderaxespad=0.3)
+    b.legend(loc='lower right', handlelength=1.4, borderaxespad=0.3,
+             frameon=True, framealpha=0.9, edgecolor='none')
     for ax, tag in zip((a, b), 'ab'):
         ax.text(-0.28, 1.08, f'({tag})', transform=ax.transAxes,
                 fontsize=8, fontweight='bold', ha='left', va='bottom')
