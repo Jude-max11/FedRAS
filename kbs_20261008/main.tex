@@ -165,6 +165,9 @@ We consider a mobile edge network in which an edge aggregator serves a client se
 $\mathcal{D}=\mathcal{D}_g\cup\mathcal{D}_a\cup\mathcal{D}_s$ of ground clients $\mathcal{D}_g$, aerial and UAV clients $\mathcal{D}_a$, and satellite-connected clients $\mathcal{D}_s$. Ground links are comparatively stable, aerial links face frequent handover, and satellite links suffer long propagation delay, intermittent visibility, and outages \cite{mahboob2024ntn,razmi2022ground}. The aggregator holds the global model, schedules every round, and aggregates the timely updates. This network is also the running example followed throughout the paper. The participants are the client fleet, one aggregator per region, and a passive uplink eavesdropper. The service flow repeats each round. The server, which has centrally pretrained the backbone on its own corpus, broadcasts the frozen backbone and the shared factor and attaches the round schedule. Scheduled clients fine-tune their factor slices on private local data, which never leaves the devices, and upload before the deadline. The server returns the masked aggregate of whatever arrived on time. Disclosure is controlled by the aggregator alone, through the admission and rank decisions, since a client transmits exactly the coordinates of its assigned rank. What the eavesdropper can reconstruct from an interception is therefore the induced update of that rank, the weight change its transmitted coordinates produce, and nothing beyond it. Whether the transmitted coordinates reveal training information is a question this paper does not claim to answer, and smaller ranks strictly reduce the exposed bytes and coordinates.
 \par
 Let $w^t$ denote the frozen backbone broadcast at round $t$. Client $i$ trains LoRA factors $A_{i,\ell}$ and $B_{i,\ell}$ for the adapted layers $\ell\in\mathcal L$, with effective weight change $\Delta W_{i,\ell}=B_{i,\ell}A_{i,\ell}$. A rank $r$ update uses the first $r$ columns of $B_{i,\ell}$ and the matching rows of the shared $A$. \cref{fig:architecture} shows the resulting architecture. In every round, the aggregator estimates the link states, scores the client--rank actions with Action Construction (AC), and solves the assignment with the GridDP assignment (GDP); the admitted clients train locally with their factors sliced to the assigned rank, so only the first $r$ coordinates receive gradient updates, and upload before the deadline $\tau$; the aggregator then merges the timely updates with Masked Aggregation (MA) and updates its link-state history from the observed outcomes. Late or lost updates are discarded, because stale updates harm convergence stability in deadline-critical federated learning. The experiments evaluate both a homogeneous link profile and a grouped ground--aerial--satellite profile with distinct rate and mobility laws.
+\par
+\subsection{Threat Model}
+\label{sec:threat}
 \textbf{Adversary and capabilities.} The external adversary is a passive eavesdropper on the wireless uplink: it observes the $B$ factors a client transmits, the public frozen factor $A$, and the round schedule, and nothing else, it cannot modify or drop messages (integrity and availability belong to the link model), cannot observe local data, and mounts no active attack.
 \par
 \textbf{Trust, assumptions, and boundary.} Clients are honest but curious, they follow the training protocol, and raw data never leaves the devices, the standing premise of federated learning on this infrastructure. The edge aggregator is trusted scheduling infrastructure: it observes link states, client--rank assignments, and delivered update factors, and runs the masked aggregation. Delivery outcomes follow the link model of the next section; clients report nothing beyond what any FL round makes observable.
@@ -188,7 +191,9 @@ Deriving an analytical delivery-time distribution for every term of \cref{eq:del
 \hat P_{\rm on,i}^t(r)=\exp\!\big(-\mu_i^t\big)\exp\!\Big(-\frac{8B_i^t(r)}{\bar R_i^t\tau}\Big).
 \label{eq:hazard}
 \end{equation}
-The dimensionless intensity $\mu_i^t$ summarizes mobility-related failure risk, packet loss, handover effects, and unmodeled processing time. Equation \cref{eq:hazard} therefore serves as a closed-form plug-in predictor, and the sensitivity and calibration studies quantify how prediction imperfections degrade the scheduling objective. \subsection{Rank-Dependent Payload and Adaptation Capacity}
+The dimensionless intensity $\mu_i^t$ summarizes mobility-related failure risk, packet loss, handover effects, and unmodeled processing time. Equation \cref{eq:hazard} therefore serves as a closed-form plug-in predictor, and the sensitivity and calibration studies quantify how prediction imperfections degrade the scheduling objective.
+\par
+\subsection{Rank-Dependent Payload and Adaptation Capacity}
 With $b$ bits per parameter and the frozen factor $A$ shared and never transmitted, a rank-$r$ client uploads only the trainable factor $B$, whose per-rank cost is the summed output dimension $D=\sum_{\ell\in\mathcal L}d_\ell$ of the adapted layers. The real serialized payload is
 \begin{equation}
 B_i^t(r)=\frac{b}{8}\,r\,D+B_{\rm meta},
@@ -215,7 +220,7 @@ The objective is a scheduling utility: the expected amount of useful adaptation 
 \section{FedRAS Design}
 \label{sec:solver}
 \subsection{Overview}
-\cref{alg:fedras} summarizes one round and \cref{fig:architecture} places the stages. Action Construction (AC) scores every client--rank pair with a real payload, a delivery probability, and a capacity gain; the GridDP assignment (GDP) solves the scored assignment exactly under the byte budget and the admission cap, with a cheap per-client rule covering the unconstrained regime; Masked Aggregation (MA) merges heterogeneous-rank updates toward the frozen shared factor. The design contains no training-side logic: admissions and ranks are chosen from network state alone.
+\cref{alg:fedras} summarizes one round and \cref{fig:architecture} places the stages. The three design questions of \cref{sec:intro} map one-to-one onto the three modules. Action Construction (AC) answers how the rank should be priced: it scores every client--rank pair with a real payload, a delivery probability, and a capacity gain, so the exchange between capacity and delivery is settled before any decision is made. The GridDP assignment (GDP) answers how admission and rank should be decided together: it solves the scored assignment exactly under the byte budget and the admission cap, with a cheap per-client rule covering the unconstrained regime. Masked Aggregation (MA) answers how heterogeneous-rank updates can be merged without error: it averages the delivered factor slices exactly toward the frozen shared factor. The design contains no training-side logic: admissions and ranks are chosen from network state alone.
 \par
 \begin{algorithm}[tbp]
 \caption{FedRAS Round}
@@ -359,7 +364,7 @@ The frozen factor is what makes heterogeneous ranks commensurable. If both facto
 The complexity is $O(|\mathcal D|K\widetilde B_{\max}|\mathcal R|)$ time and $O(K\widetilde B_{\max})$ memory with rolling value arrays; the back-pointer table retained for reconstruction adds $O(|\mathcal D|K\widetilde B_{\max})$, where $\widetilde B_{\max}=\lfloor B_{\max}/q\rfloor$. The solver study reports the resulting runtimes at 500- and 1000-client scale.
 \section{Experimental Evaluation}
 \label{sec:eval}
-The evaluation proceeds in six stages: the setup; the main experiment in the real trainer (deadline ladder, accuracy behavior, and the adaptive task, evaluation tiers whose backbones genuinely need federated adaptation); the comparison against baselines; the ablation and sensitivity analysis; the efficiency and robustness studies; and the scale and solver study. All byte figures are real serialized sizes, and all deadline regimes are calibrated to those sizes.
+The evaluation proceeds in seven stages: the setup; the main experiment in the real trainer (the deadline ladder and its delivered-capacity ranking); the adaptive-task tiers and the backbone-quality sweep that locate where capacity converts into accuracy; the comparison against baselines; the ablation and sensitivity analysis; the efficiency and robustness studies; and the scale and solver study. All experiments stay inside the threat boundary of \cref{sec:threat}: the adversary is the passive eavesdropper defined there, and every payload and delivery outcome refers to the link model of \cref{sec:model}. All byte figures are real serialized sizes, and all deadline regimes are calibrated to those sizes.
 \subsection{Experimental Setup}
 \textbf{Environment.} The trainer is implemented in PyTorch, and all real-training runs use one NVIDIA A800 GPU.
 \par
@@ -442,9 +447,9 @@ Full model & 5.28\,MB FP32 ($5.12$ backbone ${+}0.16$ adapters; $58.7\times$ ran
 \end{figure*}
 
 \par
-\subsection{Main Experiment}
+\subsection{Main Experiment: Deadline Ladder and Delivered Capacity}
 \label{sec:cmp}
-The main experiment answers two questions in the real trainer: how the scheduler behaves as the deadline tightens, and whether the communication it schedules buys measurable learning on tasks whose backbone genuinely needs adaptation.
+The main experiment answers, in the real trainer, how the scheduler behaves as the deadline tightens: it establishes accuracy parity where the deadline is slack, then tracks every outcome down the deadline ladder and reports the ranking in the single currency of delivered update mass.
 \par
 
 \par
@@ -518,6 +523,14 @@ FedRAS (ours) & $.9153\pm.0016$ & 0.73 & 0.90 & 16.0 & $.9154\pm.0018$ & 0.49 & 
 \end{figure}
 
 
+\textbf{Why downshifting dominates.} Payload grows linearly in the rank while delivery probability falls convexly once transmission time approaches the deadline, so the scheduler buys delivery probability where it is cheap and holds high rank where it is free. In this regime the binding constraint on learning is delivery, not adaptation capacity, which is why the delivered rank moves while accuracy stays at parity.
+\par
+\textbf{Mechanism and replication.} Accuracy spreads remain small and inside the pre-fixed equivalence margin, with the primary pair passing the TOST test and further pairs read as descriptive parity; the scheduling metrics are where the methods separate (\cref{fig:trainermainb,fig:trainermainc}). All headline differences replicate across the ten paired seeds at conventional significance levels, with the statistics fixed in advance.
+\par
+\subsection{Adaptive Tasks and the Capacity-Conversion Law}
+\label{sec:weakbb}
+The main experiment separated the methods in delivered adaptation capacity while leaving accuracy at parity on the strong backbone. This section locates where that capacity turns into accuracy: first on tasks whose backbone genuinely needs adaptation, then across a backbone-quality sweep that measures the conversion boundary itself.
+\par
 \textbf{Does communication buy learning?} Two adaptive tiers answer this, each with the zero-communication control of the metrics made explicit. On the disjoint-pretraining weak backbone (backbone accuracy 0.365 on the deployment test), forty federated rounds buy roughly three points of accuracy: 0.400 for fixed rank 16 and joint A/B, 0.396 for FedRAS, 0.378 for the annealed schedule, against 0.376 for the fixed low rank (\cref{fig:adaptweakdisj}a); under the stress deadline FedRAS retains almost all of this gain while beating fixed rank 16 on timely delivery (0.49 vs 0.41) at fewer bytes. On the tiny-ViT tier with covariate-shifted clients (backbone 0.727 on the shifted test), every LoRA policy recovers about one point (FedRAS 0.735, fixed rank 16 0.737), full-model updates deliver nothing at the 0.5\,s deadline and stay at the backbone, and FedRAS holds the recovered accuracy with 48\% more timely updates than fixed rank 16 at 39\% fewer bytes (ten of ten paired seeds, $p=0.002$; \cref{fig:adaptvit}); the right-hand panels of both figures re-plot the same trajectories against cumulative uplink bytes, the cost view the adaptive question asks for. The CNN covariate-shift tier marks the boundary of adapter recovery: all rank policies sit within half a point of the shifted backbone (0.824), so under this shift the adapters preserve rather than recover accuracy while the scheduler still wins the delivery side (0.49 vs 0.41 timely, 0.69 vs 0.90\,MB). Communication pays exactly where the backbone needs adaptation, and scheduling preserves the payment under stress.
 \par
 \begin{figure*}[pos=tbp]
@@ -527,14 +540,6 @@ FedRAS (ours) & $.9153\pm.0016$ & 0.73 & 0.90 & 16.0 & $.9154\pm.0018$ & 0.49 & 
 \caption{Adaptive-task evidence, accuracy vs round (left of each panel) and vs cumulative uplink bytes (right); the dotted line is the zero-communication control (frozen backbone on the deployment distribution), and the flat full-model curve in (b) is that control realized: nothing delivered at the stress deadline. (a)~Disjoint-pretraining weak backbone: communication buys about three points, FedRAS keeps nearly all of it at stress. (b)~Shifted tiny ViT: LoRA recovers about one point, and FedRAS preserves it with $+48\%$ timely and $-39\%$ bytes against fixed rank 16 ($p=0.002$).}
 \label{fig:adapt}
 \end{figure*}
-
-\textbf{From delivered capacity to accuracy.}
-The comparisons above separate the methods in delivered adaptation capacity while leaving accuracy at parity; the next paragraph gives the mechanism of the separation, and the backbone-quality sweep that follows locates exactly where the preserved capacity turns into accuracy.
-\par
-\textbf{Why downshifting dominates.} Payload grows linearly in the rank while delivery probability falls convexly once transmission time approaches the deadline, so the scheduler buys delivery probability where it is cheap and holds high rank where it is free. In this regime the binding constraint on learning is delivery, not adaptation capacity, which is why the delivered rank moves while accuracy stays at parity.
-\par
-\textbf{Mechanism and replication.} Accuracy spreads remain small and inside the pre-fixed equivalence margin, with the primary pair passing the TOST test and further pairs read as descriptive parity; the scheduling metrics are where the methods separate (\cref{fig:trainermainb,fig:trainermainc}). All headline differences replicate across the ten paired seeds at conventional significance levels, with the statistics fixed in advance.
-\par
 \begin{figure*}[pos=!b]
 \centering
 \subfloat[Nominal deadline]{\includegraphics[width=.2465\linewidth]{fig_weakbb6_a.pdf}\label{fig:weakbba}}\hfill%
@@ -544,7 +549,6 @@ The comparisons above separate the methods in delivered adaptation capacity whil
 \caption{Weak-backbone capacity payoff with the literature schedules (one-epoch pretrain, ten seeds). (a)~At the nominal deadline the high-rank policies lead low-rank operation by about 1.5 points and FedRAS coincides with rank 16; the dashed line marks the pretrained backbone. (b)~Under the 0.1\,s deadline the link-oblivious SA schedule drops onto the low-rank trajectory. (c)~Paired per-seed accuracy differences against the SA schedule: every seed is positive at both deadlines (ten of ten, $p = 0.002$). (d)~FedRAS transmits $23\%$ fewer bytes than the accuracy-matching rank-16 and joint A/B policies.}
 \label{fig:weakbb}
 \end{figure*}
-\label{sec:weakbb}
 \textbf{The capacity-conversion law.} The strong-backbone regime makes adaptation capacity free, so preserving rank carries no measurable benefit there. To measure exactly where that stops being true, we sweep the backbone itself: one, two, three, five, ten, and thirty pretraining epochs yield measured backbone accuracies of 0.53, 0.68, 0.75, 0.82, 0.87, and 0.91 on the deployment test, and every tier runs the full six-method family with ten paired seeds at both deadlines. Two curves result (\cref{fig:exchange}d). The nominal coupling, fixed rank 16 over fixed rank 4, decays monotonically from $+1.5$ points at backbone accuracy 0.53 to zero at 0.87, and the scheduler's realized gain over the link-oblivious annealed schedule tracks it: $+1.1$ points at 0.53 ($p=0.002$), $+0.6$ at 0.68, $+0.3$ at 0.75 (both $p\le0.05$), statistical zero from 0.82 upward---capturing about two-thirds to three-quarters of the available coupling at every tier where coupling exists. The conversion boundary is sharp and operational: \emph{delivered capacity converts into accuracy once the backbone falls below roughly 0.8, and the conversion grows as adaptation becomes scarce.}
 \par
 \textbf{The weakest tier in detail.} At the one-epoch tier (backbone accuracy $0.534$, mean over ten seeds), federated adaptation improves on the pretrained weights by roughly two points, and the rank--accuracy coupling appears at the nominal deadline (\cref{fig:weakbba}), where rank 16 reaches $0.561$ against rank 4's $0.546$ over ten paired seeds ($+1.5$ points, Wilcoxon $p = 0.002$), with FedRAS coinciding with rank 16. Under the 0.1\,s deadline the coupling persists and the scheduler prices it without any retuning (\cref{fig:weakbbb}): FedRAS holds a delivered rank of 12.8, finishes $1.1$ points above rank 4 (ten of ten pairs), while trading $0.4$ points to fixed rank 16 for a $22\%$ higher timely-delivery ratio and $23\%$ fewer bytes (\cref{fig:weakbbd}).
