@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  17 OCT 2026 06:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.9)  18 OCT 2026 07:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1422,13 +1422,38 @@ LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 Package hyperref Warning: Ignoring empty anchor on input line 66.
 
 
-Overfull \hbox (5.62721pt too wide) in paragraph at lines 73--73
-\T1/stix/m/n/10 heterogeneous and dual-adapter de-signs [[], []]; the wireless-
-
+Overfull \hbox (3.31639pt too wide) in paragraph at lines 69--70
+\T1/stix/m/n/10 satellite-connected de-vices [[], []], span-ning In-ter-net of 
+Things
  []
 
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 8
-0.
+
+Underfull \hbox (badness 2237) in paragraph at lines 69--70
+\T1/stix/m/n/10 (IoT) de-ploy-ments [[]] and space--air--ground in-te-grated
+ []
+
+
+Underfull \hbox (badness 1325) in paragraph at lines 71--72
+\T1/stix/m/n/10 server ag-gre-gates what-ever ar-rives on time. Full-model
+ []
+
+
+Underfull \hbox (badness 1067) in paragraph at lines 73--74
+[]\T1/stix/m/n/10 Federated low-rank adap-ta-tion (LoRA) there-fore be-
+ []
+
+
+Underfull \hbox (badness 1910) in paragraph at lines 75--76
+\T1/stix/m/n/10 hyperparameter---fixed across the fleet [[], []], var-ied
+ []
+
+
+Underfull \hbox (badness 1371) in paragraph at lines 75--76
+\T1/stix/m/n/10 or per-son-al-ized through model-heterogeneous and dual-
+ []
+
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 7
+9.
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texm
@@ -1439,19 +1464,23 @@ f-dist/fonts/enc/dvips/stix/stix-t1.enc}
 are/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc} </usr/share/texlive/texmf-d
 ist/tex/latex/els-cas-templates/thumbnails/cas-email.jpeg>]
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
-80.
+79.
 
 (/usr/share/texlive/texmf-dist/tex/latex/stix/ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 )
-Underfull \hbox (badness 1303) in paragraph at lines 81--82
-\T1/stix/m/n/10 round loop un-der a byte bud-get and a par-tic-i-pa-
+Underfull \hbox (badness 1205) in paragraph at lines 79--80
+\T1/stix/m/n/10 and de-liv-ery probability---the larger the rank, the
  []
 
 
-Underfull \hbox (badness 1281) in paragraph at lines 81--82
-\T1/stix/m/n/10 per-client rule is al-ready op-ti-mal ([][]Propo-si-tion 2[][])
-,
+Underfull \hbox (badness 1102) in paragraph at lines 87--88
+[]\T1/stix/m/n/10 LoRA re-places the full weight delta with two low-
+ []
+
+
+Overfull \hbox (3.09468pt too wide) in paragraph at lines 93--94
+\T1/stix/m/n/10 FedLoRA sched-ules the rank over rounds by train-ing progress
  []
 
 [2{/usr/share/texlive/texmf-dist/fonts/enc/dvips/stix/stix-ts1.enc}]
@@ -1463,45 +1492,42 @@ Underfull \hbox (badness 1281) in paragraph at lines 81--82
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
-
-
-pdfTeX warning: pdflatex (file ./RASjiagoutu.pdf): PDF inclusion: found PDF ver
-sion <1.7>, but at most version <1.5> allowed
-<RASjiagoutu.pdf, id=333, 782.925pt x 439.6425pt>
+<RASjiagoutu.pdf, id=326, 782.925pt x 439.6425pt>
 File: RASjiagoutu.pdf Graphic file (type pdf)
 <use RASjiagoutu.pdf>
-Package pdftex.def Info: RASjiagoutu.pdf  used on input line 158.
+Package pdftex.def Info: RASjiagoutu.pdf  used on input line 155.
 (pdftex.def)             Requested size: 494.50888pt x 277.68732pt.
-[3] [4 <./RASjiagoutu.pdf>] [5]
+ [3]
+[4 <./RASjiagoutu.pdf>] [5]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 226.
+put line 223.
 \c@algpx@indentEndPage-0=\count419
 
-Underfull \hbox (badness 5105) in paragraph at lines 252--253
+Underfull \hbox (badness 5105) in paragraph at lines 249--250
 []\T1/stix/m/n/10 Payload $\LS1/stix/m/it/10 B[]\LS1/stix/m/n/10 .\LS1/stix/m/i
 t/10 r\LS1/stix/m/n/10 /$ \T1/stix/m/n/10 by [][](4)[][]; in-te-ger cost $[]\LS
 1/stix/m/n/10 .\LS1/stix/m/it/10 r\LS1/stix/m/n/10 / \LS1/stixsf/m/n/10 }
  []
 
 
-Overfull \hbox (0.82469pt too wide) in paragraph at lines 262--263
+Overfull \hbox (0.82469pt too wide) in paragraph at lines 259--260
 []\T1/stix/m/n/10 GDP solves the scored as-sign-ment ex-actly ([][]Al-go-rithm 
 3[][]).
  []
 
+[6]
 \c@algpx@indentEndPage-1=\count420
 \c@algpx@indentEndPage-2=\count421
 \c@algpx@indentEndCoordIndex-1=\count422
-[6]
 \c@algpx@indentEndPage-3=\count423
  [7]
-Underfull \hbox (badness 1383) in paragraph at lines 357--358
+Underfull \hbox (badness 1383) in paragraph at lines 354--355
 []\T1/stix/b/n/10 Proposition 3 \T1/stix/m/n/10 (Ex-act-ness of frozen--fac-tor
  ag-gre-ga-tion)\T1/stix/b/n/10 .
  []
 
 
-Overfull \hbox (1.26543pt too wide) in paragraph at lines 364--365
+Overfull \hbox (1.26543pt too wide) in paragraph at lines 361--362
 []\T1/stix/m/n/10 The com-plex-ity is $\LS1/stix/m/it/10 O\LS1/stix/m/n/10 .\LS
 2/stixex/m/n/10 ð\LS2/stixcal/m/n/10 D\LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 K[]
 \LS2/stixex/m/n/10 ð\LS2/stixcal/m/n/10 R\LS2/stixex/m/n/10 ð\LS1/stix/m/n/10 /
@@ -1509,24 +1535,24 @@ $ \T1/stix/m/n/10 time and $\LS1/stix/m/it/10 O\LS1/stix/m/n/10 .\LS1/stix/m/it
 /10 K[]\LS1/stix/m/n/10 /$
  []
 
-
-Underfull \hbox (badness 1057) in paragraph at lines 371--372
+[8]
+Underfull \hbox (badness 1057) in paragraph at lines 368--369
 \T1/stix/m/n/10 CIFAR-100, and MNIST. The real trainer par-ti-tions 20
  []
 
 
-Overfull \hbox (3.01555pt too wide) in paragraph at lines 371--372
+Overfull \hbox (3.01555pt too wide) in paragraph at lines 368--369
 \T1/stix/m/n/10 clients non-IID (non-independent, non-identically dis-tributed
  []
 
 
-Underfull \hbox (badness 1097) in paragraph at lines 371--372
+Underfull \hbox (badness 1097) in paragraph at lines 368--369
 \T1/stix/m/n/10 is a dataset rather than an aug-men-ta-tion. With \T1/stix/m/it
 /10 dis-joint
  []
 
-[8]
-Underfull \hbox (badness 1127) in paragraph at lines 377--378
+
+Underfull \hbox (badness 1127) in paragraph at lines 374--375
 \T1/stix/m/n/10 clipped to $\LS1/stix/m/n/10 [5\LS1/stix/m/it/10 ; \LS1/stix/m/
 n/10 40]$ \T1/stix/m/n/10 Mbps with Beta$\LS1/stix/m/n/10 .2\LS1/stix/m/it/10 ;
  \LS1/stix/m/n/10 8/$ \T1/stix/m/n/10 mo-bil-ity, aerial
@@ -1540,18 +1566,18 @@ n/10 40]$ \T1/stix/m/n/10 Mbps with Beta$\LS1/stix/m/n/10 .2\LS1/stix/m/it/10 ;
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
-[9]
-Underfull \hbox (badness 1490) in paragraph at lines 427--428
+[9] [10]
+Underfull \hbox (badness 1490) in paragraph at lines 424--425
 \T1/stix/m/n/10 10 nom-i-nal and 0.1s regimes, their ex-ter-nal base-lines,
  []
 
 
-Underfull \hbox (badness 1406) in paragraph at lines 427--428
+Underfull \hbox (badness 1406) in paragraph at lines 424--425
 \T1/stix/m/n/10 ter-vals. Fe-dRAS ver-sus fixed rank 16 is tested on ten
  []
 
 
-Underfull \hbox (badness 1769) in paragraph at lines 427--428
+Underfull \hbox (badness 1769) in paragraph at lines 424--425
 \T1/stix/m/n/10 paired seeds: the timely-delivery ra-tio im-proves in ten
  []
 
@@ -1559,66 +1585,66 @@ Underfull \hbox (badness 1769) in paragraph at lines 427--428
 
 pdfTeX warning: pdflatex (file ./fig_trainer_legend.pdf): PDF inclusion: found 
 PDF version <1.7>, but at most version <1.5> allowed
-<fig_trainer_legend.pdf, id=525, 196.23312pt x 18.469pt>
+<fig_trainer_legend.pdf, id=522, 196.23312pt x 18.469pt>
 File: fig_trainer_legend.pdf Graphic file (type pdf)
 <use fig_trainer_legend.pdf>
-Package pdftex.def Info: fig_trainer_legend.pdf  used on input line 431.
+Package pdftex.def Info: fig_trainer_legend.pdf  used on input line 428.
 (pdftex.def)             Requested size: 222.52748pt x 20.94495pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_trainer_nominal.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<fig_trainer_nominal.pdf, id=526, 250.43562pt x 162.85844pt>
+<fig_trainer_nominal.pdf, id=523, 250.43562pt x 162.85844pt>
 File: fig_trainer_nominal.pdf Graphic file (type pdf)
 <use fig_trainer_nominal.pdf>
-Package pdftex.def Info: fig_trainer_nominal.pdf  used on input line 432.
+Package pdftex.def Info: fig_trainer_nominal.pdf  used on input line 429.
 (pdftex.def)             Requested size: 242.31206pt x 157.58234pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_trainer_stress.pdf): PDF inclusion: found 
 PDF version <1.7>, but at most version <1.5> allowed
-<fig_trainer_stress.pdf, id=527, 250.43562pt x 162.85844pt>
+<fig_trainer_stress.pdf, id=524, 250.43562pt x 162.85844pt>
 File: fig_trainer_stress.pdf Graphic file (type pdf)
 <use fig_trainer_stress.pdf>
-Package pdftex.def Info: fig_trainer_stress.pdf  used on input line 433.
+Package pdftex.def Info: fig_trainer_stress.pdf  used on input line 430.
 (pdftex.def)             Requested size: 242.31206pt x 157.58234pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_rank_dynamics.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<fig_rank_dynamics.pdf, id=528, 250.68657pt x 158.5925pt>
+<fig_rank_dynamics.pdf, id=525, 250.68657pt x 158.5925pt>
 File: fig_rank_dynamics.pdf Graphic file (type pdf)
 <use fig_rank_dynamics.pdf>
-Package pdftex.def Info: fig_rank_dynamics.pdf  used on input line 434.
+Package pdftex.def Info: fig_rank_dynamics.pdf  used on input line 431.
 (pdftex.def)             Requested size: 248.98238pt x 157.52248pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_cross_dataset.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<fig_cross_dataset.pdf, id=529, 248.67906pt x 167.00394pt>
+<fig_cross_dataset.pdf, id=526, 248.67906pt x 167.00394pt>
 File: fig_cross_dataset.pdf Graphic file (type pdf)
 <use fig_cross_dataset.pdf>
-Package pdftex.def Info: fig_cross_dataset.pdf  used on input line 435.
+Package pdftex.def Info: fig_cross_dataset.pdf  used on input line 432.
 (pdftex.def)             Requested size: 234.54764pt x 157.5163pt.
-<fig_stresspay_a.pdf, id=530, 119.50157pt x 113.81102pt>
+<fig_stresspay_a.pdf, id=527, 119.50157pt x 113.81102pt>
 File: fig_stresspay_a.pdf Graphic file (type pdf)
 <use fig_stresspay_a.pdf>
-Package pdftex.def Info: fig_stresspay_a.pdf  used on input line 441.
+Package pdftex.def Info: fig_stresspay_a.pdf  used on input line 438.
 (pdftex.def)             Requested size: 121.89926pt x 116.09438pt.
-<fig_stresspay_b.pdf, id=531, 119.50157pt x 113.81102pt>
+<fig_stresspay_b.pdf, id=528, 119.50157pt x 113.81102pt>
 File: fig_stresspay_b.pdf Graphic file (type pdf)
 <use fig_stresspay_b.pdf>
-Package pdftex.def Info: fig_stresspay_b.pdf  used on input line 442.
+Package pdftex.def Info: fig_stresspay_b.pdf  used on input line 439.
 (pdftex.def)             Requested size: 121.89926pt x 116.09438pt.
-<fig_stresspay_c.pdf, id=532, 119.50157pt x 113.81102pt>
+<fig_stresspay_c.pdf, id=529, 119.50157pt x 113.81102pt>
 File: fig_stresspay_c.pdf Graphic file (type pdf)
 <use fig_stresspay_c.pdf>
-Package pdftex.def Info: fig_stresspay_c.pdf  used on input line 443.
+Package pdftex.def Info: fig_stresspay_c.pdf  used on input line 440.
 (pdftex.def)             Requested size: 121.89926pt x 116.09438pt.
-<fig_stresspay_d.pdf, id=533, 119.50157pt x 113.81102pt>
+<fig_stresspay_d.pdf, id=530, 119.50157pt x 113.81102pt>
 File: fig_stresspay_d.pdf Graphic file (type pdf)
 <use fig_stresspay_d.pdf>
-Package pdftex.def Info: fig_stresspay_d.pdf  used on input line 444.
+Package pdftex.def Info: fig_stresspay_d.pdf  used on input line 441.
 (pdftex.def)             Requested size: 121.89926pt x 116.09438pt.
 > Step: init table outer spec.
 > Step: parse table options.
@@ -1628,88 +1654,89 @@ Package pdftex.def Info: fig_stresspay_d.pdf  used on input line 444.
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
-[10] [11 <./fig_trainer_legend.pdf> <./fig_trainer_nominal.pdf> <./fig_trainer_
-stress.pdf> <./fig_rank_dynamics.pdf> <./fig_cross_dataset.pdf> <./fig_stresspa
-y_a.pdf> <./fig_stresspay_b.pdf> <./fig_stresspay_c.pdf> <./fig_stresspay_d.pdf
->]
-Overfull \hbox (1.1654pt too wide) in paragraph at lines 493--494
+
+Overfull \hbox (1.1654pt too wide) in paragraph at lines 490--491
 \T1/stix/m/n/10 sched-uler moves. Three ef-fects emerge. First, Fe-dRAS down-
  []
 
 
-Underfull \hbox (badness 1831) in paragraph at lines 493--494
+Underfull \hbox (badness 1831) in paragraph at lines 490--491
 \T1/stix/m/n/10 from the per-seed pre-trained back-bone ($\LS1/stix/m/n/10 0\LS
 1/stix/m/it/10 :\LS1/stix/m/n/10 915 , 0\LS1/stix/m/it/10 :\LS1/stix/m/n/10 002
 $
  []
 
-<fig_capview_cifar10_stress.pdf, id=710, 369.88583pt x 136.57323pt>
+[11] [12 <./fig_trainer_legend.pdf> <./fig_trainer_nominal.pdf> <./fig_trainer_
+stress.pdf> <./fig_rank_dynamics.pdf> <./fig_cross_dataset.pdf> <./fig_stresspa
+y_a.pdf> <./fig_stresspay_b.pdf> <./fig_stresspay_c.pdf> <./fig_stresspay_d.pdf
+>]
+<fig_capview_cifar10_stress.pdf, id=709, 369.88583pt x 136.57323pt>
 File: fig_capview_cifar10_stress.pdf Graphic file (type pdf)
 <use fig_capview_cifar10_stress.pdf>
-Package pdftex.def Info: fig_capview_cifar10_stress.pdf  used on input line 497
+Package pdftex.def Info: fig_capview_cifar10_stress.pdf  used on input line 494
 .
 (pdftex.def)             Requested size: 238.25444pt x 87.9713pt.
-<fig_exchange.pdf, id=711, 540.60239pt x 119.50157pt>
+<fig_exchange.pdf, id=710, 540.60239pt x 119.50157pt>
 File: fig_exchange.pdf Graphic file (type pdf)
 <use fig_exchange.pdf>
-Package pdftex.def Info: fig_exchange.pdf  used on input line 503.
+Package pdftex.def Info: fig_exchange.pdf  used on input line 500.
 (pdftex.def)             Requested size: 494.50888pt x 109.31367pt.
-<fig_rstar_validation.pdf, id=722, 245.718pt x 187.902pt>
+<fig_rstar_validation.pdf, id=721, 245.718pt x 187.902pt>
 File: fig_rstar_validation.pdf Graphic file (type pdf)
 <use fig_rstar_validation.pdf>
-Package pdftex.def Info: fig_rstar_validation.pdf  used on input line 511.
+Package pdftex.def Info: fig_rstar_validation.pdf  used on input line 508.
 (pdftex.def)             Requested size: 238.25444pt x 182.2045pt.
-[12 <./fig_capview_cifar10_stress.pdf>]
+
 
 pdfTeX warning: pdflatex (file ./fig_normlaw.pdf): PDF inclusion: found PDF ver
 sion <1.7>, but at most version <1.5> allowed
-<fig_normlaw.pdf, id=770, 250.68657pt x 157.33781pt>
+<fig_normlaw.pdf, id=727, 250.68657pt x 157.33781pt>
 File: fig_normlaw.pdf Graphic file (type pdf)
 <use fig_normlaw.pdf>
-Package pdftex.def Info: fig_normlaw.pdf  used on input line 520.
+Package pdftex.def Info: fig_normlaw.pdf  used on input line 517.
 (pdftex.def)             Requested size: 238.25444pt x 149.54208pt.
-[13 <./fig_exchange.pdf> <./fig_rstar_validation.pdf> <./fig_normlaw.pdf>]
-<fig_adapt_weakdisj.pdf, id=889, 505.89pt x 180.675pt>
+<fig_adapt_weakdisj.pdf, id=734, 505.89pt x 180.675pt>
 File: fig_adapt_weakdisj.pdf Graphic file (type pdf)
 <use fig_adapt_weakdisj.pdf>
-Package pdftex.def Info: fig_adapt_weakdisj.pdf  used on input line 538.
+Package pdftex.def Info: fig_adapt_weakdisj.pdf  used on input line 535.
 (pdftex.def)             Requested size: 242.31206pt x 86.54105pt.
-<fig_adapt_vitshift.pdf, id=890, 505.89pt x 180.675pt>
+<fig_adapt_vitshift.pdf, id=735, 505.89pt x 180.675pt>
 File: fig_adapt_vitshift.pdf Graphic file (type pdf)
 <use fig_adapt_vitshift.pdf>
-Package pdftex.def Info: fig_adapt_vitshift.pdf  used on input line 539.
+Package pdftex.def Info: fig_adapt_vitshift.pdf  used on input line 536.
 (pdftex.def)             Requested size: 242.31206pt x 86.54105pt.
-<fig_weakbb6_a.pdf, id=891, 119.50157pt x 113.81102pt>
+<fig_weakbb6_a.pdf, id=736, 119.50157pt x 113.81102pt>
 File: fig_weakbb6_a.pdf Graphic file (type pdf)
 <use fig_weakbb6_a.pdf>
-Package pdftex.def Info: fig_weakbb6_a.pdf  used on input line 545.
+Package pdftex.def Info: fig_weakbb6_a.pdf  used on input line 542.
 (pdftex.def)             Requested size: 121.89926pt x 116.09438pt.
-<fig_weakbb6_b.pdf, id=892, 119.50157pt x 113.81102pt>
+<fig_weakbb6_b.pdf, id=737, 119.50157pt x 113.81102pt>
 File: fig_weakbb6_b.pdf Graphic file (type pdf)
 <use fig_weakbb6_b.pdf>
-Package pdftex.def Info: fig_weakbb6_b.pdf  used on input line 546.
+Package pdftex.def Info: fig_weakbb6_b.pdf  used on input line 543.
 (pdftex.def)             Requested size: 121.89926pt x 116.09438pt.
-<fig_weakbb6_c.pdf, id=893, 119.50157pt x 113.81102pt>
+<fig_weakbb6_c.pdf, id=738, 119.50157pt x 113.81102pt>
 File: fig_weakbb6_c.pdf Graphic file (type pdf)
 <use fig_weakbb6_c.pdf>
-Package pdftex.def Info: fig_weakbb6_c.pdf  used on input line 547.
+Package pdftex.def Info: fig_weakbb6_c.pdf  used on input line 544.
 (pdftex.def)             Requested size: 121.89926pt x 116.09438pt.
 
-Underfull \hbox (badness 1033) in paragraph at lines 547--547
+Underfull \hbox (badness 1033) in paragraph at lines 544--544
 []\T1/cmss/m/n/8 (c) |Fe-dRAS vs. SA-anneal, per
  []
 
-<fig_weakbb6_d.pdf, id=894, 119.50157pt x 113.81102pt>
+<fig_weakbb6_d.pdf, id=739, 119.50157pt x 113.81102pt>
 File: fig_weakbb6_d.pdf Graphic file (type pdf)
 <use fig_weakbb6_d.pdf>
-Package pdftex.def Info: fig_weakbb6_d.pdf  used on input line 548.
+Package pdftex.def Info: fig_weakbb6_d.pdf  used on input line 545.
 (pdftex.def)             Requested size: 121.89926pt x 116.09438pt.
 
-Underfull \hbox (badness 2111) in paragraph at lines 552--553
+Underfull \hbox (badness 2111) in paragraph at lines 549--550
 []\T1/stix/b/n/10 The capacity-conversion law. \T1/stix/m/n/10 The strong-backb
 one
  []
 
+[13 <./fig_capview_cifar10_stress.pdf>]
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1718,7 +1745,9 @@ one
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
-[14 <./fig_adapt_weakdisj.pdf> <./fig_adapt_vitshift.pdf>]
+ [14 <./fig_exchange.pdf> <./fig_rstar_validation.pdf> <./fig_normlaw.pdf>] [15
+ <./fig_adapt_weakdisj.pdf> <./fig_adapt_vitshift.pdf> <./fig_weakbb6_a.pdf> <.
+/fig_weakbb6_b.pdf> <./fig_weakbb6_c.pdf> <./fig_weakbb6_d.pdf>]
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1728,23 +1757,22 @@ one
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
 
-Overfull \hbox (1.24048pt too wide) in paragraph at lines 645--647
+Overfull \hbox (1.24048pt too wide) in paragraph at lines 642--644
 []\T1/stix/b/n/10 Near-neighbor mech-a-nisms. \T1/stix/m/n/10 Two literature-me
 chanism
  []
 
 
-Underfull \hbox (badness 1342) in paragraph at lines 645--647
+Underfull \hbox (badness 1342) in paragraph at lines 642--644
 \T1/stix/m/n/10 through a fixed two-rank split. On the weak back-bone
  []
 
 
-Underfull \hbox (badness 1067) in paragraph at lines 645--647
+Underfull \hbox (badness 1067) in paragraph at lines 642--644
 \T1/stix/m/n/10 FedLoRA-style an-neal-ing sched-ule sits on the low-rank
  []
 
-[15 <./fig_weakbb6_a.pdf> <./fig_weakbb6_b.pdf> <./fig_weakbb6_c.pdf> <./fig_we
-akbb6_d.pdf>]
+[16]
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1753,7 +1781,6 @@ akbb6_d.pdf>]
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
- [16]
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1762,6 +1789,7 @@ akbb6_d.pdf>]
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
+ [17]
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1782,113 +1810,112 @@ akbb6_d.pdf>]
 
 pdfTeX warning: pdflatex (file ./fig_simacc_legend.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<fig_simacc_legend.pdf, id=1083, 403.19876pt x 13.04875pt>
+<fig_simacc_legend.pdf, id=1080, 403.19876pt x 13.04875pt>
 File: fig_simacc_legend.pdf Graphic file (type pdf)
 <use fig_simacc_legend.pdf>
-Package pdftex.def Info: fig_simacc_legend.pdf  used on input line 796.
+Package pdftex.def Info: fig_simacc_legend.pdf  used on input line 793.
 (pdftex.def)             Requested size: 238.25444pt x 7.71083pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_sim_accuracy_a.pdf): PDF inclusion: found 
 PDF version <1.7>, but at most version <1.5> allowed
-<fig_sim_accuracy_a.pdf, id=1084, 272.01625pt x 164.11313pt>
+<fig_sim_accuracy_a.pdf, id=1081, 272.01625pt x 164.11313pt>
 File: fig_sim_accuracy_a.pdf Graphic file (type pdf)
 <use fig_sim_accuracy_a.pdf>
-Package pdftex.def Info: fig_sim_accuracy_a.pdf  used on input line 797.
+Package pdftex.def Info: fig_sim_accuracy_a.pdf  used on input line 794.
 (pdftex.def)             Requested size: 238.25444pt x 143.75137pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_sim_accuracy_b.pdf): PDF inclusion: found 
 PDF version <1.7>, but at most version <1.5> allowed
-<fig_sim_accuracy_b.pdf, id=1085, 260.72406pt x 164.11313pt>
+<fig_sim_accuracy_b.pdf, id=1082, 260.72406pt x 164.11313pt>
 File: fig_sim_accuracy_b.pdf Graphic file (type pdf)
 <use fig_sim_accuracy_b.pdf>
-Package pdftex.def Info: fig_sim_accuracy_b.pdf  used on input line 798.
+Package pdftex.def Info: fig_sim_accuracy_b.pdf  used on input line 795.
 (pdftex.def)             Requested size: 238.25444pt x 149.97171pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_sim_regimes_legend.pdf): PDF inclusion: fo
 und PDF version <1.7>, but at most version <1.5> allowed
-<fig_sim_regimes_legend.pdf, id=1086, 333.99782pt x 6.52437pt>
+<fig_sim_regimes_legend.pdf, id=1083, 333.99782pt x 6.52437pt>
 File: fig_sim_regimes_legend.pdf Graphic file (type pdf)
 <use fig_sim_regimes_legend.pdf>
-Package pdftex.def Info: fig_sim_regimes_legend.pdf  used on input line 804.
+Package pdftex.def Info: fig_sim_regimes_legend.pdf  used on input line 801.
 (pdftex.def)             Requested size: 238.25444pt x 4.65422pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_sim_regimes_a.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<fig_sim_regimes_a.pdf, id=1087, 267.49937pt x 140.77594pt>
+<fig_sim_regimes_a.pdf, id=1084, 267.49937pt x 140.77594pt>
 File: fig_sim_regimes_a.pdf Graphic file (type pdf)
 <use fig_sim_regimes_a.pdf>
-Package pdftex.def Info: fig_sim_regimes_a.pdf  used on input line 805.
+Package pdftex.def Info: fig_sim_regimes_a.pdf  used on input line 802.
 (pdftex.def)             Requested size: 238.25444pt x 125.39113pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_sim_regimes_b.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<fig_sim_regimes_b.pdf, id=1088, 265.24094pt x 140.77594pt>
+<fig_sim_regimes_b.pdf, id=1085, 265.24094pt x 140.77594pt>
 File: fig_sim_regimes_b.pdf Graphic file (type pdf)
 <use fig_sim_regimes_b.pdf>
-Package pdftex.def Info: fig_sim_regimes_b.pdf  used on input line 806.
+Package pdftex.def Info: fig_sim_regimes_b.pdf  used on input line 803.
 (pdftex.def)             Requested size: 238.25444pt x 126.45442pt.
-[17 <./fig_simacc_legend.pdf> <./fig_sim_accuracy_a.pdf> <./fig_sim_accuracy_b.
-pdf>]
+
 
 pdfTeX warning: pdflatex (file ./fig_dp_study_legend.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<fig_dp_study_legend.pdf, id=1140, 232.11719pt x 6.52437pt>
+<fig_dp_study_legend.pdf, id=1086, 232.11719pt x 6.52437pt>
 File: fig_dp_study_legend.pdf Graphic file (type pdf)
 <use fig_dp_study_legend.pdf>
-Package pdftex.def Info: fig_dp_study_legend.pdf  used on input line 812.
+Package pdftex.def Info: fig_dp_study_legend.pdf  used on input line 809.
 (pdftex.def)             Requested size: 238.25444pt x 6.69705pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_dp_study_a.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<fig_dp_study_a.pdf, id=1141, 264.23718pt x 139.27031pt>
+<fig_dp_study_a.pdf, id=1087, 264.23718pt x 139.27031pt>
 File: fig_dp_study_a.pdf Graphic file (type pdf)
 <use fig_dp_study_a.pdf>
-Package pdftex.def Info: fig_dp_study_a.pdf  used on input line 813.
+Package pdftex.def Info: fig_dp_study_a.pdf  used on input line 810.
 (pdftex.def)             Requested size: 238.25444pt x 125.57587pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_dp_study_b.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<fig_dp_study_b.pdf, id=1142, 268.50313pt x 144.03813pt>
+<fig_dp_study_b.pdf, id=1088, 268.50313pt x 144.03813pt>
 File: fig_dp_study_b.pdf Graphic file (type pdf)
 <use fig_dp_study_b.pdf>
-Package pdftex.def Info: fig_dp_study_b.pdf  used on input line 814.
+Package pdftex.def Info: fig_dp_study_b.pdf  used on input line 811.
 (pdftex.def)             Requested size: 238.25444pt x 127.8111pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_sensitivity_a.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<fig_sensitivity_a.pdf, id=1146, 191.46532pt x 141.52875pt>
+<fig_sensitivity_a.pdf, id=1092, 191.46532pt x 141.52875pt>
 File: fig_sensitivity_a.pdf Graphic file (type pdf)
 <use fig_sensitivity_a.pdf>
-Package pdftex.def Info: fig_sensitivity_a.pdf  used on input line 825.
+Package pdftex.def Info: fig_sensitivity_a.pdf  used on input line 822.
 (pdftex.def)             Requested size: 175.45044pt x 129.69836pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_sensitivity_b.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<fig_sensitivity_b.pdf, id=1147, 154.32657pt x 139.52126pt>
+<fig_sensitivity_b.pdf, id=1093, 154.32657pt x 139.52126pt>
 File: fig_sensitivity_b.pdf Graphic file (type pdf)
 <use fig_sensitivity_b.pdf>
-Package pdftex.def Info: fig_sensitivity_b.pdf  used on input line 826.
+Package pdftex.def Info: fig_sensitivity_b.pdf  used on input line 823.
 (pdftex.def)             Requested size: 141.32921pt x 127.78203pt.
 
 
 pdfTeX warning: pdflatex (file ./fig_sensitivity_c.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<fig_sensitivity_c.pdf, id=1148, 183.18437pt x 139.52126pt>
+<fig_sensitivity_c.pdf, id=1094, 183.18437pt x 139.52126pt>
 File: fig_sensitivity_c.pdf Graphic file (type pdf)
 <use fig_sensitivity_c.pdf>
-Package pdftex.def Info: fig_sensitivity_c.pdf  used on input line 827.
+Package pdftex.def Info: fig_sensitivity_c.pdf  used on input line 824.
 (pdftex.def)             Requested size: 167.73883pt x 127.765pt.
 
-Overfull \hbox (8.3905pt too wide) in paragraph at lines 835--836
+Overfull \hbox (8.3905pt too wide) in paragraph at lines 832--833
 []\T1/stix/b/n/10 Measured com-pu-ta-tion cost. \T1/stix/m/n/10 The mea-sured l
 ocal-training
  []
@@ -1902,30 +1929,30 @@ ocal-training
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
- [19 <./fig_sim_regimes_legend.pdf> <./fig_sim_regimes_a.pdf> <./fig_sim_regime
-s_b.pdf> <./fig_dp_study_legend.pdf> <./fig_dp_study_a.pdf> <./fig_dp_study_b.p
-df>]
-<fig_calibration_a.pdf, id=1345, 245.718pt x 187.902pt>
+ [19 <./fig_simacc_legend.pdf> <./fig_sim_accuracy_a.pdf> <./fig_sim_accuracy_b
+.pdf> <./fig_sim_regimes_legend.pdf> <./fig_sim_regimes_a.pdf> <./fig_sim_regim
+es_b.pdf>]
+<fig_calibration_a.pdf, id=1245, 245.718pt x 187.902pt>
 File: fig_calibration_a.pdf Graphic file (type pdf)
 <use fig_calibration_a.pdf>
-Package pdftex.def Info: fig_calibration_a.pdf  used on input line 880.
+Package pdftex.def Info: fig_calibration_a.pdf  used on input line 877.
 (pdftex.def)             Requested size: 242.31206pt x 185.30676pt.
-<fig_calibration_b.pdf, id=1346, 245.718pt x 187.902pt>
+<fig_calibration_b.pdf, id=1246, 245.718pt x 187.902pt>
 File: fig_calibration_b.pdf Graphic file (type pdf)
 <use fig_calibration_b.pdf>
-Package pdftex.def Info: fig_calibration_b.pdf  used on input line 881.
+Package pdftex.def Info: fig_calibration_b.pdf  used on input line 878.
 (pdftex.def)             Requested size: 242.31206pt x 185.30676pt.
- [20 <./fig_sensitivity_a.pdf> <./fig_sensitivity_b.pdf> <./fig_sensitivity_c.p
-df>] [21 <./fig_calibration_a.pdf> <./fig_calibration_b.pdf>]
-Overfull \hbox (28.24553pt too wide) in paragraph at lines 938--939
+ [20 <./fig_dp_study_legend.pdf> <./fig_dp_study_a.pdf> <./fig_dp_study_b.pdf>]
+ [21 <./fig_sensitivity_a.pdf> <./fig_sensitivity_b.pdf> <./fig_sensitivity_c.p
+df> <./fig_calibration_a.pdf> <./fig_calibration_b.pdf>] [22]
+Overfull \hbox (28.24553pt too wide) in paragraph at lines 935--936
 \T1/stix/m/n/10 search and De-vel-op-ment Pro-gram of China (No. 2024YFB2907201
 ,
  []
 
-[22]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 8.50006pt on input line 942.
- (./main.bbl
+(Font)              scaled to size 8.50006pt on input line 939.
+(./main.bbl
 Underfull \hbox (badness 1325) in paragraph at lines 15--28
 \T1/stix/m/n/8 Bhagoji, K. Bonawitz, Z. Charles, G. Cor-mode, R. Cum-mings,
  []
@@ -1936,13 +1963,13 @@ Underfull \hbox (badness 1067) in paragraph at lines 43--48
 ial
  []
 
-
-Underfull \hbox (badness 2573) in paragraph at lines 152--155
+[23]
+Underfull \hbox (badness 2573) in paragraph at lines 159--162
 []\T1/stix/m/n/8 Y. Yang, G. Long, T. Shen, J. Jiang, M. Blu-men-stein, Dual-
  []
 
-[23]
-Underfull \hbox (badness 1024) in paragraph at lines 250--256
+
+Underfull \hbox (badness 1024) in paragraph at lines 243--249
 []\T1/stix/m/n/8 Z. Chai, A. Ali, S. Za-wad, S. Truex, A. An-war, N. Bara-caldo
 ,
  []
@@ -1956,13 +1983,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: BD27F26EA41096C5C50E1263FD94A52E;7197.
  ) 
 Here is how much of TeX's memory you used:
- 34695 strings out of 474222
- 653028 string characters out of 5748734
- 2027975 words of memory out of 5000000
- 56143 multiletter control sequences out of 15000+600000
+ 34691 strings out of 474222
+ 652955 string characters out of 5748734
+ 2028975 words of memory out of 5000000
+ 56140 multiletter control sequences out of 15000+600000
  703937 words of font info for 236 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,13n,117p,2506b,1431s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,13n,117p,2507b,1431s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4
 r.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pf
@@ -1979,10 +2006,10 @@ ive/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/stix/stix-mathscr.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/stix/stix-mathsf.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/stix/stix-mathtt.pfb>
-Output written on main.pdf (24 pages, 1146564 bytes).
+Output written on main.pdf (24 pages, 1125430 bytes).
 PDF statistics:
- 1731 PDF objects out of 2073 (max. 8388607)
- 1124 compressed objects within 12 object streams
- 223 named destinations out of 1000 (max. 500000)
+ 1721 PDF objects out of 1728 (max. 8388607)
+ 1110 compressed objects within 12 object streams
+ 222 named destinations out of 1000 (max. 500000)
  468 words of extra memory for PDF output out of 10000 (max. 10000000)
 

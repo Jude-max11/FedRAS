@@ -82,6 +82,13 @@ M.~Ribero, H.~Vikalo, G.~de~Veciana, Federated learning under intermittent
 \newblock \href {https://doi.org/10.1109/JSTSP.2022.3224590}
   {\path{doi:10.1109/JSTSP.2022.3224590}}.
 
+\bibitem{nishio2019fedcs}
+T.~Nishio, R.~Yonetani, Client selection for federated learning with
+  heterogeneous resources in mobile edge, in: IEEE International Conference on
+  Communications (ICC), 2019.
+\newblock \href {https://doi.org/10.1109/ICC.2019.8761315}
+  {\path{doi:10.1109/ICC.2019.8761315}}.
+
 \bibitem{hu2022lora}
 E.~J. Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, W.~Chen,
   {LoRA}: Low-rank adaptation of large language models, in: International
@@ -152,13 +159,6 @@ L.~Yi, H.~Zhang, H.~Yu, G.~Wang, X.~Liu, Q.~Hu, {pFedLoRA}: Model-heterogeneous
 Y.~Yang, G.~Long, T.~Shen, J.~Jiang, M.~Blumenstein, Dual-personalizing adapter
   for federated foundation models, in: Advances in Neural Information
   Processing Systems 37 (NeurIPS), 2024.
-
-\bibitem{ma2026mswim}
-W.~Ma, T.~Hu, X.~Liu, Mobility-predictive risk-budgeted protection selection
-  for federated learning in space--air--ground mobile networks, in: Proceedings
-  of the ACM International Conference on Modeling, Analysis and Simulation of
-  Wireless and Mobile Systems (MSWiM), 2026, accepted poster paper; publication
-  details to be updated when available.
 
 \bibitem{wang2024flora}
 Z.~Wang, Z.~Shen, Y.~He, G.~Sun, H.~Wang, L.~Lyu, A.~Li, {FLoRA}: Federated
@@ -238,13 +238,6 @@ F.~Lai, X.~Zhu, H.~V. Madhyastha, M.~Chowdhury, Oort: Efficient federated
   learning via guided participant selection, in: Proceedings of the 15th USENIX
   Symposium on Operating Systems Design and Implementation (OSDI), 2021, pp.
   19--35.
-
-\bibitem{nishio2019fedcs}
-T.~Nishio, R.~Yonetani, Client selection for federated learning with
-  heterogeneous resources in mobile edge, in: IEEE International Conference on
-  Communications (ICC), 2019.
-\newblock \href {https://doi.org/10.1109/ICC.2019.8761315}
-  {\path{doi:10.1109/ICC.2019.8761315}}.
 
 \bibitem{chai2020tifl}
 Z.~Chai, A.~Ali, S.~Zawad, S.~Truex, A.~Anwar, N.~Baracaldo, Y.~Zhou,
