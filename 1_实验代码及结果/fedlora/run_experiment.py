@@ -15,7 +15,7 @@ Changes vs v3 (kept in backups/scripts_backup_20260917_pre_realbytes.zip):
 import argparse, csv, math, os
 import numpy as np
 
-METHODS=['FedAvg','FedLoRA_r4','FedLoRA_r16','Random_rank','Reliability_only','Adaptive_rank','SA_rank']
+METHODS=['FedAvg','FedLoRA_r4','FedLoRA_r16','Random_rank','Reliability_only','Adaptive_rank','SA_mono','ROBA_style']
 RANKS=[2,4,8,16]; RMAX=16
 BYTES_PER_RANK=5632          # B-only, FP32 (see journal_model_audit.py)
 FULL_MB=5.286                # real FedAvg_full transmitted update (FP32)
@@ -64,10 +64,20 @@ def run(seed, rounds, clients, ranks, budget, cap, deadline, out, mobility_shape
             elif m=='FedLoRA_r16': rr=np.full(clients,16)
             elif m=='Random_rank': rr=rng.choice(ranks,clients)
             elif m=='Reliability_only': rr=np.full(clients,2)  # pure delivery focus
-            elif m=='SA_rank':
-                # SA-FedLoRA-style annealing: heat then cool, link-state oblivious
-                pr=t/max(1,rounds-1); r_=2+(RMAX-2)*(2*pr) if pr<.5 else RMAX-(RMAX-2)*(2*pr-1)
+            elif m=='SA_mono':
+                # SA-FedLoRA (faithful): hold the full width for the first 20% of
+                # rounds, then shrink linearly to the narrowest rank; oblivious to
+                # the link state, exactly as in the real trainer.
+                pr=t/max(1,rounds-1); warm=.2
+                r_=RMAX if pr<warm else max(rank_arr[0], RMAX-(RMAX-rank_arr[0])*(pr-warm)/max(1e-9,1-warm))
                 rr=np.full(clients,rank_arr[int(np.argmin(np.abs(rank_arr-r_)))])
+            elif m=='ROBA_style':
+                # Expected-latency rule (EL, after ROBA/TSFA): the largest rank
+                # whose EXPECTED transmit time fits the deadline at the estimated
+                # rate; no loss term and no joint admission, exactly as in the
+                # real trainer.
+                fits=8.0*size_of(rank_arr,payload_model)[None,:]/(rate[:,None]*deadline)<=1.0
+                rr=rank_arr[np.max(np.where(fits, np.arange(len(rank_arr))[None,:], 0), axis=1)]
             else:
                 # Adaptive: maximize expected useful delivered capacity
                 # cap_gain(r)*P_deliver(r); downshifts under mobility/deadline

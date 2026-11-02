@@ -535,10 +535,17 @@ def main():
     p.add_argument('--fp16-upload', action='store_true',
                    help='compression baseline: trainable B is uploaded at 2 bytes/param with a real fp16 round-trip (quantize on delivery); delivery and byte accounting use the halved payload')
     p.add_argument('--no-capacity-term', action='store_true', help='ablation: adaptive rule uses delivery probability only (no capacity gain)')
+    p.add_argument('--rate-est-bias', type=float, default=0.0,
+                   help='scheduler sees rate*(1+bias); delivery keeps the true rate')
+    p.add_argument('--mu-est-scale', type=float, default=1.0,
+                   help='scheduler sees mobility*scale; delivery keeps the true value')
     p.add_argument('--delivery-mismatch', action='store_true', help='de-circularized arm: AR(1) realized rates, stale EMA estimates for scheduling, and structural delivery (propagation/handover delay + independent loss) instead of the hazard law')
     p.add_argument('--dp-budget', type=float, default=1.0,
                    help='byte budget in REAL MB for the DP_cohort/DP_same arms; 1.0 MB = 10x the ceil-grid cost of rank 16')
     p.add_argument('--resume', action='store_true')
+    p.add_argument('--a-init-from', default='',
+                   help='checkpoint.pt of an earlier run whose frozen LoRA A factors seed this run, '
+                        'so arms trained in a separate process share one adapter initialisation')
     p.add_argument('--device', default='auto')
     a = p.parse_args()
 
@@ -612,6 +619,12 @@ def main():
         initial_state = {k: (torch.randn_like(v) * a.lora_init_std if k.endswith('.A') else torch.zeros_like(v))
                          for k, v in ls(m).items()}
     a_init = {k: v.clone() for k, v in initial_state.items() if k.endswith('.A')}
+    if a.a_init_from:  # share the adapter basis of an earlier run (cross-process fairness)
+        _z = torch.load(a.a_init_from, map_location='cpu')
+        _ai = _z.get('a_init', {}) if isinstance(_z, dict) else {}
+        if _ai:
+            a_init = {k: v.to(d) for k, v in _ai.items()}
+            print(f'loaded a_init from {a.a_init_from} ({len(a_init)} tensors)', flush=True)
     b_init = {k: v.clone() for k, v in initial_state.items() if k.endswith('.B')}
 
     # Real payload constants, measured from the actual model (never hardcoded).
@@ -704,6 +717,11 @@ def main():
         for method in methods:
             g = np.random.default_rng(a.seed * 10000 + rnd)  # common link traces across methods
             rate, mob = draw_links(a.link_profile, g, a.clients, mob_shape)
+            rate_true, mob_true = rate, mob   # delivery always uses the truth
+            if a.rate_est_bias:
+                rate = rate_true * (1.0 + a.rate_est_bias)
+            if a.mu_est_scale != 1.0:
+                mob = mob_true * a.mu_est_scale
             if a.delivery_mismatch:
                 rate = mm_est.copy()   # scheduler sees the stale history-based estimate
             is_joint = method == 'JointAB'
@@ -789,11 +807,11 @@ def main():
                 if a.delivery_mismatch:
                     d_prop, p_h, dlt_h = 0.005, 0.15, 0.02
                     T = d_prop + (dlt_h if g.random() < p_h else 0.0) + 8.0 * size / mm_rate_real[i]
-                    lost = g.random() < (1.0 - math.exp(-1.5 * mob[i]))
+                    lost = g.random() < (1.0 - math.exp(-1.5 * mob_true[i]))
                     delivered = bool(T <= a.deadline and not lost)
                 else:
                     pon = 1.0 if method == 'FedAvg_offline' else \
-                        math.exp(-mob[i]) * math.exp(-8.0 * size / (rate[i] * a.deadline))
+                        math.exp(-mob_true[i]) * math.exp(-8.0 * size / (rate_true[i] * a.deadline))
                     delivered = bool(g.random() < pon)
                 if log_outcomes:
                     wo.writerow([a.seed, rnd, method, int(i), SAGIN_GROUPS[group_of(int(i), a.clients)],
