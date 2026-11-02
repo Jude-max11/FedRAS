@@ -9,8 +9,8 @@ tex = open('/tmp/main_zh.tex', encoding='utf-8').read()
 M = [('FedLoRA_r4', 'p2_tab5d'), ('FedLoRA_r16', 'p2_tab5d'), ('Random_rank', 'p2_tab5d'),
      ('Adaptive_rank', 'p2_tab5d'), ('SA_mono', 'p2_tab5df'), ('Oort_utility', 'p2_tab5df'),
      ('ROBA_style', 'p2_tab5df')]
-SC = [('基准', None), ('截止 10', 'dl10.0'), ('移动性', 'mob0.7'), ('α = 0.1', 'alpha0.1'),
-      ('α = 1.0', 'alpha1.0')]
+SC = [('基准', None), ('截止 10', 'dl10.0'), ('移动性', 'mob0.7'),
+      (r'\alpha = 0.1', 'alpha0.1'), (r'\alpha = 1.0', 'alpha1.0')]
 i = tex.index(r'\textsf{(d) 扩展压力矩阵}')
 j = tex.index(r'\end{table*}', i)
 blk = tex[i:j]
@@ -23,7 +23,7 @@ for ln in blk.splitlines():
         continue
     s = ln.strip()
     for zh, sc in SC:
-        if s.startswith(zh) and cur:
+        if zh in s and cur:
             vals = [float(x) for x in re.findall(r'0\.\d{4}', ln.split('&', 1)[1])]
             if len(vals) < 7:
                 continue
