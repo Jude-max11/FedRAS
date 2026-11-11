@@ -1,1 +1,0 @@
-{"arch": "cnn_lora_v2", "dataset": "mnist", "width": 256, "pretrain_epochs": 3, "pretrain_lr": 0.05, "batch_size": 128, "augment": true, "seed": 0}

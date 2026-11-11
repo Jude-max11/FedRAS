@@ -1,1 +1,0 @@
-{"arch": "cnn_lora_v3", "dataset": "cifar100", "width": 256, "base_channels": 64, "pretrain_epochs": 45, "pretrain_lr": 0.05, "batch_size": 128, "augment": true, "seed": 4}

@@ -1,4 +1,0 @@
-deadline,budget,obj_loss_pred_sigma0.2_mean,obj_loss_pred_sigma0.2_max,obj_loss_Glinear_mean,obj_loss_Glog_mean,admit_agreement_Glinear,admit_agreement_Glog
-1.0,300.0,0.0097,0.0191,0.0,0.0,1.0,1.0
-0.25,300.0,0.0385,0.0846,0.0,0.0,1.0,1.0
-0.25,12.0,0.0514,0.0941,0.0013,0.0141,0.999,0.995

@@ -1,3 +1,0 @@
-dataset,method,final_accuracy_mean,final_accuracy_std,final_timely_ratio_mean,final_timely_ratio_std,final_bytes_norm_mean,final_bytes_norm_std,final_mean_rank_mean,final_mean_rank_std,final_update_norm_mean,final_update_norm_std,best_accuracy_mean,best_accuracy_std
-cifar10,DP_cohort,0.914,0.0006,0.54,0.2302,7.88,0.0,15.1048,0.877,0.0034,0.0005,0.9151,0.0011
-cifar10_dl0.25,DP_cohort,0.9142,0.0012,0.16,0.1342,7.56,0.32,11.7333,6.6933,0.0028,0.0019,0.9151,0.0014

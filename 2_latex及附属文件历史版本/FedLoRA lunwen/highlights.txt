@@ -1,7 +1,0 @@
-Highlights
-
-- Treats the LoRA rank as a per-round network resource in mobile edge FL
-- Exact dynamic program solves the joint client-rank assignment each round
-- Frozen-factor rank-masked aggregation stabilizes heterogeneous-rank FL
-- Real federated LoRA trainer holds 0.914 CIFAR-10 accuracy across ranks
-- Beats greedy and annealing baselines; 23% fewer bytes under deadline stress
